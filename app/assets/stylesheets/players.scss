@@ -1,0 +1,97 @@
+// Place all the styles related to the players controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.phone {
+  font-size: 70%;
+}
+
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+*:hover{
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+section{
+  float:left;
+  width:100%;
+  background: #fff;  /* fallback for old browsers */
+  padding:30px 0;
+}
+h1{float:left; width:100%; color:#232323; margin-bottom:30px; font-size: 14px;}
+h1 span{font-family: 'Libre Baskerville', serif; display:block; font-size:45px; text-transform:none; margin-bottom:20px; margin-top:30px; font-weight:700}
+h1 a{color:#131313; font-weight:bold;}
+
+/*Profile card 4*/
+.profile-card-4 .card-img-block{
+  float:left;
+  width:100%;
+  height:150px;
+  overflow:hidden;
+}
+.profile-card-4 .card-body{
+  position:relative;
+  background: #e8e8e8;
+}
+.profile-card-4 .profile {
+  border-radius: 50%;
+  position: absolute;
+  top: -62px;
+  left: 50%;
+  width:100px;
+  border: 3px solid rgba(255, 255, 255, 1);
+  margin-left: -50px;
+}
+.profile-card-4 .card-img-block{
+  position:relative;
+}
+.profile-card-4 .card-img-block > .info-box{
+  position:absolute;
+  background: rgba(101, 200, 225, 0.6);
+  width:100%;
+  height:100%;
+  color:#fff;
+  padding:20px;
+  text-align:center;
+  font-size:14px;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+  opacity:0;
+}
+.profile-card-4 .card-img-block:hover > .info-box{
+  opacity:1;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.profile-card-4 h5{
+  font-weight:600;
+  color: #3d3d3d;
+}
+.profile-card-4 .card-text{
+  font-weight:300;
+  font-size:15px;
+}
+.profile-card-4 .icon-block{
+  float:left;
+  width:100%;
+}
+.profile-card-4 .icon-block a{
+  text-decoration:none;
+}
+.profile-card-4 i {
+  display: inline-block;
+  font-size: 16px;
+  color: #e8e8e8;
+  text-align: center;
+  border: 1px solid #e8e8e8;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  margin:0 5px;
+}
+.profile-card-4 i:hover {
+  background-color:#e8e8e8;
+  color:#fff;
+}

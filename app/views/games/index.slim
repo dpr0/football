@@ -1,0 +1,9 @@
+.row
+  .col-2
+  .col-10
+    .row
+      - @dates.each do |date|
+        .col-1 = link_to date.strftime("%d.%m.%y"), filter_games_path(date: date), method: :post, remote: true
+
+.filter
+  = render partial: 'filter'

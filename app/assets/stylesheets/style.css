@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'excite';
+    src:  url('excite.eot?56yhxa');
+    src:  url('excite.eot?56yhxa#iefix') format('embedded-opentype'),
+    /*url('excite.ttf?56yhxa') format('truetype'),*/
+    /*url('excite.woff?56yhxa') format('woff'),*/
+    url('excite.svg?56yhxa#excite') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ex-icon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'excite' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ex-90:before {
+    content: "\e900";
+}
+.ex-45:before {
+    content: "\e901";
+}
+.ex-0:before {
+    content: "\e902";
+}

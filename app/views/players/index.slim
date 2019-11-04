@@ -1,0 +1,25 @@
+/ - (0..100).each do |x|
+/   = image_tag "https://futhead.cursecdn.com/static/img/20/nations/#{x}.png"
+.row
+  - @players.each do |player|
+    .col-3.mt-4
+      .card.profile-card-4
+        .card-img-block
+          .info-box
+            = "#{player.name} #{player.middlename}"
+            p = player_phone(player.phone)
+          = image_tag "colors/#{@teams.find { |t| t.id == player.team_id }.code}.png", class: 'img-fluid'
+        .card-body.pt-5
+          - num = [1, 2, 5, 8, 13, 18, 21, 26, 27, 29].include?(player.code) ? player.code : 'anonim'
+          = image_tag "players/#{num}.jpg", class: 'profile', height: '50%'
+          h5.card-title.text-center = player.lastname.present? ? player.lastname : '-'
+          p.card-text.text-center = "#{player.name} #{player.middlename}"
+          .icon-block.text-center
+            a href="#"
+              i = player.goals.count
+            a href="#"
+              i -
+            a href="#"
+              i = player.birthday.present? ? Date.current.year - player.birthday.year : '-'
+            p
+              img src="https://futhead.cursecdn.com/static/img/20/nations/40.png" height="18" width="30"

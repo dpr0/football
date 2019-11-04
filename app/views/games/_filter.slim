@@ -1,0 +1,55 @@
+.row
+  .col-4
+    table
+      tr
+        th
+        th
+        th
+        th
+        th
+        th
+      - @games.each_with_index do |game, i|
+        tr
+          td.text-left
+            = i + 1
+          td.text-left
+            - t = @teams.find { |t| t.id == game['team_left_id'] }
+            = image_tag "colors/#{t.code}.png", size: "30x30"
+          td.text-center = game['goals_left']
+          td.text-center = ':'
+          td.text-center = game['goals_right']
+          td.text-right
+            - t = @teams.find { |t| t.id == game['team_right_id'] }
+            = image_tag "colors/#{t.code}.png", size: "30x30"
+
+  .col-8
+    table.table
+      tr
+        th Команда
+        th.text-center Матчи
+        th.text-center Победа
+        th.text-center Ничья
+        th.text-center Поражение
+        th.text-center Голы
+        th.text-center Очки
+      - @teams.where.not(code: 'all').each do |team|
+        tr
+          - games       =     @games.select { |x| [x['team_left_id'], x['team_right_id'] ].include? team.id }
+          - left_games  =      games.select { |x| x['team_left_id'] == team.id }
+          - right_games =      games.select { |x| x['team_right_id'] == team.id }
+          - win         = left_games.select { |x| x['goals_left'] > x['goals_right'] }.count + right_games.select { |x| x['goals_left'] < x['goals_right'] }.count
+          - draw        =      games.select { |x| x['goals_left'] == x['goals_right'] }.count
+          - lose        = left_games.select { |x| x['goals_left'] < x['goals_right'] }.count + right_games.select { |x| x['goals_left'] > x['goals_right'] }.count
+          td.text-left
+            = image_tag "colors/#{team.code}.png", size: "30x30"
+            = team.name
+          td.text-center = games.count
+          td.text-center
+            - if games.present?
+              = win
+          td.text-center = draw
+          td.text-center = lose
+          - goals1 = left_games.map { |x| x['goals_left'] }.sum + right_games.map { |x| x['goals_right'] }.sum
+          - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left'] }.sum
+          td.text-center = "#{goals1} : #{goals2}"
+          td.text-center = win * 3 + draw * 1
