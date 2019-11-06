@@ -1,5 +1,5 @@
 .row
-  .col-4
+  .col-2
     table
       tr
         th
@@ -22,7 +22,23 @@
             - t = @teams.find { |t| t.id == game['team_right_id'] }
             = image_tag "colors/#{t.code}.png", size: "30x30"
 
-  .col-8
+  .col-3
+    table
+      tr
+        th
+        th Бомбардир
+        th
+      - @goals.each_with_index do |goal, i|
+        tr
+          td.text-left
+            = i + 1
+          td.text-left
+            - player = @players.find { |pl| pl.code == goal.first }
+            = "№#{player.code} "
+            = "#{player.name} #{(player&.lastname.first + '.') if player.lastname.present?}"
+          td.text-center = goal.last
+
+  .col-7
     table.table
       tr
         th Команда

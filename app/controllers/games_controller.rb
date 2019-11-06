@@ -2,7 +2,7 @@
 
 class GamesController < ApplicationController
   def index
-    load_vars('28.10.2019'.to_date)
+    load_vars(Game.last.date)
   end
 
   def filter

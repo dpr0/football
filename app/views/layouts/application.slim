@@ -4,21 +4,17 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     link href="favicon.ico" rel=("shortcut icon") type="image/x-icon"
-    title Zupre Football
-    / link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    / link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    / link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    / link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
-    script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-    script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-    script src="https://cdn.jsdelivr.net/npm/interactjs@next/dist/interact.min.js"
-    script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
-    script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"
+    title Football
+    / script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    / script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    / script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+    / script src="https://cdn.jsdelivr.net/npm/interactjs@next/dist/interact.min.js"
+    / script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
+    / script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"
 
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application'
-    = javascript_pack_tag 'application'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body#container
     #root
       #app
