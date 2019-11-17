@@ -1,5 +1,76 @@
 .row
-  .col-2
+  .col-sm-3
+    table.table
+      tr
+        th
+        th Бомбардир
+        th
+      - @goals.each do |goal|
+        tr
+          - player = @players.find { |pl| pl.code == goal.first }
+          td.text-left
+            = "№#{player.code}"
+          td.text-left
+            = with_initial(player)
+          td.text-center = goal.last
+
+  .col-sm-7
+    .row
+      table.table
+        tr
+          th Команда
+          th.text-center Матчи
+          th.text-center Победа
+          th.text-center Ничья
+          th.text-center Поражение
+          th.text-center Голы
+          th.text-center Очки
+        - @teams.each do |team|
+          tr
+            - games       =     @games.select { |x| [x['team_left_id'], x['team_right_id'] ].include? team.id }
+            - next if games.blank?
+            - left_games  =      games.select { |x| x['team_left_id'] == team.id }
+            - right_games =      games.select { |x| x['team_right_id'] == team.id }
+            - win         = left_games.select { |x| x['goals_left'] > x['goals_right'] }.count + right_games.select { |x| x['goals_left'] < x['goals_right'] }.count
+            - draw        =      games.select { |x| x['goals_left'] == x['goals_right'] }.count
+            - lose        = left_games.select { |x| x['goals_left'] < x['goals_right'] }.count + right_games.select { |x| x['goals_left'] > x['goals_right'] }.count
+            td.text-left
+              = image_tag "colors/#{team.code}.png", size: "30x30"
+              = team.name
+            td.text-center = games.count
+            td.text-center
+              - if games.present?
+                = win
+            td.text-center = draw
+            td.text-center = lose
+            - goals1 = left_games.map { |x| x['goals_left'] }.sum + right_games.map { |x| x['goals_right'] }.sum
+            - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left'] }.sum
+            td.text-center = "#{goals1} : #{goals2}"
+            td.text-center = win * 3 + draw * 1
+
+    .row.align-stretch.football
+      - @day.day_players.group_by(&:team_id).each do |team_id, day_players|
+        .col-sm-3
+          - team = Team.cached_by_id[team_id]
+          .football-deck class="status-color-#{team_id + 1}"
+            .title.dropdown
+              .dropdown-toggle data-toggle="dropdown"
+                = team.name
+                i.ex-icon.ex-45
+              .dropdown-menu.settings__dropdown
+                a.dropdown-item href="#" По имени§
+                a.dropdown-item href="#" По команде
+                .dropdown-divider
+                a.dropdown-item.reset data-html="Канбан" href="#"  Сброс
+            .body.football-body.football-connect.ui-sortable
+              - day_players.each do |day_player|
+                .football-player.ui-sortable-handle
+                  - player = day_player.player
+                  p
+                    b = "#{player.code} "
+                    a href="#" = with_initial(player)
+
+  .col-sm-2.text-right
     table
       tr
         th
@@ -21,51 +92,3 @@
           td.text-right
             - t = @teams.find { |t| t.id == game['team_right_id'] }
             = image_tag "colors/#{t.code}.png", size: "30x30"
-
-  .col-3
-    table
-      tr
-        th
-        th Бомбардир
-        th
-      - @goals.each_with_index do |goal, i|
-        tr
-          td.text-left
-            = i + 1
-          td.text-left
-            - player = @players.find { |pl| pl.code == goal.first }
-            = "№#{player.code} "
-            = "#{player.name} #{(player&.lastname.first + '.') if player.lastname.present?}"
-          td.text-center = goal.last
-
-  .col-7
-    table.table
-      tr
-        th Команда
-        th.text-center Матчи
-        th.text-center Победа
-        th.text-center Ничья
-        th.text-center Поражение
-        th.text-center Голы
-        th.text-center Очки
-      - @teams.where.not(code: 'all').each do |team|
-        tr
-          - games       =     @games.select { |x| [x['team_left_id'], x['team_right_id'] ].include? team.id }
-          - left_games  =      games.select { |x| x['team_left_id'] == team.id }
-          - right_games =      games.select { |x| x['team_right_id'] == team.id }
-          - win         = left_games.select { |x| x['goals_left'] > x['goals_right'] }.count + right_games.select { |x| x['goals_left'] < x['goals_right'] }.count
-          - draw        =      games.select { |x| x['goals_left'] == x['goals_right'] }.count
-          - lose        = left_games.select { |x| x['goals_left'] < x['goals_right'] }.count + right_games.select { |x| x['goals_left'] > x['goals_right'] }.count
-          td.text-left
-            = image_tag "colors/#{team.code}.png", size: "30x30"
-            = team.name
-          td.text-center = games.count
-          td.text-center
-            - if games.present?
-              = win
-          td.text-center = draw
-          td.text-center = lose
-          - goals1 = left_games.map { |x| x['goals_left'] }.sum + right_games.map { |x| x['goals_right'] }.sum
-          - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left'] }.sum
-          td.text-center = "#{goals1} : #{goals2}"
-          td.text-center = win * 3 + draw * 1

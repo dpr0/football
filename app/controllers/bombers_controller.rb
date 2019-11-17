@@ -3,12 +3,11 @@
 class BombersController < ApplicationController
 
   def index
-    @players = Player.all.to_a
-    @goals = Goal.all
-                 .group_by(&:player_id)
-                 .map { |k, v| [k, v.length] }
-                 .sort_by { |player, count| [-count, player] }
-                 .group_by { |x| x[1] }
-    @days = []
+    @players = Player.eager_load(:goals, :day_players).all.to_a.map do |pp|
+      games = pp.day_players.count
+      goals = pp.goals.count
+      avg = games > 0 ? ((goals / games.to_f) * 100).to_i / 100.0 : 0
+      [ pp, goals, games, avg ]
+    end.sort_by { |player, goals, games, avg| [-avg, player, goals, games] }
   end
 end

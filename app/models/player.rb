@@ -6,4 +6,5 @@ class Player < ApplicationRecord
   belongs_to :team
   has_one :role
   has_many :goals
+  has_many :day_players
 end

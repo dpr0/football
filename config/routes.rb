@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :players
 
-  root 'teams#index'
+  root 'games#index'
 
   resources :games do
     post :filter, on: :collection

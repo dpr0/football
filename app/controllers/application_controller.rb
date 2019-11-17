@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     @teams = Team.all.order(:num)
     @players_count = Player.count
     @games_count = Game.count
+    @days_count = Day.count
   end
 
   private

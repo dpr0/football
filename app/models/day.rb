@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Team < ApplicationRecord
-  include Dictionary
-
+class Day < ApplicationRecord
+  has_many :games
   has_many :day_players
 end

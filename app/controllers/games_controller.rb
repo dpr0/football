@@ -2,25 +2,26 @@
 
 class GamesController < ApplicationController
   def index
-    load_vars(Game.last.date)
+    @day = Day.last
+    load_vars(@day)
   end
 
   def filter
-    load_vars(params[:date])
+    @day = Day.find_by_id(params[:day])
+    load_vars(@day)
     render layout: false
   end
 
   private
 
-  def load_vars(date)
+  def load_vars(day)
     @players = Player.all.to_a
-    @games = Game.connection.execute("select * from games where date = '#{date}'")
-    @dates = Game.all.map(&:date).uniq
-    game_ids = @games.map { |x| x['id'] if x['date'] == date.to_s }
-    @goals = Goal.where(game_id: game_ids)
+    @days = Day.all
+    @games = day.games
+    @goals = Goal.where(game_id: @games.ids)
                  .group_by(&:player_id)
-                 .map { |k, v| [k, v.length] }
+                 .map { |k, v| [k, v.length] if k }
+                 .compact
                  .sort_by { |player, count| [-count, player] }
-
   end
 end

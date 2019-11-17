@@ -7,13 +7,14 @@
         .card-img-block
           .info-box
             = "#{player.name} #{player.middlename}"
-            p = player_phone(player.phone)
-          = image_tag "colors/#{@teams.find { |t| t.id == player.team_id }.code}.png", class: 'img-fluid'
-        .card-body.pt-5
+            div = player_phone(player.phone)
+            div = player.birthday&.strftime("%d.%m.%Y")
+          / = image_tag "colors/#{@teams.find { |t| t.id == player.team_id }.code}.png", class: 'img-fluid'
+        .card-body
           - num = [1, 2, 5, 8, 13, 18, 21, 26, 27, 29].include?(player.code) ? player.code : 'anonim'
           = image_tag "players/#{num}.jpg", class: 'profile', height: '50%'
-          h5.card-title.text-center = player.lastname.present? ? player.lastname : '-'
-          p.card-text.text-center = "#{player.name} #{player.middlename}"
+          h5.card-title.text-center = player.code
+          .card-text.text-center = player.lastname.present? ? player.lastname : '-'
           .icon-block.text-center
             a href="#"
               i = player.goals.count

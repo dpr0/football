@@ -1,17 +1,17 @@
 .row
   table.table
-    - @goals.each do |k, val|
+    tr
+      th №
+      th Гол./день
+      th Игрок
+      th Голов
+      th Дней
+    - @players.each_with_index do |player, i|
+      - next if player[1] == 0
       tr
-        td = k
-        td.text-left
-          .row
-            - val.each do |vv|
-              .col-2
-                - player = @players.find { |pl| pl.code == vv.first }
-                = "№#{player.code} "
-                = "#{player.name} #{(player&.lastname.first + '.') if player.lastname.present?}"
-- @days.each do |day|
-  .col-2
-    table
-      - day.goals.each_with_index do |goal, i|
-        tr
+        td = i + 1
+        td = player[3]
+        td = "#{player[0].name} #{player[0].lastname} (№#{player[0].code})"
+        td = player[1]
+        td = player[2]
+
