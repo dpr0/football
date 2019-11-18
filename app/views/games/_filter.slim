@@ -1,4 +1,30 @@
 .row
+  .col-sm-2
+    table.table
+      tr
+        th Игры
+    table
+      tr
+        th
+        th
+        th
+        th
+        th
+        th
+      - @games.each_with_index do |game, i|
+        tr
+          td.text-left
+            = i + 1
+          td.text-left
+            - t = @teams.find { |t| t.id == game['team_left_id'] }
+            = image_tag "colors/#{t.code}.png", size: "30x30"
+          td.text-center = game['goals_left']
+          td.text-center = ':'
+          td.text-center = game['goals_right']
+          td.text-right
+            - t = @teams.find { |t| t.id == game['team_right_id'] }
+            = image_tag "colors/#{t.code}.png", size: "30x30"
+
   .col-sm-3
     table.table
       tr
@@ -13,8 +39,8 @@
           td.text-left
             = with_initial(player)
           td.text-center = goal.last
-
-  .col-sm-7
+  .col-sm-1
+  .col-sm-6
     .row
       table.table
         tr
@@ -57,11 +83,6 @@
               .dropdown-toggle data-toggle="dropdown"
                 = team.name
                 i.ex-icon.ex-45
-              .dropdown-menu.settings__dropdown
-                a.dropdown-item href="#" По имени§
-                a.dropdown-item href="#" По команде
-                .dropdown-divider
-                a.dropdown-item.reset data-html="Канбан" href="#"  Сброс
             .body.football-body.football-connect.ui-sortable
               - day_players.each do |day_player|
                 .football-player.ui-sortable-handle
@@ -69,26 +90,3 @@
                   p
                     b = "#{player.code} "
                     a href="#" = with_initial(player)
-
-  .col-sm-2.text-right
-    table
-      tr
-        th
-        th
-        th
-        th
-        th
-        th
-      - @games.each_with_index do |game, i|
-        tr
-          td.text-left
-            = i + 1
-          td.text-left
-            - t = @teams.find { |t| t.id == game['team_left_id'] }
-            = image_tag "colors/#{t.code}.png", size: "30x30"
-          td.text-center = game['goals_left']
-          td.text-center = ':'
-          td.text-center = game['goals_right']
-          td.text-right
-            - t = @teams.find { |t| t.id == game['team_right_id'] }
-            = image_tag "colors/#{t.code}.png", size: "30x30"

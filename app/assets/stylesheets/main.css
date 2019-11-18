@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&subset=cyrillic-ext');
 
 #container {
-    background: #afd6d2 url(pole.jpg) repeat-y;
+    background: #e8e8e8 url(pole.jpg) repeat-y;
     background-size: 100% 50%;
 }
 
@@ -549,7 +549,7 @@ aside {
     left: 0;
     top: 91px;
     z-index: 9;
-    width: 300px;
+    width: 200px;
     height: calc(100% - 91px);
 }
 
@@ -687,7 +687,7 @@ aside a.extended__more {
 
 main {
     background: #fafafa;
-    padding-left: 300px;
+    padding-left: 200px;
 }
 
 .block {

@@ -10,6 +10,7 @@ set :repo_url, 'git@github.com:dpr0/football.git'
 set :deploy_user, 'deploy'
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/master.key', '.env')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :keep_releases, 5
 
 set :user,            'deploy'
 set :use_sudo,        false
