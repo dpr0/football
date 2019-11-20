@@ -16,7 +16,8 @@ html
     script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
     script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"
 
-    = stylesheet_link_tag 'application', media: 'all'
+    / = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_pack_tag 'application', media: 'all'
     / = javascript_include_tag 'application'
     = javascript_pack_tag 'application'
   body#container

@@ -17,9 +17,9 @@ document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="popover"]').popover()
 })
 
-var componentRequireContext = require.context("components", true);
-var ReactRailsUJS = require("react_ujs");
-ReactRailsUJS.useContext(componentRequireContext);
+// var componentRequireContext = require.context("components", true);
+// var ReactRailsUJS = require("react_ujs");
+// ReactRailsUJS.useContext(componentRequireContext);
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
