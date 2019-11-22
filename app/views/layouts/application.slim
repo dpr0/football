@@ -3,103 +3,40 @@ html
   head
     = csrf_meta_tags
     = csp_meta_tag
-    link href="favicon.ico" rel=("shortcut icon") type="image/x-icon"
+    / link href="favicon.ico" rel=("shortcut icon") type="image/x-icon"
     title Zupre Football
-    / link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    / link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    / link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    / link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
-    script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-    script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-    script src="https://cdn.jsdelivr.net/npm/interactjs@next/dist/interact.min.js"
-    script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
-    script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"
 
-    / = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_pack_tag 'application', media: 'all'
-    / = javascript_include_tag 'application'
     = javascript_pack_tag 'application'
-  body#container
-    #root
-      #app
-        #header
-          header.d-flex.align-center.justify-between
-            .logo
-              = image_tag("football3.png", size: '500x100')
-              / img alt="" width="100%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=859&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
-            .action.d-flex.align-center.justify-end
-              .time
-                p= Time.current
-              .profile
-                .profile__avatar
-                a href="#" Тест Т. Т.
-              .settings.dropdown
-                a.profile__button.dropdown-toggle data-toggle="dropdown" href="#"
-                  i.ex-icon.ex-0
-                .dropdown-menu.dropdown-menu-right.settings__dropdown
-                  a.dropdown-item href="#"  Menu items 1
-                  a.dropdown-item href="#"  Menu items 2
-                  a.dropdown-item href="#"  Menu items 3
-                  a.dropdown-item href="#"  Menu items 4
-        #content
-          aside
-            .nav.nav__main
-              ul
-                li
-                  = link_to games_path, class: "#{'active' if @menu == 'games'}" do
-                    | Статистика
-                    i = @days_count
-                li
-                  = link_to bombers_path, class: "#{'active' if @menu == 'bombers'}" do
-                    | Бомбардиры
-                    i = @games_count
-                li
-                  = link_to players_path, class: "#{'active' if @menu == 'players'}" do
-                    | Игроки
-                    i = @players_count
-                li
-                  a href="#"  Чемпионат
-                li
-                  a href="#"  Аналитика
-                li.separator
-                  span
-                li
-                  a.toggle-block href="#"  Видео
-            .extended
-              .extended__action
-                a href="#"  Новая команда
-                a href="#"  Новый игрок
-          main
-            .container
-              p.notice = notice
-              p.alert = alert
-              = yield
-        .menu
-          ul.menu-options
-            li.menu-option
-              a href=("javascript: return false;")
-                i.mdi add
-                | Новая задача
-            li.menu-option
-              a href=("javascript: return false;")
-                i.mdi remove
-                | Снять задачу
-            li.menu-option
-              a href=("javascript: return false;")
-                i.mdi close
-                | Завершить заадчу
-        .menu__chart
-          ul.menu-options
-            li.menu-option
-              a href=("javascript: return false;")
-                i.mdi add
-                | Действие 1
-            li.menu-option
-              a href=("javascript: return false;")
-                i.mdi remove
-                | Действие 2
-            li.menu-option
-              a href=("javascript: return false;")
-                i.mdi close
-                | Действие 3
+  body
+    .container
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.rounded
+        a.navbar-brand href="#"  Zupre Football
+        ul.navbar-nav.mr-auto
+          li.nav-item class="#{'active' if @menu == 'games'}"
+            = link_to games_path, class: 'nav-link' do
+              | Статистика
+              / i = @days_count
+          li.nav-item class="#{'active' if @menu == 'bombers'}"
+            = link_to bombers_path, class: 'nav-link' do
+              | Бомбардиры
+              / i = @games_count
+          li.nav-item class="#{'active' if @menu == 'players'}"
+            = link_to players_path, class: 'nav-link' do
+              | Игроки
+              / i = @players_count
+      br
+      header.text-center
+        .row
+          .col-2
+            img width="50%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=860&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
+          .col-8
+            = image_tag("football3.png", size: '500x100')
+          .col-2
+            img width="50%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=1123&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
+          / - [859, 2882, 2886, 860, 1123].each do |num|
+            / img width="10%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=#{num}&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
+
+      p.notice = notice
+      p.alert = alert
+      = yield

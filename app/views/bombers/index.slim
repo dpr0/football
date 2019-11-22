@@ -1,17 +1,26 @@
 .row
-  table.table
-    tr
-      th №
-      th Гол./день
-      th Игрок
-      th Голов
-      th Дней
-    - @players.each_with_index do |player, i|
-      - next if player[1] == 0
-      tr
-        td = i + 1
-        td = player[3]
-        td = "#{player[0].name} #{player[0].lastname} (№#{player[0].code})"
-        td = player[1]
-        td = player[2]
-
+  .col-6
+    .row
+      ul.nav.nav-pills.nav-fill
+        li.nav-item
+          = link_to 'За все время', '#', class: 'nav-link active disabled'
+    .row
+      table.table
+        tr
+          th №
+          th Гол./день
+          th Игрок
+          th Голов
+          th Дней
+        - @players.each_with_index do |player, i|
+          - next if player[1] == 0
+          tr
+            td = i + 1
+            td = player[3]
+            td = "#{player[0].name} #{player[0].lastname} (№#{player[0].code})"
+            td = player[1]
+            td = player[2]
+  .col-1
+  .col-5
+    .filter
+      = render partial: 'filter'

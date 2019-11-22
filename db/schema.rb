@@ -10,25 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_21_220000) do
+ActiveRecord::Schema.define(version: 2019_11_08_121000) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "day_players", force: :cascade do |t|
+    t.bigint "day_id"
+    t.bigint "player_id"
+    t.bigint "team_id"
+    t.index ["day_id"], name: "index_day_players_on_day_id"
+    t.index ["player_id"], name: "index_day_players_on_player_id"
+    t.index ["team_id"], name: "index_day_players_on_team_id"
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.date "date"
+  end
 
   create_table "games", force: :cascade do |t|
-    t.integer "team_left_id"
-    t.integer "team_right_id"
+    t.bigint "day_id"
+    t.bigint "team_left_id"
+    t.bigint "team_right_id"
     t.integer "goals_left", default: 0
     t.integer "goals_right", default: 0
-    t.date "date"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["day_id"], name: "index_games_on_day_id"
     t.index ["team_left_id"], name: "index_games_on_team_left_id"
     t.index ["team_right_id"], name: "index_games_on_team_right_id"
   end
 
   create_table "goals", force: :cascade do |t|
-    t.integer "player_id"
-    t.integer "game_id"
-    t.integer "team_id"
+    t.bigint "player_id"
+    t.bigint "game_id"
+    t.bigint "team_id"
     t.index ["game_id"], name: "index_goals_on_game_id"
     t.index ["player_id"], name: "index_goals_on_player_id"
     t.index ["team_id"], name: "index_goals_on_team_id"
@@ -46,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_10_21_220000) do
     t.integer "height"
     t.integer "weight"
     t.date "birthday"
-    t.integer "role_id"
+    t.bigint "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

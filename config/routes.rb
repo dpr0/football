@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   resources :teams
   resources :players
-  resources :bombers, only: :index
+  resources :bombers do
+    post :filter, on: :collection
+  end
 end

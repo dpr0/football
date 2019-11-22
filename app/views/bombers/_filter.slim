@@ -1,0 +1,15 @@
+.row
+  ul.nav.nav-pills.nav-fill
+    - (1..5).each do |day|
+      li.nav-item
+        = link_to day, filter_bombers_path(days: day), method: :post, class: "nav-link #{'active' if day == @days}", remote: true
+.row
+  table.table
+    tr
+      th Игрок
+      th Голов
+    - @players_by_days.each_with_index do |player, i|
+      - next if player[1] == 0
+      tr
+        td = "#{player[0].name} #{player[0].lastname} (№#{player[0].code})"
+        td = player[1]

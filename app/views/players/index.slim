@@ -3,24 +3,25 @@
 .row
   - @players.each do |player|
     .col-3.mt-4
-      .card.profile-card-4
+      .card.profile-card
         .card-img-block
           .info-box
-            = "#{player.name} #{player.middlename}"
+            = player.birthday.present? ? "Возраст: #{Date.current.year - player.birthday.year}" : '-'
             div = player_phone(player.phone)
             div = player.birthday&.strftime("%d.%m.%Y")
-          / = image_tag "colors/#{@teams.find { |t| t.id == player.team_id }.code}.png", class: 'img-fluid'
         .card-body
-          - num = [1, 2, 5, 8, 13, 18, 21, 26, 27, 29].include?(player.code) ? player.code : 'anonim'
+          - num = [1, 2, 5, 8, 13, 18, 19, 21, 26, 27, 29].include?(player.code) ? player.code : 'anonim'
           = image_tag "players/#{num}.jpg", class: 'profile', height: '50%'
           h5.card-title.text-center = player.code
           .card-text.text-center = player.lastname.present? ? player.lastname : '-'
+          .card-text.text-center = player.name.present? ? player.name : '-'
+          .card-text.text-center = player.middlename.present? ? player.middlename : '-'
           .icon-block.text-center
             a href="#"
+              i = player.code
+            a href="#"
+              i &#9917;
+            a href="#"
               i = player.goals.count
-            a href="#"
-              i -
-            a href="#"
-              i = player.birthday.present? ? Date.current.year - player.birthday.year : '-'
             p
               img src="https://futhead.cursecdn.com/static/img/20/nations/40.png" height="18" width="30"

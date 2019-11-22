@@ -1,13 +1,7 @@
-.row
-  .col-2
-  .col-10
-    .block.block__limited
-      .nav__group.d-flex.align-center.justify-between
-        .tab__group
-          ul.nav.nav-tabs
-            - @days.each do |day|
-              li.nav-item
-                = link_to day.date.strftime("%d.%m.%y"), filter_games_path(day: day.id), method: :post, class: "nav-link #{'active' if day.id == Day.last.id}", data: {toggle: 'tab'}, remote: true
+ul.nav.nav-pills.nav-fill
+  - @days.each do |day|
+    li.nav-item
+      = link_to day.date.strftime("%d.%m.%y"), filter_games_path(day: day.id), method: :post, class: "nav-link #{'active' if day.id == Day.last.id}", data: {toggle: 'tab'}, remote: true
 
 .filter
   = render partial: 'filter'
