@@ -1,63 +1,37 @@
 .row
-  .col-sm-3
-    table.table
+  table.table.table-striped
+    tr
+      th Команда
+      th.text-center Матчи
+      th.text-center Победа
+      th.text-center Ничья
+      th.text-center Поражение
+      th.text-center Голов
+      th.text-center Очки
+    - @teams.each do |team|
       tr
-        th
-        th Бомбардир
-        th
-      - @goals.each do |goal|
-        tr
-          - player = @players.find { |pl| pl.code == goal.first }
-          td.text-left
-            = "№#{player.code}"
-          td.text-left
-            = with_initial(player)
-          td.text-center = goal.last
-  .col-sm-7
-    .row
-      table.table.table-striped
-        tr
-          th Команда
-          th.text-center Матчи
-          th.text-center Победа
-          th.text-center Ничья
-          th.text-center Поражение
-          th.text-center Голов
-          th.text-center Очки
-        - @teams.each do |team|
-          tr
-            - games       =     @games.select { |x| [x['team_left_id'], x['team_right_id'] ].include? team.id }
-            - next if games.blank?
-            - left_games  =      games.select { |x| x['team_left_id'] == team.id }
-            - right_games =      games.select { |x| x['team_right_id'] == team.id }
-            - win         = left_games.select { |x| x['goals_left'] > x['goals_right'] }.count + right_games.select { |x| x['goals_left'] < x['goals_right'] }.count
-            - draw        =      games.select { |x| x['goals_left'] == x['goals_right'] }.count
-            - lose        = left_games.select { |x| x['goals_left'] < x['goals_right'] }.count + right_games.select { |x| x['goals_left'] > x['goals_right'] }.count
-            td.text-left
-              = image_tag "colors/#{team.code}.png", size: "30x30"
-            td.text-center = games.count
-            td.text-center
-              - if games.present?
-                = win
-            td.text-center = draw
-            td.text-center = lose
-            - goals1 = left_games.map { |x| x['goals_left'] }.sum + right_games.map { |x| x['goals_right'] }.sum
-            - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left'] }.sum
-            td.text-center = "#{goals1} : #{goals2}"
-            td.text-center = win * 3 + draw * 1
-
-    .row
-      - @day.day_players.group_by(&:team_id).each do |team_id, day_players|
-        .col-sm-3
-          - team = Team.cached_by_id[team_id]
+        - games =     @games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
+        - next if games.blank?
+        - left_games  = games.select { |x| x['team_left_id']  == team.id }
+        - right_games = games.select { |x| x['team_right_id'] == team.id }
+        - win  = left_games.select { |x| x['goals_left']  > x['goals_right'] }.count + right_games.select { |x| x['goals_left'] < x['goals_right'] }.count
+        - draw =      games.select { |x| x['goals_left'] == x['goals_right'] }.count
+        - lose = left_games.select { |x| x['goals_left']  < x['goals_right'] }.count + right_games.select { |x| x['goals_left'] > x['goals_right'] }.count
+        td.text-left
           = image_tag "colors/#{team.code}.png", size: "30x30"
-          .ul
-            - day_players.each do |day_player|
-              - player = day_player.player
-              li
-                span.badge.badge-primary.badge-pill = player.code
-                p = with_initial(player)
-  .col-sm-2
+        td.text-center = games.count
+        td.text-center
+          - if games.present?
+            = win
+        td.text-center = draw
+        td.text-center = lose
+        - goals1 = left_games.map { |x| x['goals_left'] }.sum + right_games.map { |x| x['goals_right'] }.sum
+        - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left'] }.sum
+        td.text-center = "#{goals1} : #{goals2}"
+        td.text-center = win * 3 + draw * 1
+
+.row
+  .col-2
     table.table
       tr
         th Игры
@@ -82,3 +56,32 @@
           td.text-right
             - t = @teams.find { |t| t.id == game['team_right_id'] }
             = image_tag "colors/#{t.code}.png", size: "30x30"
+
+  .col-1
+  .col-3
+    table.table
+      tr
+        th
+        th Бомбардиры
+        th
+      - @goals.each do |goal|
+        tr
+          - player = @players.find { |pl| pl.code == goal.first }
+          td.text-left
+            = "№#{player.code}"
+          td.text-left
+            = with_initial(player)
+          td.text-center = goal.last
+  .col-1
+  .col-5
+    .row
+      - @day.day_players.group_by(&:team_id).each do |team_id, day_players|
+        .col-3
+          - team = Team.cached_by_id[team_id]
+          = image_tag "colors/#{team.code}.png", size: "30x30"
+          .ul
+            - day_players.each do |day_player|
+              - player = day_player.player
+              li
+                span.badge.badge-primary.badge-pill = player.code
+                p = with_initial(player)

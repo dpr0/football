@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :counts
+  before_action :load_teams
   # before_action :authenticate_player!
   before_action :set_menu
 
-  def counts
+  def load_teams
     @teams = Team.all.order(:num)
-    @players_count = Player.count
-    @games_count = Game.count
-    @days_count = Day.count
   end
 
   private

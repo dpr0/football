@@ -1,7 +1,7 @@
-ul.nav.nav-pills.nav-fill
+ul.nav.nav-pills
   - @days.each do |day|
     li.nav-item
-      = link_to day.date.strftime("%d.%m.%y"), filter_games_path(day: day.id), method: :post, class: "nav-link #{'active' if day.id == Day.last.id}", data: {toggle: 'tab'}, remote: true
+      = link_to day.date.strftime("%d.%m.%y"), filter_games_path(day: day.id), class: "nav-link #{'active' if day.id == Day.last.id}", method: :post, remote: true
 
 .filter
   = render partial: 'filter'

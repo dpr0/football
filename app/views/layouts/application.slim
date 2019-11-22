@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    meta name="yandex-verification" content="b8209de9862994b1"
     = csrf_meta_tags
     = csp_meta_tag
     / link href="favicon.ico" rel=("shortcut icon") type="image/x-icon"
@@ -11,8 +12,8 @@ html
   body
     .container
       nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.rounded
-        a.navbar-brand href="#"  Zupre Football
-        ul.navbar-nav.mr-auto
+        a.navbar-brand href="#" Zupre Football
+        ul.navbar-nav
           li.nav-item class="#{'active' if @menu == 'games'}"
             = link_to games_path, class: 'nav-link' do
               | Статистика
@@ -25,18 +26,21 @@ html
             = link_to players_path, class: 'nav-link' do
               | Игроки
               / i = @players_count
+          li.nav-item class="#{'active' if @menu == 'teams'}"
+            = link_to teams_path, class: 'nav-link' do
+              | Команды
+              / i = @players_count
       br
       header.text-center
         .row
           .col-2
             img width="50%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=860&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
           .col-8
-            = image_tag("football3.png", size: '500x100')
+            = image_tag("football3.png", width: '70%')
           .col-2
             img width="50%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=1123&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
           / - [859, 2882, 2886, 860, 1123].each do |num|
             / img width="10%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=#{num}&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
-
       p.notice = notice
       p.alert = alert
       = yield
