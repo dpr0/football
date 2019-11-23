@@ -102,3 +102,4 @@ end
 # yarn
 # rm config/credentials.yml.enc
 # EDITOR="nano" rails credentials:edit
+# RAILS_ENV=production bundle exec rake assets:precompile
