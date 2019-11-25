@@ -35,4 +35,5 @@ Player.create(code: 32, comment: '_сер', lastname: '5',           name: 'nona
 Player.create(code: 33, comment: '_x6',  lastname: 'Аникеев',     name: 'Максим',      middlename: 'Викторович',    birthday: '05.06.1984', phone: nil,          role_id: 3, password: '000000', email: '33@krsz.ru')
 Player.create(code: 34, comment: '',     lastname: 'Миротинцев',  name: 'Егор',        middlename: '',              birthday: '',           phone: '9166945280', role_id: 3, password: '000000', email: '9166945280@krsz.ru')
 Player.create(code: 35, comment: '_врат',lastname: '',            name: 'Юрий',        middlename: '',              birthday: '',           phone: '9857685196', role_id: 3, password: '000000', email: '9857685196@krsz.ru')
-# Player.create(code: 36, comment: '',     lastname: '',  name: '',   middlename: '',      birthday: '',      phone: nil,          role_id: 3, password: '000000', email: '36@krsz.ru')
+Player.create(code: 36, comment: '',     lastname: '',            name: 'Акоп',        middlename: '',              birthday: '',           phone: '9296089233', role_id: 3, password: '000000', email: '9296089233@krsz.ru')
+# Player.create(code: 37, comment: '',     lastname: '',  name: '',   middlename: '',      birthday: '',      phone: nil,          role_id: 3, password: '000000', email: '36@krsz.ru')
