@@ -4,15 +4,15 @@ html
     meta name="yandex-verification" content="b8209de9862994b1"
     = csrf_meta_tags
     = csp_meta_tag
-    / link href="favicon.ico" rel=("shortcut icon") type="image/x-icon"
-    title Zupre Football
+    link href="favicon.ico" rel=('shortcut icon') type="image/x-icon"
+    title Megapolis Football
 
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   body
     .container
       nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.rounded
-        a.navbar-brand href="#" Zupre Football
+        a.navbar-brand href="#" Megapolis Football
         ul.navbar-nav
           li.nav-item class="#{'active' if @menu == 'games'}"
             = link_to games_path, class: 'nav-link' do

@@ -22,13 +22,27 @@
         td.text-center = games.count
         td.text-center
           - if games.present?
-            = win
+            = link_to win, '#', data: {target: '#gamesModalCenter', toggle: 'modal'}, remote: true
         td.text-center = draw
         td.text-center = lose
         - goals1 = left_games.map { |x| x['goals_left'] }.sum + right_games.map { |x| x['goals_right'] }.sum
         - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left'] }.sum
         td.text-center = "#{goals1} : #{goals2}"
         td.text-center = win * 3 + draw * 1
+
+
+#gamesModalCenter.modal.fade aria-hidden="true" aria-labelledby="gamesModalCenterTitle" role="dialog" tabindex="-1"
+  .modal-dialog.modal-dialog-centered role="document"
+    .modal-content
+      .modal-header
+        h5#gamesModalLongTitle.modal-title Modal title
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body
+        | -
+/ .modal-footer
+/   button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+/   button.btn.btn-primary type="button"  Save changes
 
 .row
   .col-2

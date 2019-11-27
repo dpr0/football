@@ -1,6 +1,6 @@
 .row
   ul.nav.nav-pills.nav-fill
-    - (1..5).each do |day|
+    - (1..8).each do |day|
       li.nav-item
         = link_to day, filter_bombers_path(days: day), method: :post, class: "nav-link #{'active' if day == @days}", remote: true
 .row
@@ -12,4 +12,17 @@
       - next if player[1] == 0
       tr
         td = "#{player[0].name} #{player[0].lastname} (№#{player[0].code})"
-        td = player[1]
+        td = link_to player[1], '#', data: { target: '#bombersModalCenter', toggle: 'modal'}, remote: true
+
+#bombersModalCenter.modal.fade aria-hidden="true" aria-labelledby="bombersModalCenterTitle" role="dialog" tabindex="-1"
+  .modal-dialog.modal-dialog-centered role="document"
+    .modal-content
+      .modal-header
+        h5#bombersModalLongTitle.modal-title Modal title
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body
+        | -
+        / .modal-footer
+        /   button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+        /   button.btn.btn-primary type="button"  Save changes
