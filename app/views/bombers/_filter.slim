@@ -1,6 +1,6 @@
 .row
   ul.nav.nav-pills.nav-fill
-    - (1..8).each do |day|
+    - (1..Day.count).each do |day|
       li.nav-item
         = link_to day, filter_bombers_path(days: day), method: :post, class: "nav-link #{'active' if day == @days}", remote: true
 .row
