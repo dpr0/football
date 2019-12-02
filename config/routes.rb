@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :games do
     post :filter, on: :collection
+    post :opponents, on: :collection
   end
 
   resources :teams

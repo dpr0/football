@@ -2,13 +2,20 @@
 
 class GamesController < ApplicationController
   def index
+    @opps = []
     @day = Day.last
     load_vars(@day)
   end
 
   def filter
+    @opps = []
     @day = Day.find_by_id(params[:day])
     load_vars(@day)
+    render layout: false
+  end
+
+  def opponents
+    @opps = params[:opps]
     render layout: false
   end
 

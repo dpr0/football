@@ -1,3 +1,8 @@
+AllCops:
+  Exclude:
+    - 'db/seeds/**/*'
+    - 'node_modules/**/*'
+
 Lint/UnusedMethodArgument:
   Exclude:
     - 'app/controllers/api/v1/auth/token.rb'
@@ -5,7 +10,6 @@ Lint/UnusedMethodArgument:
 Lint/UselessAssignment:
   Exclude:
     - 'app/controllers/prices_controller.rb'
-    - 'db/seeds.rb'
 
 Metrics/AbcSize:
   Max: 54

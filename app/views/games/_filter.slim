@@ -12,37 +12,29 @@
       tr
         - games =     @games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
         - next if games.blank?
-        - left_games  = games.select { |x| x['team_left_id']  == team.id }
-        - right_games = games.select { |x| x['team_right_id'] == team.id }
-        - win  = left_games.select { |x| x['goals_left']  > x['goals_right'] }.count + right_games.select { |x| x['goals_left'] < x['goals_right'] }.count
-        - draw =      games.select { |x| x['goals_left'] == x['goals_right'] }.count
-        - lose = left_games.select { |x| x['goals_left']  < x['goals_right'] }.count + right_games.select { |x| x['goals_left'] > x['goals_right'] }.count
+        - left_games  =       games.select { |x| x['team_left_id']  == team.id }
+        - right_games =       games.select { |x| x['team_right_id'] == team.id }
+        - left_win    =  left_games.select { |x| x['goals_left'] > x['goals_right'] }
+        - right_win   = right_games.select { |x| x['goals_left'] < x['goals_right'] }
+        - draw        =       games.select { |x| x['goals_left']== x['goals_right'] }
+        - left_lose   =  left_games.select { |x| x['goals_left'] < x['goals_right'] }
+        - right_lose  = right_games.select { |x| x['goals_left'] > x['goals_right'] }
+        - win_count   = left_win.count + right_win.count
+        - lose_count  = left_lose.count + right_lose.count
         td.text-left
           = image_tag "colors/#{team.code}.png", size: "30x30"
         td.text-center = games.count
         td.text-center
           - if games.present?
-            = link_to win, '#', data: {target: '#gamesModalCenter', toggle: 'modal'}, remote: true
-        td.text-center = draw
-        td.text-center = lose
-        - goals1 = left_games.map { |x| x['goals_left'] }.sum + right_games.map { |x| x['goals_right'] }.sum
-        - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left'] }.sum
+            - opps = (left_win.map(&:team_right_id) + right_win.map(&:team_left_id)).map { |id| @teams.find { |t| t.id == id }.code }
+            = link_to win_count, opponents_games_path(opps: opps), data: {target: "#winGamesModalCenter", toggle: 'modal'}, method: :post, remote: true
+            / = link_to win_count, opponents_games_path(opps: opps), method: :post, remote: true
+        td.text-center = draw.count
+        td.text-center = lose_count
+        - goals1 = left_games.map { |x| x['goals_left']  }.sum + right_games.map { |x| x['goals_right'] }.sum
+        - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left']  }.sum
         td.text-center = "#{goals1} : #{goals2}"
-        td.text-center = win * 3 + draw * 1
-
-
-#gamesModalCenter.modal.fade aria-hidden="true" aria-labelledby="gamesModalCenterTitle" role="dialog" tabindex="-1"
-  .modal-dialog.modal-dialog-centered role="document"
-    .modal-content
-      .modal-header
-        h5#gamesModalLongTitle.modal-title Modal title
-        button.close aria-label="Close" data-dismiss="modal" type="button"
-          span aria-hidden="true"  &times;
-      .modal-body
-        | -
-/ .modal-footer
-/   button.btn.btn-secondary data-dismiss="modal" type="button"  Close
-/   button.btn.btn-primary type="button"  Save changes
+        td.text-center = win_count * 3 + draw.count * 1
 
 .row
   .col-2
@@ -99,3 +91,16 @@
               li
                 span.badge.badge-primary.badge-pill = player.code
                 p = with_initial(player)
+
+.modal.fade aria-hidden="true" aria-labelledby="winGamesModalCenterTitle" role="dialog" tabindex="-1" id="winGamesModalCenter"
+  .modal-dialog.modal-dialog-centered role="document"
+    .modal-content
+      .modal-header
+        h5.modal-title Победы над
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body
+        = render partial: 'opponents', locals: {opps: @opps}
+      / .modal-footer
+      /   button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+      /   button.btn.btn-primary type="button"  Save changes
