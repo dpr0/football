@@ -11,7 +11,7 @@ class BombersController < ApplicationController
       games = pp.day_players.count
       goals = pp.goals.count
 
-      [ pp, goals, games, check_avg(goals, games) ]
+      [pp, goals, games, check_avg(goals, games)]
     end.sort_by { |player, goals, games, avg| [-avg, player, goals, games] }
   end
 
@@ -25,14 +25,15 @@ class BombersController < ApplicationController
   private
 
   def players_by_days(days)
-    Player.eager_load(:goals, :day_players).where(day_players: {day_id: days}).all.to_a.map do |pp|
+    Player.eager_load(:goals, :day_players).where(day_players: { day_id: days }).all.to_a.map do |pp|
       games = pp.day_players.select { |dp| dp.day_id.in? days }
       next if (days - games.map(&:day_id)).present?
+
       day_ids = games.map(&:day_id)
       game_ids = Game.where(day_id: day_ids).ids
       goals = pp.goals.where(game_id: game_ids).count
 
-      [ pp, goals, games.count, check_avg(goals, games.count) ]
+      [pp, goals, games.count, check_avg(goals, games.count)]
     end.compact.sort_by { |player, goals, games, avg| [-avg, player, goals, games] }
   end
 

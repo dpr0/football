@@ -95,7 +95,6 @@ namespace :deploy do
   before :starting, :check_revision
 end
 
-
 # sudo unitd --control unix:/var/run/control.unit.sock
 # sudo curl -X PUT --data-binary @unit.config --unix-socket /var/run/control.unit.sock http://localhost/config
 # sudo cat /usr/local/unit.log

@@ -48,10 +48,10 @@ module Dictionary
       return @cached_by_id unless cache_expired?
 
       @cached_by_id =
-          select(cached_attributes).order(:id).index_by(&:id).each do |_, v|
-            cached_attributes.each { |attr| v.public_send(attr).freeze }
-            v.freeze
-          end.freeze
+        select(cached_attributes).order(:id).index_by(&:id).each do |_, v|
+          cached_attributes.each { |attr| v.public_send(attr).freeze }
+          v.freeze
+        end.freeze
 
       @cached_at = Time.current
       @cached_by_id
