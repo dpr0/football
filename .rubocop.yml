@@ -158,3 +158,13 @@ Style/SpecialGlobalVars:
 Style/StderrPuts:
   Exclude:
     - 'bin/yarn'
+
+Style/NumericPredicate:
+  Exclude:
+    - 'spec/**/*'
+    - 'app/controllers/bombers_controller.rb'
+    - 'app/models/player.rb'
+
+Style/MultilineBlockChain:
+  Exclude:
+    - 'app/controllers/bombers_controller.rb'
