@@ -1,24 +1,21 @@
-# README
+sudo unitd --control unix:/var/run/control.unit.sock
+sudo curl -X PUT --data-binary @unit.config --unix-socket /var/run/control.unit.sock http://localhost/config
+sudo cat /usr/local/unit.log
+cd football/current
+yarn
+rm config/credentials.yml.enc
+EDITOR="nano" rails credentials:edit
+RAILS_ENV=production bundle exec rake assets:precompile
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+rails db:drop
+sudo -u postgres psql
+create database "zupre_production" owner "zupre";
+rails db:migrate
+rails db:seed
 
-Things you may want to cover:
+cd /etc/letsencrypt/live/krsz.ru
+curl -X PUT --data-binary @bundle.pem --unix-socket /var/run/control.unit.sock http://localhost/certificates/<bundle>
 
-* Ruby version
+sudo nano /etc/nginx/sites-available/default
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

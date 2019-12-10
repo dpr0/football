@@ -2,5 +2,4 @@
 
 class Role < ApplicationRecord
   include Dictionary
-
 end

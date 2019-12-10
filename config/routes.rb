@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   resources :bombers do
     post :filter, on: :collection
   end
+  resources :stats do
+    post :filter, on: :collection
+  end
 end

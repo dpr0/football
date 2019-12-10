@@ -7,7 +7,7 @@
         .card-img-block
           .info-box
             = player.birthday.present? ? "Возраст: #{Date.current.year - player.birthday.year}" : '-'
-            div = player_phone(player.phone)
+            div = player.text_phone
             div = player.birthday&.strftime("%d.%m.%Y")
         .card-body
           - num = [1, 2, 5, 8, 13, 18, 19, 21, 26, 27, 29].include?(player.code) ? player.code : 'anonim'

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class BombersController < ApplicationController
-
   def index
     @days = 1
     days = Day.last(@days).map(&:id)

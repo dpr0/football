@@ -1,0 +1,27 @@
+.row
+  .col-2
+  .col-8
+    div Коэффициент расчитывается для игроков игравших 4 и более дней по формуле:
+    div количество не проигранных игр команд за которые играл игрок (по три очка за победу и по одному за ничью) поделенное на количество сыгранных игр.
+    div - более точные показания образуются при частой ротации игроков в разные команды
+.row
+  table.table
+    tr
+      th №
+      th Игрок
+      th Дней
+      th Игр
+      th Победы
+      th Ничьи
+      th Поражения
+      th Коэффициент полезности
+    - @players.each_with_index do |player, i|
+      tr
+        td = i + 1
+        td = player.full_name
+        td = player.days
+        td = player.games
+        td = player.win
+        td = player.draw
+        td = player.lose
+        td = player.rate

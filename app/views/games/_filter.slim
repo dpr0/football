@@ -76,7 +76,7 @@
           td.text-left
             = "№#{player.code}"
           td.text-left
-            = with_initial(player)
+            = player.with_initial
           td.text-center = goal.last
   .col-1
   .col-5
@@ -90,7 +90,7 @@
               - player = day_player.player
               li
                 span.badge.badge-primary.badge-pill = player.code
-                p = with_initial(player)
+                p = player.with_initial
 
 .modal.fade aria-hidden="true" aria-labelledby="winGamesModalCenterTitle" role="dialog" tabindex="-1" id="winGamesModalCenter"
   .modal-dialog.modal-dialog-centered role="document"

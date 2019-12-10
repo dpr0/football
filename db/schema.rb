@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_121000) do
+ActiveRecord::Schema.define(version: 2019_12_10_101500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,12 @@ ActiveRecord::Schema.define(version: 2019_11_08_121000) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.integer "days", default: 0
+    t.integer "games", default: 0
+    t.integer "win", default: 0
+    t.integer "draw", default: 0
+    t.integer "lose", default: 0
+    t.integer "rate", default: 0
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_players_on_role_id"
