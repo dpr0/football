@@ -81,16 +81,18 @@
   .col-1
   .col-5
     .row
-      - @day.day_players.group_by(&:team_id).each do |team_id, day_players|
-        .col-3
+      - teams = @day.day_players.group_by(&:team_id)
+      - teams.each do |team_id, day_players|
+        div class="col-#{ teams.size > 3 ? 3 : 4 }"
           - team = Team.cached_by_id[team_id]
-          = image_tag "colors/#{team.code}.png", size: "30x30"
-          .ul
-            - day_players.each do |day_player|
-              - player = day_player.player
-              li
-                span.badge.badge-primary.badge-pill = player.code
-                p = player.with_initial
+          h3
+            = image_tag "colors/#{team.code}.png", size: "30x30"
+            = day_players.map { |dp| dp.player.rate }.sum / day_players.count
+          - day_players.each do |day_player|
+            - player = day_player.player
+            div
+              span.badge.badge-primary.badge-pill = player.rate
+              = player.with_initial
 
 .modal.fade aria-hidden="true" aria-labelledby="winGamesModalCenterTitle" role="dialog" tabindex="-1" id="winGamesModalCenter"
   .modal-dialog.modal-dialog-centered role="document"
