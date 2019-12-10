@@ -74,3 +74,4 @@ g22 = Game.create(day_id: d1.id, team_left_id: 3, goals_left: 2, goals_right: 1,
 g22.goals.create(team_id: 1, player_id: 18)
 g22.goals.create(team_id: 3, player_id: 7)
 g22.goals.create(team_id: 3, player_id: 19)
+d1.update(leader: "3")

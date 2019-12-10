@@ -18,4 +18,5 @@ curl -X PUT --data-binary @bundle.pem --unix-socket /var/run/control.unit.sock h
 
 sudo nano /etc/nginx/sites-available/default
 
+Player.rates!
 

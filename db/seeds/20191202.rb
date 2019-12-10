@@ -91,3 +91,4 @@ k22 = Game.create(day_id: d10.id, team_left_id: 2, goals_left: 0, goals_right: 0
 k23 = Game.create(day_id: d10.id, team_left_id: 2, goals_left: 0, goals_right: 2, team_right_id: 3)
 k23.goals.create(team_id: 3, player_id: 7)
 k23.goals.create(team_id: 3, player_id: 8)
+d10.update(leader: "2,3")

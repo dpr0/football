@@ -7,11 +7,7 @@ gem 'activerecord-import'
 gem 'bootsnap'
 gem 'bootstrap_form'
 gem 'devise'
-gem 'httpclient'
-gem 'json'
-gem 'jwt'
 gem 'pg'
-gem 'puma'
 gem 'rack-cors'
 gem 'rails'
 gem 'react-rails'
@@ -20,12 +16,12 @@ gem 'slim-rails'
 gem 'sqlite3'
 gem 'uglifier'
 gem 'webpacker'
-gem 'workflow'
 gem 'listen'
 gem 'dotenv-rails'
 
 group :development do
   gem 'byebug'
+  gem 'puma'
   gem 'capistrano',            require: false
   gem 'capistrano-bundler',    require: false
   gem 'capistrano-nginx-unit', require: false
