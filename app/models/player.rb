@@ -25,11 +25,15 @@ class Player < ApplicationRecord
     all.each do |player|
       day_team = player.day_players.map { |dp| [dp.day_id, dp.team_id] }
       games = Game.where(day_id: day_team.map(&:first))
-      win = 0
+      win1 = 0
+      win2 = 0
+      win3 = 0
       draw = 0
       lose = 0
       day_team.each do |day, team|
-        win  += games.where(day_id: day).where('(team_left_id = ? AND goals_left > goals_right) OR (team_right_id = ? AND goals_left < goals_right)', team, team).size
+        win3 += games.where(day_id: day).where('(team_left_id = ? AND goals_left = 2 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 2)', team, team).size
+        win2 += games.where(day_id: day).where('(team_left_id = ? AND goals_left = 2 and goals_right = 1) OR (team_right_id = ? AND goals_left = 1 and goals_right = 2)', team, team).size
+        win1 += games.where(day_id: day).where('(team_left_id = ? AND goals_left = 1 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 1)', team, team).size
         draw += games.where(day_id: day).where('(team_left_id = ? AND goals_left = goals_right) OR (team_right_id = ? AND goals_left = goals_right)', team, team).size
         lose += games.where(day_id: day).where('(team_left_id = ? AND goals_left < goals_right) OR (team_right_id = ? AND goals_left > goals_right)', team, team).size
       end
@@ -37,10 +41,10 @@ class Player < ApplicationRecord
       player.update(
         days: day_team.count,
         games: games.count,
-        win: win,
+        win:  win3 + win2 + win1,
         draw: draw,
         lose: lose,
-        rate: games.count > 0 ? ((win * 3 + draw) / games.count.to_f * 100).to_i : 0
+        rate: games.count > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / games.count.to_f * 100).to_i : 0
       )
     end
   end

@@ -30,5 +30,6 @@ class GamesController < ApplicationController
                  .map { |k, v| [k, v.length] if k }
                  .compact
                  .sort_by { |player, count| [-count, player] }
+                 .to_h
   end
 end
