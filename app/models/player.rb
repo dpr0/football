@@ -30,7 +30,9 @@ class Player < ApplicationRecord
       win3 = 0
       draw = 0
       lose = 0
+      day_games = 0
       day_team.each do |day, team|
+        day_games += games.where(day_id: day).where('team_left_id = ? OR team_right_id = ?', team, team).size
         win3 += games.where(day_id: day).where('(team_left_id = ? AND goals_left = 2 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 2)', team, team).size
         win2 += games.where(day_id: day).where('(team_left_id = ? AND goals_left = 2 and goals_right = 1) OR (team_right_id = ? AND goals_left = 1 and goals_right = 2)', team, team).size
         win1 += games.where(day_id: day).where('(team_left_id = ? AND goals_left = 1 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 1)', team, team).size
@@ -40,11 +42,11 @@ class Player < ApplicationRecord
 
       player.update(
         days: day_team.count,
-        games: games.count,
+        games: day_games,
         win:  win3 + win2 + win1,
         draw: draw,
         lose: lose,
-        rate: games.count > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / games.count.to_f * 100).to_i : 0
+        rate: day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
       )
     end
   end
