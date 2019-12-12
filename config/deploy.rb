@@ -33,7 +33,7 @@ namespace :deploy do
   desc 'Runs rake assets:precompile'
   task :precompile do
     on roles(:app) do
-      execute("cd #{fetch(:application)}/current && RAILS_ENV=production rake assets:precompile") if fetch(:stage) == :production
+      execute("cd #{fetch(:application)}/current && RAILS_ENV=production bundle exec rake assets:precompile") if fetch(:stage) == :production
     end
   end
 
