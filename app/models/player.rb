@@ -10,15 +10,19 @@ class Player < ApplicationRecord
   has_many   :day_players
 
   def text_phone
-    phone ? "т.8-#{phone}" : '-'
+    phone ? "8-#{phone[0..2]}-#{phone[3..5]}-#{phone[6..7]}-#{phone[8..9]}" : '-'
   end
 
   def with_initial
     "#{name} #{(lastname.first + '.') if lastname.present?}"
   end
 
-  def full_name
+  def short_name
     "#{name} #{lastname if lastname.present?}"
+  end
+
+  def full_name
+    "#{(lastname + ' ') if lastname.present?}#{name} #{middlename if middlename.present?}"
   end
 
   def self.rates!

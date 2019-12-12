@@ -24,7 +24,6 @@ group :development do
   gem 'puma'
   gem 'capistrano',            require: false
   gem 'capistrano-bundler',    require: false
-  gem 'capistrano-nginx-unit', require: false
   gem 'capistrano-nvm',        require: false
   gem 'capistrano-rails',      require: false
   gem 'capistrano-rbenv',      require: false

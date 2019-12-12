@@ -1,3 +1,4 @@
+h3.text-center = @day.date.strftime("%d.%m.%Y")
 .row
   table.table.table-striped
     tr
@@ -10,7 +11,7 @@
       th.text-center Очки
     - @teams.each do |team|
       tr
-        - games =     @games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
+        - games       = @games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
         - next if games.blank?
         - left_games  =       games.select { |x| x['team_left_id']  == team.id }
         - right_games =       games.select { |x| x['team_right_id'] == team.id }
@@ -28,7 +29,6 @@
           - if games.present?
             - opps = (left_win.map(&:team_right_id) + right_win.map(&:team_left_id)).map { |id| @teams.find { |t| t.id == id }.code }
             = link_to win_count, opponents_games_path(opps: opps), data: {target: "#winGamesModalCenter", toggle: 'modal'}, method: :post, remote: true
-            / = link_to win_count, opponents_games_path(opps: opps), method: :post, remote: true
         td.text-center = draw.count
         td.text-center = lose_count
         - goals1 = left_games.map { |x| x['goals_left']  }.sum + right_games.map { |x| x['goals_right'] }.sum
@@ -37,56 +37,42 @@
         td.text-center = win_count * 3 + draw.count * 1
 
 .row
-  .col-2
-    table.table
-      tr
-        th Игры
-    table
-      tr
-        th
-        th
-        th
-        th
-        th
-        th
-      - @games.each_with_index do |game, i|
+  - teams = @day.day_players.group_by(&:team_id)
+  - teams.each do |team_id, day_players|
+    div class = "col-#{ teams.size > 3 ? 3 : 4 }"
+      - team = Team.cached_by_id[team_id]
+      table.table
         tr
-          td.text-left
-            = i + 1
-          td.text-left
-            - t = @teams.find { |t| t.id == game['team_left_id'] }
-            = image_tag "colors/#{t.code}.png", size: "30x30"
-          td.text-center = game['goals_left']
-          td.text-center = ':'
-          td.text-center = game['goals_right']
-          td.text-right
-            - t = @teams.find { |t| t.id == game['team_right_id'] }
-            = image_tag "colors/#{t.code}.png", size: "30x30"
-
-  .col-10
-    .row
-      - teams = @day.day_players.group_by(&:team_id)
-      - teams.each do |team_id, day_players|
-        div class = "col-#{ teams.size > 3 ? 3 : 4 }"
-          - team = Team.cached_by_id[team_id]
-          table.table
-            tr
-              th
-              th
-                h3
-                  = image_tag "colors/#{team.code}.png", size: "30x30"
-                  = day_players.map { |dp| dp.rate > 0 ? dp.rate : dp.player.rate }.sum / day_players.count
-              th
-            - day_players.each do |day_player|
-              - player = day_player.player
-              tr
-                td.text-left
-                  span.badge.badge-primary.badge-pill = player.rate
-                td.text-left = player.with_initial
-                td.text-right
-                  - if @goals[player.code]
-                    | &#9917;
-                    = @goals[player.code]
+          th colspan="3"
+            h3.text-center
+              = image_tag "colors/#{team.code}.png", size: "30x30"
+              = day_players.map { |dp| dp.rate > 0 ? dp.rate : dp.player.rate }.sum / day_players.count
+        - day_players.each do |day_player|
+          - player = day_player.player
+          tr
+            td.text-left
+              span.badge.badge-primary.badge-pill = player.rate
+            td.text-left = player.name
+            td.text-right
+              - if @goals[player.code]
+                | &#9917;
+                = @goals[player.code]
+table
+  tr
+    th colspan="6" Игры
+  - @games.each_with_index do |game, i|
+    tr
+      td.text-left
+        = i + 1
+      td.text-left
+        - t = @teams.find { |t| t.id == game['team_left_id'] }
+        = image_tag "colors/#{t.code}.png", size: "30x30"
+      td.text-center = game['goals_left']
+      td.text-center = ':'
+      td.text-center = game['goals_right']
+      td.text-right
+        - t = @teams.find { |t| t.id == game['team_right_id'] }
+        = image_tag "colors/#{t.code}.png", size: "30x30"
 
 .modal.fade aria-hidden="true" aria-labelledby="winGamesModalCenterTitle" role="dialog" tabindex="-1" id="winGamesModalCenter"
   .modal-dialog.modal-dialog-centered role="document"
