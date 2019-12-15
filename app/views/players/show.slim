@@ -12,36 +12,36 @@
       .input-group.mb-6
         .input-group-prepend
           span.input-group-text Номер
-        = text_field_tag '', @player.code, class: 'form-control disabled'
+        = text_field_tag '', @player.code, class: 'form-control text-right', disabled: true
     br
     .row
       .input-group.mb-6
         .input-group-prepend
           span.input-group-text ФИО
-        = text_field_tag '', @player.full_name, class: 'form-control disabled'
+        = text_field_tag '', @player.full_name, class: 'form-control text-right', disabled: true
     br
     .row
       .input-group.mb-6
         .input-group-prepend
           span.input-group-text Рейтинг ELO
-        = text_field_tag '', @player.rate, class: 'form-control disabled'
+        = text_field_tag '', @player.rate, class: 'form-control text-right', disabled: true
     br
     .row
       .input-group.mb-6
         .input-group-prepend
           span.input-group-text Коэффициент полезности
-        = text_field_tag '', @player.stat, class: 'form-control disabled'
+        = text_field_tag '', @player.stat, class: 'form-control text-right', disabled: true
     br
     .row
       .input-group.mb-6
         .input-group-prepend
           span.input-group-text Дата рождения
-        = text_field_tag '', @player.birthday&.strftime("%d.%m.%Y"), class: 'form-control disabled'
+        = text_field_tag '', @player.birthday&.strftime("%d.%m.%Y"), class: 'form-control text-right', disabled: true
     br
     .row
       .input-group.mb-6
         .input-group-prepend
           span.input-group-text Телефон
-        = text_field_tag '', @player.text_phone, class: 'form-control disabled'
+        = text_field_tag '', @player.text_phone, class: 'form-control text-right', disabled: true
 
   = area_chart @player.day_players.map { |dp| [dp.day_id, dp.rate] }, width: "70%", min: 1300, max: 2000

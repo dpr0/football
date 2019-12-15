@@ -10,7 +10,8 @@ class Player < ApplicationRecord
   has_many   :day_players
 
   def text_phone
-    phone ? "8-#{phone[0..2]}-#{phone[3..5]}-#{phone[6..7]}-#{phone[8..9]}" : '-'
+    # phone ? "8-#{phone[0..2]}-#{phone[3..5]}-#{phone[6..7]}-#{phone[8..9]}" : '-'
+    phone ? "8-#{phone[0..2]}-xx-xx-#{phone[8..9]}" : '-'
   end
 
   def with_initial

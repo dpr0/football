@@ -50,7 +50,7 @@ h3.text-center = @day.date.strftime("%d.%m.%Y")
           th.text-center
             = image_tag "colors/#{team.code}.png", size: "30x30"
           th.text-center
-            = Team.rate(day_players)
+            = day_players.map(&:rate).sum / day_players.count
         - day_players.each do |day_player|
           - player = day_player.player
           tr
