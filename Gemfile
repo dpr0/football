@@ -5,21 +5,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'activerecord-import'
 gem 'bootsnap'
-gem 'bootstrap_form'
 gem 'devise'
 gem 'pg'
-gem 'rack-cors'
 gem 'rails'
-gem 'react-rails'
-gem 'sass-rails'
 gem 'slim-rails'
-gem 'sqlite3'
 gem 'uglifier'
 gem 'webpacker'
 gem 'listen'
 gem 'dotenv-rails'
+gem 'chartkick'
 
 group :development do
+  gem 'sqlite3'
   gem 'byebug'
   gem 'puma'
   gem 'capistrano',            require: false

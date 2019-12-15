@@ -7,6 +7,8 @@
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "^4.0.7",
     "bootstrap": "^4.3.1",
+    "chart.js": "^2.9.3",
+    "chartkick": "^3.2.0",
     "interact": "^0.0.3",
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",

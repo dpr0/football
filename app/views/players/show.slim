@@ -1,30 +1,47 @@
-.row
+- photos = Dir.children(Rails.root.join('app', 'assets', 'images', 'players')).map { |name| name.split('.').first.to_i }
+- num = photos.include?(@player.code) ? @player.code : 'anonim'
+.row#pole
+  .col-1
   .col-3
-    - num = [1, 2, 5, 8, 13, 18, 19, 21, 26, 27, 29].include?(@player.code) ? @player.code : 'anonim'
-    = image_tag "players/#{num}.jpg"
-  .col-9
+    br
+      = image_tag "players/#{num}.jpg", class: 'img-thumbnail'
+  .col-1
+  .col-6
+    br
     .row
-      .col-3
-        | Номер:
-      .col-9
-        = @player.code
+      .input-group.mb-6
+        .input-group-prepend
+          span.input-group-text Номер
+        = text_field_tag '', @player.code, class: 'form-control disabled'
+    br
     .row
-      .col-3
-        | ФИО:
-      .col-9
-        = @player.full_name
+      .input-group.mb-6
+        .input-group-prepend
+          span.input-group-text ФИО
+        = text_field_tag '', @player.full_name, class: 'form-control disabled'
+    br
     .row
-      .col-3
-        | Рейтинг ELO:
-      .col-9
-        = @player.rate
+      .input-group.mb-6
+        .input-group-prepend
+          span.input-group-text Рейтинг ELO
+        = text_field_tag '', @player.rate, class: 'form-control disabled'
+    br
     .row
-      .col-3
-        | Дата рождения:
-      .col-9
-        = @player.birthday&.strftime("%d.%m.%Y")
+      .input-group.mb-6
+        .input-group-prepend
+          span.input-group-text Коэффициент полезности
+        = text_field_tag '', @player.stat, class: 'form-control disabled'
+    br
     .row
-      .col-3
-        | Телефон:
-      .col-9
-        = @player.text_phone
+      .input-group.mb-6
+        .input-group-prepend
+          span.input-group-text Дата рождения
+        = text_field_tag '', @player.birthday&.strftime("%d.%m.%Y"), class: 'form-control disabled'
+    br
+    .row
+      .input-group.mb-6
+        .input-group-prepend
+          span.input-group-text Телефон
+        = text_field_tag '', @player.text_phone, class: 'form-control disabled'
+
+  = area_chart @player.day_players.map { |dp| [dp.day_id, dp.rate] }, width: "70%", min: 1300, max: 2000

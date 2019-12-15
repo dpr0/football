@@ -1,11 +1,50 @@
 .row
-  .col-2
-  .col-8
-    div Коэффициент расчитывается для игроков игравших 4 и более дней по формуле:
-    div количество не проигранных игр команд за которые играл игрок поделенное на количество сыгранных игр.
-    ul
-      li x3 - 2:0, x2.5 - 2:1, x2 - 1:0, x1 за ничью
-      li более точные показания образуются при частой ротации игроков в разные команды
+  .col-12
+    .text-center
+      a data-toggle="collapse" href="#collapseStat" aria-expanded="false" aria-controls="collapseStat"
+        b Коэффициент полезности
+    div.collapse#collapseStat количество не проигранных игр команд за которые играл игрок поделенное на количество сыгранных игр (x3 - 2:0, x2.5 - 2:1, x2 - 1:0, x1 за ничью).
+.row
+  .col-12
+    .text-center
+      a data-toggle="collapse" href="#collapseRate" aria-expanded="false" aria-controls="collapseRate"
+        b Рейтинг ELO
+    div.collapse#collapseRate
+      div Все игроки начинают с рейтинга 1500
+      div Вычисляется математическое ожидание количества очков рейтинга, которое получит команда A в партии с командой B (оно равно сумме вероятности выигрыша команды A и половины вероятности ничьей):
+      .row
+        .col-3
+          img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/7648a0f17f5902b1a91df6e87af9b312c7a83129"
+        .col-9
+          div
+            | E
+            sub A
+            = " - математическое ожидание количества очков, которое наберёт команда A в игре с командой B;"
+          div
+            | R
+            sub A
+            = " — рейтинг команды A;"
+          div
+            | R
+            sub B
+            = " — рейтинг команды B;"
+      .row
+        .col-8 Новый рейтинг команды A рассчитывается по формуле:
+        .col-4
+          img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/748973e7a2aab45f741c48482b9f2761d17010df"
+      .row
+        .col-12
+          div
+            | K
+            = " - коэффициент 10 для сильнейших игроков (рейтинг 1800 и выше), 20 — для игроков с рейтингом 1600-1799, 40 — рейтинг которых ниже 1600;"
+          div
+            | S
+            sub A
+            = " - фактически набранное командой A количество очков (1 очко за победу, 0,5 — за ничью и 0 — за поражение);"
+          div
+            | R^
+            sub A
+            = " - новый рейтинг команды A."
 .row
   table.table
     tr
@@ -17,13 +56,15 @@
       th Ничьи
       th Поражения
       th Рейтинг ELO
+      th Коэффициент полезности
     - @players.each_with_index do |player, i|
       tr
         td = i + 1
-        td = player.short_name
+        td = link_to player.short_name, player_path(player)
         td = player.days
         td = player.games
         td = player.win
         td = player.draw
         td = player.lose
         td = player.rate
+        td = player.stat

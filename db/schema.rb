@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_060500) do
+ActiveRecord::Schema.define(version: 2019_12_15_000100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,10 @@ ActiveRecord::Schema.define(version: 2019_12_11_060500) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "left_team_rate", default: 0
+    t.integer "right_team_rate", default: 0
+    t.integer "left_team_rate_change", default: 0
+    t.integer "right_team_rate_change", default: 0
     t.index ["day_id"], name: "index_games_on_day_id"
     t.index ["team_left_id"], name: "index_games_on_team_left_id"
     t.index ["team_right_id"], name: "index_games_on_team_right_id"
@@ -83,7 +87,8 @@ ActiveRecord::Schema.define(version: 2019_12_11_060500) do
     t.integer "win", default: 0
     t.integer "draw", default: 0
     t.integer "lose", default: 0
-    t.integer "rate", default: 0
+    t.integer "rate", default: 1500
+    t.integer "stat", default: 0
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_players_on_role_id"

@@ -50,7 +50,7 @@ class Player < ApplicationRecord
         win:  win3 + win2 + win1,
         draw: draw,
         lose: lose,
-        rate: day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
+        stat: day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
       )
     end
   end
