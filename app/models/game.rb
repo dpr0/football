@@ -18,28 +18,35 @@ class Game < ApplicationRecord
   private
 
   def rate!
-    left_players    = day.day_players.where(team_id: team_left_id)
-    right_players   = day.day_players.where(team_id: team_right_id)
-    left_team_rate  = left_players.map  { |dp| dp.player.rate }.sum / left_players.count
-    right_team_rate = right_players.map { |dp| dp.player.rate }.sum / right_players.count
+    @left_players    = players('left')
+    @right_players   = players('right')
+    @left_team_rate  = team_rate(@left_players)
+    @right_team_rate = team_rate(@right_players)
+    update(
+        left_team_rate:         @left_team_rate,
+        right_team_rate:        @right_team_rate,
+        left_team_rate_change:  calc_Elo('left', 'right'),
+        right_team_rate_change: calc_Elo('right', 'left')
+    )
+  end
 
-    left_E = 1 / ( 1 + 10 ** ( ( right_team_rate - left_team_rate ) / 400.0 ) )
-    left_S = calc_S(goals_left, goals_right)
-    new_left_team_rate_change = calc_K(left_team_rate) * (left_S - left_E)
-    left_players.each do |dp|
-      new_player_rate = dp.player.rate + new_left_team_rate_change
+  def calc_Elo(a, b)
+    e = 1 / ( 1 + 10 ** ( ( eval("@#{b}_team_rate") - eval("@#{a}_team_rate") ) / 400.0 ) )
+    s = calc_S(eval("goals_#{a}"), eval("goals_#{b}"))
+    new_team_rate_change = calc_K(eval("#{a}_team_rate")) * (s - e)
+    players(a).each do |dp|
+      new_player_rate = dp.player.rate + new_team_rate_change
       dp.player.update!(rate: new_player_rate)
     end
+    new_team_rate_change
+  end
 
-    right_E = 1 / ( 1 + 10 ** ( ( left_team_rate - right_team_rate ) / 400.0 ) )
-    right_S = calc_S(goals_right, goals_left)
-    new_right_team_rate_change = calc_K(right_team_rate) * (right_S - right_E)
-    right_players.each do |dp|
-      new_player_rate = dp.player.rate + new_right_team_rate_change
-      dp.player.update(rate: new_player_rate)
-    end
+  def players(a)
+    day.day_players.where(team_id: eval("team_#{a}_id"))
+  end
 
-    update(left_team_rate: left_team_rate, right_team_rate: right_team_rate, left_team_rate_change: new_left_team_rate_change, right_team_rate_change: new_right_team_rate_change)
+  def team_rate(players)
+    players.map { |dp| dp.player.rate }.sum / players.count
   end
 
   def calc_K(rate)
