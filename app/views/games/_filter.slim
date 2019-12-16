@@ -57,7 +57,7 @@ h3.text-center = @day.date.strftime("%d.%m.%Y")
             td.text-right style="width: 30%"
               - if @goals[player.code]
                 = @goals[player.code]
-            td.text-left style="width: 60%" = player.name
+            td.text-left style="width: 60%" = link_to player.name, player_path(player)
             td.text-lef style="width: 10%"
               span.badge.badge-primary.badge-pill = day_player.rate
 

@@ -24,7 +24,7 @@ class GamesController < ApplicationController
   def load_vars(day)
     @players = Player.all.to_a
     @days = Day.all
-    @games = day.games
+    @games = day.games.order(id: :asc)
     @goals = Goal.where(game_id: @games.ids)
                  .group_by(&:player_id)
                  .map { |k, v| [k, v.length] if k }
