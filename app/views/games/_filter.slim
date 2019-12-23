@@ -38,7 +38,7 @@ h3.text-center = @day.date.strftime("%d.%m.%Y")
         td.text-center = win_count * 3 + draw.count * 1
 
 .row
-  - teams = @day.day_players.group_by(&:team_id)
+  - teams = @day.day_players.group_by(&:team_id).sort
   - teams.each do |team_id, day_players|
     // div class="col-#{ teams.size > 3 ? 3 : 4 }"
     .col-4

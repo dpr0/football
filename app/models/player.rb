@@ -65,6 +65,7 @@ class Player < ApplicationRecord
       stat = day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
       players.each { |player| player.update(stat: stat) }
     end
+    puts "================ #{day.id}"
   end
 
   private

@@ -24,10 +24,10 @@ html
           - if @menu == 'stats'
             span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
           | Статистика
-        = link_to players_path, class: 'btn btn-primary' do
-          - if @menu == 'players'
-            span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
-          | Игроки
+        / = link_to players_path, class: 'btn btn-primary' do
+        /   - if @menu == 'players'
+        /     span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
+        /   | Игроки
         = link_to teams_path, class: 'btn btn-primary' do
           - if @menu == 'teams'
             span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
