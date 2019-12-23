@@ -1,0 +1,104 @@
+# frozen_string_literal: true
+
+d15  = Day.create(date: '18.12.2019'.to_date)
+d15t2p1 = d15.day_players.create(team_id: 2, player_id:  4) # Шах
+d15t2p2 = d15.day_players.create(team_id: 2, player_id: 13) # Араз
+d15t2p3 = d15.day_players.create(team_id: 2, player_id: 10) # Виталик
+d15t2p4 = d15.day_players.create(team_id: 2, player_id:  3) # Ден
+d15t2p5 = d15.day_players.create(team_id: 2, player_id: 38) # Миша Невинный
+
+d15t3p1 = d15.day_players.create(team_id: 3, player_id: 21) # Я
+d15t3p2 = d15.day_players.create(team_id: 3, player_id: 32) # Игорь
+d15t3p3 = d15.day_players.create(team_id: 3, player_id: 36) # Акоп
+d15t3p4 = d15.day_players.create(team_id: 3, player_id:  7) # Сандро
+d15t3p5 = d15.day_players.create(team_id: 3, player_id: 39) # Гасан
+
+d15t4p1 = d15.day_players.create(team_id: 4, player_id: 19) # Ваня
+d15t4p2 = d15.day_players.create(team_id: 4, player_id:  6) # Тигран
+d15t4p3 = d15.day_players.create(team_id: 4, player_id:  9) # Вова
+d15t4p4 = d15.day_players.create(team_id: 4, player_id: 25) # Серега С
+d15t4p5 = d15.day_players.create(team_id: 4, player_id: 33) # Макс А
+
+o1  = Game.create(day_id: d15.id, team_left_id: 3, goals_left: 0, goals_right: 2, team_right_id: 4)
+o1.goals.create(team_id: 4, player_id: 19)
+o1.goals.create(team_id: 4, player_id: 33)
+o2  = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 0, goals_right: 2, team_right_id: 4)
+o2.goals.create(team_id: 4, player_id: 19)
+o2.goals.create(team_id: 4, player_id: 25)
+o3  = Game.create(day_id: d15.id, team_left_id: 3, goals_left: 0, goals_right: 2, team_right_id: 4)
+o3.goals.create(team_id: 4, player_id: 9)
+o3.goals.create(team_id: 4, player_id: 25)
+o4  = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 1, goals_right: 2, team_right_id: 4)
+o4.goals.create(team_id: 2, player_id: 38)
+o4.goals.create(team_id: 4, player_id: 25)
+o4.goals.create(team_id: 4, player_id: 19)
+o5  = Game.create(day_id: d15.id, team_left_id: 3, goals_left: 0, goals_right: 1, team_right_id: 4)
+o5.goals.create(team_id: 4, player_id: 9)
+o6  = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 1, goals_right: 1, team_right_id: 4)
+o6.goals.create(team_id: 2, player_id: 4)
+o6.goals.create(team_id: 4, player_id: 33)
+o7  = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 0, goals_right: 0, team_right_id: 3)
+o8  = Game.create(day_id: d15.id, team_left_id: 4, goals_left: 0, goals_right: 1, team_right_id: 3)
+o8.goals.create(team_id: 3, player_id: 32)
+o9  = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 1, goals_right: 1, team_right_id: 3)
+o9.goals.create(team_id: 2, player_id: 10)
+o9.goals.create(team_id: 3, player_id: 7)
+o10 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 0, goals_right: 0, team_right_id: 4)
+o11 = Game.create(day_id: d15.id, team_left_id: 3, goals_left: 1, goals_right: 2, team_right_id: 4)
+o11.goals.create(team_id: 3, player_id: 7)
+o11.goals.create(team_id: 4, player_id: 25)
+o11.goals.create(team_id: 4, player_id: 6)
+o12 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 1, goals_right: 0, team_right_id: 4)
+o12.goals.create(team_id: 2, player_id: 38)
+o13 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 2, goals_right: 1, team_right_id: 3)
+o13.goals.create(team_id: 2, player_id: 38)
+o13.goals.create(team_id: 2, player_id: 38)
+o13.goals.create(team_id: 3, player_id: 7)
+
+o14 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 0, goals_right: 2, team_right_id: 4)
+o14.goals.create(team_id: 4, player_id: 6)
+o14.goals.create(team_id: 4, player_id: 19)
+o15 = Game.create(day_id: d15.id, team_left_id: 4, goals_left: 2, goals_right: 0, team_right_id: 3)
+o15.goals.create(team_id: 4, player_id: 19)
+o15.goals.create(team_id: 4, player_id: 19)
+o16 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 0, goals_right: 2, team_right_id: 4)
+o16.goals.create(team_id: 4, player_id: 25)
+o16.goals.create(team_id: 4, player_id: 25)
+o17 = Game.create(day_id: d15.id, team_left_id: 3, goals_left: 1, goals_right: 2, team_right_id: 4)
+o17.goals.create(team_id: 3, player_id: 39)
+o17.goals.create(team_id: 4, player_id: 33)
+o17.goals.create(team_id: 4, player_id: 25)
+o18 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 0, goals_right: 2, team_right_id: 4)
+o18.goals.create(team_id: 4, player_id: 25)
+o18.goals.create(team_id: 4, player_id: 25)
+o19 = Game.create(day_id: d15.id, team_left_id: 3, goals_left: 1, goals_right: 2, team_right_id: 4)
+o19.goals.create(team_id: 3, player_id: 36)
+o19.goals.create(team_id: 4, player_id: 25)
+o19.goals.create(team_id: 4, player_id: 33)
+o20 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 0, goals_right: 2, team_right_id: 4)
+o20.goals.create(team_id: 4, player_id: 25)
+o20.goals.create(team_id: 4, player_id: 25)
+o21 = Game.create(day_id: d15.id, team_left_id: 3, goals_left: 1, goals_right: 2, team_right_id: 4)
+o21.goals.create(team_id: 3, player_id: 39)
+o21.goals.create(team_id: 4, player_id: 25)
+o21.goals.create(team_id: 4, player_id: 25)
+o22 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 2, goals_right: 1, team_right_id: 4)
+o22.goals.create(team_id: 2, player_id: 4)
+o22.goals.create(team_id: 2, player_id: 3)
+o22.goals.create(team_id: 4, player_id: 33)
+o23 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 2, goals_right: 1, team_right_id: 3)
+o23.goals.create(team_id: 2, player_id: 4)
+o23.goals.create(team_id: 2, player_id: 4)
+o23.goals.create(team_id: 3, player_id: 21)
+o24 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 1, goals_right: 2, team_right_id: 4)
+o24.goals.create(team_id: 2, player_id: 4)
+o24.goals.create(team_id: 4, player_id: 6)
+o24.goals.create(team_id: 4, player_id: 33)
+o25 = Game.create(day_id: d15.id, team_left_id: 3, goals_left: 0, goals_right: 2, team_right_id: 4)
+o25.goals.create(team_id: 4, player_id: 19)
+o25.goals.create(team_id: 4, player_id: 19)
+o26 = Game.create(day_id: d15.id, team_left_id: 2, goals_left: 0, goals_right: 2, team_right_id: 4)
+o26.goals.create(team_id: 4, player_id: 25)
+o26.goals.create(team_id: 4, player_id: 25)
+d15.update(leader: "4")
+Player.day_rates!(d15)

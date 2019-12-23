@@ -1,47 +1,66 @@
 - photos = Dir.children(Rails.root.join('app', 'assets', 'images', 'players')).map { |name| name.split('.').first.to_i }
 - num = photos.include?(@player.code) ? @player.code : 'anonim'
+
+
 .row#pole
   .col-1
-  .col-3
     br
-      = image_tag "players/#{num}.jpg", class: 'img-thumbnail'
+    br
+    = link_to player_path(@player.id == 1 ? Player.count : @player.id - 1) do
+      .arrow.left
+  .col-9
+    .row
+      .col-1
+      .col-4
+        br
+          = image_tag "players/#{num}.jpg", class: 'img-thumbnail'
+      .col-1
+      .col-6
+        br
+        .row
+          .input-group.mb-6
+            .input-group-prepend
+              span.input-group-text Номер
+            = text_field_tag '', @player.code, class: 'form-control text-right', disabled: true
+        br
+        .row
+          .input-group.mb-6
+            .input-group-prepend
+              span.input-group-text ФИО
+            = text_field_tag '', @player.full_name, class: 'form-control text-right', disabled: true
+        br
+        .row
+          .input-group.mb-6
+            .input-group-prepend
+              span.input-group-text Рейтинг ELO
+            = text_field_tag '', @player.rate, class: 'form-control text-right', disabled: true
+        br
+        .row
+          .input-group.mb-6
+            .input-group-prepend
+              span.input-group-text Коэффициент полезности
+            = text_field_tag '', @player.stat, class: 'form-control text-right', disabled: true
+        br
+        .row
+          .input-group.mb-6
+            .input-group-prepend
+              span.input-group-text Дата рождения
+            = text_field_tag '', @player.birthday&.strftime("%d.%m.%Y"), class: 'form-control text-right', disabled: true
+        br
+        .row
+          .input-group.mb-6
+            .input-group-prepend
+              span.input-group-text Телефон
+            = text_field_tag '', @player.text_phone, class: 'form-control text-right', disabled: true
+        br
+        br
+        br
+      - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.rate] }.push [Day.last.id + 1, @player.rate]
+      = area_chart player_day_rates, width: "93%", min: 1000, max: 2000, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
+      - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.stat] }.push [Day.last.id + 1, @player.stat]
+      = area_chart player_day_rates, width: "93%", min: 0, max: 300, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
   .col-1
-  .col-6
     br
-    .row
-      .input-group.mb-6
-        .input-group-prepend
-          span.input-group-text Номер
-        = text_field_tag '', @player.code, class: 'form-control text-right', disabled: true
     br
-    .row
-      .input-group.mb-6
-        .input-group-prepend
-          span.input-group-text ФИО
-        = text_field_tag '', @player.full_name, class: 'form-control text-right', disabled: true
-    br
-    .row
-      .input-group.mb-6
-        .input-group-prepend
-          span.input-group-text Рейтинг ELO
-        = text_field_tag '', @player.rate, class: 'form-control text-right', disabled: true
-    br
-    .row
-      .input-group.mb-6
-        .input-group-prepend
-          span.input-group-text Коэффициент полезности
-        = text_field_tag '', @player.stat, class: 'form-control text-right', disabled: true
-    br
-    .row
-      .input-group.mb-6
-        .input-group-prepend
-          span.input-group-text Дата рождения
-        = text_field_tag '', @player.birthday&.strftime("%d.%m.%Y"), class: 'form-control text-right', disabled: true
-    br
-    .row
-      .input-group.mb-6
-        .input-group-prepend
-          span.input-group-text Телефон
-        = text_field_tag '', @player.text_phone, class: 'form-control text-right', disabled: true
-
-  = area_chart @player.day_players.map { |dp| [dp.day_id, dp.rate] }, width: "70%", min: 1300, max: 2000
+    = link_to player_path(@player.id == Player.count ? 1 : @player.id + 1) do
+      .arrow.right

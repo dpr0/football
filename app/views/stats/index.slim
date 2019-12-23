@@ -57,6 +57,8 @@
       th Поражения
       th Рейтинг ELO
       th Коэффициент полезности
+      th Всего голов
+      th Голов в день
     - @players.each_with_index do |player, i|
       tr
         td = i + 1
@@ -68,3 +70,5 @@
         td = player.lose
         td = player.rate
         td = player.stat
+        td = player.goals.count
+        td = (player.goals.count / player.days.to_f * 100).to_i / 100.0 if player.days > 0

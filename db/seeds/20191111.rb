@@ -86,3 +86,4 @@ j21 = Game.create(day_id: d4.id, team_left_id: 3, goals_left: 1, goals_right: 1,
 j21.goals.create(team_id: 3, player_id: 1)
 j21.goals.create(team_id: 2, player_id: 4)
 d4.update(leader: "3")
+Player.day_rates!(d4)
