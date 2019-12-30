@@ -2,20 +2,22 @@
 
 class GamesController < ApplicationController
   def index
-    @opps = []
+    @opps_win, @opps_draw, @opps_lose = [ [],[],[] ]
     @day = Day.last
     load_vars(@day)
   end
 
   def filter
-    @opps = []
+    @opps_win, @opps_draw, @opps_lose = [ [],[],[] ]
     @day = Day.find_by_id(params[:day])
     load_vars(@day)
     render layout: false
   end
 
   def opponents
-    @opps = params[:opps]
+    @opps_win  =  params[:opps_win].group_by(&:itself)
+    @opps_draw = params[:opps_draw].group_by(&:itself)
+    @opps_lose = params[:opps_lose].group_by(&:itself)
     render layout: false
   end
 

@@ -55,9 +55,9 @@
       th Победы
       th Ничьи
       th Поражения
-      th Рейтинг ELO
-      th Коэффициент полезности
-      th Всего голов
+      th = link_to 'Рейтинг ELO', stats_path(sort: :rate)
+      th = link_to 'Коэффициент полезности', stats_path
+      th = link_to 'Всего голов', stats_path(sort: 'COUNT(goals.id)')
       th Голов в день
     - @players.each_with_index do |player, i|
       tr

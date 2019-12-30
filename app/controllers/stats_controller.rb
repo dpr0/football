@@ -2,6 +2,7 @@
 
 class StatsController < ApplicationController
   def index
-    @players = Player.order(stat: :desc).all
+    order = params[:sort] || 'stat'
+    @players = Player.left_joins(:goals).group(:id).order("#{order} DESC").uniq
   end
 end

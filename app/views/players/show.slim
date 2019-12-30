@@ -1,7 +1,6 @@
 - photos = Dir.children(Rails.root.join('app', 'assets', 'images', 'players')).map { |name| name.split('.').first.to_i }
 - num = photos.include?(@player.code) ? @player.code : 'anonim'
 
-
 .row#pole
   .col-1
     br
