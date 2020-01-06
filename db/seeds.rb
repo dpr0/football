@@ -11,3 +11,5 @@ Role.create(code:  'captain', name: 'Капитан команды')
 Role.create(code:  'player',  name: 'Игрок')
 
 Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each { |seed| load seed }
+
+Player.rates!

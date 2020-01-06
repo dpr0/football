@@ -57,7 +57,6 @@ n13.goals.create(team_id: 3, player_id: nil)
 n14 = Game.create(day_id: d16.id, team_left_id: 2, goals_left: 0, goals_right: 0, team_right_id: 3)
 n15 = Game.create(day_id: d16.id, team_left_id: 4, goals_left: 1, goals_right: 0, team_right_id: 1)
 n15.goals.create(team_id: 4, player_id: 14)
-
 n16 = Game.create(day_id: d16.id, team_left_id: 4, goals_left: 0, goals_right: 1, team_right_id: 2)
 n16.goals.create(team_id: 2, player_id: 4)
 n17 = Game.create(day_id: d16.id, team_left_id: 3, goals_left: 0, goals_right: 1, team_right_id: 2)
@@ -80,4 +79,4 @@ n23 = Game.create(day_id: d16.id, team_left_id: 1, goals_left: 1, goals_right: 0
 n23.goals.create(team_id: 1, player_id: 6)
 d16.update(leader: "2")
 Player.day_rates!(d16)
-Player.rates!
+

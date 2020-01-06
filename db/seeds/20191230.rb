@@ -20,7 +20,6 @@ d17t3p4 = d17.day_players.create(team_id: 3, player_id:  9) # Вова
 d17t3p5 = d17.day_players.create(team_id: 3, player_id: 40) # Андрей
 d17t3p6 = d17.day_players.create(team_id: 3, player_id: 39) # Гасан
 
-
 n1  = Game.create(day_id: d17.id, team_left_id: 3, goals_left: 1, goals_right: 2, team_right_id: 1)
 n1.goals.create(team_id: 3, player_id: 3)
 n1.goals.create(team_id: 1, player_id: 16)
@@ -90,4 +89,3 @@ n23.goals.create(team_id: 3, player_id: 40)
 n23.goals.create(team_id: 3, player_id: 21)
 d17.update(leader: "2")
 Player.day_rates!(d17)
-Player.rates!
