@@ -27,7 +27,7 @@ d19t4p3 = d19.day_players.create(team_id: 4, player_id: 16) # Вася
 
 n1  = Game.create(day_id: d19.id, team_left_id: 4, goals_left: 1, goals_right: 1, team_right_id: 1)
 n1.goals.create(team_id: 4, player_id: nil) # ?
-n1.goals.create(team_id: 1, player_id: 6)
+n1.goals.create(team_id: 1, player_id: 2)
 n2  = Game.create(day_id: d19.id, team_left_id: 2, goals_left: 0, goals_right: 0, team_right_id: 3)
 n3  = Game.create(day_id: d19.id, team_left_id: 4, goals_left: 0, goals_right: 2, team_right_id: 1)
 n3.goals.create(team_id: 1, player_id: 2)
