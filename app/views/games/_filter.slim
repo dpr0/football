@@ -8,10 +8,9 @@
       - @days.each do |day|
         li.nav-item
           = link_to filter_games_path(day: day.id), method: :post, class: "nav-link #{'active' if day.id == @day.id}", data: {toggle: 'tab'}, remote: true do
-            - if day.leader
-              - day.leader.split(",").map(&:to_i).each do |team_id|
-                - team = Team.cached_by_id[team_id]
-                = image_tag "colors/#{team.code}.png", size: "30x30"
+            - {day.first_place => "30x30", day.second_place => "20x20", day.third_place => "10x10"}.each do |place, size|
+              - if place.present?
+                = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: size
   .col-1
     = link_to filter_games_path(day: @day.id == Day.count ? 1 : @day.id + 1), method: :post, class: "nav-link #{'active' if @day.id == Day.last.id}", data: {toggle: 'tab'}, remote: true do
       .arrow.right

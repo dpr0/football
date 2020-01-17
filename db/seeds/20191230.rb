@@ -87,5 +87,4 @@ n23.goals.create(team_id: 3, player_id: 14)
 n23.goals.create(team_id: 3, player_id: 3)
 n23.goals.create(team_id: 3, player_id: 40)
 n23.goals.create(team_id: 3, player_id: 21)
-d17.update(leader: "2")
-Player.day_rates!(d17)
+d17.day_rates!

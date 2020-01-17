@@ -30,12 +30,7 @@ class Player < ApplicationRecord
     all.each do |player|
       day_team = player.day_players.map { |dp| [dp.day_id, dp.team_id] }
       all_games = Game.where(day_id: day_team.map(&:first))
-      win1 = 0
-      win2 = 0
-      win3 = 0
-      draw = 0
-      lose = 0
-      day_games = 0
+      win1 = 0; win2 = 0; win3 = 0; draw = 0; lose = 0; day_games = 0
       day_team.each do |day, team|
         games = all_games.where(day_id: day)
         day_games += games.where('team_left_id = ? OR team_right_id = ?', team, team).size
@@ -55,28 +50,5 @@ class Player < ApplicationRecord
         stat: day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
       )
     end
-  end
-
-  def self.day_rates!(day)
-    team_players = day.day_players.group_by(&:team_id)
-    games = Game.where(day_id: day)
-    team_players.each do |team, players|
-      day_games, win3, win2, win1, draw = calc_stats(games, team)
-      stat = day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
-      players.each { |player| player.update(stat: stat) }
-    end
-    puts "================ #{day.id}"
-  end
-
-  private
-
-  def self.calc_stats(games, team)
-    day_games = games.where('team_left_id = ? OR team_right_id = ?', team, team).size
-    win3 = games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 2)', team, team).size
-    win2 = games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 1) OR (team_right_id = ? AND goals_left = 1 and goals_right = 2)', team, team).size
-    win1 = games.where('(team_left_id = ? AND goals_left = 1 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 1)', team, team).size
-    draw = games.where('(team_left_id = ? AND goals_left = goals_right) OR (team_right_id = ? AND goals_left = goals_right)', team, team).size
-    # lose = games.where('(team_left_id = ? AND goals_left < goals_right) OR (team_right_id = ? AND goals_left > goals_right)', team, team).size
-    [day_games, win3, win2, win1, draw]
   end
 end

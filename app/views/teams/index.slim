@@ -1,3 +1,13 @@
 div#pole
-  - ['purple', 'green', 'white', 'color1', 'color2'].each do |str|
-    p = image_tag "colors/#{str}.png", style: 'width:10%;'
+  - @teams.each do |team|
+    p
+      .row
+        .col-4
+          = image_tag "colors/#{team.code}.png", style: 'width:50%;'
+        .col-8
+          div.text-center
+            .first-place  = @places.select { |p| p[:first_place]  == team.id }.count
+            .second-place = @places.select { |p| p[:second_place] == team.id }.count
+            .third-place  = @places.select { |p| p[:third_place]  == team.id }.count
+/ - clrs = ['', '#7f007f', '#07ff00', '#f4f4f4', '#c22e32']
+/ .first-place style="background-color: #{clrs[Team.cached_by_id[@day.first_place].id]}"
