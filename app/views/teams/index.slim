@@ -1,3 +1,18 @@
+.row
+  table.table.table-striped
+    tr
+      th.text-center Команда
+      th.text-center Золото
+      th.text-center Серебро
+      th.text-center Бронза
+    - @teams.each do |team|
+      - next if @places.select { |p| [p[:first_place], p[:second_place], p[:third_place]].include? team.id }.count.zero?
+      tr
+        td.text-center = image_tag "colors/#{team.code}.png", size: "30x30"
+        td.text-center = @places.select { |p| p[:first_place]  == team.id }.count
+        td.text-center = @places.select { |p| p[:second_place] == team.id }.count
+        td.text-center = @places.select { |p| p[:third_place]  == team.id }.count
+
 div#pole
   - @teams.each do |team|
     p
@@ -5,9 +20,9 @@ div#pole
         .col-4
           = image_tag "colors/#{team.code}.png", style: 'width:50%;'
         .col-8
-          div.text-center
-            .first-place  = @places.select { |p| p[:first_place]  == team.id }.count
-            .second-place = @places.select { |p| p[:second_place] == team.id }.count
-            .third-place  = @places.select { |p| p[:third_place]  == team.id }.count
+          / div.text-center
+          /   .first-place  = @places.select { |p| p[:first_place]  == team.id }.count
+          /   .second-place = @places.select { |p| p[:second_place] == team.id }.count
+          /   .third-place  = @places.select { |p| p[:third_place]  == team.id }.count
 / - clrs = ['', '#7f007f', '#07ff00', '#f4f4f4', '#c22e32']
 / .first-place style="background-color: #{clrs[Team.cached_by_id[@day.first_place].id]}"
