@@ -15,10 +15,8 @@ class Day < ApplicationRecord
     end.compact.sort.reverse.map(&:last)
     update(first_place: places[0], second_place: places[1], third_place: places[2])
 
-    team_players = day_players.group_by(&:team_id)
-    games = Game.where(day_id: id)
-    team_players.each do |team, players|
-      day_games, win3, win2, win1, draw = calc_stats(games, team)
+    day_players.group_by(&:team_id).each do |team, players|
+      day_games, win3, win2, win1, draw = calc_stats(id, team)
       stat = day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
       players.each { |player| player.update(stat: stat) }
     end
@@ -27,13 +25,14 @@ class Day < ApplicationRecord
 
   private
 
-  def calc_stats(games, team)
-    day_games = games.where('team_left_id = ? OR team_right_id = ?', team, team).size
-    win3 = games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 2)', team, team).size
-    win2 = games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 1) OR (team_right_id = ? AND goals_left = 1 and goals_right = 2)', team, team).size
-    win1 = games.where('(team_left_id = ? AND goals_left = 1 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 1)', team, team).size
-    draw = games.where('(team_left_id = ? AND goals_left = goals_right) OR (team_right_id = ? AND goals_left = goals_right)', team, team).size
-    # lose = games.where('(team_left_id = ? AND goals_left < goals_right) OR (team_right_id = ? AND goals_left > goals_right)', team, team).size
+  def calc_stats(day_id, team)
+    games = Game.where(day_id: day_id)
+    day_games = games.where('team_left_id = ? OR team_right_id = ?', team, team).count
+    win3 = games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 2)', team, team).count
+    win2 = games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 1) OR (team_right_id = ? AND goals_left = 1 and goals_right = 2)', team, team).count
+    win1 = games.where('(team_left_id = ? AND goals_left = 1 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 1)', team, team).count
+    draw = games.where('(team_left_id = ? AND goals_left = goals_right) OR (team_right_id = ? AND goals_left = goals_right)', team, team).count
+    # lose = games.where('(team_left_id = ? AND goals_left < goals_right) OR (team_right_id = ? AND goals_left > goals_right)', team, team).count
     [day_games, win3, win2, win1, draw]
   end
 end
