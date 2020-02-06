@@ -1,0 +1,3 @@
+.nested-fields
+  = f.select :player_id, options_for_select(     Player.all.pluck(:name, :id), (f.object.id      || []))
+  = f.select :team_id,   options_for_select(Team.all_cached.pluck(:name, :id), (f.object.team_id || []))

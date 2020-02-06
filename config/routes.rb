@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   root 'games#index'
 
-  resources :games, only: :index do
+  resources :games do
+    resources :day_players
     post :filter, on: :collection
     post :opponents, on: :collection
   end

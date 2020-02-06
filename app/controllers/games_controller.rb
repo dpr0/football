@@ -7,6 +7,22 @@ class GamesController < ApplicationController
     load_vars(@day)
   end
 
+  def new
+    @day = Day.new
+  end
+
+  def create
+
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
   def filter
     @opps_win, @opps_draw, @opps_lose = [ [],[],[] ]
     @day = Day.find_by_id(params[:day])

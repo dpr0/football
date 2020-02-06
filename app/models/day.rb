@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Day < ApplicationRecord
-  has_many :games
-  has_many :day_players
+  has_many :games,       dependent: :destroy
+  has_many :day_players, dependent: :destroy
+  accepts_nested_attributes_for :games,       reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :day_players, reject_if: :all_blank, allow_destroy: true
 
   def day_rates!
     places = Team.all.map do |team|

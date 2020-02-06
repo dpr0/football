@@ -14,6 +14,7 @@ gem 'webpacker'
 gem 'listen'
 gem 'dotenv-rails'
 gem 'chartkick'
+gem 'cocoon'
 
 group :development do
   gem 'sqlite3'
