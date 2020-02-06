@@ -21,7 +21,7 @@
             .input-group-prepend
               span.input-group-text Команды
             .form-control.text-right
-              - @player.day_players.map(&:team_id).tally.each do |team_id, count|
+              - @player.dp_tally.each do |team_id, count|
                 - team = Team.cached_by_id[team_id]
                 = image_tag "colors/#{team.code}.png", size: "30x30"
                 = count

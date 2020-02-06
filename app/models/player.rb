@@ -9,6 +9,10 @@ class Player < ApplicationRecord
   has_many   :goals
   has_many   :day_players
 
+  def dp_tally
+    day_players.map(&:team_id).group_by { |x| x }.transform_values(&:size)
+  end
+
   def text_phone
     # phone ? "8-#{phone[0..2]}-#{phone[3..5]}-#{phone[6..7]}-#{phone[8..9]}" : '-'
     phone ? "8-#{phone[0..2]}-xxx-xx-#{phone[8..9]}" : '-'
