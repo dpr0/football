@@ -1,0 +1,19 @@
+= form_with(model: @day) do |f|
+  .row
+    .col-3
+      .input-group.mb-6
+        .input-group-prepend
+          span.input-group-text Дата
+        = text_field_tag '', Date.current&.strftime('%d.%m.%Y'), class: 'form-control text-right', disabled: true
+
+  p
+  #day_players
+    = f.fields_for :day_players do |day_player|
+      = render 'day_player_fields', f: day_player
+    .links
+      = link_to_add_association 'Добавить игрока', f, :day_players, partial: 'day_player_fields', class: 'btn btn-outline-primary', id: :add_day_player_btn
+    .day_players-link
+  br
+    .col-12
+      = link_to "Отмена", days_path, class: 'btn btn-danger'
+      = f.submit "Сохранить", class: 'btn btn-primary'

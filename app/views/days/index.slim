@@ -1,0 +1,7 @@
+table.table
+  - Day.all.each do |day|
+    tr
+      td = link_to day.date, day_path(day)
+      - {day.first_place => "25x25", day.second_place => "25x25", day.third_place => "25x25"}.each do |place, size|
+        - if place.present?
+          td = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: size

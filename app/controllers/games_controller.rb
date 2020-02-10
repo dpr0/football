@@ -1,26 +1,11 @@
 # frozen_string_literal: true
 
 class GamesController < ApplicationController
+
   def index
     @opps_win, @opps_draw, @opps_lose = [ [],[],[] ]
     @day = Day.last
     load_vars(@day)
-  end
-
-  def new
-    @day = Day.new
-  end
-
-  def create
-
-  end
-
-  def edit
-
-  end
-
-  def update
-
   end
 
   def filter

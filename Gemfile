@@ -16,6 +16,7 @@ gem 'listen'
 gem 'dotenv-rails'
 gem 'chartkick'
 gem 'cocoon'
+gem 'rest-client'
 
 group :development do
   gem 'sqlite3'

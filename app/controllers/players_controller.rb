@@ -7,5 +7,11 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @lichess = if @player.lichess.present?
+      response = RestClient.get("https://lichess.org/api/user/#{@player.lichess}")
+      response.code == 200 ? JSON.parse(response.body) : {}
+    else
+      {}
+    end
   end
 end

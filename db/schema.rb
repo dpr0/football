@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_210000) do
+ActiveRecord::Schema.define(version: 2020_02_06_210000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_210000) do
     t.integer "lose", default: 0
     t.integer "rate", default: 1500
     t.integer "stat", default: 0
+    t.string "lichess"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_players_on_role_id"

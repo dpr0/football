@@ -1,10 +1,10 @@
-= form_with(model: @day, url: games_path, method: :post) do |f|
+= form_with(model: Day.new, url: days_path, method: :post) do |f|
   .row
     .col-3
-      = f.label 'Дата', class: 'form-control required'
-      = f.text_field :date, class: 'form-control datepicker required', autocomplete: 'off', required: true,
-              value: Date.current&.strftime('%d.%m.%Y'), data: {format: 'd.m.Y'}
-
+      .input-group.mb-6
+        .input-group-prepend
+          span.input-group-text Дата
+        = text_field '', Date.current&.strftime('%d.%m.%Y'), class: 'form-control text-right'
   p
   #day_players
     = f.fields_for :day_players do |day_player|
@@ -14,5 +14,5 @@
     .day_players-link
   br
     .col-12
-      = link_to "Отмена", games_path, class: 'btn btn-danger'
+      = link_to "Отмена", days_path, class: 'btn btn-danger'
       = f.submit "Сохранить", class: 'btn btn-primary'
