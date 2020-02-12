@@ -1,7 +1,7 @@
 table.table
-  - Day.all.each do |day|
+  - Day.all.order(id: :desc).each do |day|
     tr
-      td = link_to day.date, day_path(day)
-      - {day.first_place => "25x25", day.second_place => "25x25", day.third_place => "25x25"}.each do |place, size|
+      td = link_to day.date.strftime('%d.%m.%Y'), day_path(day)
+      - [day.first_place, day.second_place, day.third_place].each do |place|
         - if place.present?
-          td = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: size
+          td = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: "25x25"

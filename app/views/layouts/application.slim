@@ -11,40 +11,43 @@ html
     = javascript_pack_tag 'application'
   body
     .container
+      - png = [2886, 860, 1123]
+      - custom_image = 'https://www.artandstick.be/getsupercustomizedimage.php5'
+      - sample = [png.sample, png.sample, png.sample]
+      header.text-center
+        .row
+          - sample.each do |p|
+            .col-4
+              img width="50%" src="#{custom_image}?objid=#{p}&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
       .btn-group.btn-block role="group"
-        = link_to games_path, class: 'btn btn-primary' do
-          - if @menu == 'games'
+        = link_to day_path(Day.last.id), class: 'btn btn-primary' do
+          - if @menu == 'days'
             span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
           | Игры
-        = link_to bombers_path, class: 'btn btn-primary' do
-          - if @menu == 'bombers'
-            span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
-          | Бомбардиры
         = link_to stats_path, class: 'btn btn-primary' do
           - if @menu == 'stats'
             span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
           | Статистика
-        / = link_to players_path, class: 'btn btn-primary' do
-        /   - if @menu == 'players'
-        /     span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
-        /   | Игроки
         = link_to teams_path, class: 'btn btn-primary' do
           - if @menu == 'teams'
             span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
           | Команды
-
+        / = link_to bombers_path, class: 'btn btn-primary' do
+        /   - if @menu == 'bombers'
+        /     span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
+        /   | Бомбардиры
+        / = link_to players_path, class: 'btn btn-primary' do
+        /   - if @menu == 'players'
+        /     span.spinner-grow.spinner-grow-sm role="status" aria-hidden="true"
+        /   | Игроки
       br
       br
-      header.text-center
-        .row
-          .col-2
-            img width="50%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=860&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
-          .col-8
+      .row
+        .col-12
+          - p = sample.uniq.size != 1 ? 859 : 2882
+          div.text-center style='height: 150px;'
             = image_tag("football3.png", width: '70%')
-          .col-2
-            img width="50%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=1123&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
-          / - [859, 2882, 2886, 860, 1123].each do |num|
-            / img width="10%" src="https://www.artandstick.be/getsupercustomizedimage.php5?objid=#{num}&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
+            / img.football_img src="#{custom_image}?objid=#{p}&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
       div.notice = notice
       div.alert = alert
       = yield
