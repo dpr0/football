@@ -5,8 +5,9 @@ d28t1p1 = d28.day_players.create(team_id: 1, player_id:  6) # тигран
 d28t1p2 = d28.day_players.create(team_id: 1, player_id:  5) # алихан
 d28t1p3 = d28.day_players.create(team_id: 1, player_id: 38) # миша
 d28t1p4 = d28.day_players.create(team_id: 1, player_id:  2) # коля
-d28t1p5 = d28.day_players.create(team_id: 1, player_id: 14) #саша кр
+d28t1p5 = d28.day_players.create(team_id: 1, player_id: 14) # саша кр
 d28t1p6 = d28.day_players.create(team_id: 1, player_id: 33) # макс
+d28t1p6 = d28.day_players.create(team_id: 1, player_id: 11) # саня
 
 d28t2p1 = d28.day_players.create(team_id: 2, player_id:  4) # Шах
 d28t2p2 = d28.day_players.create(team_id: 2, player_id: 13) # Араз
