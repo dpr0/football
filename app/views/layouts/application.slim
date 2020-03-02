@@ -11,14 +11,10 @@ html
     = javascript_pack_tag 'application'
   body
     .container
-      - png = [2886, 860, 1123]
-      - custom_image = 'https://www.artandstick.be/getsupercustomizedimage.php5'
-      - sample = [png.sample, png.sample, png.sample]
-      header.text-center
-        .row
-          - sample.each do |p|
-            .col-4
-              img width="50%" src="#{custom_image}?objid=#{p}&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
+      - sample = [(1..3).to_a.sample, (1..3).to_a.sample, (1..3).to_a.sample]
+      .row
+        .col-12
+          div.text-center = image_tag("football#{ sample.uniq.size != 1 ? 3 : 4 }.png", width: '70%')
       .btn-group.btn-block role="group"
         = link_to day_path(Day.last.id), class: 'btn btn-primary' do
           - if @menu == 'days'
@@ -42,12 +38,11 @@ html
         /   | Игроки
       br
       br
-      .row
-        .col-12
-          - p = sample.uniq.size != 1 ? 859 : 2882
-          div.text-center style='height: 150px;'
-            = image_tag("football3.png", width: '70%')
-            / img.football_img src="#{custom_image}?objid=#{p}&colorid1=15&colorid2=4&colorid3=4&colorid4=4&colorid5=4"
+      header.text-center
+        .row
+          - sample.each do |p|
+            .col-4
+              = image_tag("slot#{ p }.png", width: '50%')
       div.notice = notice
       div.alert = alert
       = yield

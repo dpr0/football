@@ -3,22 +3,15 @@
 Rails.application.routes.draw do
   devise_for :players
 
-  root 'games#index'
+  root 'days#show', id: Day.last.id
 
-  resources :days do
-    resources :day_players
-    post :opponents, on: :collection
-  end
-
-  resources :games, only: :index do
-    post :filter, on: :collection
-    post :opponents, on: :collection
-  end
-
+  resources :stats, only: :index
   resources :teams, only: :index
   resources :players, only: [:index, :show]
   resources :bombers, only: :index do
     post :filter, on: :collection
   end
-  resources :stats, only: :index
+  resources :days do
+    resources :day_players
+  end
 end

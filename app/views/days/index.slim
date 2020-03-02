@@ -1,7 +1,21 @@
 table.table
-  - Day.all.order(id: :desc).each do |day|
+  tr
+    th Дата
+    th 1-ое место
+    th 2-ое место
+    th 3-е место
+    th 4-е место
+    th Игроков
+  - @days.each do |day|
     tr
       td = link_to day.date.strftime('%d.%m.%Y'), day_path(day)
-      - [day.first_place, day.second_place, day.third_place].each do |place|
+      - array = [day.first_place, day.second_place, day.third_place]
+      - array.each do |place|
         - if place.present?
           td = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: "25x25"
+      - z = day.day_players
+      td
+        - if z.group_by(&:team_id).count > 3
+          - (@teams.pluck(:id) - array).each do |t|
+            = image_tag "colors/#{Team.cached_by_id[t].code}.png", size: "25x25"
+      td = z.count

@@ -65,11 +65,11 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     bcrypt (3.1.13)
-    bootsnap (1.4.5)
+    bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.1)
-    capistrano (3.11.2)
+    capistrano (3.12.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -100,7 +100,7 @@ GEM
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     cocoon (1.2.14)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.6)
     devise (4.7.1)
       bcrypt (~> 3.0)
@@ -124,7 +124,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    io-like (0.3.0)
+    io-like (0.3.1)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -149,14 +149,14 @@ GEM
     net-ssh (5.2.0)
     netrc (0.11.0)
     nio4r (2.5.2)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.2)
     public_suffix (4.0.3)
-    puma (4.3.1)
+    puma (4.3.2)
       nio4r (~> 2.0)
-    rack (2.1.2)
+    rack (2.2.2)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -191,7 +191,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (1.6.0)
+    regexp_parser (1.7.0)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -280,4 +280,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.1.2
+   2.1.4

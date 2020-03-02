@@ -1,22 +1,19 @@
-.row
-  .col-1
-    = link_to day_path(@day.id == 1 ? Day.count : @day.id - 1), class: "nav-link #{'active' if @day.id == Day.last.id}" do
-      .arrow.left
-  .col-1
-  .col-8
-    ul.nav.nav-pills
-      - @days.each do |day|
-        li.nav-item
-          = link_to day_path(day.id), class: "nav-link #{'active' if day.id == @day.id}" do
-            - {day.first_place => "30x30", day.second_place => "20x20", day.third_place => "10x10"}.each do |place, size|
-              - if place.present?
-                = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: size
-  .col-1
-    = link_to day_path(@day.id == Day.count ? 1 : @day.id + 1), class: "nav-link #{'active' if @day.id == Day.last.id}" do
-      .arrow.right
-  .col-1
-
-h3.text-center = @day.date.strftime("%d.%m.%Y")
+h2
+  .row.align-items-center
+    .col-2.text-right
+      - if @day.id != 1
+        = link_to day_path(@day.id - 1) do
+          = image_tag "left.png", size: "100x100"
+    .col-8.text-center
+      = @day.date.strftime("%d.%m.%Y")
+      p
+        - {@day.first_place => "50x50", @day.second_place => "40x40", @day.third_place => "30x30"}.each do |place, size|
+          - if place.present?
+            = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: size
+    .col-2.text-left
+      - if @day.id != Day.count
+        = link_to day_path(@day.id + 1) do
+          = image_tag "right.png", size: "100x100"
 
 .row
   table.table.table-striped
@@ -28,35 +25,31 @@ h3.text-center = @day.date.strftime("%d.%m.%Y")
       th.text-center Поражение
       th.text-center Голов
       th.text-center Очки
-    - @teams.each do |team|
+    - @main_table.each do |table|
       tr
-        - games = @games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
-        - next if games.blank?
-        - left_games  =       games.select { |x| x['team_left_id'] == team.id }
-        - right_games =       games.select { |x| x['team_right_id'] == team.id }
-        - left_win    =  left_games.select { |x| x['goals_left'] > x['goals_right'] }
-        - right_win   = right_games.select { |x| x['goals_left'] < x['goals_right'] }
-        - draw        =       games.select { |x| x['goals_left'] == x['goals_right'] }
-        - left_lose   =  left_games.select { |x| x['goals_left'] < x['goals_right'] }
-        - right_lose  = right_games.select { |x| x['goals_left'] > x['goals_right'] }
-        - win_count   = left_win.count + right_win.count
-        - lose_count  = left_lose.count + right_lose.count
-        td.text-left
-          = image_tag "colors/#{team.code}.png", size: "30x30"
-        td.text-center
-          - if games.present?
-            - opps_win  = (left_win.map(&:team_right_id)  +  right_win.map(&:team_left_id)).map { |id| @teams.find { |t| t.id == id }.code }
-            - opps_draw = (draw.map(&:team_right_id)      +       draw.map(&:team_left_id)).map { |id| @teams.find { |t| t.id == id }.code }.reject { |n| n == team.code }
-            - opps_lose = (left_lose.map(&:team_right_id) + right_lose.map(&:team_left_id)).map { |id| @teams.find { |t| t.id == id }.code }
-            = link_to games.count, opponents_days_path(opps_win: opps_win, opps_draw: opps_draw, opps_lose: opps_lose),
-                    data: {target: "#winGamesModalCenter", toggle: 'modal'}, method: :post, remote: true
-        td.text-center = win_count
-        td.text-center = draw.count
-        td.text-center = lose_count
-        - goals1 = left_games.map { |x| x['goals_left'] }.sum + right_games.map { |x| x['goals_right'] }.sum
-        - goals2 = left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left'] }.sum
-        td.text-center = "#{goals1} : #{goals2}"
-        td.text-center = win_count * 3 + draw.count * 1
+        td.text-left = image_tag "colors/#{table[:team_code]}.png", size: "30x30"
+        td.text-center = link_to table[:games_count], '#', data: {toggle: 'modal', target: "#gamesModalCenter_#{table[:team_code]}"}
+        td.text-center = table[:win_count]
+        td.text-center = table[:draw_count]
+        td.text-center = table[:lose_count]
+        td.text-center = table[:goals]
+        td.text-center = table[:points]
+      .modal.fade aria-hidden="true" role="dialog" tabindex="-1" id="gamesModalCenter_#{table[:team_code]}"
+        .modal-dialog.modal-dialog-centered role="document"
+          .modal-content
+            .modal-header
+              h5.modal-title Сыгранные игры
+              button.close aria-label="Close" data-dismiss="modal" type="button"
+                span aria-hidden="true"  &times;
+            .modal-body
+              - {opps_win: 'Победы', opps_draw: 'Ничьи', opps_lose: 'Поражения'}.each do |key, value|
+                .row
+                  .col-3
+                    | #{value}:
+                  - table[key]&.each do |code, count|
+                    .col-3
+                      = "#{count.count} x "
+                      = image_tag "colors/#{code}.png", size: "30x30"
 
 .row
   - @day.day_players.group_by(&:team_id).sort.each do |team_id, day_players|
@@ -71,11 +64,10 @@ h3.text-center = @day.date.strftime("%d.%m.%Y")
           th.text-center
             = day_players.map(&:rate).sum / day_players.count
         - day_players.each do |day_player|
-          - player = day_player.player
+          - player = @players.find{ |p| p[:id] == day_player.player_id }
           tr
             td.text-right style="width: 30%"
-              - if @goals[player.code]
-                = @goals[player.code]
+              = @goals[player.code] if @goals[player.code]
             td.text-left style="width: 60%" = link_to player.name, player_path(player)
             td.text-lef style="width: 10%"
               span.badge.badge-primary.badge-pill = day_player.rate
@@ -87,16 +79,16 @@ table.table
     tr
       td.text-left
         = i + 1
-      td.text-left
-        = game.left_team_rate
+      td.text-right
         sup class="#{game.rated_class('left')}"
           = game.rated('left')
+        = game.left_team_rate
       td.text-left
         - t = @teams.find { |t| t.id == game['team_left_id'] }
         = image_tag "colors/#{t.code}.png", size: "30x30"
-      td.text-center = game.goals_left
+      td.text-right = game.goals_left
       td.text-center = ':'
-      td.text-center = game.goals_right
+      td.text-left = game.goals_right
       td.text-right
         - t = @teams.find { |t| t.id == game['team_right_id'] }
         = image_tag "colors/#{t.code}.png", size: "30x30"
@@ -104,16 +96,3 @@ table.table
         = game.right_team_rate
         sup class="#{game.rated_class('right')}"
           = game.rated('right')
-
-.modal.fade aria-hidden="true" aria-labelledby="winGamesModalCenterTitle" role="dialog" tabindex="-1" id="winGamesModalCenter"
-  .modal-dialog.modal-dialog-centered role="document"
-    .modal-content
-      .modal-header
-        h5.modal-title Сыгранные игры
-        button.close aria-label="Close" data-dismiss="modal" type="button"
-          span aria-hidden="true"  &times;
-      .modal-body
-        = render partial: 'opponents'
-      .modal-footer
-        /   button.btn.btn-secondary data-dismiss="modal" type="button"  Close
-        /   button.btn.btn-primary type="button"  Save changes
