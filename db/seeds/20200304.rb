@@ -63,7 +63,7 @@ n13.goals.create(team_id: 2, player_id: 12)
 n13.goals.create(team_id: 2, player_id: 13)
 
 n14 = Game.create(day_id: d34.id, team_left_id: 2, goals_left: 1, goals_right: 1, team_right_id: 3)
-n14.goals.create(team_id: 2, player_id: nil)
+n14.goals.create(team_id: 2, player_id: 4)
 n14.goals.create(team_id: 3, player_id: 21)
 n15 = Game.create(day_id: d34.id, team_left_id: 1, goals_left: 1, goals_right: 1, team_right_id: 3)
 n15.goals.create(team_id: 1, player_id: 18)

@@ -64,8 +64,9 @@
       th.text-right = link_to 'ELO',  stats_path(sort: :rate)
       th.text-right = link_to 'K',    stats_path(sort: :stat)
       th.text-right
-        = link_to 'Голы', stats_path(sort: "COUNT(goals)")
-        = ' (в день)'
+        = link_to 'Голы', stats_path(sort: :count_goals)
+        = ' / '
+        = link_to '(в день)', stats_path(sort: :count_goals_days)
     - @players.each_with_index do |player, i|
       tr
         td = i + 1
