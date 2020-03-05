@@ -3,7 +3,14 @@
 Rails.application.routes.draw do
   devise_for :players
 
-  root 'days#show', id: Day.last.id
+  last_day = -> () do
+    begin
+      Day.last.id
+    rescue
+    end
+  end
+
+  root 'days#show', id: last_day.call
 
   resources :stats, only: :index
   resources :teams, only: :index
