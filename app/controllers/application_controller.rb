@@ -3,15 +3,8 @@
 class ApplicationController < ActionController::Base
   before_action :load_teams
   # before_action :authenticate_player!
-  before_action :set_menu
 
   def load_teams
     @teams = Team.all.order(:num)
-  end
-
-  private
-
-  def set_menu
-    @menu = controller_name
   end
 end

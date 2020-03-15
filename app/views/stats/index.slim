@@ -1,88 +1,105 @@
-.row
-  .col-12
-    .text-center
-      a data-toggle="collapse" href="#collapseStat" aria-expanded="false" aria-controls="collapseStat"
-        b Коэффициент полезности - K
-    div.collapse#collapseStat количество не проигранных игр команд за которые играл игрок поделенное на количество сыгранных игр (x3 - 2:0, x2.5 - 2:1, x2 - 1:0, x1 за ничью).
-.row
-  .col-12
-    .text-center
-      a data-toggle="collapse" href="#collapseRate" aria-expanded="false" aria-controls="collapseRate"
-        b Рейтинг Эло - ELO
-    div.collapse#collapseRate
-      div Все игроки начинают с рейтинга 1500
-      div Вычисляется математическое ожидание количества очков рейтинга, которое получит команда A в партии с командой B (оно равно сумме вероятности выигрыша команды A и половины вероятности ничьей):
-      .row
-        .col-3
-          img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/7648a0f17f5902b1a91df6e87af9b312c7a83129"
-        .col-9
-          div
-            | E
-            sub A
-            = " - математическое ожидание количества очков, которое наберёт команда A в игре с командой B;"
-          div
-            | R
-            sub A
-            = " — рейтинг команды A;"
-          div
-            | R
-            sub B
-            = " — рейтинг команды B;"
-      .row
-        .col-8 Новый рейтинг команды A рассчитывается по формуле:
-        .col-4
-          img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/748973e7a2aab45f741c48482b9f2761d17010df"
-      .row
-        .col-12
-          div
-            | S
-            sub A
-            = " - фактически набранное командой A количество очков (1 очко за победу, 0,5 — за ничью и 0 — за поражение);"
-          div
-            | R^
-            sub A
-            = " - новый рейтинг команды A."
-          div
-            = "K - коэффициент:"
-            ul
-              li 5 для сильнейших комманд (рейтинг 1600 и выше)
-              li 10 для команд с рейтингом 1500-1599
-              li 20 для команд с рейтингом 1400-1499
-              li 30 для команд с рейтингом 1300-1399
-              li 40 для команд с рейтингом ниже 1300
-.row
-  table.table
-    tr
-      th
-      th.text-right №
-      th Игрок
-      th            = link_to 'Дней', stats_path(sort: :days)
-      th.text-right = link_to 'Игр',  stats_path(sort: :games)
-      th.text-right +
-      th.text-right = '='
-      th.text-right -
-      th.text-right = link_to 'ELO',  stats_path(sort: :rate)
-      th.text-right = link_to 'K',    stats_path(sort: :stat)
-      th.text-right
-        = link_to 'Голы', stats_path(sort: :count_goals)
-        = ' / '
-        = link_to '(в день)', stats_path(sort: :count_goals_days)
-    - @players.each_with_index do |player, i|
-      tr
-        td = i + 1
-        td.text-right = player.id
-        td = link_to player.short_name, player_path(player)
-        td
-          - player.dp_tally.each do |team_id, count|
-            = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "10x10"
-            sup.text-muted
-              = count
-        td.text-right = player.games
-        td.text-right = player.win
-        td.text-right = player.draw
-        td.text-right = player.lose
-        td.text-right = player.rate
-        td.text-right = player.stat
-        td.text-right
-          = player.goals.count
-          = " (#{player.days > 0 ? ((player.goals.count / player.days.to_f * 100).to_i / 100.0).to_s.ljust(4, '0') : '0.00'})"
+section#section1.about-section.text-center
+  .container
+    .row
+      table.table.table-dark.table-striped.table-bordered
+        tr
+          th
+          th.text-right №
+          th            Игрок
+          th            = link_to 'Дней', stats_path(sort: :days)
+          th            Пн / Ср
+          th.text-right = link_to 'Игр',  stats_path(sort: :games)
+          th.text-right +
+          th.text-right = '='
+          th.text-right -
+          th.text-right = link_to 'ELO',  stats_path(sort: :rate)
+          th.text-right = link_to 'K',    stats_path(sort: :stat)
+          th.text-right
+            = link_to 'Голы', stats_path(sort: :count_goals)
+          th.text-right
+            = link_to '(в день)', stats_path(sort: :count_goals_days)
+        - @players.each_with_index do |player, i|
+          tr
+            td = i + 1
+            td.text-right = player.id
+            td = link_to player.short_name, player_path(player)
+            td
+              - player.dp_tally.each do |team_id, count|
+                | &nbsp;
+                = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "15x15"
+                sup
+                  | &nbsp;
+                  = count
+            td
+              = (player.day_players.map(&:day_id) - @days_by_wday[3].map(&:id)).size
+              = ' / '
+              = (player.day_players.map(&:day_id) - @days_by_wday[1].map(&:id)).size
+            td.text-right = player.games
+            td.text-right = player.win
+            td.text-right = player.draw
+            td.text-right = player.lose
+            td.text-right = player.rate
+            td.text-right = player.stat
+            td.text-right = player.goals.count
+            td.text-right = "#{player.days > 0 ? ((player.goals.count / player.days.to_f * 100).to_i / 100.0).to_s.ljust(4, '0') : '0.00'}"
+    .row
+      .col-md-12.mb-3.mb-md-0
+        .card.py-4.h-100
+          .card-body.text-center
+            i.fas.fa-map-marked-alt.text-primary.mb-2
+            | Рейтинг Эло - ELO
+            hr.my-4
+            .small.text-black-50
+              div.text-left
+                div Все игроки начинают с рейтинга 1500
+                div Вычисляется математическое ожидание количества очков рейтинга, которое получит команда A в матче с командой B (оно равно сумме вероятности выигрыша команды A и половины вероятности ничьей):
+                .row
+                  .col-3
+                    = image_tag "kk2.svg"
+                  .col-9
+                    div
+                      | E
+                      sub A
+                      = " - математическое ожидание количества очков, которое наберёт команда A в игре с командой B;"
+                    div
+                      | R
+                      sub A
+                      = " — рейтинг команды A;"
+                    div
+                      | R
+                      sub B
+                      = " — рейтинг команды B;"
+                .row
+                  .col-8 Новый рейтинг команды A рассчитывается по формуле:
+                  .col-4
+                    = image_tag "kk1.svg"
+                .row
+                  .col-12
+                    div
+                      | S
+                      sub A
+                      = " - фактически набранное командой A количество очков (1 очко за победу, 0,5 — за ничью и 0 — за поражение);"
+                    div
+                      | R^
+                      sub A
+                      = " - новый рейтинг команды A."
+                    div
+                      = "K - коэффициент:"
+                      ul
+                        li 5 для сильнейших комманд (рейтинг 1600 и выше)
+                        li 10 для команд с рейтингом 1500-1599
+                        li 20 для команд с рейтингом 1400-1499
+                        li 30 для команд с рейтингом 1300-1399
+                        li 40 для команд с рейтингом ниже 1300
+    | &nbsp;
+    .row
+      .col-md-12.mb-3.mb-md-0
+        .card.py-4.h-100
+          .card-body.text-center
+            i.fas.fa-map-marked-alt.text-primary.mb-2
+            | Коэффициент полезности - K
+            hr.my-4
+            .small.text-black-50
+              div.text-left
+                .text-center
+                  span количество не проигранных игр команд за которые играл игрок к отношению всех игр (x3 - 2:0, x2.5 - 2:1, x2 - 1:0, x1 за ничью).

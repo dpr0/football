@@ -1,27 +1,46 @@
-table.table
-  tr
-    th Дата
-    th 1-ое место
-    th 2-ое место
-    th 3-е место
-    th 4-е место
-    th Игроков
-    th Игр
-  - @days.each do |day|
-    tr
-      - g = day.games.to_a
-      td = link_to day.date.strftime('%d.%m.%Y %A'), day_path(day)
-      - array = [day.first_place, day.second_place, day.third_place]
-      - array.each do |place|
-        - if place.present?
-          td
-            = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: "25x25"
-            = g.select { |x| x.team_left_id == place || x.team_right_id == place }.count
-      - dp = day.day_players
-      td
-        - if dp.group_by(&:team_id).count > 3
-          - (@teams.pluck(:id) - array).each do |t|
-            = image_tag "colors/#{Team.cached_by_id[t].code}.png", size: "25x25"
-            = g.select { |x| x.team_left_id == t || x.team_right_id == t }.count
-      td = dp.count
-      td = g.size
+section#tournment.about-section.text-center
+  .container
+    .row
+      table.table.table-dark.table-striped.table-bordered
+        tr
+          th.text-center Команда
+          th.text-center Золото
+          th.text-center Серебро
+          th.text-center Бронза
+        - @teams.each do |team|
+          - next if @places.select { |p| [p[:first_place], p[:second_place], p[:third_place]].include? team.id }.count.zero?
+          tr
+            td.text-center = image_tag "colors/#{team.code}.png", size: "30x30"
+            td.text-center = @places.select { |p| p[:first_place]  == team.id }.count
+            td.text-center = @places.select { |p| p[:second_place] == team.id }.count
+            td.text-center = @places.select { |p| p[:third_place]  == team.id }.count
+    .row
+      table.table.table-dark.table-striped.table-bordered
+        tr
+          th Дата
+          th 1-ое место
+          th 2-ое место
+          th 3-е место
+          th 4-е место
+          th Игроков
+          th Игр
+        - @days.each do |day|
+          tr
+            - g = day.games.to_a
+            td = link_to day.date.strftime('%d.%m.%Y %A'), day_path(day)
+            - array = [day.first_place, day.second_place, day.third_place]
+            - array.each do |place|
+              - if place.present?
+                td
+                  = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: "25x25"
+                  | &nbsp;
+                  = g.select { |x| x.team_left_id == place || x.team_right_id == place }.count
+            - dp = day.day_players
+            td
+              - if dp.group_by(&:team_id).count > 3
+                - (@teams.pluck(:id) - array).each do |t|
+                  = image_tag "colors/#{Team.cached_by_id[t].code}.png", size: "25x25"
+                  | &nbsp;
+                  = g.select { |x| x.team_left_id == t || x.team_right_id == t }.count
+            td = dp.count
+            td = g.size

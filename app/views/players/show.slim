@@ -6,7 +6,7 @@
     br
     br
     = link_to player_path(@player.id == 1 ? Player.count : @player.id - 1) do
-      .arrow.left
+      = image_tag "left.png", size: "100x100"
   .col-9
     .row
       .col-1
@@ -49,6 +49,13 @@
             .input-group-prepend
               span.input-group-text Телефон
             = text_field_tag '', @player.text_phone, class: 'form-control text-right', disabled: true
+        - if @player.lfl.present?
+          br
+          .row
+            .input-group.mb-6
+              .input-group-prepend
+                span.input-group-text ЛФЛ
+              = text_field_tag '', @player.lfl, class: 'form-control text-right', disabled: true
         - if @lichess.present?
           br
           .row
@@ -90,4 +97,4 @@
     br
     br
     = link_to player_path(@player.id == Player.count ? 1 : @player.id + 1) do
-      .arrow.right
+      = image_tag "right.png", size: "100x100"

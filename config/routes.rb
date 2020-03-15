@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   root 'days#show', id: last_day.call
 
   resources :stats, only: :index
-  resources :teams, only: :index
   resources :players, only: [:index, :show]
   resources :bombers, only: :index do
     post :filter, on: :collection

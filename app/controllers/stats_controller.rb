@@ -2,7 +2,8 @@
 
 class StatsController < ApplicationController
   def index
-    @players = Player.left_joins(:goals).where('days >= 4').group(:id).order("#{order || 'games'} DESC")
+    @days_by_wday = Day.all.group_by { |x| x.date.wday }
+    @players = Player.where('days >= 4').left_joins(:goals).group(:id).order("#{order || 'games'} DESC")
   end
 
   private

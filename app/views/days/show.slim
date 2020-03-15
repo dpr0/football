@@ -1,98 +1,208 @@
-h2
-  .row.align-items-center
-    .col-2.text-right
-      - if @day.id != 1
-        = link_to day_path(@day.id - 1) do
-          = image_tag "left.png", size: "100x100"
-    .col-8.text-center
-      = @day.date.strftime("%d.%m.%Y")
-      p
-        - {@day.first_place => "50x50", @day.second_place => "40x40", @day.third_place => "30x30"}.each do |place, size|
-          - if place.present?
-            = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: size
-    .col-2.text-left
-      - if @day.id != Day.count
-        = link_to day_path(@day.id + 1) do
-          = image_tag "right.png", size: "100x100"
+/! Header
+header.masthead
+  .container.d-flex.h-100.align-items-center
+    .mx-auto.text-center
+      .container
+        .row
+          .col-lg-12.mx-auto
+            .row.align-items-center
+              / .col-1.text-left
+              /   = image_tag "left.png", size: "100x100"
+              .col-12.text-center
+                h1.mx-auto.my-0 MEGAPOLIS
+              / .col-1.text-right
+              /   = image_tag "right.png", size: "100x100"
+            h2.text-white-50.mx-auto.mt-2.mb-5
+            p.text-white-50
+              / | Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
+              a href="http://megapolisfit.ru/" megapolisfit.ru
+              / | The theme is open source, and you can use it for any purpose, personal or commercial.
+      a.btn.btn-primary.js-scroll-trigger href="#tournment" Результаты игрового дня!
 
-.row
-  table.table.table-striped
-    tr
-      th Команда
-      th.text-center Матчи
-      th.text-center Победа
-      th.text-center Ничья
-      th.text-center Поражение
-      th.text-center Голов
-      th.text-center Очки
-    - @main_table.each do |table|
-      tr
-        td.text-left = image_tag "colors/#{table[:team_code]}.png", size: "30x30"
-        td.text-center = link_to table[:games_count], '#', data: {toggle: 'modal', target: "#gamesModalCenter_#{table[:team_code]}"}
-        td.text-center = table[:win_count]
-        td.text-center = table[:draw_count]
-        td.text-center = table[:lose_count]
-        td.text-center = table[:goals]
-        td.text-center = table[:points]
-      .modal.fade aria-hidden="true" role="dialog" tabindex="-1" id="gamesModalCenter_#{table[:team_code]}"
-        .modal-dialog.modal-dialog-centered role="document"
-          .modal-content
-            .modal-header
-              h5.modal-title Сыгранные игры
-              button.close aria-label="Close" data-dismiss="modal" type="button"
-                span aria-hidden="true"  &times;
-            .modal-body
-              - {opps_win: 'Победы', opps_draw: 'Ничьи', opps_lose: 'Поражения'}.each do |key, value|
-                .row
-                  .col-3
-                    | #{value}:
-                  - table[key]&.each do |code, count|
-                    .col-3
-                      = "#{count.count} x "
-                      = image_tag "colors/#{code}.png", size: "30x30"
-
-.row
-  - @day.day_players.group_by(&:team_id).sort.each do |team_id, day_players|
-    // div class="col-#{ teams.size > 3 ? 3 : 4 }"
-    .col-4
-      table.table
+/! About Section
+section#tournment.about-section.text-center
+  .container
+    .row
+      table.table.table-dark.table-striped.table-bordered
         tr
-          th.text-right
-            | &#9917;
-          th.text-center
-            = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "30x30"
-          th.text-center
-            = day_players.map(&:rate).sum / day_players.count
-        - day_players.each do |day_player|
-          - player = @players.find{ |p| p[:id] == day_player.player_id }
+          th Команда
+          th.text-center Матчи
+          th.text-center Победа
+          th.text-center Ничья
+          th.text-center Поражение
+          th.text-center Голов
+          th.text-center Очки
+        - @main_table.each do |table|
           tr
-            td.text-right style="width: 30%"
-              = @goals[player.code] if @goals[player.code]
-            td.text-left style="width: 60%" = link_to player.name, player_path(player)
-            td.text-lef style="width: 10%"
-              span.badge.badge-primary.badge-pill = day_player.rate
+            td.text-center = image_tag "colors/#{table[:team_code]}.png", size: "30x30"
+            td.text-center = link_to table[:games_count], '#', data: {toggle: 'modal', target: "#gamesModalCenter_#{table[:team_code]}"}
+            td.text-center = table[:win_count]
+            td.text-center = table[:draw_count]
+            td.text-center = table[:lose_count]
+            td.text-center = table[:goals]
+            td.text-center = table[:points]
+          .modal.fade aria-hidden="true" role="dialog" tabindex="-1" id="gamesModalCenter_#{table[:team_code]}"
+            .modal-dialog.modal-dialog-centered role="document"
+              .modal-content
+                .modal-header
+                  h5.modal-title Сыгранные игры
+                  button.close aria-label="Close" data-dismiss="modal" type="button"
+                    span aria-hidden="true"  &times;
+                .modal-body
+                  - {opps_win: 'Победы', opps_draw: 'Ничьи', opps_lose: 'Поражения'}.each do |key, value|
+                    .row
+                      .col-3
+                        | #{value}:
+                      - table[key]&.each do |code, count|
+                        .col-3
+                          = "#{count.count} x "
+                          = image_tag "colors/#{code}.png", size: "30x30"
+  .container
+    .row
+      .col-lg-8.mx-auto
+        .row.align-items-center
+          .col-2.text-right
+            - if @day.id != 1
+              = link_to day_path(@day.id - 1) + '#tournment' do
+                = image_tag "left.png", size: "100x100"
+          .col-8.text-center
+            h2.text-white.mb-4 = @day.date.strftime("%d.%m.%Y")
+          .col-2.text-left
+            - if @day.id != Day.count
+              = link_to day_path(@day.id + 1) + '#tournment' do
+                = image_tag "right.png", size: "100x100"
+        p.text-white-50
+          / | Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
+          / a href="http://startbootstrap.com/template-overviews/grayscale/"  the preview page
+          / | The theme is open source, and you can use it for any purpose, personal or commercial.
+    = image_tag "ipad.png", class: 'img-fluid'
 
-table.table
-  tr
-    th colspan="8" Игры
-  - @games.each_with_index do |game, i|
-    tr
-      td.text-left
-        = i + 1
-      td.text-right
-        sup class="#{game.rated_class('left')}"
-          = game.rated('left')
-        = game.left_team_rate
-      td.text-left
-        - t = @teams.find { |t| t.id == game['team_left_id'] }
-        = image_tag "colors/#{t.code}.png", size: "30x30"
-      td.text-right = game.goals_left
-      td.text-center = ':'
-      td.text-left = game.goals_right
-      td.text-right
-        - t = @teams.find { |t| t.id == game['team_right_id'] }
-        = image_tag "colors/#{t.code}.png", size: "30x30"
-      td.text-left
-        = game.right_team_rate
-        sup class="#{game.rated_class('right')}"
-          = game.rated('right')
+section#commands.contact-section.bg-black
+  - if (request.user_agent =~ /Mobile/) != nil
+    .container
+      .row
+        - @day.day_players.group_by(&:team_id).sort.each do |team_id, day_players|
+          .col-md-4.mb-3.mb-md-0
+            .card.py-4.h-100
+              .card-body.text-center
+                i.fas.fa-map-marked-alt.text-primary.mb-2
+                = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "50x50"
+                h4.text-uppercase.m-0 = day_players.map(&:rate).sum / day_players.count
+                hr.my-4
+                .small.text-black-50
+                  - day_players.each do |day_player|
+                    - player = @players.find { |p| p[:id] == day_player.player_id }
+                    div.text-left
+                      span.badge.badge-primary.badge-pill = day_player.rate
+                      span = link_to player.name, player_path(player)
+                      span
+                        - if @goals[player.code]
+                          - @goals[player.code].times do
+                            | &#9917;
+
+  - else
+    - @day.day_players.group_by(&:team_id).sort.each do |team_id, day_players|
+      .row.justify-content-center.no-gutters class="#{'mb-5 mb-lg-0' if team_id.even?}"
+        .col-lg-6 class="#{'text-right' if team_id.even?}"
+          = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "275x275"
+        .col-lg-6 class="#{'order-lg-first' if team_id.odd?}"
+          .bg-black.text-center.h-100.project
+            .d-flex.h-100
+              .project-text.w-100.my-auto.text-center class="#{team_id.odd? ? 'text-lg-right' : 'text-lg-left'}"
+                h4.text-white = day_players.map(&:rate).sum / day_players.count
+                p.mb-0.text-white-50
+                  - day_players.each do |day_player|
+                    - player = @players.find { |p| p[:id] == day_player.player_id }
+                    div
+                      - if team_id.even?
+                        span.badge.badge-primary.badge-pill = day_player.rate
+                        span = link_to player.name, player_path(player)
+                        span
+                          - if @goals[player.code]
+                            - @goals[player.code].times do
+                              | &#9917;
+                      - else
+                        span
+                          - if @goals[player.code]
+                            - @goals[player.code].times do
+                              | &#9917;
+                        span = link_to player.name, player_path(player)
+                        span.badge.badge-primary.badge-pill = day_player.rate
+                hr.d-none.d-lg-block.mb-0 class="#{team_id.odd? ? 'mr-0' : 'ml-0'}"
+
+section#games.about-section.text-center
+  .container
+    .row
+      table.table.table-dark.table-striped.table-bordered
+        tr
+          th colspan="8" Игры
+        - @games.each_with_index do |game, i|
+          tr
+            td.text-left
+              = i + 1
+            td.text-right
+              sup class="#{game.rated_class('left')}"
+                = game.rated('left')
+              = game.left_team_rate
+            td.text-left
+              - t = @teams.find { |t| t.id == game['team_left_id'] }
+              = image_tag "colors/#{t.code}.png", size: "30x30"
+            td.text-right = game.goals_left
+            td.text-center
+              - z = game.goals.map(&:player_id).map do |player_id|
+                - next unless player_id
+                - @players.find { |pl| pl.id == player_id }.name
+              div data-toggle="tooltip" title=(z.compact.join(', '))
+                = ':'
+            td.text-left = game.goals_right
+            td.text-right
+              - t = @teams.find { |t| t.id == game['team_right_id'] }
+              = image_tag "colors/#{t.code}.png", size: "30x30"
+            td.text-left
+              = game.right_team_rate
+              sup class="#{game.rated_class('right')}"
+                = game.rated('right')
+
+/ section#games2.signup-section
+/   .container
+/     .row
+/       .col-md-10.col-lg-8.mx-auto.text-center
+/         i.far.fa-paper-plane.fa-2x.mb-2.text-white
+/         h2.text-white.mb-5 Subscribe to receive updates!
+/         form.form-inline.d-flex
+/           input#inputEmail.form-control.flex-fill.mr-0.mr-sm-2.mb-3.mb-sm-0 placeholder=("Enter email address...") type="email" /
+/           button.btn.btn-primary.mx-auto type="submit"  Subscribe
+
+section.contact-section.bg-black
+  .container
+    / .row
+    /   .col-md-4.mb-3.mb-md-0
+    /     .card.py-4.h-100
+    /       .card-body.text-center
+    /         i.fas.fa-mobile-alt.text-primary.mb-2
+    /         h4.text-uppercase.m-0 Info
+    /         hr.my-4
+    /         .small.text-black-50 krsz.ru
+    /   .col-md-4.mb-3.mb-md-0
+    /     .card.py-4.h-100
+    /       .card-body.text-center
+    /         i.fas.fa-envelope.text-primary.mb-2
+    /         h4.text-uppercase.m-0 Email
+    /         hr.my-4
+    /         .small.text-black-50
+    /           a href="#"  dvitvitskiy.pro@gmail.com
+    /   .col-md-4.mb-3.mb-md-0
+    /     .card.py-4.h-100
+    /       .card-body.text-center
+    /         i.fas.fa-mobile-alt.text-primary.mb-2
+    /         h4.text-uppercase.m-0 Phone
+    /         hr.my-4
+    /         .small.text-black-50 +7 (919) 108-7399
+
+    .social.d-flex.justify-content-center
+      a.mx-2 href="#"
+        i.fab.fa-twitter
+      a.mx-2 href="#"
+        i.fab.fa-facebook-f
+      a.mx-2 href="#"
+        i.fab.fa-github
