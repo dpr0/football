@@ -34,7 +34,7 @@ section#tournment.about-section.text-center
           th.text-center Очки
         - @main_table.each do |table|
           tr
-            td.text-center = image_tag "colors/#{table[:team_code]}.png", size: "30x30"
+            td.text-center = image_tag "colors/#{table[:team_code]}.png", size: "25x30"
             td.text-center = link_to table[:games_count], '#', data: {toggle: 'modal', target: "#gamesModalCenter_#{table[:team_code]}"}
             td.text-center = table[:win_count]
             td.text-center = table[:draw_count]
@@ -56,7 +56,7 @@ section#tournment.about-section.text-center
                       - table[key]&.each do |code, count|
                         .col-3
                           = "#{count.count} x "
-                          = image_tag "colors/#{code}.png", size: "30x30"
+                          = image_tag "colors/#{code}.png", size: "25x30"
   .container
     .row
       .col-lg-8.mx-auto
@@ -86,7 +86,7 @@ section#commands.contact-section.bg-black
             .card.py-4.h-100
               .card-body.text-center
                 i.fas.fa-map-marked-alt.text-primary.mb-2
-                = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "50x50"
+                = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "35x50"
                 h4.text-uppercase.m-0 = day_players.map(&:rate).sum / day_players.count
                 hr.my-4
                 .small.text-black-50
@@ -104,7 +104,7 @@ section#commands.contact-section.bg-black
     - @day.day_players.group_by(&:team_id).sort.each do |team_id, day_players|
       .row.justify-content-center.no-gutters class="#{'mb-5 mb-lg-0' if team_id.even?}"
         .col-lg-6 class="#{'text-right' if team_id.even?}"
-          = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "275x275"
+          = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "200x275"
         .col-lg-6 class="#{'order-lg-first' if team_id.odd?}"
           .bg-black.text-center.h-100.project
             .d-flex.h-100
@@ -146,7 +146,7 @@ section#games.about-section.text-center
               = game.left_team_rate
             td.text-left
               - t = @teams.find { |t| t.id == game['team_left_id'] }
-              = image_tag "colors/#{t.code}.png", size: "30x30"
+              = image_tag "colors/#{t.code}.png", size: "25x30"
             td.text-right = game.goals_left
             td.text-center
               - z = game.goals.map(&:player_id).map do |player_id|
@@ -157,7 +157,7 @@ section#games.about-section.text-center
             td.text-left = game.goals_right
             td.text-right
               - t = @teams.find { |t| t.id == game['team_right_id'] }
-              = image_tag "colors/#{t.code}.png", size: "30x30"
+              = image_tag "colors/#{t.code}.png", size: "25x30"
             td.text-left
               = game.right_team_rate
               sup class="#{game.rated_class('right')}"

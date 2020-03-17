@@ -26,7 +26,7 @@ section#section1.about-section.text-center
             td
               - player.dp_tally.each do |team_id, count|
                 | &nbsp;
-                = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "15x15"
+                = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "15x20"
                 sup
                   | &nbsp;
                   = count

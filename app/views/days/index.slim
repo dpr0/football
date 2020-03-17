@@ -10,7 +10,7 @@ section#tournment.about-section.text-center
         - @teams.each do |team|
           - next if @places.select { |p| [p[:first_place], p[:second_place], p[:third_place]].include? team.id }.count.zero?
           tr
-            td.text-center = image_tag "colors/#{team.code}.png", size: "30x30"
+            td.text-center = image_tag "colors/#{team.code}.png", size: "25x30"
             td.text-center = @places.select { |p| p[:first_place]  == team.id }.count
             td.text-center = @places.select { |p| p[:second_place] == team.id }.count
             td.text-center = @places.select { |p| p[:third_place]  == team.id }.count
@@ -32,14 +32,14 @@ section#tournment.about-section.text-center
             - array.each do |place|
               - if place.present?
                 td
-                  = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: "25x25"
+                  = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: "20x25"
                   | &nbsp;
                   = g.select { |x| x.team_left_id == place || x.team_right_id == place }.count
             - dp = day.day_players
             td
               - if dp.group_by(&:team_id).count > 3
                 - (@teams.pluck(:id) - array).each do |t|
-                  = image_tag "colors/#{Team.cached_by_id[t].code}.png", size: "25x25"
+                  = image_tag "colors/#{Team.cached_by_id[t].code}.png", size: "20x25"
                   | &nbsp;
                   = g.select { |x| x.team_left_id == t || x.team_right_id == t }.count
             td = dp.count
