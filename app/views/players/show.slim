@@ -1,100 +1,102 @@
 - photos = Dir.children(Rails.root.join('app', 'assets', 'images', 'players')).map { |name| name.split('.').first.to_i }
 - num = photos.include?(@player.code) ? @player.code : 'anonim'
 
-.row#pole
-  .col-1
-    br
-    br
-    = link_to player_path(@player.id == 1 ? Player.count : @player.id - 1) do
-      = image_tag "left.png", size: "100x100"
-  .col-9
+section#pole.about-section.text-center
+  .container
     .row
       .col-1
-      .col-4
         br
-          = image_tag "players/#{num}.jpg", class: 'img-thumbnail'
+        br
+        = link_to player_path(@player.id == 1 ? Player.count : @player.id - 1) do
+          = image_tag "left.png", size: "100x100"
+      .col-9
+        .row
+          .col-1
+          .col-4
+            br
+              = image_tag "players/#{num}.jpg", class: 'img-thumbnail'
+          .col-1
+          .col-6
+            br
+            .row
+              .input-group.mb-6
+                .input-group-prepend
+                  span.input-group-text Команды
+                .form-control.text-right
+                  - @player.dp_tally.each do |team_id, count|
+                    - team = Team.cached_by_id[team_id]
+                    = image_tag "colors/#{team.code}.png", size: "30x30"
+                    = count
+            br
+            .row
+              .input-group.mb-6
+                .input-group-prepend
+                  span.input-group-text Номер
+                = text_field_tag '', @player.code, class: 'form-control text-right', disabled: true
+            br
+            .row
+              .input-group.mb-6
+                .input-group-prepend
+                  span.input-group-text ФИО
+                = text_field_tag '', @player.full_name, class: 'form-control text-right', disabled: true
+            br
+            .row
+              .input-group.mb-6
+                .input-group-prepend
+                  span.input-group-text Дата рождения
+                = text_field_tag '', @player.birthday&.strftime("%d.%m.%Y"), class: 'form-control text-right', disabled: true
+            br
+            .row
+              .input-group.mb-6
+                .input-group-prepend
+                  span.input-group-text Телефон
+                = text_field_tag '', @player.text_phone, class: 'form-control text-right', disabled: true
+            - if @player.lfl.present?
+              br
+              .row
+                .input-group.mb-6
+                  .input-group-prepend
+                    span.input-group-text ЛФЛ
+                  = text_field_tag '', 'http://lfl.ru/person' + @player.lfl, class: 'form-control text-right', disabled: true
+            - if @lichess.present?
+              br
+              .row
+                .input-group.mb-6
+                  .input-group-prepend
+                    span.input-group-text = "Шахматный рейтинг lichess.org"
+                  = text_field_tag '', '', class: 'form-control text-right', disabled: true
+              .row
+                .input-group.mb-6
+                  .input-group-prepend
+                    span.input-group-text Блитц
+                  = text_field_tag '', @lichess.dig('perfs', 'blitz', 'rating'), class: 'form-control text-right', disabled: true
+              .row
+                .input-group.mb-6
+                  .input-group-prepend
+                    span.input-group-text Рапид
+                  = text_field_tag '', @lichess.dig('perfs', 'rapid', 'rating'), class: 'form-control text-right', disabled: true
+              .row
+                .input-group.mb-6
+                  .input-group-prepend
+                    span.input-group-text Классика
+                  = text_field_tag '', @lichess.dig('perfs', 'classical', 'rating'), class: 'form-control text-right', disabled: true
+
+          - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.rate] }.push [Day.last.id + 1, @player.rate]
+          = area_chart player_day_rates, width: "93%", min: 1000, max: 2000, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
+          .input-group.mb-6
+            .input-group-prepend
+              span.input-group-text Рейтинг ELO
+            = text_field_tag '', @player.rate, class: 'form-control text-right', disabled: true
+
+          - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.stat] }.push [Day.last.id + 1, @player.stat]
+          = area_chart player_day_rates, width: "93%", min: 0, max: 300, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
+          .input-group.mb-6
+            .input-group-prepend
+              span.input-group-text Коэффициент полезности
+            = text_field_tag '', @player.stat, class: 'form-control text-right', disabled: true
+          br
       .col-1
-      .col-6
         br
-        .row
-          .input-group.mb-6
-            .input-group-prepend
-              span.input-group-text Команды
-            .form-control.text-right
-              - @player.dp_tally.each do |team_id, count|
-                - team = Team.cached_by_id[team_id]
-                = image_tag "colors/#{team.code}.png", size: "30x30"
-                = count
         br
-        .row
-          .input-group.mb-6
-            .input-group-prepend
-              span.input-group-text Номер
-            = text_field_tag '', @player.code, class: 'form-control text-right', disabled: true
-        br
-        .row
-          .input-group.mb-6
-            .input-group-prepend
-              span.input-group-text ФИО
-            = text_field_tag '', @player.full_name, class: 'form-control text-right', disabled: true
-        br
-        .row
-          .input-group.mb-6
-            .input-group-prepend
-              span.input-group-text Дата рождения
-            = text_field_tag '', @player.birthday&.strftime("%d.%m.%Y"), class: 'form-control text-right', disabled: true
-        br
-        .row
-          .input-group.mb-6
-            .input-group-prepend
-              span.input-group-text Телефон
-            = text_field_tag '', @player.text_phone, class: 'form-control text-right', disabled: true
-        - if @player.lfl.present?
-          br
-          .row
-            .input-group.mb-6
-              .input-group-prepend
-                span.input-group-text ЛФЛ
-              = text_field_tag '', @player.lfl, class: 'form-control text-right', disabled: true
-        - if @lichess.present?
-          br
-          .row
-            .input-group.mb-6
-              .input-group-prepend
-                span.input-group-text = "Шахматный рейтинг lichess.org"
-              = text_field_tag '', '', class: 'form-control text-right', disabled: true
-          .row
-            .input-group.mb-6
-              .input-group-prepend
-                span.input-group-text Блитц
-              = text_field_tag '', @lichess.dig('perfs', 'blitz', 'rating'), class: 'form-control text-right', disabled: true
-          .row
-            .input-group.mb-6
-              .input-group-prepend
-                span.input-group-text Рапид
-              = text_field_tag '', @lichess.dig('perfs', 'rapid', 'rating'), class: 'form-control text-right', disabled: true
-          .row
-            .input-group.mb-6
-              .input-group-prepend
-                span.input-group-text Классика
-              = text_field_tag '', @lichess.dig('perfs', 'classical', 'rating'), class: 'form-control text-right', disabled: true
-
-      - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.rate] }.push [Day.last.id + 1, @player.rate]
-      = area_chart player_day_rates, width: "93%", min: 1000, max: 2000, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
-      .input-group.mb-6
-        .input-group-prepend
-          span.input-group-text Рейтинг ELO
-        = text_field_tag '', @player.rate, class: 'form-control text-right', disabled: true
-
-      - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.stat] }.push [Day.last.id + 1, @player.stat]
-      = area_chart player_day_rates, width: "93%", min: 0, max: 300, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
-      .input-group.mb-6
-        .input-group-prepend
-          span.input-group-text Коэффициент полезности
-        = text_field_tag '', @player.stat, class: 'form-control text-right', disabled: true
-      br
-  .col-1
-    br
-    br
-    = link_to player_path(@player.id == Player.count ? 1 : @player.id + 1) do
-      = image_tag "right.png", size: "100x100"
+        = link_to player_path(@player.id == Player.count ? 1 : @player.id + 1) do
+          = image_tag "right.png", size: "100x100"
