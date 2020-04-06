@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class VideoController < ApplicationController
+class TestController < ApplicationController
   def index; end
 end
