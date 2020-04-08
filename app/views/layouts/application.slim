@@ -10,24 +10,31 @@ html
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   body
-    nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top
-      .container
-        = link_to 'KRSZ.RU', day_path(Day.last.id), class: 'nav-brand js-scroll-trigger'
-        button.navbar-toggler.navbar-toggler-right aria-controls="navbarResponsive" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarResponsive" data-toggle="collapse" type="button"
-          | Menu
-          i.fas.fa-bars
-        #navbarResponsive.collapse.navbar-collapse
-          ul.navbar-nav.ml-auto
-            / li.nav-item
-            /   a.nav-link.js-scroll-trigger href="#tournment" Игровой день
-            / li.nav-item
-            /   a.nav-link.js-scroll-trigger href="#commands" Составы
-            / li.nav-item
-            /   a.nav-link.js-scroll-trigger href="#games" Игры
-            li.nav-item
-              = link_to 'Статистика игроков', stats_path, class: 'nav-link js-scroll-trigger'
-            li.nav-item
-              = link_to 'Статистика игр', days_path, class: 'nav-link js-scroll-trigger'
+    - if (request.user_agent =~ /Mobile/) == nil
+      nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top
+        .container
+          = link_to 'KRSZ.RU', day_path(Day.last.id), class: 'nav-brand js-scroll-trigger'
+          button.navbar-toggler.navbar-toggler-right aria-controls="navbarResponsive" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarResponsive" data-toggle="collapse" type="button"
+            | Menu
+            i.fas.fa-bars
+          #navbarResponsive.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto
+              / li.nav-item
+              /   a.nav-link.js-scroll-trigger href="#tournment" Игровой день
+              / li.nav-item
+              /   a.nav-link.js-scroll-trigger href="#commands" Составы
+              / li.nav-item
+              /   a.nav-link.js-scroll-trigger href="#games" Игры
+              li.nav-item
+                = link_to 'Статистика игроков', stats_path, class: 'nav-link'
+              li.nav-item
+                = link_to 'Статистика игр', days_path, class: 'nav-link'
+    - else
+      .bg-black
+        .btn-group.d-flex.btn-group-lg
+          = link_to 'Главная',             root_path, class: 'btn btn-primary'
+          = link_to 'Статистика игроков', stats_path, class: 'btn btn-primary'
+          = link_to 'Статистика игр',      days_path, class: 'btn btn-primary'
     = yield
 
   footer.bg-black.small.text-center.text-white-50

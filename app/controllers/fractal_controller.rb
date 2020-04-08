@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class TestController < ApplicationController
+class FractalController < ApplicationController
   def index; end
 end
