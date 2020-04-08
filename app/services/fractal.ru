@@ -1,6 +1,9 @@
-canvas#fractal
+video = "
+  <iframe allowfullscreen='' frameborder='0' height='282' width='500' src='https://rtsp.me/embed/NwYjsHoc/'></iframe>
+  <iframe height='282' width='500' src='http://tl1.ru.rtsp.me/timelapse/NwYjsHoc.mp4'></iframe>
+"
 
-javascript:
+fractal = "<canvas id='fractal'></canvas><script>
   let canvas    = document.getElementById(`fractal`);
   let ctx       = canvas.getContext(`2d`);
   let color     = false;
@@ -56,22 +59,8 @@ javascript:
           }
       }
   }
+</script>"
 
-  //  10 DIM X(16): DIM Y(16)
-  //  20 FOR I = 1 TO 4
-  //  30 FOR J = 1 TO 4
-  //  40 LET K = 4 * I + J - 4
-  //  50 LET X(K) = J - 3: LET Y(K) = I - 3
-  //  60 NEXT J: NEXT I
-  //  70 LET X(2)  =  0: LET Y(2)  = -3
-  //  80 LET X(8)  =  2: LET Y(8)  =  0
-  //  90 LET X(9)  = -3: LET Y(9)  = -1
-  // 100 LET X(15) = -1: LET Y(15) =  2
-  // 110 FOR I=1 TO 16
-  // 120 FOR J=1 TO 16
-  // 130 FOR K=1 TO 16
-  // 140 LET XX = 16 * X(I) + 4 * X(J) + X(K)
-  // 150 LET YY = 16 * Y(I) + 4 * Y(J) + Y(K)
-  // 160 PLOT 126 + XX, 88 + YY
-  // 170 NEXT K: NEXT J: NEXT I
+version = "RUBY_VERSION: #{RUBY_VERSION}"
 
+run Proc.new { |env| ["200", {"Content-Type" => "text/html"}, [version, video, fractal]] }

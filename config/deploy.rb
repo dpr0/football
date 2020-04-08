@@ -5,6 +5,7 @@ lock '3.12.0'
 
 server 'krsz.ru', port: 2222, roles: %w(app db web), primary: true
 
+set :rbenv_ruby,      "2.6.3"
 set :application,     'football'
 set :repo_url,        'git@github.com:dpr0/football.git'
 set :deploy_user,     'deploy'
