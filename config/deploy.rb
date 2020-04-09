@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # config valid only for current version of Capistrano
-lock '3.12.0'
+lock '3.13.0'
 
 server 'krsz.ru', port: 2222, roles: %w(app db web), primary: true
 
