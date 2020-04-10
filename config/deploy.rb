@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-# config valid only for current version of Capistrano
 lock '3.13.0'
 
 server 'krsz.ru', port: 2222, roles: %w(app db web), primary: true
 
-set :rbenv_ruby,      "2.6.3"
+set :rbenv_ruby,      '2.6.3'
 set :application,     'football'
 set :repo_url,        'git@github.com:dpr0/football.git'
 set :deploy_user,     'deploy'
@@ -18,26 +17,31 @@ set :stage,           :production
 set :deploy_to,       "/home/#{fetch(:user)}/#{fetch(:application)}"
 set :ssh_options,     forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub)
 
-namespace :webpacker do
-  desc 'Support for older Rails versions. Install all JavaScript dependencies as specified via Yarn'
-  task :yarn_install do
-    system 'yarn install --no-progress'
-
-    exit(1) unless $CHILD_STATUS.success?
+namespace :deploy_services do
+  desc 'deploy news :3001'
+  task :news do
+    on roles(:app) do
+      execute("rackup -s puma -p 3001 #{application}/current/app/services/news.ru") if stage == :production
+    end
   end
-end
 
-def enhance_yarn_install
-  Rake::Task['yarn:install'].enhance do
-    exit(1) unless $CHILD_STATUS.success?
+  desc 'deploy fractal :3002'
+  task :fractal do
+    on roles(:app) do
+      execute("rackup -s puma -p 3002 #{application}/current/app/services/fractal.ru") if stage == :production
+    end
   end
-end
 
-if Rake::Task.task_defined?('yarn:install')
-  enhance_yarn_install
-else
-  # this is mainly for pre-5.x era
-  Rake::Task.define_task('yarn:install' => 'webpacker:yarn_install')
+  desc 'deploy webcam :3003'
+  task :webcam do
+    on roles(:app) do
+      execute("rackup -s puma -p 3003 #{application}/current/app/services/webcam.ru") if stage == :production
+    end
+  end
+
+  before :starting, :news
+  before :starting, :fractal
+  before :starting, :webcam
 end
 
 namespace :deploy do
@@ -62,8 +66,6 @@ namespace :deploy do
       end
     end
   end
-
-  # after 'deploy:migrate', 'deploy:seed'
 
   desc 'Runs rake assets:precompile'
   task :precompile do

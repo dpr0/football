@@ -1,8 +1,3 @@
-video = "
-  <iframe allowfullscreen='' frameborder='0' height='282' width='500' src='https://rtsp.me/embed/NwYjsHoc/'></iframe>
-  <iframe height='282' width='500' src='http://tl1.ru.rtsp.me/timelapse/NwYjsHoc.mp4'></iframe>
-"
-
 fractal = "<canvas id='fractal'></canvas><script>
   let canvas    = document.getElementById(`fractal`);
   let ctx       = canvas.getContext(`2d`);
@@ -61,6 +56,4 @@ fractal = "<canvas id='fractal'></canvas><script>
   }
 </script>"
 
-version = "RUBY_VERSION: #{RUBY_VERSION}"
-
-run Proc.new { |env| ["200", {"Content-Type" => "text/html"}, [version, video, fractal]] }
+run Proc.new { |env| ["200", {"Content-Type" => "text/html"}, [fractal]] }

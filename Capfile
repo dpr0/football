@@ -4,11 +4,10 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/rbenv'
 require 'capistrano/bundler'
-require 'capistrano3/puma'
+require 'capistrano/puma'
 require 'capistrano/rails'
 require 'capistrano/rails/migrations'
 require 'capistrano/rails/assets'
-require 'capistrano/local_precompile'
 require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 install_plugin Capistrano::Puma
