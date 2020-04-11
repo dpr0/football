@@ -17,34 +17,26 @@ set :stage,           :production
 set :deploy_to,       "/home/#{fetch(:user)}/#{fetch(:application)}"
 set :ssh_options,     forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub)
 
-namespace :deploy_services do
-  desc 'deploy news :3001'
-  task :news do
-    on roles(:app) do
-      execute("rackup -s puma -p 3001 #{application}/current/app/services/news.ru") if stage == :production
-    end
-  end
-
-  desc 'deploy fractal :3002'
-  task :fractal do
-    on roles(:app) do
-      execute("rackup -s puma -p 3002 #{application}/current/app/services/fractal.ru") if stage == :production
-    end
-  end
-
-  desc 'deploy webcam :3003'
-  task :webcam do
-    on roles(:app) do
-      execute("rackup -s puma -p 3003 #{application}/current/app/services/webcam.ru") if stage == :production
-    end
-  end
-
-  before :starting, :news
-  before :starting, :fractal
-  before :starting, :webcam
-end
+set :ssh_options, {
+    user: "deploy",
+    forward_agent: true,
+    keys: "~/.ssh/aws-xxx.pem"
+}
 
 namespace :deploy do
+  desc 'deploy news:3001 fractal:3002 webcam:3003'
+  task :services do
+    on roles(:app) do
+      within "#{current_path}" do
+        with rails_env: "#{fetch(:stage)}" do
+          execute :bundle, "exec rackup -D -s puma -p 3001 app/services/news.ru"
+          execute :bundle, "exec rackup -D -s puma -p 3002 app/services/fractal.ru"
+          execute :bundle, "exec rackup -D -s puma -p 3003 app/services/webcam.ru"
+        end
+      end
+    end
+  end
+
   desc 'Make sure local git is in sync with remote.'
   task :check_revision do
     on roles(:app) do
@@ -56,7 +48,7 @@ namespace :deploy do
     end
   end
 
-  desc 'Runs rake db:seed for SeedMigrations data'
+  desc 'Runs rake db:seed'
   task seed: [:set_rails_env] do
     on primary fetch(:migration_role) do
       within release_path do
