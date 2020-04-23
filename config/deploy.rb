@@ -24,19 +24,6 @@ set :ssh_options, {
 }
 
 namespace :deploy do
-  desc 'deploy news:3001 fractal:3002 webcam:3003'
-  task :services do
-    on roles(:app) do
-      within "#{current_path}" do
-        with rails_env: "#{fetch(:stage)}" do
-          execute :bundle, "exec rackup -D -s puma -p 3001 app/services/news.ru"
-          execute :bundle, "exec rackup -D -s puma -p 3002 app/services/fractal.ru"
-          execute :bundle, "exec rackup -D -s puma -p 3003 app/services/webcam.ru"
-        end
-      end
-    end
-  end
-
   desc 'Make sure local git is in sync with remote.'
   task :check_revision do
     on roles(:app) do
