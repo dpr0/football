@@ -29,3 +29,12 @@
   display: inline-block;
   -webkit-transform: translate(-30px, -50px);
 }
+
+.krsz_items {
+  display: block;
+  width: 200px;
+  height: 55px;
+  position: fixed;
+  left: 10px;
+  z-index: 99999;
+}

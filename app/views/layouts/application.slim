@@ -11,6 +11,8 @@ html
     = javascript_pack_tag 'application'
   body
     - if (request.user_agent =~ /Mobile/) == nil
+      - ['FOOTBALL', 'PRICE', 'ABOUT', 'FRACTAL', 'WEBCAM'].reverse.each_with_index do |name, index|
+        = link_to name, "https://#{name}.KRSZ.RU", class: "btn btn-primary krsz_items", style: "bottom: #{index * 65 + 10}px;"
       nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top
         .container
           = link_to 'KRSZ.RU', day_path(Day.last.id), class: 'nav-brand js-scroll-trigger'
@@ -38,6 +40,9 @@ html
     = yield
 
   footer.bg-black.small.text-center.text-white-50
+    - if (request.user_agent =~ /Mobile/) != nil
+      - ['FOOTBALL', 'PRICE', 'NEWS', 'FRACTAL', 'WEBCAM', 'HOME'].reverse.each_with_index do |name, index|
+        = link_to name, "https://#{name}.KRSZ.RU", class: "btn btn-primary", style: 'bottom'
     .container
       | Copyright &copy; krsz.ru 2019-2020
 

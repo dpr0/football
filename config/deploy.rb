@@ -24,15 +24,14 @@ set :ssh_options, {
 }
 
 namespace :deploy do
-  desc 'deploy news:3001 fractal:3002 webcam:3003 home:3004'
+  desc 'deploy about:3001 fractal:3002 webcam:3003'
   task :services do
     on roles(:app) do
         within "#{current_path}" do
           with rails_env: "#{fetch(:stage)}" do
-            execute :bundle, "exec rackup -D -s puma -p 3001 app/services/news.ru"
+            execute :bundle, "exec rackup -D -s puma -p 3001 app/services/about.ru"
             execute :bundle, "exec rackup -D -s puma -p 3002 app/services/fractal.ru"
             execute :bundle, "exec rackup -D -s puma -p 3003 app/services/webcam.ru"
-            execute :bundle, "exec rackup -D -s puma -p 3004 app/services/home.ru"
           end
       end
     end
