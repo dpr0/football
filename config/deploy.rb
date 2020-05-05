@@ -42,7 +42,7 @@ namespace :deploy do
     on roles(:app) do
         within "#{current_path}" do
           with rails_env: "#{fetch(:stage)}" do
-            execute :bundle, "exec ruby app/services/home/home.rb"
+            execute :bundle, "exec ruby app/services/home/home.ru"
           end
       end
     end

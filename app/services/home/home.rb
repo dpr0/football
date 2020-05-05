@@ -3,7 +3,7 @@
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/contrib/all'
-require "sinatra/reloader" if development?
+require 'sinatra/reloader'
 require 'byebug'
 
 configure {
@@ -12,14 +12,12 @@ configure {
 
 class Home < Sinatra::Base
   register Sinatra::Contrib
-  configure :development do
-    register Sinatra::Reloader
-  end
+  register Sinatra::Reloader
 
   @@token = 'TOKEN#kjcsk-ajrhl-kjhar-jcsrc#2020'
 
   get '/' do
-    return '<meta name="yandex-verification" content="b8209de9862994b1" />'
+    return "<html><head><meta name='yandex-verification' content='b8209de9862994b1'></head><body><h3>hello</h3></body></html>"
   end
 
   get '/auth' do
