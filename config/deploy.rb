@@ -24,7 +24,7 @@ set :ssh_options, {
 }
 
 namespace :deploy do
-  desc 'deploy about:3001 fractal:3002 webcam:3003 home:4567'
+  desc 'deploy about:3001 fractal:3002 webcam:3003'
   task :services do
     on roles(:app) do
         within "#{current_path}" do
@@ -32,6 +32,16 @@ namespace :deploy do
             execute :bundle, "exec rackup -D -s puma -p 3001 app/services/about.ru   --pid /home/deploy/football/shared/tmp/pids/about.pid"
             execute :bundle, "exec rackup -D -s puma -p 3002 app/services/fractal.ru --pid /home/deploy/football/shared/tmp/pids/fractal.pid"
             execute :bundle, "exec rackup -D -s puma -p 3003 app/services/webcam.ru  --pid /home/deploy/football/shared/tmp/pids/webcam.pid"
+          end
+      end
+    end
+  end
+
+  desc 'deploy home:4567'
+  task :sinatra do
+    on roles(:app) do
+        within "#{current_path}" do
+          with rails_env: "#{fetch(:stage)}" do
             execute :bundle, "exec ruby app/services/home/home.rb"
           end
       end

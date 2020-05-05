@@ -1,4 +1,5 @@
 source :rubygems
 gem 'puma'
 gem 'sinatra'
+gem 'sinatra-contrib'
 gem 'byebug'
