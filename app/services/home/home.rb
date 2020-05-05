@@ -33,6 +33,12 @@ class Home < Sinatra::Base
   end
 
   namespace '/v1.0' do
+    get '' do
+      return 'HTTP/1.1 200 OK'
+    end
+    head '' do # Проверка доступности Endpoint URL провайдера
+      return 'HTTP/1.1 200 OK'
+    end
     head '/' do # Проверка доступности Endpoint URL провайдера
       return 'HTTP/1.1 200 OK'
     end
@@ -44,7 +50,7 @@ class Home < Sinatra::Base
       end
 
       namespace '/devices' do
-        get '/' do # Информация об устройствах пользователя
+        get '' do # Информация об устройствах пользователя
           json = {
               request_id: '',
               payload: {
