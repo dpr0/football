@@ -14,7 +14,7 @@ class Home < Sinatra::Base
   register Sinatra::Contrib
   register Sinatra::Reloader
 
-  @@token = 'TOKEN#kjcsk-ajrhl-kjhar-jcsrc#2020'
+  @@token = 'TOKEN#aaaaa-bbbbb-ccccc-ddddd#2020'
 
   get '/' do
     return "<html><head><meta name='yandex-verification' content='b8209de9862994b1'></head><body><h3>hello</h3></body></html>"
