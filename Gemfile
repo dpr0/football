@@ -18,8 +18,6 @@ gem 'chartkick'
 gem 'cocoon'
 gem 'rest-client'
 gem 'puma'
-gem 'sinatra'
-gem 'sinatra-contrib'
 
 group :development do
   gem 'sqlite3'
