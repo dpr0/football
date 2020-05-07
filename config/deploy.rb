@@ -37,16 +37,16 @@ namespace :deploy do
     end
   end
 
-  desc 'deploy home:4567'
-  task :sinatra do
-    on roles(:app) do
-        within "#{current_path}" do
-          with rails_env: "#{fetch(:stage)}" do
-            execute :bundle, "exec ruby app/services/home/home.ru"
-          end
-      end
-    end
-  end
+  # desc 'deploy home:4567'
+  # task :sinatra do
+  #   on roles(:app) do
+  #       within "#{current_path}" do
+  #         with rails_env: "#{fetch(:stage)}" do
+  #           execute :bundle, "exec ruby app/services/home/home.ru"
+  #         end
+  #     end
+  #   end
+  # end
 
   desc 'Make sure local git is in sync with remote.'
   task :check_revision do
