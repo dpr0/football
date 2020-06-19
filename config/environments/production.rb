@@ -1,5 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.telegram_updates_controller.session_store = :file_store, Rails.root.join('tmp', 'session_store')
 
   # Code is not reloaded between requests.
   config.cache_classes = true

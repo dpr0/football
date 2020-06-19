@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :players
+  telegram_webhook TelegramWebhooksController
 
   last_day = -> () do
     begin

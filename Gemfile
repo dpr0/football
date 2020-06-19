@@ -18,6 +18,7 @@ gem 'chartkick'
 gem 'cocoon'
 gem 'rest-client'
 gem 'puma'
+gem 'telegram-bot'
 
 group :development do
   gem 'sqlite3'
@@ -28,7 +29,7 @@ group :development do
   gem 'capistrano-rails',      require: false
   gem 'capistrano-rbenv',      require: false
   gem 'capistrano-yarn',       require: false
-  gem 'capistrano3-puma',       require: false
+  gem 'capistrano3-puma',      require: false
 end
 
 group :test do
