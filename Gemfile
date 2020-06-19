@@ -19,6 +19,9 @@ gem 'cocoon'
 gem 'rest-client'
 gem 'puma'
 gem 'telegram-bot'
+gem 'net-ssh'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
 
 group :development do
   gem 'sqlite3'
