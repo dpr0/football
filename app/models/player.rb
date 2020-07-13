@@ -8,9 +8,21 @@ class Player < ApplicationRecord
   has_one    :role
   has_many   :goals
   has_many   :day_players
+  has_many   :stats
 
-  def dp_tally
-    day_players.map(&:team_id).group_by { |x| x }.transform_values(&:size)
+  def goals_by_season(season_id)
+    goals.where(season_id: season_id)
+  end
+
+  def day_players_by_season(season_id)
+    day_players.where(season_id: season_id)
+  end
+
+  def dp_tally(season_id)
+    day_players_by_season(season_id)
+        .map(&:team_id)
+        .group_by { |x| x }
+        .transform_values(&:size)
   end
 
   def text_phone
@@ -30,7 +42,7 @@ class Player < ApplicationRecord
     "#{(lastname + ' ') if lastname.present?}#{name} #{middlename if middlename.present?}"
   end
 
-  def self.rates!
+  def self.update_rates!
     all.each do |player|
       day_team = player.day_players.map { |dp| [dp.day_id, dp.team_id] }
       all_games = Game.where(day_id: day_team.map(&:first))
@@ -45,13 +57,13 @@ class Player < ApplicationRecord
         lose += games.where('(team_left_id = ? AND goals_left < goals_right) OR (team_right_id = ? AND goals_left > goals_right)', team, team).size
       end
 
-      player.update(
+      player.update(stat: day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0)
+      player.stats.last.update(
         days: day_team.count,
         games: day_games,
-        win:  win3 + win2 + win1,
+        win: win3 + win2 + win1,
         draw: draw,
         lose: lose,
-        stat: day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
       )
     end
   end

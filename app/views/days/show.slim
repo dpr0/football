@@ -81,7 +81,7 @@ section#commands.contact-section.bg-black
   - if (request.user_agent =~ /Mobile/) != nil
     .container
       .row
-        - @day.day_players.group_by(&:team_id).sort.each do |team_id, day_players|
+        - @day.day_players_by_season(@day.season_id).group_by(&:team_id).sort.each do |team_id, day_players|
           .col-md-4.mb-3.mb-md-0
             .card.py-4.h-100
               .card-body.text-center
@@ -101,7 +101,7 @@ section#commands.contact-section.bg-black
                             | &#9917;
 
   - else
-    - @day.day_players.group_by(&:team_id).sort.each do |team_id, day_players|
+    - @day.day_players_by_season(@day.season_id).group_by(&:team_id).sort.each do |team_id, day_players|
       .row.justify-content-center.no-gutters class="#{'mb-5 mb-lg-0' if team_id.even?}"
         .col-lg-6 class="#{'text-right' if team_id.even?}"
           = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "200x275"
@@ -200,9 +200,8 @@ section.contact-section.bg-black
     /         .small.text-black-50 +7 (919) 108-7399
 
     .social.d-flex.justify-content-center
-      a.mx-2 href="#"
-        i.fab.fa-twitter
-      a.mx-2 href="#"
-        i.fab.fa-facebook-f
-      a.mx-2 href="#"
-        i.fab.fa-github
+      - Common.sites.each do |name|
+        = link_to "https://#{name}.krsz.ru", class: 'mx-2' do
+          i.fab.fa-twitter
+          / i.fab.fa-facebook-f
+          / i.fab.fa-github

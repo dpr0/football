@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.telegram_updates_controller.session_store = :memory_store
+  # config.telegram_updates_controller.session_store = :memory_store
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

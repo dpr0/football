@@ -3,8 +3,14 @@
 class Day < ApplicationRecord
   has_many :games,       dependent: :destroy
   has_many :day_players, dependent: :destroy
+  belongs_to :sport
+  belongs_to :season
   accepts_nested_attributes_for :games,       reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :day_players, reject_if: :all_blank, allow_destroy: true
+
+  def day_players_by_season(season_id)
+    day_players.where(season_id: season_id)
+  end
 
   def day_rates!
     places = Team.all.map do |team|
@@ -17,10 +23,10 @@ class Day < ApplicationRecord
     end.compact.sort.reverse.map(&:last)
     update(first_place: places[0], second_place: places[1], third_place: places[2])
 
-    day_players.group_by(&:team_id).each do |team, players|
+    day_players.group_by(&:team_id).each do |team, day_plrs|
       day_games, win3, win2, win1, draw = calc_stats(id, team)
       stat = day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
-      players.each { |player| player.update(stat: stat) }
+      day_plrs.each { |player| player.update(stat: stat) }
     end
     puts "================ #{id}"
   end

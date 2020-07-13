@@ -35,7 +35,7 @@ section#tournment.about-section.text-center
                   = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: "20x25"
                   | &nbsp;
                   = g.select { |x| x.team_left_id == place || x.team_right_id == place }.count
-            - dp = day.day_players
+            - dp = day.day_players_by_season(day.season_id)
             td
               - if dp.group_by(&:team_id).count > 3
                 - (@teams.pluck(:id) - array).each do |t|

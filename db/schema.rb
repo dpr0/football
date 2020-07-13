@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_150002) do
+ActiveRecord::Schema.define(version: 2020_07_13_034000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_07_10_150002) do
     t.bigint "team_id"
     t.integer "rate", default: 0
     t.integer "stat", default: 0
+    t.integer "season_id"
     t.index ["day_id"], name: "index_day_players_on_day_id"
     t.index ["player_id"], name: "index_day_players_on_player_id"
     t.index ["team_id"], name: "index_day_players_on_team_id"
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_07_10_150002) do
     t.bigint "player_id"
     t.bigint "game_id"
     t.bigint "team_id"
+    t.integer "season_id"
     t.index ["game_id"], name: "index_goals_on_game_id"
     t.index ["player_id"], name: "index_goals_on_player_id"
     t.index ["team_id"], name: "index_goals_on_team_id"
@@ -87,14 +89,8 @@ ActiveRecord::Schema.define(version: 2020_07_10_150002) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.integer "days", default: 0
-    t.integer "games", default: 0
-    t.integer "win", default: 0
-    t.integer "draw", default: 0
-    t.integer "lose", default: 0
     t.integer "rate", default: 1500
     t.integer "stat", default: 0
-    t.string "lichess"
     t.string "lfl"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
@@ -109,7 +105,7 @@ ActiveRecord::Schema.define(version: 2020_07_10_150002) do
   create_table "seasons", force: :cascade do |t|
     t.string "code"
     t.string "name"
-    t.integer "description"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,7 +113,20 @@ ActiveRecord::Schema.define(version: 2020_07_10_150002) do
   create_table "sports", force: :cascade do |t|
     t.string "code"
     t.string "name"
-    t.integer "description"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer "sport_id"
+    t.integer "season_id"
+    t.integer "player_id"
+    t.integer "days"
+    t.integer "games"
+    t.integer "win"
+    t.integer "draw"
+    t.integer "lose"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

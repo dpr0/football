@@ -3,11 +3,7 @@ class About
     height = 37
     style = ".krsz_items {display: block; width: 200px; height: #{height}px; position: fixed; left: 10px; z-index: 99999;}"
     demo = "
-      #{
-        ['FOOTBALL', 'PRICE', 'ABOUT', 'FRACTAL', 'WEBCAM'].reverse.each_with_index.map do |name, index|
-          "<a class='btn btn-primary krsz_items' style='bottom: #{index * (height+10) + 10}px;' href='https://#{name}.KRSZ.RU'>#{name}</a>"
-        end.join
-      }
+      #{ Common.links(height) }
       <style type='text/css'>#{style}</style>
       <div class='container demo'>
         <div class='content'>

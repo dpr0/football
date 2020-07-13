@@ -5,7 +5,7 @@ class CreateSports < ActiveRecord::Migration[5.2]
     create_table :sports do |t|
       t.string :code
       t.string :name
-      t.integer :description
+      t.string :description
 
       t.timestamps
     end
