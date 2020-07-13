@@ -20,4 +20,4 @@ Player.update_rates!
 season2 = Season.create(code: 'two',  name: '2020/2021')
 Player.all.each { |pl| pl.stats.create(sport_id: sport.id, season_id: season2.id) }
 Dir[File.join(Rails.root, 'db', 'seeds', 'season2', '*.rb')].sort.each { |seed| load seed }
-
+Player.update_rates!

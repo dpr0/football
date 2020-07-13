@@ -18,7 +18,6 @@ section#section1.about-section.text-center
       table.table.table-dark.table-striped.table-bordered
         tr
           th
-          th.text-right №
           th            Игрок
           th            = link_to 'Дней', sport_season_stats_path(sort: :days)
           th            Пн / Ср
@@ -37,7 +36,6 @@ section#section1.about-section.text-center
           - goals = player.goals_by_season(@season.id).count
           tr
             td = i + 1
-            td.text-right = stat.id
             td = link_to player.short_name, player_path(player)
             td
               - player.dp_tally(@season.id).each do |team_id, count|

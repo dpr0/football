@@ -19,10 +19,7 @@ class Player < ApplicationRecord
   end
 
   def dp_tally(season_id)
-    day_players_by_season(season_id)
-        .map(&:team_id)
-        .group_by { |x| x }
-        .transform_values(&:size)
+    day_players_by_season(season_id).map(&:team_id).group_by { |x| x }.transform_values(&:size)
   end
 
   def text_phone
@@ -43,8 +40,9 @@ class Player < ApplicationRecord
   end
 
   def self.update_rates!
+    last_season_id = Season.last.id
     all.each do |player|
-      day_team = player.day_players.map { |dp| [dp.day_id, dp.team_id] }
+      day_team = player.day_players_by_season(last_season_id).map { |dp| [dp.day_id, dp.team_id] }
       all_games = Game.where(day_id: day_team.map(&:first))
       win1 = 0; win2 = 0; win3 = 0; draw = 0; lose = 0; day_games = 0
       day_team.each do |day, team|
