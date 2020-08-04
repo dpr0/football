@@ -14,6 +14,7 @@ s2d3t2p5 = s2d3.day_players.create(season_id: 2, team_id: 2, player_id:  7) # с
 s2d3t3p1 = s2d3.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андр
 s2d3t3p2 = s2d3.day_players.create(season_id: 2, team_id: 3, player_id: 18) # дима
 s2d3t3p3 = s2d3.day_players.create(season_id: 2, team_id: 3, player_id:  9) # вова
+s2d3t3p4 = s2d3.day_players.create(season_id: 2, team_id: 3, player_id: 47) # анк
 
 g01 = Game.create(day_id: s2d3.id, team_left_id: 2, goals_left: 2, goals_right: 0, team_right_id: 1)
 g01.goals.create(season_id: 2, team_id: 2, player_id: 4)
