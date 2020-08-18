@@ -1,3 +1,4 @@
+``
 sudo unitd --control unix:/var/run/control.unit.sock
 sudo curl -X PUT --data-binary @unit.config --unix-socket /var/run/control.unit.sock http://localhost/config
 sudo cat /usr/local/unit.log
@@ -20,4 +21,4 @@ curl -X PUT --data-binary @bundle.pem --unix-socket /var/run/control.unit.sock h
 sudo nano /etc/nginx/sites-available/default
 
 Player.update_rates!
-
+``
