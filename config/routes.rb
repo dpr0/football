@@ -4,14 +4,7 @@ Rails.application.routes.draw do
   devise_for :players
   # telegram_webhook TelegramWebhooksController
 
-  last_day = -> () do
-    begin
-      Day.last.id
-    rescue
-    end
-  end
-
-  root 'days#show', id: last_day.call
+  root 'days#show'
 
   resources :players, only: [:index, :show]
   resources :sports do

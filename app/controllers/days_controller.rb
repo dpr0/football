@@ -39,7 +39,7 @@ class DaysController < ApplicationController
   private
 
   def find_day
-    @day = Day.find(params[:id])
+    @day = params[:id] ? Day.find(params[:id]) : Day.last
   end
   
   def main_table

@@ -18,8 +18,8 @@ class Player < ApplicationRecord
     day_players.where(season_id: season_id)
   end
 
-  def dp_tally(season_id)
-    day_players_by_season(season_id).map(&:team_id).group_by { |x| x }.transform_values(&:size)
+  def dp_tally(dp)
+    dp.map(&:team_id).group_by { |x| x }.transform_values(&:size)
   end
 
   def text_phone
