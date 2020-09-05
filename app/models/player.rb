@@ -40,9 +40,8 @@ class Player < ApplicationRecord
   end
 
   def self.update_rates!
-    last_season_id = Season.last.id
     all.each do |player|
-      day_team = player.day_players_by_season(last_season_id).map { |dp| [dp.day_id, dp.team_id] }
+      day_team = player.day_players_by_season(Season.last.id).map { |dp| [dp.day_id, dp.team_id] }
       all_games = Game.where(day_id: day_team.map(&:first))
       win1 = 0; win2 = 0; win3 = 0; draw = 0; lose = 0; day_games = 0
       day_team.each do |day, team|
@@ -55,7 +54,7 @@ class Player < ApplicationRecord
         lose += games.where('(team_left_id = ? AND goals_left < goals_right) OR (team_right_id = ? AND goals_left > goals_right)', team, team).size
       end
 
-      player.update(stat: day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0)
+      player.update(stat: ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i) if day_games > 0
       player.stats.last.update(
         days: day_team.count,
         games: day_games,

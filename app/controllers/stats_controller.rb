@@ -28,13 +28,13 @@ class StatsController < ApplicationController
                 .where("stats.season_id = #{params[:season_id]}")
                 .where("day_players.player_id = players.id and day_players.season_id = #{params[:season_id]}")
                 .where("goals.season_id = #{params[:season_id]} and goals.player_id = players.id")
-                .group(:id,:days, :games, :win, :draw, :lose)
+                .group(:id, :days, :games, :win, :draw, :lose)
                 .order("#{ordering} DESC")
   end
 
   private
 
   def ordering
-    params[:sort].in?(%w(rate stat days games win draw lose goals_count goals_day_count)) ? params[:sort] : 'rate'
+    params[:sort].in?(%w(rate stat days games win draw lose goals_count goals_day_count)) ? params[:sort] : 'goals_day_count'
   end
 end
