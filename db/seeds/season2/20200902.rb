@@ -71,4 +71,3 @@ g18 = Game.create(day_id: s2d14.id, team_left_id: 1, goals_left: 0, goals_right:
 g18.goals.create(season_id: 2, team_id: 3, player_id: 3)
 
 s2d14.day_rates!
-# Player.update_rates!

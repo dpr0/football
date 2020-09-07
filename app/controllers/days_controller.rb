@@ -22,15 +22,25 @@ class DaysController < ApplicationController
   end
 
   def new
+    @players = Player.all
   end
 
   def create
-    day = Day.new(date: params[:day][:date])
-    params[:day][:day_players_attributes].values.each { |tp| day.day_players.new(tp) }
-    redirect_to :show
+    last_season_id = Season.last.id
+    @day = Day.create(date: params[:day][:date], sport_id: 1, season_id: last_season_id)
+    team_players = params[:day][:day_players_attributes].values
+                       .group_by { |h| h['team_id'] }
+                       .transform_values { |v| v.map { |h| h['player_id'].to_i } }
+    team_players.each do |team_id, players|
+      players.each do |player_id|
+        @day.day_players.create(team_id: team_id, player_id: player_id, season_id: last_season_id)
+      end
+    end
+    redirect_to edit_day_path(@day.id)
   end
 
   def edit
+    @players = Player.all
   end
 
   def update
