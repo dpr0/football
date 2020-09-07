@@ -98,8 +98,10 @@ section#commands.contact-section.bg-black
                       span
                         - if @goals[player.code]
                           - @goals[player.code].times do
-                            | &#9917;
-
+                            | ⚽️
+                        - if @assists[player.code]
+                          - @assists[player.code].times do
+                            | 🦶
   - else
     - @day.day_players_by_season(@day.season_id).group_by(&:team_id).sort.each do |team_id, day_players|
       .row.justify-content-center.no-gutters class="#{'mb-5 mb-lg-0' if team_id.even?}"
@@ -120,12 +122,18 @@ section#commands.contact-section.bg-black
                         span
                           - if @goals[player.code]
                             - @goals[player.code].times do
-                              | &#9917;
+                              | ⚽️
+                          - if @assists[player.code]
+                            - @assists[player.code].times do
+                              | 🦶
                       - else
                         span
                           - if @goals[player.code]
                             - @goals[player.code].times do
-                              | &#9917;
+                              | ⚽️
+                          - if @assists[player.code]
+                            - @assists[player.code].times do
+                              | 🦶
                         span = link_to player.name, player_path(player)
                         span.badge.badge-primary.badge-pill = day_player.rate
                 hr.d-none.d-lg-block.mb-0 class="#{team_id.odd? ? 'mr-0' : 'ml-0'}"
