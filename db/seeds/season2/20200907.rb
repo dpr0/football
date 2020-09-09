@@ -30,7 +30,7 @@ g03.goals.create(season_id: 2, team_id: 2, player_id: 13, assist_player_id: nil)
 g04 = Game.create(day_id: s2d15.id, team_left_id: 1, goals_left: 1, goals_right: 0, team_right_id: 2)
 g04.goals.create(season_id: 2, team_id: 1, player_id: 29, assist_player_id: nil)
 g05 = Game.create(day_id: s2d15.id, team_left_id: 1, goals_left: 1, goals_right: 0, team_right_id: 3)
-g05.goals.create(season_id: 2, team_id: 1, player_id: 6, assist_player_id: nil)
+g05.goals.create(season_id: 2, team_id: 1, player_id: 6, assist_player_id: 29)
 g06 = Game.create(day_id: s2d15.id, team_left_id: 1, goals_left: 1, goals_right: 0, team_right_id: 2)
 g06.goals.create(season_id: 2, team_id: 1, player_id: 29, assist_player_id: nil)
 g07 = Game.create(day_id: s2d15.id, team_left_id: 1, goals_left: 1, goals_right: 0, team_right_id: 3)
@@ -69,3 +69,31 @@ g19.goals.create(season_id: 2, team_id: 2, player_id: 13, assist_player_id: nil)
 
 s2d15.day_rates!
 # Player.update_rates!
+s2d15.update!(videos: '_xSVXCUu7W8,Z_hJLxeV0hc,1a1Tuv2h92U,R9QR--N8Qcc,Vx1z8cJ-ZOg,gRsFxp4wUqk,elS6rYStRA4')
+# --------------------------------------------------------------------
+#             | Голов | Асист |  Ударов | Нарушений |  Сейв | Привоз |
+#             |       |       | в створ |           |       |        |
+# --------------------------------------------------------------------
+#  2 Коля     |   2   |   4   |    2    |           |       |        |
+#  5 Алихан   |       |       |         |           |       |        |
+#  6 Тигран   |   5   |   1   |   10    |           |       |        |
+# 14 Саша     |       |       |         |           |   1   |        |
+# 23 Серега   |   1   |   1   |    2    |           |   2   |        |
+# 29 Макс     |   4   |       |    2    |     1     |       |        |
+# 38 Миша     |   2   |   2   |         |           |       |        |
+# --------------------------------------------------------------------
+#  3 Ден      |   1   |       |    3    |           |       |        |
+#  7 Сандро   |   1   |       |    2    |           |       |        |
+#  9 Вова     |       |   1   |         |           |   1   |        |
+# 10 Виталик  |       |       |    2    |           |       |    1   |
+# 12 Саня     |       |       |    2    |     1     |       |        |
+# 13 Араз     |   5   |   1   |    2    |     1     |       |        |
+# --------------------------------------------------------------------
+#  1 Гарик    |   2   |   1   |    5    |     1     |       |        |
+# 17 Андрей   |       |   1   |         |           |   1   |        |
+# 21 Дима     |   2   |       |    1    |           |   1   |        |
+# 22 Илья     |       |   1   |    4    |           |   1   |        |
+# 41 Мага     |       |       |    2    |           |   1   |    2   |
+# 42 Сергей   |       |   1   |         |           |       |        |
+# 47 Аня      |       |       |    1    |           |       |        |
+# --------------------------------------------------------------------

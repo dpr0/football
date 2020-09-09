@@ -96,11 +96,11 @@ section#commands.contact-section.bg-black
                       span.badge.badge-primary.badge-pill = day_player.rate
                       span = link_to player.name, player_path(player)
                       span
-                        - if @goals[player.code]
-                          - @goals[player.code].times do
+                        - if @player_goals[player.code]
+                          - @player_goals[player.code].times do
                             | ⚽️
-                        - if @assists[player.code]
-                          - @assists[player.code].times do
+                        - if @player_assists[player.code]
+                          - @player_assists[player.code].times do
                             | 🦶
   - else
     - @day.day_players_by_season(@day.season_id).group_by(&:team_id).sort.each do |team_id, day_players|
@@ -120,19 +120,19 @@ section#commands.contact-section.bg-black
                         span.badge.badge-primary.badge-pill = day_player.rate
                         span = link_to player.name, player_path(player)
                         span
-                          - if @goals[player.code]
-                            - @goals[player.code].times do
+                          - if @player_goals[player.code]
+                            - @player_goals[player.code].times do
                               | ⚽️
-                          - if @assists[player.code]
-                            - @assists[player.code].times do
+                          - if @player_assists[player.code]
+                            - @player_assists[player.code].times do
                               | 🦶
                       - else
                         span
-                          - if @goals[player.code]
-                            - @goals[player.code].times do
+                          - if @player_goals[player.code]
+                            - @player_goals[player.code].times do
                               | ⚽️
-                          - if @assists[player.code]
-                            - @assists[player.code].times do
+                          - if @player_assists[player.code]
+                            - @player_assists[player.code].times do
                               | 🦶
                         span = link_to player.name, player_path(player)
                         span.badge.badge-primary.badge-pill = day_player.rate
@@ -140,6 +140,11 @@ section#commands.contact-section.bg-black
 
 section#games.about-section.text-center
   .container
+    .row.justify-content-center.no-gutters
+      - @day.videos.split(",").each do |link|
+        .col-4
+          iframe src="https://www.youtube.com/embed/#{link}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"
+
     .row
       table.table.table-dark.table-striped.table-bordered
         tr

@@ -50,13 +50,7 @@ class Game < ApplicationRecord
   end
 
   def team_rate(players)
-    rates = players.map { |dp| dp.player.rate }
-    count = players.count
-    while count < 5
-      rates.push(1500)
-      count += 1
-    end
-    rates.sum / count
+    players.map { |dp| dp.player.rate }.sum / players.count
   end
 
   def calc_K(rate)

@@ -14,7 +14,7 @@ class Day < ApplicationRecord
 
   def day_rates!
     places = Team.all.map do |team|
-      day_games = this.games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
+      day_games = games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
       next if day_games.blank?
       left_win  = day_games.select { |x| x['team_left_id']  == team.id && x['goals_left'] > x['goals_right']}
       right_win = day_games.select { |x| x['team_right_id'] == team.id && x['goals_left'] < x['goals_right']}

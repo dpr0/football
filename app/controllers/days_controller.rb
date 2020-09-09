@@ -12,13 +12,13 @@ class DaysController < ApplicationController
     @days = Day.all
     @games = @day.games.order(id: :asc)
     @players = Player.all.to_a
-    goals = Goal.where(game_id: @games.ids)
-    @goals = goals.group_by(&:player_id)
+    @goals = Goal.where(game_id: @games.ids)
+    @player_goals = @goals.group_by(&:player_id)
                   .map { |k, v| [k, v.length] if k }
                   .compact
                   .sort_by { |player, count| [-count, player] }
                   .to_h
-    @assists = goals.group_by(&:assist_player_id)
+    @player_assists = @goals.group_by(&:assist_player_id)
                     .map { |k, v| [k, v.length] if k }
                     .compact
                     .sort_by { |player, count| [-count, player] }
