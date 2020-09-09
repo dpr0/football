@@ -141,9 +141,10 @@ section#commands.contact-section.bg-black
 section#games.about-section.text-center
   .container
     .row.justify-content-center.no-gutters
-      - @day.videos.split(",").each do |link|
-        .col-4
-          iframe src="https://www.youtube.com/embed/#{link}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"
+      - if @day.videos
+        - @day.videos.split(",").each do |link|
+          .col-4
+            iframe src="https://www.youtube.com/embed/#{link}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"
 
     .row
       table.table.table-dark.table-striped.table-bordered
