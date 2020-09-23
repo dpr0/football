@@ -8,6 +8,6 @@ class AddStatsToPlayers < ActiveRecord::Migration[5.2]
     add_column :players, :draw,  :integer, default: 0
     add_column :players, :lose,  :integer, default: 0
     add_column :players, :rate,  :integer, default: 1500
-    add_column :players, :kp,  :integer, default: 0
+    add_column :players, :kp,    :integer, default: 0
   end
 end
