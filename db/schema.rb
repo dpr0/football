@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_101000) do
     t.bigint "player_id"
     t.bigint "team_id"
     t.integer "rate", default: 0
-    t.integer "stat", default: 0
+    t.integer "kp", default: 0
     t.integer "season_id"
     t.index ["day_id"], name: "index_day_players_on_day_id"
     t.index ["player_id"], name: "index_day_players_on_player_id"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_101000) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.integer "rate", default: 1500
-    t.integer "stat", default: 0
+    t.integer "kp", default: 0
     t.string "lfl"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true

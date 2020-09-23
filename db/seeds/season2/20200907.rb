@@ -68,7 +68,6 @@ g19.goals.create(season_id: 2, team_id: 3, player_id:  1, assist_player_id: 22)
 g19.goals.create(season_id: 2, team_id: 2, player_id: 13, assist_player_id: nil)
 
 s2d15.day_rates!
-# Player.update_rates!
 s2d15.update!(videos: '_xSVXCUu7W8,Z_hJLxeV0hc,1a1Tuv2h92U,R9QR--N8Qcc,Vx1z8cJ-ZOg,gRsFxp4wUqk,elS6rYStRA4')
 # --------------------------------------------------------------------
 #             | Голов | Асист |  Ударов | Нарушений |  Сейв | Привоз |

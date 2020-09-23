@@ -34,9 +34,3 @@ group :development do
   gem 'capistrano-yarn',       require: false
   gem 'capistrano3-puma',      require: false
 end
-
-group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'chromedriver-helper'
-  gem 'selenium-webdriver'
-end

@@ -88,12 +88,12 @@ section#pole.about-section.text-center
               span.input-group-text Рейтинг ELO
             = text_field_tag '', @player.rate, class: 'form-control text-right', disabled: true
 
-          - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.stat] }.push [Day.last.id + 1, @player.stat]
+          - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.kp] }.push [Day.last.id + 1, @player.kp]
           = area_chart player_day_rates, width: "93%", min: 0, max: 300, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
           .input-group.mb-6
             .input-group-prepend
               span.input-group-text Коэффициент полезности
-            = text_field_tag '', @player.stat, class: 'form-control text-right', disabled: true
+            = text_field_tag '', @player.kp, class: 'form-control text-right', disabled: true
           br
       .col-1
         br

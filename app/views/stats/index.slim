@@ -26,7 +26,7 @@ section#section1.about-section.text-center
           th.text-right = link_to '=',    sport_season_stats_path(sort: :draw)
           th.text-right = link_to '-',    sport_season_stats_path(sort: :lose)
           th.text-right = link_to 'ELO',  sport_season_stats_path(sort: :rate)
-          th.text-right = link_to 'K',    sport_season_stats_path(sort: :stat)
+          th.text-right = link_to 'K',    sport_season_stats_path(sort: :kp)
           th.text-right
             = link_to 'Голы', sport_season_stats_path(sort: :goals_count)
           th.text-right
@@ -44,15 +44,15 @@ section#section1.about-section.text-center
                   | &nbsp;
                   = count
             td
-              = (dp.map(&:day_id) - @days_by_wday[3].map(&:id)).size
+              = (dp.map(&:day_id) - @days_by_wday[3].uniq.map(&:id)).size
               = ' / '
-              = (dp.map(&:day_id) - @days_by_wday[1].map(&:id)).size
+              = (dp.map(&:day_id) - @days_by_wday[1].uniq.map(&:id)).size
             td.text-right = player.games
             td.text-right = player.win
             td.text-right = player.draw
             td.text-right = player.lose
             td.text-right = player.rate
-            td.text-right = player.stat
+            td.text-right = player.kp
             td.text-right = player.goals_count
             td.text-right = ((player.goals_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
     .row

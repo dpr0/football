@@ -31,8 +31,8 @@ class Game < ApplicationRecord
   end
 
   def calc_Elo(side1, side2)
-    rate_a = eval("@#{side1}_team_rate")
-    rate_b = eval("@#{side2}_team_rate")
+    rate_a  = eval("@#{side1}_team_rate")
+    rate_b  = eval("@#{side2}_team_rate")
     goals_a = eval("goals_#{side1}")
     goals_b = eval("goals_#{side2}")
     e = 1 / (1 + 10**((rate_b - rate_a) / 400.0))
