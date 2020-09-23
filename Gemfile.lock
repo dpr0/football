@@ -58,12 +58,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     bcrypt (3.1.16)
     bcrypt_pbkdf (1.0.1)
     bootsnap (1.4.8)
@@ -91,23 +87,11 @@ GEM
       capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 4.0)
-    capybara (3.33.0)
-      addressable
-      mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
-      rack (>= 1.6.0)
-      rack-test (>= 0.6.3)
-      regexp_parser (~> 1.5)
-      xpath (~> 3.2)
     chartkick (3.4.0)
-    childprocess (3.0.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     cocoon (1.2.15)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
-    devise (4.7.2)
+    devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -130,7 +114,6 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    io-like (0.3.1)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -159,7 +142,6 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
-    public_suffix (4.0.6)
     puma (4.3.6)
       nio4r (~> 2.0)
     rack (2.2.3)
@@ -197,7 +179,6 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (1.7.1)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -206,10 +187,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rubyzip (2.3.0)
-    selenium-webdriver (3.142.7)
-      childprocess (>= 0.5, < 4.0)
-      rubyzip (>= 1.2.2)
     semantic_range (2.3.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
@@ -250,8 +227,6 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    xpath (3.2.0)
-      nokogiri (~> 1.8)
     zeitwerk (2.4.0)
 
 PLATFORMS
@@ -269,9 +244,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano-yarn
   capistrano3-puma
-  capybara (>= 2.15)
   chartkick
-  chromedriver-helper
   cocoon
   devise
   dotenv-rails
@@ -281,7 +254,6 @@ DEPENDENCIES
   puma
   rails
   rest-client
-  selenium-webdriver
   slim-rails
   sqlite3
   uglifier
