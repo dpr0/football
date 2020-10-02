@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root 'days#show'
 
   resources :players, only: [:index, :show]
+  resources :recognitions, only: [:index] do
+    post :recognize, on: :collection
+  end
   resources :sports do
     resources :seasons do
       resources :stats, only: [:index]

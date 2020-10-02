@@ -64,4 +64,18 @@ class Player < ApplicationRecord
       )
     end
   end
+
+  def self.cached_by_id
+    @players ||= all.group_by(&:id)
+  end
+
+  def self.photo_nums
+    return @photo_nums if @photo_nums
+    @photo_nums = []
+    Dir.foreach("./app/assets/images/players") do |filename|
+      next if ['.', '..', 'anonim.jpg'].include? filename
+      @photo_nums << filename.split(".").first.to_i
+    end
+    @photo_nums
+  end
 end
