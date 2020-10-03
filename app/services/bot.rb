@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # require 'byebug'
-# require 'dotenv/load'
-# require 'telegram/bot'
+require 'dotenv/load'
+require 'telegram/bot'
 
 TBT = Telegram::Bot::Types
 BTN = lambda { |str| TBT::KeyboardButton.new(text: str) }
