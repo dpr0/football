@@ -75,14 +75,3 @@ namespace :deploy do
 
   before :starting, :check_revision
 end
-
-desc 'deploy bot'
-task :bot do
-  on roles(:app) do
-    within "#{current_path}" do
-      with rails_env: "#{fetch(:stage)}" do
-        execute :bundle, "exec ruby app/services/bot.rb"
-      end
-    end
-  end
-end

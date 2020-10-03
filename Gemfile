@@ -4,7 +4,6 @@ ruby '2.6.3'
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'activerecord-import'
 gem 'bootsnap'
 gem 'devise'
 gem 'pg'
@@ -18,10 +17,6 @@ gem 'chartkick'
 gem 'cocoon'
 gem 'rest-client'
 gem 'puma', '4.3.6'
-# gem 'telegram-bot'
-# gem 'net-ssh'
-gem 'ed25519'
-gem 'bcrypt_pbkdf'
 
 group :development do
   gem 'sqlite3'
@@ -33,4 +28,6 @@ group :development do
   gem 'capistrano-rbenv',      require: false
   gem 'capistrano-yarn',       require: false
   gem 'capistrano3-puma', '4.0.0', require: false
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
