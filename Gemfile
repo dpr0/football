@@ -22,6 +22,7 @@ gem 'puma', '4.3.6'
 # gem 'net-ssh'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem 'telegram-bot-ruby'
 
 group :development do
   gem 'sqlite3'
@@ -32,5 +33,5 @@ group :development do
   gem 'capistrano-rails',      require: false
   gem 'capistrano-rbenv',      require: false
   gem 'capistrano-yarn',       require: false
-  gem 'capistrano3-puma',      require: false
+  gem 'capistrano3-puma', '4.0.0', require: false
 end

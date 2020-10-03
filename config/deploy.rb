@@ -42,7 +42,7 @@ namespace :deploy do
     on roles(:app) do
         within "#{current_path}" do
           with rails_env: "#{fetch(:stage)}" do
-            execute :bundle, "exec rake telegram:bot:poller"
+            execute :bundle, "exec ruby app/services/bot.rb"
           end
       end
     end
