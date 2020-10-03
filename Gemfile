@@ -22,7 +22,6 @@ gem 'puma', '4.3.6'
 # gem 'net-ssh'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
-gem 'telegram-bot-ruby'
 
 group :development do
   gem 'sqlite3'

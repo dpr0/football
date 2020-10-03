@@ -36,7 +36,7 @@ namespace :deploy do
       end
     end
   end
-  
+
   desc 'Make sure local git is in sync with remote.'
   task :check_revision do
     on roles(:app) do
