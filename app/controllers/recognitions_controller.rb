@@ -4,7 +4,7 @@ class RecognitionsController < ApplicationController
 
   STATUSES = [
       {status: 'SEVERAL_PERSONS', class: 'primary', text: '>1', comment: 'Больше одного'},
-      {status: 'UKNOWN_PERSON',   class: 'warning', text:  '?', comment: 'Неизвестный'},
+      {status: 'UKNOWN_PERSON',   class: 'warning', text:  '?', comment: 'Неизв.'},
       {status: 'NOT_A_PERSON',    class:  'danger', text:  'X', comment: 'Не человек'}
   ]
 

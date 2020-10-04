@@ -11,15 +11,6 @@
   object-position: 0 -260px;
 }
 
-.arrow{
-  width: 0px;
-  height: 0px;
-  border: 50px solid transparent;
-  border-top-color: #007bff;
-  margin: 0;
-  padding: 0;
-  float: left;
-}
 .arrow:before{
   content:'';
   width: 0px;

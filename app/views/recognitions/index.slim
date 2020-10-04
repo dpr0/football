@@ -16,12 +16,17 @@ section#section1.about-section.text-center
                     = link_to hash[:comment], recognize_recognitions_path(status: hash[:status], recognition_id: recognition.id),
                             class: "btn btn-#{hash[:class]}", method: :post, remote: true
               td.col-6
-                - @days_teams[day_id].values.map { |team_id| team_id.map(&:player_id) }.each_with_index do |team, i|
+                - @days_teams[day_id].values.map { |team_id| team_id.map(&:player_id) }.sort.each_with_index do |team, i|
                   div.text-left
                     = image_tag "colors/#{['purple','green','white','color1'][i]}.png", size: "40x50"
                     - team.each do |player_id|
                       - player = Player.cached_by_id[player_id].first
-                      - num = Player.photo_nums.include?(player_id) ? player_id : 'anonim'
+                      - if Player.photo_nums.include?(player_id)
+                        - num = player_id
+                        - hash = {}
+                      - else
+                        - num = 'anonim'
+                        - hash = {data: {toggle: :tooltip, placement: :top}, title: player.short_name}
                       = link_to recognize_recognitions_path(status: 'OK', team_id: team, recognition_id: recognition.id, player_id: player_id),
-                              data: {toggle: :tooltip, placement: :top}, title: player.short_name, method: :post, remote: true do
+                              { method: :post, remote: true }.merge(hash) do
                         = image_tag "players/#{num}.jpg", size: "50x50"

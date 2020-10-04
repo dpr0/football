@@ -82,4 +82,4 @@ g1252.goals.create(season_id: 2, team_id: 1, player_id: 18, assist_player_id: ni
 
 s2d20.day_rates!
 Player.update_stats!
-# Day.last.update!(videos: 'TSfQ8x7sod8,_PwINEaHEek,VaeSBm1mmdU,CZN7izHvuec,2c-oxic3SFw,_,_,_')
+Day.last.update!(videos: 'TSfQ8x7sod8,_PwINEaHEek,VaeSBm1mmdU,CZN7izHvuec,2c-oxic3SFw,Vn5BUVu-YeQ,Kdv6jOaiJ4Q,ZV_pp3mssHM')
