@@ -4,6 +4,10 @@
 section#pole.about-section.text-center
   .container
     .row
+      - @recognitions.each do |r|
+        = image_tag "recognize/#{r.file_name}"
+
+    .row
       .col-1
         br
         br

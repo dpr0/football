@@ -31,6 +31,8 @@ html
                 = link_to 'Статистика игроков', sport_season_stats_path(sport_id: 1, season_id: Season.last.id), class: 'nav-link'
               li.nav-item
                 = link_to 'Статистика игр', days_path, class: 'nav-link'
+              li.nav-item
+                = link_to 'Распознавание', recognitions_path, class: 'nav-link'
     - else
       .bg-black
         .btn-group.d-flex.btn-group-lg

@@ -1,0 +1,12 @@
+section#section1.about-section.text-center
+  .container
+    .row
+      table.table.table-dark.table-striped.table-bordered
+        - @recognitions.each do |day_id, recognitions|
+          tr
+            td = Day.find(day_id).date
+            td = "#{recognitions.size} фото"
+          - recognitions.each do |recognition|
+            tr id="recognition_#{recognition.id}"
+              td = image_tag "recognize/#{recognition.file_name}", style: 'height:100%;width:auto;'
+              td = RecognitionsController::STATUSES.find { |s| recognition.status == s[:status] }[:comment]

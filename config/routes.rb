@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :players, only: [:index, :show]
   resources :recognitions, only: [:index] do
     post :recognize, on: :collection
+    get :recognized, on: :collection
   end
   resources :sports do
     resources :seasons do

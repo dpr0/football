@@ -16,17 +16,17 @@ section#section1.about-section.text-center
                     = link_to hash[:comment], recognize_recognitions_path(status: hash[:status], recognition_id: recognition.id),
                             class: "btn btn-#{hash[:class]}", method: :post, remote: true
               td.col-6
-                - @days_teams[day_id].values.map { |team_id| team_id.map(&:player_id) }.sort.each_with_index do |team, i|
+                - @days_teams[day_id].each do |key, values|
                   div.text-left
-                    = image_tag "colors/#{['purple','green','white','color1'][i]}.png", size: "40x50"
-                    - team.each do |player_id|
-                      - player = Player.cached_by_id[player_id].first
-                      - if Player.photo_nums.include?(player_id)
-                        - num = player_id
+                    = image_tag "colors/#{Team.all_cached.find { |t| t.id == key }.code}.png", size: "40x50"
+                    - values.each do |day_player|
+                      - player = Player.cached_by_id[day_player.player_id].first
+                      - if Player.photo_nums.include?(player.id)
+                        - num = player.id
                         - hash = {}
                       - else
                         - num = 'anonim'
                         - hash = {data: {toggle: :tooltip, placement: :top}, title: player.short_name}
-                      = link_to recognize_recognitions_path(status: 'OK', team_id: team, recognition_id: recognition.id, player_id: player_id),
+                      = link_to recognize_recognitions_path(status: 'OK', team_id: key, recognition_id: recognition.id, player_id: player.id),
                               { method: :post, remote: true }.merge(hash) do
                         = image_tag "players/#{num}.jpg", size: "50x50"

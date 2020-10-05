@@ -16,6 +16,11 @@ class RecognitionsController < ApplicationController
     end
   end
 
+  def recognized
+    status = params[:status] ? STATUSES.find { |s| s[:status] == params[:status] } : STATUSES.map { |s| s[:status] }
+    @recognitions = Recognition.where(status: status).group_by(&:day_id)
+  end
+
   def recognize
     @recognition = Recognition.find(params[:recognition_id])
     attrs = {status: params[:status]}
@@ -23,5 +28,4 @@ class RecognitionsController < ApplicationController
     @recognition.update(attrs)
     respond_to { |format| format.js {render layout: false} }
   end
-
 end
