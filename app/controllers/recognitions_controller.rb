@@ -19,6 +19,11 @@ class RecognitionsController < ApplicationController
   def recognized
     status = params[:status] ? STATUSES.find { |s| s[:status] == params[:status] } : STATUSES.map { |s| s[:status] }
     @recognitions = Recognition.where(status: status).group_by(&:day_id)
+    respond_to do |format|
+      format.json # { “file_name”: “Megapolis 2020-09-16 - 1_000870f_00p_ef78.jpg”, “team_id”: 1, “player_id”: 2, “status”: "NOT_A_PERSON" }
+      format.js {render layout: false}
+    end
+
   end
 
   def recognize

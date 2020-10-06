@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_072820) do
+ActiveRecord::Schema.define(version: 2020_10_06_213800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 2020_10_01_072820) do
     t.index ["team_id"], name: "index_goals_on_team_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "uid"
+    t.string "username"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "lastname"
@@ -94,6 +102,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_072820) do
     t.integer "rate", default: 1500
     t.integer "kp", default: 0
     t.string "lfl"
+    t.string "Telegram_uid"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_players_on_role_id"
