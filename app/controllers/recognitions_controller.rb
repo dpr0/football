@@ -17,10 +17,14 @@ class RecognitionsController < ApplicationController
   end
 
   def recognized
-    status = params[:status] ? STATUSES.find { |s| s[:status] == params[:status] } : STATUSES.map { |s| s[:status] }
-    @recognitions = Recognition.where(status: status).group_by(&:day_id)
+    statuses = params[:status] ? STATUSES.select { |s| s[:status] == params[:status].upcase } : STATUSES
+    recognitions = Recognition.where(status: statuses.map { |s| s[:status] })
+    @recognitions = recognitions.group_by(&:day_id)
     respond_to do |format|
-      format.json # { “file_name”: “Megapolis 2020-09-16 - 1_000870f_00p_ef78.jpg”, “team_id”: 1, “player_id”: 2, “status”: "NOT_A_PERSON" }
+      format.json { render json: recognitions.map { |r|
+        { file_name: r.file_name, team_id: r.team_id, player_id: r.player_id, status: r.status }
+      }, status: :ok }
+      format.html
       format.js {render layout: false}
     end
 

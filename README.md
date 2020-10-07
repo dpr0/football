@@ -22,3 +22,5 @@ sudo nano /etc/nginx/sites-available/default
 
 Player.update_stats!
 ``
+
+bundle exec rails c -e production
