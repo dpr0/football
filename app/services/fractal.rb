@@ -10,7 +10,7 @@ class Fractal
       <style type='text/css'>#{style}</style>
       #{ Common.links(height) }
       <canvas id='fractal'></canvas>
-      <script>#{javascript3}</script>
+      <script>#{javascript1}</script>
       <a class='btn btn-primary krsz_items' style='bottom: #{5 * (height+10) + 10}px;' href='https://#{'name5'}.krsz.ru'>#{'name5'}</a>
     "
     [200, {"Content-Type" => "text/html"}, [fractal]]

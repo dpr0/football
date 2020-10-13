@@ -1,21 +1,21 @@
 let canvas    = document.getElementById(`fractal`);
-let ctx       = canvas.getContext(`2d`);
-let coords    = {};
 canvas.width  = window.innerWidth;
 canvas.height = window.innerHeight;
+let ctx       = canvas.getContext(`2d`);
+ctx.strokeStyle = '#000000';
+ctx.fillStyle   = '#000000';
+let w = 30;
+let coords    = {};
 const offset  = [0, 1, 2, 3, 4, 5, 6, 7];
-for (let i = 0; i <= 48; i += 1) { coords[i] = { enabled: (i%3 === 0), coord: [offset[i%7], offset[Math.floor(i/7)]]} }
+for (let i = 0; i <= 63; i += 1) { coords[i] = { enabled: false, coord: [offset[i%8], offset[Math.floor(i/8)]]} }
 drawFractal();
 
 canvas.addEventListener('mousedown', e => {
-    let _r = canvas.getBoundingClientRect();
-    let _x = Math.round((e.clientX - _r.left) / 12);
-    let _y = Math.round((e.clientY - _r.top ) / 12);
-    if (_x === 8 && _y === 1) {
-        ctx.fillRect(_x * 12, _y * 12, 10, 10);
-    } else if (_x > 7 || _y > 7) {
+    let _x = Math.round((e.clientX ) / w);
+    let _y = Math.round((e.clientY) / w);
+    if (_x > 8 || _y > 8) {
     } else {
-        let z = 7 * (_y - 1) + _x - 1;
+        let z = 8 * (_y - 1) + _x - 1;
         coords[z].enabled = !coords[z].enabled
     }
     drawFractal();
@@ -24,12 +24,25 @@ canvas.addEventListener('mousedown', e => {
 
 function drawFractal() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = '#000000';
-    ctx.fillStyle   = '#000000';
+
     Object.entries(coords).forEach((value, key) => {
-        let x = (value[1].coord[0] ) * 12;
-        let y = (value[1].coord[1] ) * 12;
-        value[1].enabled ? ctx.fillRect(x, y, 10, 10) : ctx.rect(x, y, 10, 10)
+        let x = (value[1].coord[0] ) * w;
+        let y = (value[1].coord[1] ) * w;
+        value[1].enabled ? ctx.fillRect(x, y, w, w) : ctx.rect(x, y, w, w)
     });
     ctx.stroke();
+
+    let crds = Object.entries(coords).filter(a => a[1].enabled);
+
+    for (let i = 0; i <= 15; i += 1) {
+        for (let j = 0; j <= 15; j += 1) {
+            for (let k = 0; k <= 15; k += 1) {
+                if (crds[i] && crds[j] && crds[k]) {
+                    let xx = 16 * crds[i][1].coord[0] + 4 * crds[j][1].coord[0] + crds[k][1].coord[0];
+                    let yy = 16 * crds[i][1].coord[1] + 4 * crds[j][1].coord[1] + crds[k][1].coord[1];
+                    ctx.fillRect(canvas.width / 2 + xx, canvas.height / 2 + yy, 1, 1)
+                }
+            }
+        }
+    }
 }
