@@ -31,30 +31,35 @@ section#section1.about-section.text-center
             = link_to 'Голы', sport_season_stats_path(sort: :goals_count)
           th.text-right
             = link_to '(в день)', sport_season_stats_path(sort: :goals_day_count)
-        - @players.each_with_index do |player, i|
-          - dp = player.day_players_by_season(@season.id)
-          tr
-            td = i + 1
-            td = link_to player.short_name, player_path(player)
-            td
-              - player.dp_tally(dp).each do |team_id, count|
-                | &nbsp;
-                = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "15x20"
-                sup
-                  | &nbsp;
-                  = count
-            td
-              = (dp.map(&:day_id) - @days_by_wday[3].uniq.map(&:id)).size
-              = ' / '
-              = (dp.map(&:day_id) - @days_by_wday[1].uniq.map(&:id)).size
-            td.text-right = player.games
-            td.text-right = player.win
-            td.text-right = player.draw
-            td.text-right = player.lose
-            td.text-right = player.rate
-            td.text-right = player.kp
-            td.text-right = player.goals_count
-            td.text-right = ((player.goals_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
+        - @arr_by_days.each do |arr|
+          - if arr.is_a? String
+            tr
+              td.text-center colspan='12' = arr
+          - else
+            - arr.each_with_index do |player, i|
+              - dp = player.day_players_by_season(@season.id)
+              tr
+                td = i + 1
+                td = link_to player.short_name, player_path(player)
+                td
+                  - player.dp_tally(dp).each do |team_id, count|
+                    | &nbsp;
+                    = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "15x20"
+                    sup
+                      | &nbsp;
+                      = count
+                td
+                  = (dp.map(&:day_id) - @days_by_wday[3].uniq.map(&:id)).size
+                  = ' / '
+                  = (dp.map(&:day_id) - @days_by_wday[1].uniq.map(&:id)).size
+                td.text-right = player.games
+                td.text-right = player.win
+                td.text-right = player.draw
+                td.text-right = player.lose
+                td.text-right = player.rate
+                td.text-right = "#{player.kp / 3}%"
+                td.text-right = player.goals_count
+                td.text-right = ((player.goals_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
     .row
       .col-md-12.mb-3.mb-md-0
         .card.py-4.h-100

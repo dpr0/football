@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_213800) do
     t.integer "rate", default: 1500
     t.integer "kp", default: 0
     t.string "lfl"
-    t.string "Telegram_uid"
+    t.string "telegram_uid"
     t.index ["email"], name: "index_players_on_email", unique: true
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_players_on_role_id"

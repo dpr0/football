@@ -31,7 +31,7 @@ section#tournment.about-section.text-center
           th.text-center Ничья
           th.text-center Поражение
           th.text-center Голов
-          th.text-center Очки
+          th.text-center ppg (points per game)
         - @main_table.each do |table|
           tr
             td.text-center = image_tag "colors/#{table[:team_code]}.png", size: "25x30"
@@ -40,7 +40,7 @@ section#tournment.about-section.text-center
             td.text-center = table[:draw_count]
             td.text-center = table[:lose_count]
             td.text-center = table[:goals]
-            td.text-center = table[:points]
+            td.text-center = table[:ppg]
           .modal.fade aria-hidden="true" role="dialog" tabindex="-1" id="gamesModalCenter_#{table[:team_code]}"
             .modal-dialog.modal-dialog-centered role="document"
               .modal-content

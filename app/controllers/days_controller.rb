@@ -70,7 +70,7 @@ class DaysController < ApplicationController
             draw_count:  '-',
             lose_count:  '-',
             goals:       '-',
-            points:      '-',
+            ppg:         '-',
             team_code:   team.code
         }
       else
@@ -93,7 +93,7 @@ class DaysController < ApplicationController
             draw_count:  draw.count,
             lose_count:  left_lose.count + right_lose.count,
             goals:       "#{goals1} : #{goals2}",
-            points:      win_count * 3 + draw.count * 1,
+            ppg:         (((win_count * 3 + draw.count * 1).to_f / games.count) * 100).to_i.to_f / 100,
             team_code:   team.code
         }
       end
