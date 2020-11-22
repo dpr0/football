@@ -88,6 +88,12 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Set application domain, to be able to run `rake telegram:bot:set_webhook`
+  routes.default_url_options = {host: 'football.krsz.ru', protocol: 'https'}
+
+  # Configure session store for telegram bot.
+  config.telegram_updates_controller.session_store = :file_store, Rails.root.join('tmp', 'session_store')
+
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write

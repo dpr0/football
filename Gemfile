@@ -17,6 +17,7 @@ gem 'chartkick'
 gem 'cocoon'
 gem 'rest-client'
 gem 'puma', '4.3.6'
+gem 'telegram-bot'
 
 group :development do
   gem 'sqlite3'
