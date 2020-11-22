@@ -8,7 +8,7 @@ class Fractal
       <style type='text/css'>#{style}</style>
       #{ Common.links(height) }
       <canvas id='fractal'></canvas>
-      <script>#{ File.open("app/services/fractal#{version}.js").read }</script>
+      <script>#{ File.open("fractal#{version}.js").read }</script>
     "
     [200, {"Content-Type" => "text/html"}, [fractal]]
   end
