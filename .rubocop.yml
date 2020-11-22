@@ -1,15 +1,14 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - 'db/seeds/**/*'
     - 'node_modules/**/*'
 
 Lint/UnusedMethodArgument:
-  Exclude:
-    - 'app/controllers/api/v1/auth/token.rb'
+  Enabled: true
 
 Lint/UselessAssignment:
-  Exclude:
-    - 'app/controllers/prices_controller.rb'
+  Enabled: true
 
 Metrics/AbcSize:
   Max: 54
@@ -27,16 +26,13 @@ Style/AsciiComments:
   Enabled: false
 
 Style/ClassAndModuleChildren:
-  Exclude:
-    - 'test/test_helper.rb'
-    - 'test/channels/application_cable/connection_test.rb'
+  Enabled: true
 
 Style/Documentation:
   Enabled: false
 
 Style/GuardClause:
-  Exclude:
-    - 'app/controllers/api/v1/auth/authenticable.rb'
+  Enabled: true
 
 Style/IfUnlessModifier:
   Exclude:
@@ -44,8 +40,7 @@ Style/IfUnlessModifier:
     - 'config/deploy.rb'
 
 Style/MissingRespondToMissing:
-  Exclude:
-    - 'app/controllers/api/v1/auth/authenticable.rb'
+  Enabled: true
 
 Style/MixinUsage:
   Exclude:
@@ -59,12 +54,7 @@ Metrics/LineLength:
   Max: 190
 
 Style/CommentedKeyword:
-  Exclude:
-    - 'app/services/apartment_service.rb'
-
-Layout/AlignHash:
-  Exclude:
-    - 'app/services/apartment_service.rb'
+  Enabled: true
 
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
@@ -72,9 +62,6 @@ Layout/EmptyLinesAroundBlockBody:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-  Exclude:
-    - 'db/migrate/20190406231958_create_forms.rb'
-    - 'db/schema.rb'
 
 Style/NumericLiterals:
   Exclude:
@@ -90,15 +77,13 @@ Style/StringLiterals:
     - 'config/environments/production.rb'
     - 'config/puma.rb'
     - 'config/spring.rb'
-    - 'test/application_system_test_case.rb'
-    - 'test/channels/application_cable/connection_test.rb'
 
 
 Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
 
-Layout/AlignArguments:
+Layout/ArgumentAlignment:
   Exclude:
     - 'bin/webpack'
     - 'bin/webpack-dev-server'
@@ -168,3 +153,63 @@ Style/NumericPredicate:
 Style/MultilineBlockChain:
   Exclude:
     - 'app/controllers/bombers_controller.rb'
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true
+Layout/HashAlignment:
+  Enabled: false
+Layout/FirstHashElementIndentation:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+
+Lint/DuplicateBranch:
+  Enabled: true
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+Lint/EmptyBlock:
+  Enabled: true
+Lint/EmptyClass:
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+Lint/ToEnumArguments:
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
+Style/ArgumentsForwarding:
+  Enabled: true
+Style/CollectionCompact:
+  Enabled: true
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
+Style/NegatedIfElseCondition:
+  Enabled: true
+Style/NilLambda:
+  Enabled: true
+Style/SwapValues:
+  Enabled: true

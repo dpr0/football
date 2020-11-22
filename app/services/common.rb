@@ -6,6 +6,6 @@ class Common
   end
 
   def self.sites
-    %i(football price about fractal webcam)
+    %i(football price about fractal webcam home)
   end
 end

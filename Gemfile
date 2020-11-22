@@ -22,6 +22,7 @@ gem 'telegram-bot'
 group :development do
   gem 'sqlite3'
   gem 'byebug'
+  gem 'rubocop'
   gem 'capistrano',            require: false
   gem 'capistrano-bundler',    require: false
   gem 'capistrano-nvm',        require: false
