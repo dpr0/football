@@ -49,6 +49,8 @@ players = [
 {code: 47, telegram_uid: '',           comment: '',     lastname: '',            name: 'Анна',        middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, password: '000000', lfl: '',       email: '47@krsz.ru'},
 {code: 48, telegram_uid: '429775005',  comment: '',     lastname: 'Воржев',      name: 'Максим',      middlename: '',              birthday: '',           phone: '9998116060', height:   0, weight:  0, role_id: 3, password: '000000', lfl: '',       email: '9998116060@krsz.ru'},
 {code: 49, telegram_uid: '',           comment: '',     lastname: '',            name: 'Егор',        middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, password: '000000', lfl: '',       email: '49@krsz.ru'},
-# print Player.create(code: 50, telegram_uid: '',           comment: '',     lastname: '',  name: '',   middlename: '',      birthday: '',      phone: '9645732923', height:   0, weight:  0, role_id: 3, password: '000000', lfl: '', email: '50@krsz.ru'},
+{code: 50, telegram_uid: '',           comment: '',     lastname: '',            name: 'Михаил',      middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, password: '000000', lfl: '',       email: '50@krsz.ru'},
+{code: 51, telegram_uid: '',           comment: '',     lastname: '',            name: 'Георг',       middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, password: '000000', lfl: '',       email: '51@krsz.ru'},
+# {code: 52, telegram_uid: '',           comment: '',     lastname: '',  name: '',   middlename: '',      birthday: '',      phone: '9645732923', height:   0, weight:  0, role_id: 3, password: '000000', lfl: '', email: '50@krsz.ru'},
 ]
 players.each { |player| print Player.create(player).id.to_s + '.' }; puts "!"
