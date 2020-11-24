@@ -1,4 +1,4 @@
-FROM ruby:2.6.3
+FROM ruby:2.7.2
 ENV PACKAGES="curl libsqlite3-dev gnupg2 build-essential libxrender1 libfontconfig1 libxext6 libpq-dev"
 WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends $PACKAGES \

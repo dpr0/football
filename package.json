@@ -9,7 +9,7 @@
     "bootstrap": "^4.5.3",
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
-    "core-js": "^3.6.5",
+    "core-js": "^3.7.0",
     "interact": "^0.0.3",
     "jquery": "^3.5.1",
     "jquery-ui": "^1.12.1",

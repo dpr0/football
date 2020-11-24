@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-ruby '2.6.3'
+ruby '2.7.2'
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -20,7 +20,6 @@ gem 'puma', '4.3.6'
 gem 'telegram-bot'
 
 group :development do
-  gem 'sqlite3'
   gem 'byebug'
   gem 'rubocop'
   gem 'capistrano',            require: false
