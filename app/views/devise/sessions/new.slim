@@ -1,0 +1,21 @@
+section#section1.signup-section.bg-black.text-center
+  .container
+    h2.text-white-50 Вход в систему
+
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field.text-white-50
+        = f.label :email
+        br
+        = f.email_field :email, autofocus: true, autocomplete: "email"
+      .field.text-white-50
+        = f.label :password
+        br
+        = f.password_field :password, autocomplete: "current-password"
+      - if devise_mapping.rememberable?
+        .field.text-white-50
+          = f.check_box :remember_me
+          = f.label :remember_me
+      .actions
+        = f.submit 'Войти'
+
+    = render "devise/shared/links"

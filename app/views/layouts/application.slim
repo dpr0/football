@@ -28,6 +28,18 @@ html
               / li.nav-item
               /   a.nav-link.js-scroll-trigger href="#games" Игры
               li.nav-item
+                .notice = notice
+                .alert = alert
+              - if current_player
+                li.nav-item
+                  a.nav-link
+                    = current_player.email.present? ? current_player.email : current_player.phone
+                li.nav-item
+                  = link_to 'Выйти', destroy_player_session_path, class: 'nav-link', method: :delete
+              - else
+                = link_to 'Войти', new_player_session_path, class: 'nav-link'
+
+              li.nav-item
                 = link_to 'Статистика игроков', sport_season_stats_path(sport_id: 1, season_id: Season.last.id), class: 'nav-link'
               li.nav-item
                 = link_to 'Статистика игр', days_path, class: 'nav-link'
@@ -47,6 +59,8 @@ html
     /     = link_to name, "https://#{name}.KRSZ.RU", class: "btn btn-primary", style: 'bottom'
     .container
       | Copyright &copy; krsz.ru 2019-2020
+
+link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
 
 javascript:
     if ("#{Rails.env}" == 'production') {

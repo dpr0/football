@@ -4,18 +4,62 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start();
-require("turbolinks").start();
+// require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
+require("firebase")
+require("firebaseui-ru")
 require("chartkick");
 require("chart.js");
 require("./cocoon");
 import 'bootstrap'
 import './stylesheets/application'
+import firebase from 'firebase/app';
 
 document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="tooltip"]').tooltip();
     $('[data-toggle="popover"]').popover()
+});
+
+var config = {
+    apiKey: "AIzaSyBxUWFyxW5E1mlJTj-iebP1T4ho_Pj5fuY",
+    authDomain: "football-zupre.firebaseapp.com",
+    databaseURL: "https://football-zupre.firebaseio.com",
+    projectId: "football-zupre",
+    storageBucket: "football-zupre.appspot.com",
+    messagingSenderId: "997844004892",
+    appId: "1:997844004892:web:71de9a46439f3a95cbafd9",
+    measurementId: "G-9WZGLB4KNW"
+};
+firebase.initializeApp(config);
+firebase.analytics();
+
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+ui.start('#firebaseui-auth-container', {
+    signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        {provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID, defaultCountry: 'ru'},
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID
+    ],
+    callbacks: {
+        signInSuccessWithAuthResult: (currentUser) => {
+            $.post('/players/auth/firebase/callback', {
+                    authenticity_token: $('meta[name="csrf-token"]').attr("content"),
+                    user: {
+                        provider: currentUser.additionalUserInfo.providerId,
+                        uid:      currentUser.user.uid,
+                        email:    currentUser.user.email,
+                        name:     currentUser.user.displayName,
+                        phone:    currentUser.user.phoneNumber
+                    }
+                },
+                () => window.location.reload()
+            );
+            return false;
+        }
+    },
+    credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
 });
 
 // var componentRequireContext = require.context("components", true);

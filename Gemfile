@@ -18,6 +18,11 @@ gem 'cocoon'
 gem 'rest-client'
 gem 'puma', '4.3.6'
 gem 'telegram-bot'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-yandex'
+gem 'omniauth-telegram'
+gem 'doorkeeper'
 
 group :development do
   gem 'byebug'

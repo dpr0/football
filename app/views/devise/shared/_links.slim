@@ -1,0 +1,30 @@
+- if controller_name != 'sessions'
+  = link_to "Log in", new_session_path(resource_name)
+  br
+- if devise_mapping.registerable? && controller_name != 'registrations'
+  = link_to "Зарегистрироваться", new_registration_path(resource_name)
+  br
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  = link_to "Забыли пароль?", new_password_path(resource_name)
+  br
+- if devise_mapping.confirmable? && controller_name != 'confirmations'
+  = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+  br
+- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+  = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
+  br
+
+- if devise_mapping.omniauthable?
+  .row
+    .col-2
+    .col-4
+      ul.firebaseui-idp-list
+        - resource_class.omniauth_providers.each do |provider|
+          - next if provider == :firebase
+          li.firebaseui-list-item
+            = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-#{provider_color(provider)} btn-block" do
+              span.firebaseui-idp-icon-wrapper= image_tag 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/mail.svg'
+              span.firebaseui-idp-text= "Войти через #{OmniAuth::Utils.camelize(provider)}"
+    .col-4
+      #firebaseui-auth-container
+    .col-2

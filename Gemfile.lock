@@ -98,6 +98,8 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    doorkeeper (5.4.0)
+      railties (>= 5)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -105,19 +107,24 @@ GEM
     ed25519 (1.2.4)
     erubi (1.10.0)
     execjs (2.7.0)
+    faraday (1.1.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hashie (4.1.0)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    listen (3.3.1)
+    jwt (2.2.2)
+    listen (3.3.3)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.7.0)
+    loofah (2.8.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -133,6 +140,9 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.2)
     msgpack (1.3.3)
+    multi_json (1.15.0)
+    multi_xml (0.6.0)
+    multipart-post (2.1.1)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
@@ -140,6 +150,26 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    oauth2 (1.4.4)
+      faraday (>= 0.8, < 2.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    omniauth (1.9.1)
+      hashie (>= 3.4.6)
+      rack (>= 1.6.2, < 3)
+    omniauth-github (1.4.0)
+      omniauth (~> 1.5)
+      omniauth-oauth2 (>= 1.4.0, < 2.0)
+    omniauth-oauth2 (1.7.0)
+      oauth2 (~> 1.4)
+      omniauth (~> 1.9)
+    omniauth-telegram (0.1.0)
+      omniauth (~> 1.0)
+    omniauth-yandex (0.0.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     orm_adapter (0.5.0)
     parallel (1.20.1)
     parser (2.7.2.0)
@@ -183,7 +213,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (1.8.2)
+    regexp_parser (2.0.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -193,7 +223,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.4)
-    rubocop (1.4.1)
+    rubocop (1.4.2)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
@@ -202,9 +232,10 @@ GEM
       rubocop-ast (>= 1.1.1)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (1.1.1)
+    rubocop-ast (1.3.0)
       parser (>= 2.7.1.5)
     ruby-progressbar (1.10.1)
+    ruby2_keywords (0.0.2)
     semantic_range (2.3.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
@@ -220,7 +251,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.21.0)
+    sshkit (1.21.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     telegram-bot (0.14.4)
@@ -249,7 +280,7 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.4.1)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
@@ -268,9 +299,14 @@ DEPENDENCIES
   chartkick
   cocoon
   devise
+  doorkeeper
   dotenv-rails
   ed25519
   listen
+  omniauth
+  omniauth-github
+  omniauth-telegram
+  omniauth-yandex
   pg
   puma (= 4.3.6)
   rails

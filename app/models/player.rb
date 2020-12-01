@@ -1,14 +1,31 @@
 # frozen_string_literal: true
 
 class Player < ApplicationRecord
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, authentication_keys: [:email]
+  devise :database_authenticatable, :registerable, :trackable, :recoverable, :rememberable,
+         :validatable, :omniauthable, omniauth_providers: [:github, :yandex, :telegram, :firebase]
 
-  belongs_to :team
-  has_one    :role
+  has_many   :access_grants, class_name: 'Doorkeeper::AccessGrant', foreign_key: :resource_owner_id, dependent: :delete_all
+  has_many   :access_tokens, class_name: 'Doorkeeper::AccessToken', foreign_key: :resource_owner_id, dependent: :delete_all
+  has_many   :authorizations, dependent: :destroy
   has_many   :goals
   has_many   :day_players
   has_many   :stats
+  has_one    :role
+  belongs_to :team
+
+  def self.find_for_oauth(auth)
+    authorization = Authorization.where(provider: auth[:provider], uid: auth[:uid]).first
+    return authorization.player if authorization
+
+    player = Player.where(email: auth[:email], provider: auth[:provider]).first
+    player ||= Player.create!(auth)
+    player.create_authorization(auth)
+    player
+  end
+
+  def create_authorization(auth)
+    authorizations.create(provider: auth[:provider], uid: auth[:uid])
+  end
 
   def goals_by_season(season_id)
     goals.where(season_id: season_id)

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :players
   telegram_webhook TelegramWebhooksController
+  use_doorkeeper
+  devise_for :players, controllers: { omniauth_callbacks: 'callbacks' }
 
   root 'days#show'
 
