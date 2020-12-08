@@ -9,6 +9,7 @@ class CreatePlayers < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :comment
       t.string :phone
+      t.string :email, null: true, default: ''
       t.integer :team_id, default: 1
       t.integer :code
       t.integer :height

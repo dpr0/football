@@ -13,6 +13,14 @@ class Player < ApplicationRecord
   has_one    :role
   belongs_to :team
 
+  def email_required?
+    false
+  end
+
+  def password_required?
+    false
+  end
+
   def self.find_for_oauth(auth)
     authorization = Authorization.where(provider: auth[:provider], uid: auth[:uid]).first
     return authorization.player if authorization
