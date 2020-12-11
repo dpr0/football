@@ -51,7 +51,7 @@ players = [
 {code: 49, telegram_uid: '',           lastname: '',            name: 'Егор',        middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 50, telegram_uid: '',           lastname: '',            name: 'Михаил',      middlename: '',              birthday: '',           phone: '9160519685', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 51, telegram_uid: '',           lastname: '',            name: 'Георг',       middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, lfl: ''},
-{code: 52, telegram_uid: '',           lastname: '',            name: 'Дмитрий',     middlename: '',              birthday: '',           phone: '9152496965', height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 52, telegram_uid: '',           lastname: 'Черных',      name: 'Дмитрий',     middlename: '',              birthday: '',           phone: '9152496965', height:   0, weight:  0, role_id: 3, lfl: ''},
 # {code: 53, telegram_uid: '',           lastname: '',  name: '',   middlename: '',      birthday: '04.12.199',      phone: '9645732923', height:   0, weight:  0, role_id: 3, lfl: ''50},
 ]
 players.each { |player| print Player.create(player).id.to_s + '.' }; puts "!"
