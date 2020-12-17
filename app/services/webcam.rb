@@ -9,6 +9,9 @@ class Webcam
       <div class='container demo'>
         #{ Common.links(height) }
         <div class='content'>
+          <iframe height='450' width='800' src='https://open.ivideon.com/embed/v2/?server=100-7efd5afe1a615bb96f00b61e64e5a8ac&camera=65536'></iframe>
+          <iframe height='450' width='800' src='https://open.ivideon.com/embed/v2/?server=100-dBSwFS3qtcA76cprE3lbPz&camera=524288'></iframe>
+          <iframe height='450' width='800' src='https://rtsp.me/embed/dz3RTS64/'></iframe>
           <iframe height='450' width='800' src='https://rtsp.me/embed/NwYjsHoc/'></iframe>
           <video controls autoplay name='media' height='450' width='800'>
             <source src='http://tl1.ru.rtsp.me/timelapse/NwYjsHoc.mp4' type='video/mp4'>
