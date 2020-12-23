@@ -85,7 +85,7 @@ class Player < ApplicationRecord
         games: day_games,
         win: win3 + win2 + win1,
         draw: draw,
-        lose: lose,
+        lose: lose
       )
     end
   end
