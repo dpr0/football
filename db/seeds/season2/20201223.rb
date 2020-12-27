@@ -6,6 +6,7 @@ s2d35.day_players.create(season_id: 2, team_id: 1, player_id:  2) # коля    
 s2d35.day_players.create(season_id: 2, team_id: 1, player_id: 27) # свят    |     |     |     |     |     |     |
 s2d35.day_players.create(season_id: 2, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
 s2d35.day_players.create(season_id: 2, team_id: 1, player_id: 52) # дима    |     |     |     |     |     |     |
+s2d35.day_players.create(season_id: 2, team_id: 1, player_id: 14) # саша    |     |     |     |     |     |     |
 
 s2d35.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
 s2d35.day_players.create(season_id: 2, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
@@ -92,4 +93,4 @@ g1589.goals.create(season_id: 2, team_id: 1, player_id: 8, assist_player_id: 27)
 
 s2d35.day_rates!
 Player.update_stats!
-Day.last.update!(videos: '')
+Day.last.update!(videos: 'cIg75XuG7AM,q805CjUnLjs,JXMYyA5nHnk,0PigKxMemGA,6gFwYyOhKwE,j8HeB8B53v0,1cSlYOqR1yI')
