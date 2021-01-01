@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-ruby '2.7.2'
+ruby '3.0.0'
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -11,13 +11,12 @@ gem 'rails'
 gem 'slim-rails'
 gem 'uglifier'
 gem 'webpacker'
-gem 'listen'
 gem 'dotenv-rails'
 gem 'chartkick'
 gem 'cocoon'
 gem 'rest-client'
 gem 'puma', '4.3.6'
-gem 'telegram-bot'
+# gem 'telegram-bot'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-yandex'
@@ -36,4 +35,5 @@ group :development do
   gem 'capistrano3-puma', '4.0.0', require: false
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
+  gem 'listen'
 end

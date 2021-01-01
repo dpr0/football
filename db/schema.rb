@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.integer "rate", default: 1500
+    t.integer "rate", default: 1000
     t.integer "kp", default: 0
     t.string "lfl"
     t.string "telegram_uid"
