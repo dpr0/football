@@ -22,15 +22,17 @@ section#section1.about-section.text-center
           th            = link_to 'Дней', sport_season_stats_path(sort: :days)
           th            Пн / Ср
           th.text-right = link_to 'Игр',  sport_season_stats_path(sort: :games)
-          th.text-right = link_to '+',    sport_season_stats_path(sort: :win)
-          th.text-right = link_to '=',    sport_season_stats_path(sort: :draw)
-          th.text-right = link_to '-',    sport_season_stats_path(sort: :lose)
-          th.text-right = link_to 'ELO',  sport_season_stats_path(sort: :rate)
+          / th.text-right = link_to '+',    sport_season_stats_path(sort: :win)
+          / th.text-right = link_to '=',    sport_season_stats_path(sort: :draw)
+          / th.text-right = link_to '-',    sport_season_stats_path(sort: :lose)
+          th.text-right = link_to 'ELO',  sport_season_stats_path(sort: :elo)
           th.text-right = link_to 'K',    sport_season_stats_path(sort: :kp)
           th.text-right
-            = link_to 'Голы', sport_season_stats_path(sort: :goals_count)
+            = link_to '⚽️', sport_season_stats_path(sort: :goals_count)
           th.text-right
-            = link_to '(в день)', sport_season_stats_path(sort: :goals_day_count)
+            = link_to '🦶', sport_season_stats_path(sort: :assists_count)
+          th.text-right
+            = link_to '⚽(в день)', sport_season_stats_path(sort: :goals_day_count)
         - @arr_by_days.each do |arr|
           - if arr.is_a? String
             tr
@@ -53,12 +55,13 @@ section#section1.about-section.text-center
                   = ' / '
                   = (dp.map(&:day_id) - @days_by_wday[1].uniq.map(&:id)).size
                 td.text-right = player.games
-                td.text-right = player.win
-                td.text-right = player.draw
-                td.text-right = player.lose
-                td.text-right = player.rate
+                / td.text-right = player.win
+                / td.text-right = player.draw
+                / td.text-right = player.lose
+                td.text-right = player.elo.to_i
                 td.text-right = "#{player.kp / 3}%"
                 td.text-right = player.goals_count
+                td.text-right = player.assists_count
                 td.text-right = ((player.goals_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
     .row
       .col-md-12.mb-3.mb-md-0
@@ -69,7 +72,7 @@ section#section1.about-section.text-center
             hr.my-4
             .small.text-black-50
               div.text-left
-                div Все игроки начинают с рейтинга 1000
+                div Все игроки начинают с рейтинга 1500
                 div Вычисляется математическое ожидание количества очков рейтинга, которое получит команда A в матче с командой B (оно равно сумме вероятности выигрыша команды A и половины вероятности ничьей):
                 .row
                   .col-3

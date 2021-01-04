@@ -99,5 +99,4 @@ g1450 = Game.create(day_id: s2d29.id, team_left_id: 3, goals_left: 0, goals_righ
 g1450.goals.create(season_id: 2, team_id: 1, player_id: 18, assist_player_id: nil)
 
 s2d29.day_rates!
-Player.update_stats!
 Day.last.update!(videos: 'DYJfrMjzFQE,yXNqPFzQSTU,HLh3MAUytjU,Do_zdx3YjdE,Mdk9NCu3wyQ,tvmyX74iVbE')

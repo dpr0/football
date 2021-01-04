@@ -15,7 +15,7 @@ header.masthead
 section#tournment.about-section.text-center
   .container
     .row
-      table.table.table-dark.table-striped.table-bordered
+      table.table.table-dark.table-bordered.hoverTable
         tr
           th Команда
           th.text-center Матчи
@@ -25,9 +25,9 @@ section#tournment.about-section.text-center
           th.text-center Голов
           th.text-center ppg (points per game)
         - @main_table.each do |table|
-          tr
+          tr data-link='' data-toggle='modal' data-target="#gamesModalCenter_#{table[:team_code]}"
             td.text-center = image_tag "colors/#{table[:team_code]}.png", size: "25x30"
-            td.text-center = link_to table[:games_count], '#', data: {toggle: 'modal', target: "#gamesModalCenter_#{table[:team_code]}"}
+            td.text-center = table[:games_count]
             td.text-center = table[:win_count]
             td.text-center = table[:draw_count]
             td.text-center = table[:lose_count]
@@ -76,13 +76,13 @@ section#commands.contact-section.bg-black
               .card-body.text-center
                 i.fas.fa-map-marked-alt.text-primary.mb-2
                 = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "35x50"
-                h4.text-uppercase.m-0 = day_players.map(&:rate).sum / day_players.count
+                h4.text-uppercase.m-0 = day_players.map(&:elo).sum.to_i / day_players.count
                 hr.my-4
                 .small.text-black-50
                   - day_players.each do |day_player|
                     - player = @players.find { |p| p[:id] == day_player.player_id }
                     div.text-left
-                      span.badge.badge-primary.badge-pill = day_player.rate
+                      span.badge.badge-primary.badge-pill = day_player.elo.to_i
                       span = link_to player.name, player_path(player)
                       span
                         - if @player_goals[player.code]
@@ -100,13 +100,13 @@ section#commands.contact-section.bg-black
           .bg-black.text-center.h-100.project
             .d-flex.h-100
               .project-text.w-100.my-auto.text-center class="#{team_id.odd? ? 'text-lg-right' : 'text-lg-left'}"
-                h4.text-white = day_players.map(&:rate).sum / day_players.count
+                h4.text-white = day_players.map(&:elo).sum.to_i / day_players.count
                 p.mb-0.text-white-50
                   - day_players.each do |day_player|
                     - player = @players.find { |p| p[:id] == day_player.player_id }
                     div
                       - if team_id.even?
-                        span.badge.badge-primary.badge-pill = day_player.rate
+                        span.badge.badge-primary.badge-pill = day_player.elo.to_i
                         span = link_to player.name, player_path(player)
                         span
                           - if @player_goals[player.code]
@@ -124,7 +124,7 @@ section#commands.contact-section.bg-black
                             - @player_assists[player.code].times do
                               | 🦶
                         span = link_to player.name, player_path(player)
-                        span.badge.badge-primary.badge-pill = day_player.rate
+                        span.badge.badge-primary.badge-pill = day_player.elo.to_i
                 hr.d-none.d-lg-block.mb-0 class="#{team_id.odd? ? 'mr-0' : 'ml-0'}"
 
 section#games.about-section.text-center
@@ -146,7 +146,7 @@ section#games.about-section.text-center
             td.text-right
               sup class="#{game.rated_class('left')}"
                 = game.rated('left')
-              = game.left_team_rate
+              = game.left_team_elo.to_i
             td.text-left
               - t = @teams.find { |t| t.id == game['team_left_id'] }
               = image_tag "colors/#{t.code}.png", size: "25x30"
@@ -162,7 +162,7 @@ section#games.about-section.text-center
               - t = @teams.find { |t| t.id == game['team_right_id'] }
               = image_tag "colors/#{t.code}.png", size: "25x30"
             td.text-left
-              = game.right_team_rate
+              = game.right_team_elo.to_i
               sup class="#{game.rated_class('right')}"
                 = game.rated('right')
 
@@ -175,36 +175,3 @@ section#games.about-section.text-center
 /         form.form-inline.d-flex
 /           input#inputEmail.form-control.flex-fill.mr-0.mr-sm-2.mb-3.mb-sm-0 placeholder=("Enter email address...") type="email" /
 /           button.btn.btn-primary.mx-auto type="submit"  Subscribe
-
-section.contact-section.bg-black
-  .container
-    / .row
-    /   .col-md-4.mb-3.mb-md-0
-    /     .card.py-4.h-100
-    /       .card-body.text-center
-    /         i.fas.fa-mobile-alt.text-primary.mb-2
-    /         h4.text-uppercase.m-0 Info
-    /         hr.my-4
-    /         .small.text-black-50 krsz.ru
-    /   .col-md-4.mb-3.mb-md-0
-    /     .card.py-4.h-100
-    /       .card-body.text-center
-    /         i.fas.fa-envelope.text-primary.mb-2
-    /         h4.text-uppercase.m-0 Email
-    /         hr.my-4
-    /         .small.text-black-50
-    /           a href="#"  dvitvitskiy.pro@gmail.com
-    /   .col-md-4.mb-3.mb-md-0
-    /     .card.py-4.h-100
-    /       .card-body.text-center
-    /         i.fas.fa-mobile-alt.text-primary.mb-2
-    /         h4.text-uppercase.m-0 Phone
-    /         hr.my-4
-    /         .small.text-black-50 +7 (919) 108-7399
-
-    .social.d-flex.justify-content-center
-      - Common.sites.each do |name|
-        = link_to "https://#{name}.krsz.ru", class: 'mx-2' do
-          i.fab.fa-twitter
-          / i.fab.fa-facebook-f
-          / i.fab.fa-github

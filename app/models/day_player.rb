@@ -11,7 +11,6 @@ class DayPlayer < ApplicationRecord
   private
 
   def rate!
-    player = Player.find(player_id)
-    update(rate: player.rate, kp: player.kp)
+    update(elo: player.elo, kp: player.kp)
   end
 end

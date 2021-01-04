@@ -25,8 +25,8 @@ class Player < ApplicationRecord
     authorization = Authorization.where(provider: auth[:provider], uid: auth[:uid]).first
     return authorization.player if authorization
 
-    player = Player.where(email: auth[:email], provider: auth[:provider]).first
-    player ||= Player.create!(auth)
+    player = where(email: auth[:email], provider: auth[:provider]).first
+    player ||= create!(auth)
     player.create_authorization(auth)
     player
   end
@@ -64,9 +64,9 @@ class Player < ApplicationRecord
     "#{(lastname + ' ') if lastname.present?}#{name} #{middlename if middlename.present?}"
   end
 
-  def self.update_stats!
+  def self.update_stats!(season_id)
     all.each do |player|
-      day_team = player.day_players_by_season(Season.last.id).map { |dp| [dp.day_id, dp.team_id] }
+      day_team = player.day_players_by_season(season_id).map { |dp| [dp.day_id, dp.team_id] }
       all_games = Game.where(day_id: day_team.map(&:first))
       win1 = 0; win2 = 0; win3 = 0; draw = 0; lose = 0; day_games = 0
       day_team.each do |day, team|

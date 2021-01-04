@@ -2,10 +2,10 @@
 
 class DaysController < ApplicationController
   before_action :find_day, only: [:show, :edit, :update]
-
+  
   def index
     @days = Day.joins(:day_players).eager_load!(:day_players).order(id: :desc)
-    @places = Day.select(:first_place, :second_place, :third_place).to_a
+    @places_by_seasons = Day.select(:first_place, :second_place, :third_place, :season_id).group_by(&:season_id)
   end
 
   def show
@@ -13,16 +13,8 @@ class DaysController < ApplicationController
     @games = @day.games.order(id: :asc)
     @players = Player.all.to_a
     @goals = Goal.where(game_id: @games.ids)
-    @player_goals = @goals.group_by(&:player_id)
-                  .map { |k, v| [k, v.length] if k }
-                  .compact
-                  .sort_by { |player, count| [-count, player] }
-                  .to_h
-    @player_assists = @goals.group_by(&:assist_player_id)
-                    .map { |k, v| [k, v.length] if k }
-                    .compact
-                    .sort_by { |player, count| [-count, player] }
-                    .to_h
+    @player_goals = sorted_hash(@goals.group_by(&:player_id))
+    @player_assists = sorted_hash(@goals.group_by(&:assist_player_id))
     @main_table = main_table
   end
 
@@ -53,6 +45,13 @@ class DaysController < ApplicationController
 
   private
 
+  def sorted_hash(group)
+    group.map { |k, v| [k, v.length] if k }
+      .compact
+      .sort_by { |player, count| [-count, player] }
+      .to_h
+  end
+
   def find_day
     @day = params[:id] ? Day.find(params[:id]) : Day.last
   end
@@ -76,14 +75,14 @@ class DaysController < ApplicationController
       else
         left_games  =       games.select { |x| x['team_left_id']  == team.id }
         right_games =       games.select { |x| x['team_right_id'] == team.id }
-        left_win    =  left_games.select { |x| x['goals_left'] >  x['goals_right'] }
-        right_win   = right_games.select { |x| x['goals_left'] <  x['goals_right'] }
-        draw        =       games.select { |x| x['goals_left'] == x['goals_right'] }
-        left_lose   =  left_games.select { |x| x['goals_left'] <  x['goals_right'] }
-        right_lose  = right_games.select { |x| x['goals_left'] >  x['goals_right'] }
+        left_win    =  left_games.select { |x| x[Day::GL] >  x[Day::GR] }
+        right_win   = right_games.select { |x| x[Day::GL] <  x[Day::GR] }
+        draw        =       games.select { |x| x[Day::GL] == x[Day::GR] }
+        left_lose   =  left_games.select { |x| x[Day::GL] <  x[Day::GR] }
+        right_lose  = right_games.select { |x| x[Day::GL] >  x[Day::GR] }
+        goals1      =     left_games.map { |x| x[Day::GL] }.sum + right_games.map { |x| x[Day::GR] }.sum
+        goals2      =     left_games.map { |x| x[Day::GR] }.sum + right_games.map { |x| x[Day::GL] }.sum
         win_count   = left_win.count + right_win.count
-        goals1      =     left_games.map { |x| x['goals_left' ] }.sum + right_games.map { |x| x['goals_right'] }.sum
-        goals2      =     left_games.map { |x| x['goals_right'] }.sum + right_games.map { |x| x['goals_left' ] }.sum
         {
             games_count: games.count,
             opps_win:    opps_map(left_win, right_win).group_by(&:itself),

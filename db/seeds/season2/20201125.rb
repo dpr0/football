@@ -78,5 +78,4 @@ g1404.goals.create(season_id: 2, team_id: 4, player_id: 32, assist_player_id: ni
 g1405 = Game.create(day_id: s2d27.id, team_left_id: 3, goals_left: 0, goals_right: 0, team_right_id: 2)
 
 s2d27.day_rates!
-Player.update_stats!
 Day.last.update!(videos: 'LC7sWxys7R0,XwQV59UksuQ,bmHG-r6X1eo,gqapWd8RVn0,EWfcZHq9C-4,qyyoIzwrfNY,9PwsiHtN7bQ,GO_GZhZhf0o,MDNF0ajBWQI')

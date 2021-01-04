@@ -8,42 +8,43 @@ class Day < ApplicationRecord
   accepts_nested_attributes_for :games,       reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :day_players, reject_if: :all_blank, allow_destroy: true
 
+  GL = 'goals_left'
+  GR = 'goals_right'
+  TL = 'team_left_id'
+  TR = 'team_right_id'
+
   def day_players_by_season(season_id)
     day_players.where(season_id: season_id)
   end
 
   def day_rates!
     places = Team.all.map do |team|
-      day_games = games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
+      day_games = games.all.select { |x| [x[TL], x[TR]].include? team.id }
       next if day_games.blank?
-      left_win  = day_games.select { |x| x['team_left_id']  == team.id && x['goals_left'] > x['goals_right']}
-      right_win = day_games.select { |x| x['team_right_id'] == team.id && x['goals_left'] < x['goals_right']}
-      draw      = day_games.select { |x| x['goals_left']    == x['goals_right'] }
+      left_win  = day_games.select { |x| x[GL] > x[GR] && x[TL] == team.id }
+      right_win = day_games.select { |x| x[GL] < x[GR] && x[TR] == team.id }
+      draw      = day_games.select { |x| x[GL] == x[GR] }
       [((left_win.count + right_win.count) * 3 + draw.count ) / day_games.count.to_f, team.id ]
     end.compact.sort.reverse.map(&:last)
     update(first_place: places[0], second_place: places[1], third_place: places[2])
-    print "================ #{id} "
     day_players.group_by(&:team_id).each do |team, day_plrs|
       day_games, win3, win2, win1, draw = calc_stats(id, team)
       kp = day_games > 0 ? ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i : 0
-      day_plrs.each do |player|
-        print '.'
-        player.update(kp: kp)
-      end
+      day_plrs.each { |player| player.update(kp: kp) }
     end
-    puts "!"
+    print (id % 10).zero? ? id : '.'
   end
 
   private
 
   def calc_stats(day_id, team)
     games = Game.where(day_id: day_id)
-    day_games = games.where('team_left_id = ? OR team_right_id = ?', team, team).count
-    win3 = games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 2)', team, team).count
-    win2 = games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 1) OR (team_right_id = ? AND goals_left = 1 and goals_right = 2)', team, team).count
-    win1 = games.where('(team_left_id = ? AND goals_left = 1 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 1)', team, team).count
-    draw = games.where('(team_left_id = ? AND goals_left = goals_right) OR (team_right_id = ? AND goals_left = goals_right)', team, team).count
-    # lose = games.where('(team_left_id = ? AND goals_left < goals_right) OR (team_right_id = ? AND goals_left > goals_right)', team, team).count
+    day_games = games.where("#{TL} = ? OR #{TR} = ?", team, team).count
+    win3 = games.where("(#{TL} = ? and #{GL} = 2 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} = 2)", team, team).count
+    win2 = games.where("(#{TL} = ? and #{GL} = 2 and #{GR} = 1) OR (#{TR} = ? and #{GL} = 1 and #{GR} = 2)", team, team).count
+    win1 = games.where("(#{TL} = ? and #{GL} = 1 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} = 1)", team, team).count
+    draw = games.where("(#{TL} = ? and #{GL} = #{GR}) OR (#{TR} = ? and #{GL} = #{GR})", team, team).count
+    # lose = games.where("(#{TL} = ? and #{GL} < #{GR}) OR (#{TR} = ? and #{GL} > #{GR})", team, team).count
     [day_games, win3, win2, win1, draw]
   end
 end

@@ -15,7 +15,7 @@ gem 'dotenv-rails'
 gem 'chartkick'
 gem 'cocoon'
 gem 'rest-client'
-gem 'puma', '4.3.6'
+gem 'puma'
 # gem 'telegram-bot'
 gem 'omniauth'
 gem 'omniauth-github'
@@ -32,7 +32,7 @@ group :development do
   gem 'capistrano-rails',      require: false
   gem 'capistrano-rbenv',      require: false
   gem 'capistrano-yarn',       require: false
-  gem 'capistrano3-puma', '4.0.0', require: false
+  gem 'capistrano3-puma',      require: false
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
   gem 'listen'

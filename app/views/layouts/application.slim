@@ -10,15 +10,13 @@ html
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   body
-    - if (request.user_agent =~ /Mobile/) == nil
-      / - ['FOOTBALL', 'PRICE', 'ABOUT', 'FRACTAL', 'WEBCAM'].reverse.each_with_index do |name, index|
-      /   = link_to name, "https://#{name}.KRSZ.RU", class: "btn btn-primary krsz_items", style: "bottom: #{index * 65 + 10}px;"
+    - if (request.user_agent =~ /Mobile/).nil?
       nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top
         .container
           = link_to 'KRSZ.RU', day_path(Day.last.id), class: 'nav-brand js-scroll-trigger'
-          button.navbar-toggler.navbar-toggler-right aria-controls="navbarResponsive" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarResponsive" data-toggle="collapse" type="button"
-            | Menu
-            i.fas.fa-bars
+          / button.navbar-toggler.navbar-toggler-right aria-controls="navbarResponsive" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarResponsive" data-toggle="collapse" type="button"
+          /   | Menu
+          /   i.fas.fa-bars
           #navbarResponsive.collapse.navbar-collapse
             ul.navbar-nav.ml-auto
               / li.nav-item
@@ -48,17 +46,58 @@ html
     - else
       .bg-black
         .btn-group.d-flex.btn-group-lg
+          = link_to 'Войти',              new_player_session_path, class: 'btn btn-primary'
           = link_to 'Главная',            root_path, class: 'btn btn-primary'
           = link_to 'Статистика игроков', sport_season_stats_path(sport_id: 1, season_id: Season.last.id), class: 'btn btn-primary'
           = link_to 'Статистика игр',     days_path, class: 'btn btn-primary'
     = yield
 
-  footer.bg-black.small.text-center.text-white-50
-    / - if (request.user_agent =~ /Mobile/) != nil
-    /   - ['FOOTBALL', 'PRICE', 'NEWS', 'FRACTAL', 'WEBCAM', 'HOME'].reverse.each_with_index do |name, index|
-    /     = link_to name, "https://#{name}.KRSZ.RU", class: "btn btn-primary", style: 'bottom'
+  section.contact-section.bg-black
     .container
-      | Copyright &copy; krsz.ru 2019-2020
+      / .row
+      /   .col-md-4.mb-3.mb-md-0
+      /     .card.py-4.h-100
+      /       .card-body.text-center
+      /         i.fas.fa-mobile-alt.text-primary.mb-2
+      /         h4.text-uppercase.m-0 Info
+      /         hr.my-4
+      /         .small.text-black-50 krsz.ru
+      /   .col-md-4.mb-3.mb-md-0
+      /     .card.py-4.h-100
+      /       .card-body.text-center
+      /         i.fas.fa-envelope.text-primary.mb-2
+      /         h4.text-uppercase.m-0 Email
+      /         hr.my-4
+      /         .small.text-black-50
+      /           a href="#"  dvitvitskiy.pro@gmail.com
+      /   .col-md-4.mb-3.mb-md-0
+      /     .card.py-4.h-100
+      /       .card-body.text-center
+      /         i.fas.fa-mobile-alt.text-primary.mb-2
+      /         h4.text-uppercase.m-0 Phone
+      /         hr.my-4
+      /         .small.text-black-50 +7 (919) 108-7399
+
+      .social.d-flex.justify-content-center
+        - Common.sites.each do |name|
+          = link_to "https://#{name}.krsz.ru", class: 'mx-2' do
+            i.fab.fa-twitter
+            / i.fab.fa-facebook-f
+            / i.fab.fa-github
+  footer.bg-black.small.text-center.text-white-50
+    .container
+      div
+        - gems = Gem.loaded_specs
+        div
+          = "Copyright &copy; krsz.ru 2019-#{Time.now.year}"
+        div
+          = "Ruby #{RUBY_VERSION}"
+        div
+          = "Ruby on Rails #{Rails::VERSION::STRING}"
+        div
+          = "Puma #{gems["puma"].version}"
+        div
+          = "Webpacker #{gems["webpacker"].version}"
 
 link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
 

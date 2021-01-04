@@ -75,5 +75,4 @@ g1426.goals.create(season_id: 2, team_id: 1, player_id: 6, assist_player_id: 38)
 g1426.goals.create(season_id: 2, team_id: 1, player_id: 6, assist_player_id: 38)
 
 s2d28.day_rates!
-Player.update_stats!
 Day.last.update!(videos: '')

@@ -9,22 +9,20 @@ Role.create(code: 'admin',   name: 'Администратор')
 Role.create(code: 'captain', name: 'Капитан команды')
 Role.create(code: 'player',  name: 'Игрок')
 
-sport = Sport.create(code: 'football',  name: 'Футбол')
-season1 = Season.create(code: 'one',  name: '2019/2020')
-
 Dir[File.join(Rails.root, 'db', 'seeds', 'players.rb')].sort.each { |seed| load seed }
-Player.all.each do |pl|
-  print "#{pl.id}."
-  pl.stats.create(sport_id: sport.id, season_id: season1.id)
-end
-puts "!"
-Dir[File.join(Rails.root, 'db', 'seeds', 'season1', '*.rb')].sort.each { |seed| load seed }
-Player.update_stats!
+sport = Sport.create(code: 'football',  name: 'Футбол')
+season1 = Season.create(code: 'season1',  name: '2019')
+season2 = Season.create(code: 'season2',  name: '2020')
+season3 = Season.create(code: 'season3',  name: '2021')
 
-season2 = Season.create(code: 'two',  name: '2020/2021')
-Player.all.each { |pl| pl.stats.create(sport_id: sport.id, season_id: season2.id) }
-Dir[File.join(Rails.root, 'db', 'seeds', 'season2', '*.rb')].sort.each { |seed| load seed }
-Player.update_stats!
+#-----------------------------------------------------------------------------------------------
+[season1, season2, season3].each do |season|
+  Player.all.each { |pl| pl.stats.create(sport_id: sport.id, season_id: season.id) }
+
+  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].sort.each { |seed| load seed }
+  Player.update_stats!(season.id)
+end
+#-----------------------------------------------------------------------------------------------
 
 photos = {}
 Dir.foreach("./app/assets/images/recognize") do |filename|

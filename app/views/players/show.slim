@@ -85,12 +85,12 @@ section#pole.about-section.text-center
             /         span.input-group-text Классика
             /       = text_field_tag '', @lichess.dig('perfs', 'classical', 'rating'), class: 'form-control text-right', disabled: true
 
-          - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.rate] }.push [Day.last.id + 1, @player.rate]
-          = area_chart player_day_rates, width: "93%", min: 1000, max: 2000, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
+          - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.elo] }.push [Day.last.id + 1, @player.elo.to_i]
+          = area_chart player_day_rates, width: "93%", min: 800, max: 2500, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
           .input-group.mb-6
             .input-group-prepend
               span.input-group-text Рейтинг ELO
-            = text_field_tag '', @player.rate, class: 'form-control text-right', disabled: true
+            = text_field_tag '', @player.elo.to_i, class: 'form-control text-right', disabled: true
 
           - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.kp] }.push [Day.last.id + 1, @player.kp]
           = area_chart player_day_rates, width: "93%", min: 0, max: 300, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}

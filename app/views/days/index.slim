@@ -1,19 +1,20 @@
 section#tournment.about-section.text-center
   .container
-    .row
-      table.table.table-dark.table-striped.table-bordered
-        tr
-          th.text-center Команда
-          th.text-center Золото
-          th.text-center Серебро
-          th.text-center Бронза
-        - @teams.each do |team|
-          - next if @places.select { |p| [p[:first_place], p[:second_place], p[:third_place]].include? team.id }.count.zero?
+    - @places_by_seasons.each do |season_id, places|
+      .row
+        table.table.table-dark.table-striped.table-bordered
           tr
-            td.text-center = image_tag "colors/#{team.code}.png", size: "25x30"
-            td.text-center = @places.select { |p| p[:first_place]  == team.id }.count
-            td.text-center = @places.select { |p| p[:second_place] == team.id }.count
-            td.text-center = @places.select { |p| p[:third_place]  == team.id }.count
+            th.text-center = "Сезон #{Season.cached_by_id[season_id].name}"
+            th.text-center 1-ое место
+            th.text-center 2-ое место
+            th.text-center 3-е место
+          - @teams.each do |team|
+            - next if places.select { |p| [p[:first_place], p[:second_place], p[:third_place]].include? team.id }.count.zero?
+            tr
+              td.text-center = image_tag "colors/#{team.code}.png", size: "25x30"
+              td.text-center = places.select { |p| p[:first_place]  == team.id }.count
+              td.text-center = places.select { |p| p[:second_place] == team.id }.count
+              td.text-center = places.select { |p| p[:third_place]  == team.id }.count
     .row
       table.table.table-dark.table-striped.table-bordered
         tr

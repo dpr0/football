@@ -2,8 +2,8 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.bigint "day_id"
     t.bigint "player_id"
     t.bigint "team_id"
-    t.integer "rate", default: 0
+    t.float "elo", default: 0.0
     t.integer "kp", default: 0
     t.integer "season_id"
     t.index ["day_id"], name: "index_day_players_on_day_id"
@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "left_team_rate", default: 0
-    t.integer "right_team_rate", default: 0
-    t.integer "left_team_rate_change", default: 0
-    t.integer "right_team_rate_change", default: 0
+    t.integer "left_team_elo", default: 0
+    t.integer "right_team_elo", default: 0
+    t.integer "left_team_elo_change", default: 0
+    t.integer "right_team_elo_change", default: 0
     t.index ["day_id"], name: "index_games_on_day_id"
     t.index ["team_left_id"], name: "index_games_on_team_left_id"
     t.index ["team_right_id"], name: "index_games_on_team_right_id"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.integer "rate", default: 1000
+    t.float "elo", default: 1500.0
     t.integer "kp", default: 0
     t.string "lfl"
     t.string "telegram_uid"

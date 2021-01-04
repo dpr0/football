@@ -46,5 +46,4 @@ g1296 = Game.create(day_id: s2d22.id, team_left_id: 1, goals_left: 0, goals_righ
 g1297 = Game.create(day_id: s2d22.id, team_left_id: 3, goals_left: 1, goals_right: 0, team_right_id: 2)
 
 s2d22.day_rates!
-Player.update_stats!
 # Day.last.update!(videos: '')

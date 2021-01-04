@@ -9,7 +9,7 @@ class Season < ApplicationRecord
 
   def self.days_by_season_id(season_id)
     begin
-      Season.cached_by_id[season_id].days.map(&:id)
+      cached_by_id[season_id].days.map(&:id)
     rescue
     end
   end

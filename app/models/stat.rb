@@ -6,4 +6,6 @@ class Stat < ApplicationRecord
   belongs_to :sport
   belongs_to :season
   belongs_to :player
+
+  K_ELO = 0.2
 end
