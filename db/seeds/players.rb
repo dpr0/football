@@ -48,7 +48,7 @@ players = [
 {code: 46, telegram_uid: '222198981',  lastname: 'Дружинин',    name: 'Денис',       middlename: '',              birthday: '',           phone: '9296338890', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 47, telegram_uid: '',           lastname: '',            name: 'Анна',        middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 48, telegram_uid: '429775005',  lastname: 'Воржев',      name: 'Максим',      middlename: '',              birthday: '',           phone: '9998116060', height:   0, weight:  0, role_id: 3, lfl: ''},
-{code: 49, telegram_uid: '',           lastname: '',            name: 'Егор',        middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 49, telegram_uid: '',           lastname: 'Захаров',     name: 'Егор',        middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 50, telegram_uid: '',           lastname: '',            name: 'Михаил',      middlename: '',              birthday: '',           phone: '9160519685', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 51, telegram_uid: '',           lastname: '',            name: 'Георг',       middlename: '',              birthday: '',           phone: nil,          height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 52, telegram_uid: '',           lastname: 'Черных',      name: 'Дмитрий',     middlename: '',              birthday: '',           phone: '9152496965', height:   0, weight:  0, role_id: 3, lfl: '64022'},

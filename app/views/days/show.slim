@@ -140,6 +140,9 @@ section#games.about-section.text-center
         tr
           th colspan="8" Игры
         - @games.each_with_index do |game, i|
+          - z = game.goals.map(&:player_id).map do |player_id|
+            - next unless player_id
+            - @players.find { |pl| pl.id == player_id }.name
           tr
             td.text-left
               = i + 1
@@ -150,14 +153,9 @@ section#games.about-section.text-center
             td.text-left
               - t = @teams.find { |t| t.id == game['team_left_id'] }
               = image_tag "colors/#{t.code}.png", size: "25x30"
-            td.text-right = game.goals_left
-            td.text-center
-              - z = game.goals.map(&:player_id).map do |player_id|
-                - next unless player_id
-                - @players.find { |pl| pl.id == player_id }.name
-              div data-toggle="tooltip" title=(z.compact.join(', '))
-                = ':'
-            td.text-left = game.goals_right
+            td.text-center.CellWithComment
+              = "#{game.goals_left} : #{game.goals_right}"
+              span.CellComment = z.compact.join(', ')
             td.text-right
               - t = @teams.find { |t| t.id == game['team_right_id'] }
               = image_tag "colors/#{t.code}.png", size: "25x30"

@@ -40,8 +40,11 @@ class Day < ApplicationRecord
   def calc_stats(day_id, team)
     games = Game.where(day_id: day_id)
     day_games = games.where("#{TL} = ? OR #{TR} = ?", team, team).count
-    win3 = games.where("(#{TL} = ? and #{GL} = 2 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} = 2)", team, team).count
-    win2 = games.where("(#{TL} = ? and #{GL} = 2 and #{GR} = 1) OR (#{TR} = ? and #{GL} = 1 and #{GR} = 2)", team, team).count
+    win3 = games.where("(#{TL} = ? and #{GL} >= 2 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} <= 2)", team, team).count
+    win2 = games.where("
+      ((#{TL} = ? and #{GL} >= 2 and #{GR} = 1) OR (#{TR} = ? and #{GL} = 1 and #{GR} >= 2)) OR
+      ((#{TL} = ? and #{GL} >= 2 and #{GR} < #{GL} and #{GR} != 0) OR (#{TR} = ? and #{GL} < #{GR} and #{GR} >= 2 and #{GL} != 0))
+    ", team, team, team, team).count
     win1 = games.where("(#{TL} = ? and #{GL} = 1 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} = 1)", team, team).count
     draw = games.where("(#{TL} = ? and #{GL} = #{GR}) OR (#{TR} = ? and #{GL} = #{GR})", team, team).count
     # lose = games.where("(#{TL} = ? and #{GL} < #{GR}) OR (#{TR} = ? and #{GL} > #{GR})", team, team).count
