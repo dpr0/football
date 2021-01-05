@@ -31,8 +31,8 @@ section#tournment.about-section.text-center
             td = link_to day.date.strftime('%d.%m.%Y %A'), day_path(day)
             - array = [day.first_place, day.second_place, day.third_place]
             - array.each do |place|
-              - if place.present?
-                td
+              td
+                - if place.present?
                   = image_tag "colors/#{Team.cached_by_id[place].code}.png", size: "20x25"
                   | &nbsp;
                   = g.select { |x| x.team_left_id == place || x.team_right_id == place }.count
