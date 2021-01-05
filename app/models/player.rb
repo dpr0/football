@@ -71,12 +71,12 @@ class Player < ApplicationRecord
       win1 = 0; win2 = 0; win3 = 0; draw = 0; lose = 0; day_games = 0
       day_team.each do |day, team|
         games = all_games.where(day_id: day)
-        day_games += games.where('team_left_id = ? OR team_right_id = ?', team, team).size
-        win3 += games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 2)', team, team).size
-        win2 += games.where('(team_left_id = ? AND goals_left = 2 and goals_right = 1) OR (team_right_id = ? AND goals_left = 1 and goals_right = 2)', team, team).size
-        win1 += games.where('(team_left_id = ? AND goals_left = 1 and goals_right = 0) OR (team_right_id = ? AND goals_left = 0 and goals_right = 1)', team, team).size
-        draw += games.where('(team_left_id = ? AND goals_left = goals_right) OR (team_right_id = ? AND goals_left = goals_right)', team, team).size
-        lose += games.where('(team_left_id = ? AND goals_left < goals_right) OR (team_right_id = ? AND goals_left > goals_right)', team, team).size
+        day_games += games.where("#{Day::TL} = ? OR #{Day::TR} = ?", team, team).size
+        win3 += Day.win3(games, team)
+        win2 += Day.win2(games, team)
+        win1 += Day.win1(games, team)
+        draw += Day.draw(games, team)
+        lose += Day.lose(games, team)
       end
 
       player.update(kp: ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i) if day_games > 0

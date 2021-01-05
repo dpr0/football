@@ -35,19 +35,34 @@ class Day < ApplicationRecord
     print (id % 10).zero? ? id : '.'
   end
 
+  def self.win3(games, team)
+    games.where("(#{TL} = ? and #{GL} >= 2 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} <= 2)", team, team).count
+  end
+
+  def self.win2(games, team)
+    games.where("
+      ((#{TL} = ? and #{GL} >= 2 and #{GR} = 1) OR (#{TR} = ? and #{GL} = 1 and #{GR} >= 2)) OR
+      ((#{TL} = ? and #{GL} >= 2 and #{GR} < #{GL} and #{GR} != 0) OR (#{TR} = ? and #{GL} < #{GR} and #{GR} >= 2 and #{GL} != 0))
+    ", team, team, team, team).count
+  end
+
+  def self.win1(games, team)
+    games.where("(#{TL} = ? and #{GL} = 1 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} = 1)", team, team).count
+  end
+
+  def self.draw(games, team)
+    games.where("(#{TL} = ? and #{GL} = #{GR}) OR (#{TR} = ? and #{GL} = #{GR})", team, team).count
+  end
+
+  def self.lose(games, team)
+    games.where("(#{TL} = ? and #{GL} < #{GR}) OR (#{TR} = ? and #{GL} > #{GR})", team, team).count
+  end
+
   private
 
   def calc_stats(day_id, team)
     games = Game.where(day_id: day_id)
     day_games = games.where("#{TL} = ? OR #{TR} = ?", team, team).count
-    win3 = games.where("(#{TL} = ? and #{GL} >= 2 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} <= 2)", team, team).count
-    win2 = games.where("
-      ((#{TL} = ? and #{GL} >= 2 and #{GR} = 1) OR (#{TR} = ? and #{GL} = 1 and #{GR} >= 2)) OR
-      ((#{TL} = ? and #{GL} >= 2 and #{GR} < #{GL} and #{GR} != 0) OR (#{TR} = ? and #{GL} < #{GR} and #{GR} >= 2 and #{GL} != 0))
-    ", team, team, team, team).count
-    win1 = games.where("(#{TL} = ? and #{GL} = 1 and #{GR} = 0) OR (#{TR} = ? and #{GL} = 0 and #{GR} = 1)", team, team).count
-    draw = games.where("(#{TL} = ? and #{GL} = #{GR}) OR (#{TR} = ? and #{GL} = #{GR})", team, team).count
-    # lose = games.where("(#{TL} = ? and #{GL} < #{GR}) OR (#{TR} = ? and #{GL} > #{GR})", team, team).count
-    [day_games, win3, win2, win1, draw]
+    [day_games, self.class.win3(games, team), self.class.win2(games, team), self.class.win1(games, team), self.class.draw(games, team)]
   end
 end

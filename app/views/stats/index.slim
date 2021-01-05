@@ -51,9 +51,9 @@ section#section1.about-section.text-center
                       | &nbsp;
                       = count
                 td
-                  = (dp.map(&:day_id) - @days_by_wday[3].uniq.map(&:id)).size
+                  = (dp.map(&:day_id) - @days_by_wday[3].uniq.map(&:id)).size if @days_by_wday[3]
                   = ' / '
-                  = (dp.map(&:day_id) - @days_by_wday[1].uniq.map(&:id)).size
+                  = (dp.map(&:day_id) - @days_by_wday[1].uniq.map(&:id)).size if @days_by_wday[1]
                 td.text-right = player.games
                 / td.text-right = player.win
                 / td.text-right = player.draw
