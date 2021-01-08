@@ -75,13 +75,13 @@ class DaysController < ApplicationController
       else
         left_games  =       games.select { |x| x['team_left_id']  == team.id }
         right_games =       games.select { |x| x['team_right_id'] == team.id }
-        left_win    =  left_games.select { |x| x[Day::GL] >  x[Day::GR] }
-        right_win   = right_games.select { |x| x[Day::GL] <  x[Day::GR] }
-        draw        =       games.select { |x| x[Day::GL] == x[Day::GR] }
-        left_lose   =  left_games.select { |x| x[Day::GL] <  x[Day::GR] }
-        right_lose  = right_games.select { |x| x[Day::GL] >  x[Day::GR] }
-        goals1      =     left_games.map { |x| x[Day::GL] }.sum + right_games.map { |x| x[Day::GR] }.sum
-        goals2      =     left_games.map { |x| x[Day::GR] }.sum + right_games.map { |x| x[Day::GL] }.sum
+        left_win    =  left_games.select { |x| x[StatService::GL] >  x[StatService::GR] }
+        right_win   = right_games.select { |x| x[StatService::GL] <  x[StatService::GR] }
+        draw        =       games.select { |x| x[StatService::GL] == x[StatService::GR] }
+        left_lose   =  left_games.select { |x| x[StatService::GL] <  x[StatService::GR] }
+        right_lose  = right_games.select { |x| x[StatService::GL] >  x[StatService::GR] }
+        goals1      =     left_games.map { |x| x[StatService::GL] }.sum + right_games.map { |x| x[StatService::GR] }.sum
+        goals2      =     left_games.map { |x| x[StatService::GR] }.sum + right_games.map { |x| x[StatService::GL] }.sum
         win_count   = left_win.count + right_win.count
         {
             games_count: games.count,
