@@ -67,20 +67,19 @@ class Player < ApplicationRecord
   def self.update_stats!(season_id)
     all.each do |player|
       day_team = player.day_players_by_season(season_id).map { |dp| [dp.day_id, dp.team_id] }
-      all_games = Game.where(day_id: day_team.map(&:first))
       win1 = 0; win2 = 0; win3 = 0; draw = 0; lose = 0; day_games = 0
-      day_team.each do |day, team|
-        games = all_games.where(day_id: day)
-        day_games += games.where("#{Day::TL} = ? OR #{Day::TR} = ?", team, team).size
-        win3 += Day.win3(games, team)
-        win2 += Day.win2(games, team)
-        win1 += Day.win1(games, team)
-        draw += Day.draw(games, team)
-        lose += Day.lose(games, team)
+      day_team.each do |day_id, team_id|
+        stat = StatService.new(day_id, team_id)
+        day_games += stat.day_games
+        win3 += stat.win3
+        win2 += stat.win2
+        win1 += stat.win1
+        draw += stat.draw
+        lose += stat.lose
       end
 
       player.update(kp: ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i) if day_games > 0
-      player.stats.last.update(
+      player.stats.where(season_id: season_id).update(
         days: day_team.count,
         games: day_games,
         win: win3 + win2 + win1,

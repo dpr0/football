@@ -200,6 +200,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.integer "win"
     t.integer "draw"
     t.integer "lose"
+    t.float "elo"
+    t.integer "kp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
