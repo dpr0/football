@@ -23,7 +23,8 @@ class Player < ApplicationRecord
     authorization = Authorization.where(provider: auth[:provider], uid: auth[:uid]).first
     return authorization.player if authorization
 
-    player = where(email: auth[:email], provider: auth[:provider]).first
+    player = where(telegram_uid: auth[:uid], provider: auth[:provider]).first
+    player ||= where(email: auth[:email], provider: auth[:provider]).first
     player ||= create!(auth)
     player.create_authorization(auth)
     player
