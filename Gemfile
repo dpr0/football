@@ -21,10 +21,7 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-yandex'
 gem 'omniauth-telegram'
-# gem 'doorkeeper'
 gem 'sassc-rails'
-# gem 'kuby-core'
-# gem 'kuby-digitalocean'
 
 group :development do
   gem 'byebug'

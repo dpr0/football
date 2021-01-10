@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   # telegram_webhook TelegramWebhooksController
-  use_doorkeeper
   devise_for :players, controllers: { omniauth_callbacks: 'callbacks' }
 
   root 'days#next'
