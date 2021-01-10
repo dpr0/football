@@ -4,7 +4,6 @@ section#videos.about-section.text-center
       .col-1
         a.carousel-control-prev data-slide="prev" href="#carousel-videos" role="button"
           span.carousel-control-prev-icon aria-hidden="true"
-          / span.sr-only Previous
       .col-10
         #carousel-videos.carousel.slide
           - videos = @day.videos.split(",")
@@ -16,8 +15,6 @@ section#videos.about-section.text-center
               .carousel-item class="#{'active' if index.zero?}"
                 .embed-responsive.embed-responsive-16by9
                   iframe.embed-responsive-item src="https://www.youtube.com/embed/#{link}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"
-
       .col-1
         a.carousel-control-next data-slide="next" href="#carousel-videos" role="button"
           span.carousel-control-next-icon aria-hidden="true"
-          / span.sr-only Next
