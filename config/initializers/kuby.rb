@@ -1,2 +1,2 @@
-require 'kuby'
-Kuby.load!
+# require 'kuby'
+# Kuby.load!
