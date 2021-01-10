@@ -1,0 +1,23 @@
+section#videos.about-section.text-center
+  .container
+    .row
+      .col-1
+        a.carousel-control-prev data-slide="prev" href="#carousel-videos" role="button"
+          span.carousel-control-prev-icon aria-hidden="true"
+          / span.sr-only Previous
+      .col-10
+        #carousel-videos.carousel.slide
+          - videos = @day.videos.split(",")
+          ol.carousel-indicators
+            - videos.each_with_index do |link, index|
+              li class="#{'active' if index.zero?}" data-slide-to="#{index}" data-target="#carousel-videos"
+          .carousel-inner
+            - videos.each_with_index do |link, index|
+              .carousel-item class="#{'active' if index.zero?}"
+                .embed-responsive.embed-responsive-16by9
+                  iframe.embed-responsive-item src="https://www.youtube.com/embed/#{link}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"
+
+      .col-1
+        a.carousel-control-next data-slide="next" href="#carousel-videos" role="button"
+          span.carousel-control-next-icon aria-hidden="true"
+          / span.sr-only Next

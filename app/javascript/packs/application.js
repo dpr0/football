@@ -3,19 +3,21 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("@rails/ujs").start();
-require("@rails/activestorage").start();
-require("channels");
+require("@rails/ujs").start()
+require("@rails/activestorage").start()
+require("channels")
 require("firebase")
 require("firebaseui-ru")
-require("chartkick");
-require("chart.js");
+require("chartkick")
+require("chart.js")
+require('admin-lte')
 import 'bootstrap'
 import './stylesheets/application'
-import firebase from 'firebase/app';
+import firebase from 'firebase/app'
+import "@fortawesome/fontawesome-free/js/all";
 
 document.addEventListener("turbolinks:load", () => {
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip()
     $('[data-toggle="popover"]').popover()
 });
 

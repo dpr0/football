@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   use_doorkeeper
   devise_for :players, controllers: { omniauth_callbacks: 'callbacks' }
 
-  root 'days#show'
+  root 'days#next'
 
   resources :players, only: [:index, :show]
   resources :recognitions, only: [:index] do
@@ -21,6 +21,15 @@ Rails.application.routes.draw do
     post :filter, on: :collection
   end
   resources :days do
+    member do
+      get :commands
+      get :videos
+      get :games
+    end
+    collection do
+      get :next
+      get :about
+    end
     resources :day_players
   end
 end

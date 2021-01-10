@@ -1,0 +1,61 @@
+aside.main-sidebar.sidebar-dark-primary.elevation-4
+  = link_to root_path, class: 'brand-link' do
+    = image_tag "slot1.png", style: "opacity: .8", class: 'brand-image img-circle elevation-3'
+    span.brand-text.font-weight-light Megapolis
+  .sidebar
+    - if current_player
+      .user-panel.mt-3.pb-3.mb-3.d-flex
+        .image
+          = image_tag "players/#{current_player.id}.jpg", style: "opacity: .8", class: 'img-circle elevation-2'
+        .info
+          a.d-block href="#" = current_player.short_name
+    nav.mt-2
+      ul.nav.nav-pills.nav-sidebar.flex-column data-accordion="false" data-widget="treeview" role="menu"
+        - next_and_last = Day.last.next_and_last
+        li.nav-item
+          = link_to next_days_path, class: 'nav-link' do
+            i.nav-icon.fas.fa-th
+            p
+              = next_and_last.first
+              span.right.badge.badge-danger След.
+        li.nav-item.has-treeview
+          a.nav-link.active href="#"
+            i.nav-icon.far.fa-futbol
+            p
+              = next_and_last.last
+              i.right.fas.fa-angle-down
+          ul.nav.nav-treeview
+            li.nav-item
+              = link_to day_path(Day.last.id), class: 'nav-link' do
+                i.far.fa-circle.nav-icon
+                p Результаты
+            li.nav-item
+              = link_to commands_day_path(Day.last.id), class: 'nav-link' do
+                i.far.fa-circle.nav-icon
+                p Команды
+            li.nav-item
+              = link_to games_day_path(Day.last.id), class: 'nav-link' do
+                i.far.fa-circle.nav-icon
+                p Игры
+            li.nav-item
+              = link_to videos_day_path(Day.last.id), class: 'nav-link' do
+                i.far.fa-circle.nav-icon
+                p Видео
+
+        - if current_player
+          li.nav-item
+            a.nav-link
+              = current_player.email.present? ? current_player.email : current_player.phone
+          li.nav-item
+            = link_to 'Выйти', destroy_player_session_path, class: 'nav-link', method: :delete
+        - else
+          = link_to 'Войти', new_player_session_path, class: 'nav-link'
+
+        li.nav-item
+          = link_to 'Статистика игроков', sport_season_stats_path(sport_id: 1, season_id: Season.last.id), class: 'nav-link'
+        li.nav-item
+          = link_to 'Статистика игр', days_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'Инфо', about_days_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'Распознавание', recognitions_path, class: 'nav-link'

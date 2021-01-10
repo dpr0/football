@@ -1,0 +1,14 @@
+footer.main-footer.bg-black
+  .container
+    .row.text-white-50
+      .col-12.text-center
+        - Common.sites.each do |name, str|
+          = link_to "https://#{name}", class: 'mx-2' do
+            i class="#{str}"
+        .text-uppercase.m-0
+          | Copyright &copy;
+          = " 2019-#{Time.now.year}"
+        .small
+          a href='https://t.me/dvitvitskiy' Telegram
+          | &nbsp; / &nbsp;
+          a href="mailto:dvitvitskiy.pro@gmail.com" Email

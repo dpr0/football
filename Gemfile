@@ -22,8 +22,11 @@ gem 'omniauth-github'
 gem 'omniauth-yandex'
 gem 'omniauth-telegram'
 gem 'doorkeeper'
+gem 'sassc-rails'
 
 group :development do
+  gem 'kuby-core'
+  gem 'kuby-digitalocean'
   gem 'byebug'
   gem 'rubocop'
   gem 'capistrano',            require: false

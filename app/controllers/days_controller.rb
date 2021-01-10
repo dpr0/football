@@ -1,21 +1,31 @@
 # frozen_string_literal: true
 
 class DaysController < ApplicationController
-  before_action :find_day, only: [:show, :edit, :update]
-  
+  before_action :find_day, only: [:show, :edit, :update, :commands, :games, :videos]
+  before_action :find_games, only: [:show, :commands, :games]
+
   def index
     @days = Day.joins(:day_players).eager_load!(:day_players).order(id: :desc)
     @places_by_seasons = Day.select(:first_place, :second_place, :third_place, :season_id).group_by(&:season_id)
   end
 
   def show
-    @days = Day.all
-    @games = @day.games.order(id: :asc)
-    @players = Player.all.to_a
+    @breadcrumbs = { '' => root_path, '' => ''}
+    @main_table = main_table
+  end
+
+  def commands
+    @players = Player.all
     @goals = Goal.where(game_id: @games.ids)
     @player_goals = sorted_hash(@goals.group_by(&:player_id))
     @player_assists = sorted_hash(@goals.group_by(&:assist_player_id))
-    @main_table = main_table
+  end
+
+  def videos
+  end
+
+  def games
+    @players = Player.all
   end
 
   def new
@@ -43,6 +53,13 @@ class DaysController < ApplicationController
   def update
   end
 
+  def next
+  end
+
+  def about
+    @gems = Gem.loaded_specs
+  end
+
   private
 
   def sorted_hash(group)
@@ -56,6 +73,10 @@ class DaysController < ApplicationController
     @day = params[:id] ? Day.find(params[:id]) : Day.last
   end
   
+  def find_games
+    @games = @day.games.order(id: :asc)
+  end
+
   def main_table
     @teams.map do |team|
       games = @games.select { |x| [x['team_left_id'], x['team_right_id']].include? team.id }
