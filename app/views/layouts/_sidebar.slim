@@ -6,7 +6,8 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
     - if current_player
       .user-panel.mt-3.pb-3.mb-3.d-flex
         .image
-          = image_tag "players/#{current_player.id}.jpg", style: "opacity: .8", class: 'img-circle elevation-2'
+          - num = Player.photo_nums.include?(current_player.code) ? current_player.code : 'anonim'
+          = image_tag "players/#{num}.jpg", style: "opacity: .8", class: 'img-circle elevation-2'
         .info
           a.d-block href="#" = current_player.short_name
     nav.mt-2
