@@ -9,12 +9,4 @@ module ApplicationHelper
         alert:   'alert alert-error'
     }[level]
   end
-
-  def provider_color(provider)
-    {
-        yandex: :danger,
-        github: :info,
-        telegram: :primary
-    }[provider]
-  end
 end

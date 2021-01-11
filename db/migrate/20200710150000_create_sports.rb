@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateSports < ActiveRecord::Migration[5.2]
+class CreateSports < ActiveRecord::Migration[6.0]
   def change
     create_table :sports do |t|
       t.string :code

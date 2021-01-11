@@ -2,7 +2,7 @@
 
 class Player < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable, :recoverable, :rememberable,
-         :validatable, :omniauthable, omniauth_providers: [:github, :yandex, :telegram, :firebase]
+         :validatable, :omniauthable, omniauth_providers: [:telegram, :firebase]
 
   has_many   :authorizations, dependent: :destroy
   has_many   :goals
@@ -25,6 +25,7 @@ class Player < ApplicationRecord
 
     player   = where(uid:   auth[:uid],   provider: auth[:provider]).first
     player ||= where(email: auth[:email], provider: auth[:provider]).first
+    player ||= where(phone: auth[:phone], provider: auth[:provider]).first
     player ||= create!(auth)
     player.create_authorization(auth)
     player

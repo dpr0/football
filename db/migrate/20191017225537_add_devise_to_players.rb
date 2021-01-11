@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddDeviseToPlayers < ActiveRecord::Migration[5.2]
+class AddDeviseToPlayers < ActiveRecord::Migration[6.0]
   def self.up
     change_table :players do |t|
       ## Database authenticatable

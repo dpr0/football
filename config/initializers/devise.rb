@@ -259,8 +259,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :github, ENV['GITHUB_AUTH_APP_ID'], ENV['GITHUB_AUTH_SECRET'], scope: 'user,public_repo'
-  config.omniauth :yandex, ENV['YA_AUTH_APP_ID'], ENV['YA_AUTH_SECRET']
+  # config.omniauth :github, ENV['GITHUB_AUTH_APP_ID'], ENV['GITHUB_AUTH_SECRET'], scope: 'user,public_repo'
+  # config.omniauth :yandex, ENV['YA_AUTH_APP_ID'], ENV['YA_AUTH_SECRET']
   config.omniauth :telegram, ENV['BOT_NAME'], ENV['BOT_TOKEN']
 
   # ==> Warden configuration

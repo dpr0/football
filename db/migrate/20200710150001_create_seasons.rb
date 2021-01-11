@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateSeasons < ActiveRecord::Migration[5.2]
+class CreateSeasons < ActiveRecord::Migration[6.0]
   def change
     create_table :seasons do |t|
       t.string :code
