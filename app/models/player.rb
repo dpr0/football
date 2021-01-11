@@ -9,7 +9,6 @@ class Player < ApplicationRecord
   has_many   :day_players
   has_many   :stats
   has_one    :role
-  belongs_to :team
 
   def email_required?
     false

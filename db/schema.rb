@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.integer "left_team_elo_change", default: 0
     t.integer "right_team_elo_change", default: 0
     t.string "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["day_id"], name: "index_games_on_day_id"
     t.index ["team_left_id"], name: "index_games_on_team_left_id"
     t.index ["team_right_id"], name: "index_games_on_team_right_id"
@@ -80,22 +80,19 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.integer "uid"
     t.string "username"
     t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "lastname"
     t.string "middlename"
-    t.string "address"
-    t.string "comment"
     t.string "phone"
     t.string "uid"
     t.string "provider", default: "telegram"
     t.string "lfl"
     t.string "email", default: ""
-    t.integer "team_id", default: 1
     t.integer "kp", default: 0
     t.float "elo", default: 1500.0
     t.integer "code"
@@ -103,8 +100,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.integer "weight"
     t.date "birthday"
     t.bigint "role_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: ""
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -127,16 +124,16 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.string "code"
     t.string "name"
     t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sports", force: :cascade do |t|
     t.string "code"
     t.string "name"
     t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "stats", force: :cascade do |t|
@@ -150,16 +147,16 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.integer "lose"
     t.float "elo"
     t.integer "kp"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "code"
     t.string "name"
     t.integer "num"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "authorizations", "players"
