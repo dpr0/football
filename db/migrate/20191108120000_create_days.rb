@@ -3,7 +3,13 @@
 class CreateDays < ActiveRecord::Migration[5.2]
   def change
     create_table :days do |t|
-      t.date :date
+      t.date     :date
+      t.integer  :first_place
+      t.integer  :second_place
+      t.integer  :third_place
+      t.integer  :sport_id
+      t.integer  :season_id
+      t.string   :videos
     end
   end
 end

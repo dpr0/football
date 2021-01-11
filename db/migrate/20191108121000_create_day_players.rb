@@ -6,6 +6,9 @@ class CreateDayPlayers < ActiveRecord::Migration[5.2]
       t.references :day
       t.references :player
       t.references :team
+      t.float :elo, default: 0
+      t.integer :kp, default: 0
+      t.integer :season_id
     end
   end
 end

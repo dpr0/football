@@ -62,28 +62,6 @@ section#pole.about-section.text-center
                   .input-group-prepend
                     span.input-group-text ЛФЛ
                   = text_field_tag '', 'http://lfl.ru/person' + @player.lfl, class: 'form-control text-right', disabled: true
-            / - if @lichess.present?
-            /   br
-            /   .row
-            /     .input-group.mb-6
-            /       .input-group-prepend
-            /         span.input-group-text = "Шахматный рейтинг lichess.org"
-            /       = text_field_tag '', '', class: 'form-control text-right', disabled: true
-            /   .row
-            /     .input-group.mb-6
-            /       .input-group-prepend
-            /         span.input-group-text Блитц
-            /       = text_field_tag '', @lichess.dig('perfs', 'blitz', 'rating'), class: 'form-control text-right', disabled: true
-            /   .row
-            /     .input-group.mb-6
-            /       .input-group-prepend
-            /         span.input-group-text Рапид
-            /       = text_field_tag '', @lichess.dig('perfs', 'rapid', 'rating'), class: 'form-control text-right', disabled: true
-            /   .row
-            /     .input-group.mb-6
-            /       .input-group-prepend
-            /         span.input-group-text Классика
-            /       = text_field_tag '', @lichess.dig('perfs', 'classical', 'rating'), class: 'form-control text-right', disabled: true
 
           - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.elo] }.push [Day.last.id + 1, @player.elo.to_i]
           = area_chart player_day_rates, width: "93%", min: 800, max: 2500, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}

@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.integer "third_place"
     t.integer "sport_id"
     t.integer "season_id"
-    t.text "videos"
+    t.string "videos"
   end
 
   create_table "games", force: :cascade do |t|
@@ -53,13 +53,13 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.bigint "team_right_id"
     t.integer "goals_left", default: 0
     t.integer "goals_right", default: 0
-    t.string "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "left_team_elo", default: 0
     t.integer "right_team_elo", default: 0
     t.integer "left_team_elo_change", default: 0
     t.integer "right_team_elo_change", default: 0
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["day_id"], name: "index_games_on_day_id"
     t.index ["team_left_id"], name: "index_games_on_team_left_id"
     t.index ["team_right_id"], name: "index_games_on_team_right_id"
@@ -84,48 +84,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "oauth_access_grants", force: :cascade do |t|
-    t.bigint "resource_owner_id", null: false
-    t.bigint "application_id", null: false
-    t.string "token", null: false
-    t.integer "expires_in", null: false
-    t.text "redirect_uri", null: false
-    t.datetime "created_at", null: false
-    t.datetime "revoked_at"
-    t.string "scopes", default: "", null: false
-    t.index ["application_id"], name: "index_oauth_access_grants_on_application_id"
-    t.index ["resource_owner_id"], name: "index_oauth_access_grants_on_resource_owner_id"
-    t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
-  end
-
-  create_table "oauth_access_tokens", force: :cascade do |t|
-    t.bigint "resource_owner_id"
-    t.bigint "application_id", null: false
-    t.string "token", null: false
-    t.string "refresh_token"
-    t.integer "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at", null: false
-    t.string "scopes"
-    t.string "previous_refresh_token", default: "", null: false
-    t.index ["application_id"], name: "index_oauth_access_tokens_on_application_id"
-    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
-    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
-    t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
-  end
-
-  create_table "oauth_applications", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "uid", null: false
-    t.string "secret", null: false
-    t.text "redirect_uri", null: false
-    t.string "scopes", default: "", null: false
-    t.boolean "confidential", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
-  end
-
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "lastname"
@@ -133,8 +91,14 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.string "address"
     t.string "comment"
     t.string "phone"
+    t.string "telegram_uid"
+    t.string "uid"
+    t.string "provider"
+    t.string "lfl"
     t.string "email", default: ""
     t.integer "team_id", default: 1
+    t.integer "kp", default: 0
+    t.float "elo", default: 1500.0
     t.integer "code"
     t.integer "height"
     t.integer "weight"
@@ -151,23 +115,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.float "elo", default: 1500.0
-    t.integer "kp", default: 0
-    t.string "lfl"
-    t.string "telegram_uid"
-    t.string "uid"
-    t.string "provider"
     t.string "token"
-    t.boolean "admin"
     t.index ["role_id"], name: "index_players_on_role_id"
-  end
-
-  create_table "recognitions", force: :cascade do |t|
-    t.string "file_name"
-    t.integer "day_id"
-    t.integer "team_id"
-    t.integer "player_id"
-    t.string "status"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -215,6 +164,4 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
   end
 
   add_foreign_key "authorizations", "players"
-  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
-  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
 end
