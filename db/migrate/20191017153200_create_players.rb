@@ -9,9 +9,8 @@ class CreatePlayers < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :comment
       t.string :phone
-      t.string :telegram_uid
       t.string :uid
-      t.string :provider
+      t.string :provider, default: 'telegram'
       t.string :lfl
       t.string :email, null: true, default: ''
       t.integer :team_id, default: 1

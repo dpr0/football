@@ -91,9 +91,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_073000) do
     t.string "address"
     t.string "comment"
     t.string "phone"
-    t.string "telegram_uid"
     t.string "uid"
-    t.string "provider"
+    t.string "provider", default: "telegram"
     t.string "lfl"
     t.string "email", default: ""
     t.integer "team_id", default: 1
