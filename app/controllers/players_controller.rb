@@ -7,6 +7,5 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
-    @recognitions = Recognition.where(player_id: @player.id)
   end
 end
