@@ -80,14 +80,15 @@ g1657 = Game.create(day_id: s3d03.id, team_left_id: 1, goals_left: 2, goals_righ
 g1657.goals.create(season_id: 3, team_id: 1, player_id: 38, assist_player_id: 18)
 g1657.goals.create(season_id: 3, team_id: 1, player_id: 26, assist_player_id: 18)
 g1657.goals.create(season_id: 3, team_id: 3, player_id: 21, assist_player_id: nil)
-g1658 = Game.create(day_id: s3d03.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 2)
+g1658 = Game.create(day_id: s3d03.id, team_left_id: 1, goals_left: 2, goals_right: 1, team_right_id: 2)
 g1658.goals.create(season_id: 3, team_id: 1, player_id: 38, assist_player_id: 2)
 g1658.goals.create(season_id: 3, team_id: 1, player_id: 2, assist_player_id: 38)
+g1658.goals.create(season_id: 3, team_id: 2, player_id: 7, assist_player_id: 13)
 g1659 = Game.create(day_id: s3d03.id, team_left_id: 1, goals_left: 2, goals_right: 1, team_right_id: 3)
 g1659.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: 38)
 g1659.goals.create(season_id: 3, team_id: 1, player_id: 38, assist_player_id: 26)
 g1659.goals.create(season_id: 3, team_id: 3, player_id: 45, assist_player_id: 17)
 
 s3d03.day_rates!
-Player.update_stats!(3)
+# Player.update_stats!(3)
 Day.last.update!(videos: 'Ek4eduh2xkM,r9ukK_ZKOu8,UfeWazIbAoI,dJgBqST5Yfc,MicYf8OFdUk,_GlFGhdwuIw,GXoPnhTms1c')
