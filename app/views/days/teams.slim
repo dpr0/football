@@ -1,0 +1,27 @@
+section#teams.about-section
+  - @day.day_players_by_season(@day.season_id).group_by(&:team_id).sort.each do |team_id, day_players|
+    .row.justify-content-center.no-gutters.mb-5.mb-0
+      .col-6.text-right
+        = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "200x275"
+        .event-details.text-dark
+          h2 = day_players.map(&:elo).sum.to_i / day_players.count
+      .col-6
+        .bg-black.text-center.h-100.project
+          .d-flex.h-100
+            .project-text.w-100.my-auto.text-left
+              p.mb-0.text-white-50
+                - day_players.each do |day_player|
+                  - player = @players.find { |p| p[:id] == day_player.player_id }
+                  div
+                    span.badge.badge-primary.badge-pill
+                      = day_player.elo.to_i
+                    | &nbsp;
+                    = link_to player.name, player_path(player)
+                    | &nbsp;
+                    span
+                      - if @player_goals[player.code]
+                        - @player_goals[player.code].times do
+                          | ⚽️
+                      - if @player_assists[player.code]
+                        - @player_assists[player.code].times do
+                          | 🦶

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :days do
     member do
-      get :commands
+      get :teams
       get :videos
       get :games
     end

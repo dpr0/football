@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class DaysController < ApplicationController
-  before_action :find_day, only: [:show, :edit, :update, :commands, :games, :videos]
-  before_action :find_games, only: [:show, :commands, :games]
+  before_action :load_players, only: [:teams, :edit, :new, :games, :next]
+  before_action :find_day, only: [:show, :edit, :update, :teams, :games, :videos]
+  before_action :find_games, only: [:show, :teams, :games]
 
   def index
     @days = Day.joins(:day_players).eager_load!(:day_players).order(id: :desc)
@@ -14,8 +15,7 @@ class DaysController < ApplicationController
     @main_table = main_table
   end
 
-  def commands
-    @players = Player.all
+  def teams
     @goals = Goal.where(game_id: @games.ids)
     @player_goals = sorted_hash(@goals.group_by(&:player_id))
     @player_assists = sorted_hash(@goals.group_by(&:assist_player_id))
@@ -25,11 +25,9 @@ class DaysController < ApplicationController
   end
 
   def games
-    @players = Player.all
   end
 
   def new
-    @players = Player.all
   end
 
   def create
@@ -47,13 +45,13 @@ class DaysController < ApplicationController
   end
 
   def edit
-    @players = Player.all
   end
 
   def update
   end
 
   def next
+    @messages = Message.where(chat_id: -1001166571558).order(created_at: :asc).last(10)
   end
 
   def about
@@ -69,10 +67,14 @@ class DaysController < ApplicationController
       .to_h
   end
 
+  def load_players
+    @players = Player.all.to_a
+  end
+  
   def find_day
     @day = params[:id] ? Day.find(params[:id]) : Day.last
   end
-  
+
   def find_games
     @games = @day.games.order(id: :asc)
   end
