@@ -10,21 +10,6 @@ header.masthead
             a href="http://megapolisfit.ru/" megapolisfit.ru
       .row
         .col-12.mx-auto
-          - @messages.each do |message|
-            - player = @players.find { |z| z.uid == message.uid.to_s }
-            - if player && message.text.present?
-              .media
-                - num = Player.photo_nums.include?(player.code) ? player.code : 'anonim'
-                = image_tag "players/#{num}.jpg", class: 'img-size-50 mr-3 img-circle'
-                .media-body
-                  h3.dropdown-item-title.float-left
-                    .text-muted
-                      = player.short_name
-                      span.text-sm.text-danger
-                        i.fas.fa-star
-                      span.text-sm.text-muted
-                        i.far.fa-clock.mr-1
-                        = message.created_at.strftime('%e.%m.%Y %H:%M')
-                    p
-                      .text-left.text-sm = message.text
-
+          #messages
+            - @messages.each do |message|
+              = render 'message', message: message, players: @players

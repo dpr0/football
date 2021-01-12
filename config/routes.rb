@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   telegram_webhook TelegramWebhooksController
   devise_for :players, controllers: { omniauth_callbacks: 'callbacks' }
+  mount ActionCable.server => '/cable'
 
   root 'days#next'
 

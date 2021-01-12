@@ -51,7 +51,7 @@ class DaysController < ApplicationController
   end
 
   def next
-    @messages = Message.where(chat_id: -1001166571558).order(created_at: :asc).last(10)
+    @messages = Message.where(chat_id: ENV["CHAT_NAME"]).order(created_at: :asc).last(10)
   end
 
   def about

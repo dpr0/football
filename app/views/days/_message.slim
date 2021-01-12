@@ -1,0 +1,16 @@
+- player = players.find { |z| z.uid == message.uid.to_s }
+- if player && message.text.present?
+  .media
+    - num = Player.photo_nums.include?(player.code) ? player.code : 'anonim'
+    = image_tag "players/#{num}.jpg", class: 'img-size-50 mr-3 img-circle'
+    .media-body
+      h3.dropdown-item-title
+        .text-muted.text-left
+          span.text-sm.text-primary
+            i.fas.fa-star
+          = player.short_name + ' '
+          span.text-sm.text-muted
+            i.far.fa-clock.mr-1
+            = message.date.strftime('%e.%m.%Y %H:%M')
+        p
+          .text-left.text-sm = message.text

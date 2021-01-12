@@ -20,6 +20,13 @@ class MessageService
   end
 
   def start
+    if @message.chat_id.to_s == ENV["CHAT_NAME"]
+      ActionCable.server.broadcast(
+         'chat_channel',
+         { html: ApplicationController.render(partial: 'days/message', locals: { message: @message, players:  Player.all.to_a }) }
+      )
+    end
+
     if @num
       player = Player.find_by(id: @num)
       if player

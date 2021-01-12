@@ -23,6 +23,7 @@ gem 'omniauth-github'
 gem 'omniauth-yandex'
 gem 'omniauth-telegram'
 gem 'sassc-rails'
+gem 'redis'
 
 group :development do
   gem 'byebug'
