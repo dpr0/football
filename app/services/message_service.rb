@@ -19,7 +19,7 @@ class MessageService
     @num = a.first.to_i if a && a.size == 1 && a.first.to_i != 0
   end
 
-  def event
+  def start
     if @num
       player = Player.find_by(id: @num)
       if player

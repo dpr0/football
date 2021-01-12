@@ -15,7 +15,7 @@ set :user,            'deploy'
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_to,       "/home/#{fetch(:user)}/#{fetch(:application)}"
-set :assets_roles,    []
+# set :assets_roles,    []
 set :ruby_string,     '/home/deploy/.rbenv/bin/rbenv exec bundle exec'
 set :ssh_options, {
     user: fetch(:user),
