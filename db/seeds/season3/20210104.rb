@@ -57,5 +57,4 @@ g1612.goals.create(season_id: 3, team_id: 3, player_id: 3, assist_player_id: 12)
 g1612.goals.create(season_id: 3, team_id: 3, player_id: 49, assist_player_id: 10)
 
 s3d01.day_rates!
-Player.update_stats!(3)
 Day.last.update!(videos: 'MmG8WGMaVR4,S7nfxh0CCF4,PJo1zpcGXbQ,Wzbw4vTC7Z0,7MwLPB-x-y4,mRLM_S-Nxc4,u-LM47b78N8')

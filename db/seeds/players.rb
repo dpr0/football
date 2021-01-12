@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 players = [
-{code:  1, provider: 'telegram', uid: '',           lastname: 'Солоян',      name: 'Гарик',       middlename: 'Эдуардович',    birthday: '11.07.1989', phone: '+79269494205', height:   0, weight:  0, role_id: 3, lfl: '85915'},
+{code:  1, provider: 'telegram', uid: '806637749',  lastname: 'Солоян',      name: 'Гарик',       middlename: 'Эдуардович',    birthday: '11.07.1989', phone: '+79269494205', height:   0, weight:  0, role_id: 3, lfl: '85915'},
 {code:  2, provider: 'telegram', uid: '38201951',   lastname: 'Новик',       name: 'Николай',     middlename: 'Александрович', birthday: '12.11.1972', phone: '+79255064870', height:   0, weight:  0, role_id: 2, lfl: '6431'},
 {code:  3, provider: 'telegram', uid: '337266688',  lastname: 'Глобчанский', name: 'Денис',       middlename: 'Сергеевич',     birthday: '23.10.1989', phone: '+79999814390', height: 178, weight: 74, role_id: 3, lfl: ''},
 {code:  4, provider: 'telegram', uid: '459838265',  lastname: 'Абулов',      name: 'Шахин',       middlename: 'Назимович',     birthday: '07.06.1993', phone: '+79774657581', height:   0, weight:  0, role_id: 2, lfl: ''},
@@ -48,8 +48,8 @@ players = [
 {code: 46, provider: 'telegram', uid: '222198981',  lastname: 'Дружинин',    name: 'Денис',       middlename: '',              birthday: '',           phone: '+79296338890', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 47, provider: 'telegram', uid: '',           lastname: '',            name: 'Анна',        middlename: '',              birthday: '',           phone: nil,            height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 48, provider: 'telegram', uid: '429775005',  lastname: 'Воржев',      name: 'Максим',      middlename: '',              birthday: '',           phone: '+79998116060', height:   0, weight:  0, role_id: 3, lfl: ''},
-{code: 49, provider: 'telegram', uid: '',           lastname: 'Захаров',     name: 'Егор',        middlename: '',              birthday: '',           phone: nil,            height:   0, weight:  0, role_id: 3, lfl: ''},
-{code: 50, provider: 'telegram', uid: '',           lastname: '',            name: 'Михаил',      middlename: '',              birthday: '',           phone: '+79160519685', height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 49, provider: 'telegram', uid: '857168798',  lastname: 'Захаров',     name: 'Егор',        middlename: '',              birthday: '',           phone: nil,            height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 50, provider: 'telegram', uid: '1377376857', lastname: '',            name: 'Михаил',      middlename: '',              birthday: '',           phone: '+79160519685', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 51, provider: 'telegram', uid: '',           lastname: '',            name: 'Георг',       middlename: '',              birthday: '',           phone: nil,            height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 52, provider: 'telegram', uid: '',           lastname: 'Черных',      name: 'Дмитрий',     middlename: '',              birthday: '',           phone: '+79152496965', height:   0, weight:  0, role_id: 3, lfl: '64022'},
 # {code: 53, provider: 'telegram', uid: '',           lastname: '',  name: '',   middlename: '',      birthday: '04.12.199',      phone: '+79645732923', height:   0, weight:  0, role_id: 3, lfl: ''},
