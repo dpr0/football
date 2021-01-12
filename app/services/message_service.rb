@@ -2,7 +2,7 @@ class MessageService
 
   attr_reader :message
 
-  PHOTO = ->(num) { Faraday::UploadIO.new("images/players/#{Player.photo_nums.include?(num) ? num : 'anonim'}.jpg", 'image/jpeg') }
+  PHOTO = ->(num) { Faraday::UploadIO.new("app/assets/images/players/#{Player.photo_nums.include?(num) ? num : 'anonim'}.jpg", 'image/jpeg') }
 
   def initialize(message)
     @message = Message.create(
@@ -23,11 +23,12 @@ class MessageService
     if @num
       player = Player.find_by(id: @num)
       if player
-        { chat_id: @message.chat_id, caption: player.print_stat, photo: PHOTO.call(@num) }
+        { type: :photo, data: { chat_id: @message.chat_id, caption: player.print_stat, photo: PHOTO.call(@num) } }
       else
-        { chat_id: @message.chat_id, text: 'Нет такого игрока' }
+        { type: :message, data: { chat_id: @message.chat_id, text: 'Нет такого игрока' } }
       end
     else
+      { type: nil, data: { } }
       # case @text
       # when 'start'
       #   buttons = [[BTN.('break'), BTN.('stop')]]
