@@ -1,9 +1,8 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
   include Telegram::Bot::UpdatesController::MessageContext
-  around_action :with_locale
 
   def start!(*)
-    respond_with :message, text: t('.start.content')
+    respond_with :message, { text: t('.start.content') }
   end
 
   def help!(*)
@@ -103,20 +102,6 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       respond_with :message, text: t('.last_chosen_inline_result.selected', result_id: result_id)
     else
       respond_with :message, text: t('.last_chosen_inline_result.prompt')
-    end
-  end
-
-  private
-
-  def with_locale(&block)
-    I18n.with_locale(locale_for_update, &block)
-  end
-
-  def locale_for_update
-    if from
-      :ru
-    elsif chat
-      :ru
     end
   end
 end
