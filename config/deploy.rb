@@ -15,6 +15,8 @@ set :user,            'deploy'
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_to,       "/home/#{fetch(:user)}/#{fetch(:application)}"
+set :assets_roles,    []
+set :ruby_string,     '/home/deploy/.rbenv/bin/rbenv exec bundle exec'
 set :ssh_options, {
     user: fetch(:user),
     keys: %w(~/.ssh/id_rsa),
@@ -73,7 +75,7 @@ namespace :deploy do
   desc 'Runs rake assets:precompile'
   task :precompile do
     on roles(:app) do
-      execute("cd #{application}/current && RAILS_ENV=production rvm #{ruby_string} do rake assets:precompile") if stage == :production
+      execute("cd #{fetch(:application)}/current && RAILS_ENV=production #{fetch(:ruby_string)} rake assets:precompile") if fetch(:stage) == :production
     end
   end
 
