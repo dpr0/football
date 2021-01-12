@@ -23,7 +23,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def message(message)
-    respond_with :message, text: t('.content', text: message['text'])
+    respond_with :message, MessageService.new(message)
   end
 
   def action_missing(action, *_args)
@@ -103,14 +103,6 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       respond_with :message, text: t('.prompt')
     end
   end
-
-  def respond_with(type, params); end
-  def reply_with(type, params); end
-  def answer_inline_query(results, params = {}); end
-  def answer_callback_query(text, params = {}); end
-  def edit_message(type, params = {}); end
-  def answer_pre_checkout_query(ok, params = {}); end
-  def answer_shipping_query(ok, params = {}); end
 
   private
 

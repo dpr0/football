@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 2021_01_12_100000) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "message_id"
-    t.integer "chat_id"
-    t.string "date"
-    t.string "reply_to_message"
+    t.bigint "chat_id"
+    t.datetime "date"
+    t.integer "reply_message_id"
   end
 
   create_table "players", force: :cascade do |t|

@@ -101,4 +101,17 @@ class Player < ApplicationRecord
     end
     @photo_nums
   end
+
+  def print_stat
+    assist_count = Goal.where(season_id: Season::LAST_ID, assist_player_id: id).count
+
+    stat = stats.where(season_id: Season::LAST_ID).first
+    rate = day_players.last
+    "#{short_name}: https://football.krsz.ru/players/#{id}
+        рост: #{height} / вес: #{weight}
+        дней: #{stat.days} / игр: #{stat.games}
+        победы: #{stat.win} / ничьи: #{stat.draw} / поражения: #{stat.lose}
+        ЭЛО: #{rate.elo.to_i if rate} / КП: #{rate.kp if rate}
+        голы: #{goals_by_season(Season::LAST_ID).count} / ассисты: #{assist_count}"
+  end
 end
