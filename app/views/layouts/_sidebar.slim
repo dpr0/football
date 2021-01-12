@@ -19,13 +19,13 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
             p
               = next_and_last.first
               span.right.badge.badge-danger След.
-        li.nav-item.has-treeview
+        li.nav-item.has-treeview.menu-open
           a.nav-link.active href="#"
             i.nav-icon.far.fa-futbol
             p
               = next_and_last.last
               i.right.fas.fa-angle-down
-          ul.nav.nav-treeview.menu-open
+          ul.nav.nav-treeview
             li.nav-item
               = link_to day_path(Day.last.id), class: 'nav-link' do
                 i.far.fa-circle.nav-icon
