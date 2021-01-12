@@ -3,21 +3,21 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   around_action :with_locale
 
   def start!(*)
-    respond_with :message, text: t('.content')
+    respond_with :message, text: t('.start.content')
   end
 
   def help!(*)
-    respond_with :message, text: t('.content')
+    respond_with :message, text: t('.help.content')
   end
 
   def inline_keyboard!(*)
-    respond_with :message, text: t('.prompt'), reply_markup: {
+    respond_with :message, text: t('.inline_keyboard.prompt'), reply_markup: {
       inline_keyboard: [
         [
-          {text: t('.alert'), callback_data: 'alert'},
-          {text: t('.no_alert'), callback_data: 'no_alert'},
+          {text: t('.inline_keyboard.alert'), callback_data: 'alert'},
+          {text: t('.inline_keyboard.no_alert'), callback_data: 'no_alert'},
         ],
-        [{text: t('.repo'), url: 'https://github.com/telegram-bot-rb/telegram-bot'}],
+        [{text: t('.inline_keyboard.repo'), url: 'https://github.com/telegram-bot-rb/telegram-bot'}],
       ],
     }
   end
@@ -31,34 +31,33 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def action_missing(action, *_args)
     if action_type == :command
-      respond_with :message,
-                   text: t('telegram_webhooks.action_missing.command', command: action_options[:command])
+      respond_with :message, text: t('.action_missing.command', command: action_options[:command])
     end
   end
 
   def memo!(*args)
     if args.any?
       session[:memo] = args.join(' ')
-      respond_with :message, text: t('.notice')
+      respond_with :message, text: t('.memo.notice')
     else
-      respond_with :message, text: t('.prompt')
+      respond_with :message, text: t('.memo.prompt')
       save_context :memo!
     end
   end
 
   def remind_me!(*)
     to_remind = session.delete(:memo)
-    reply = to_remind || t('.nothing')
+    reply = to_remind || t('.remind_me.nothing')
     respond_with :message, text: reply
   end
 
   def keyboard!(value = nil, *)
     if value
-      respond_with :message, text: t('.selected', value: value)
+      respond_with :message, text: t('.keyboard.selected', value: value)
     else
       save_context :keyboard!
-      respond_with :message, text: t('.prompt'), reply_markup: {
-        keyboard: [t('.buttons')],
+      respond_with :message, text: t('.keyboard.prompt'), reply_markup: {
+        keyboard: [t('.keyboard.buttons')],
         resize_keyboard: true,
         one_time_keyboard: true,
         selective: true,
@@ -68,16 +67,16 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def callback_query(data)
     if data == 'alert'
-      answer_callback_query t('.alert'), show_alert: true
+      answer_callback_query t('.callback_query.alert'), show_alert: true
     else
-      answer_callback_query t('.no_alert')
+      answer_callback_query t('.callback_query.no_alert')
     end
   end
 
   def inline_query(query, _offset)
     query = query.first(10) # it's just an example, don't use large queries.
-    t_description = t('.description')
-    t_content = t('.content')
+    t_description = t('.inline_query.description')
+    t_content = t('.inline_query.content')
     results = Array.new(5) do |i|
       {
         type: :article,
@@ -101,9 +100,9 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   def last_chosen_inline_result!(*)
     result_id = session[:last_chosen_inline_result]
     if result_id
-      respond_with :message, text: t('.selected', result_id: result_id)
+      respond_with :message, text: t('.last_chosen_inline_result.selected', result_id: result_id)
     else
-      respond_with :message, text: t('.prompt')
+      respond_with :message, text: t('.last_chosen_inline_result.prompt')
     end
   end
 
@@ -115,9 +114,9 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def locale_for_update
     if from
-      # locale for user
+      :ru
     elsif chat
-      # locale for chat
+      :ru
     end
   end
 end
