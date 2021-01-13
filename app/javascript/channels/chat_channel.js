@@ -10,7 +10,7 @@ consumer.subscriptions.create("ChatChannel", {
   },
 
   received(data) {
-    console.log(`received ${data.message.text}`);
+    console.log(`received ${data.message}`);
     $('#messages').append(data.html)
   },
 

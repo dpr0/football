@@ -17,13 +17,14 @@ class MessageService
     text = @message.text.tr('/', '') if @message.text
     a = text.split if text
     @num = a.first.to_i if a && a.size == 1 && a.first.to_i != 0
+    @player = Player.all.to_a.find { |z| z.uid == @message.uid.to_s }
   end
 
   def start
     if @message.chat_id.to_s == ENV["CHAT_NAME"]
       ActionCable.server.broadcast(
          'chat_channel',
-         { html: ApplicationController.render(partial: 'days/message', locals: { message: @message, players:  Player.all.to_a }) }
+         { html: ApplicationController.render(partial: 'days/message', locals: { message: @message, player: @player, prev_player: nil }) }
       )
     end
 
