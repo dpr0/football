@@ -8,4 +8,5 @@ class Stat < ApplicationRecord
   belongs_to :player
 
   K_ELO = 0.2
+  K_ATTENDANCE = 10 # процент посещаемости
 end

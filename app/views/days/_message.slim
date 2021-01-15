@@ -1,8 +1,7 @@
-- if player && message.text.present?
+- if player
   .media
-    - num = Player.photo_nums.include?(player.code) ? player.code : 'anonim'
     - if prev_player != player
-      = image_tag "players/#{num}.jpg", class: 'img-size-50 mr-3 img-circle'
+      = image_tag player.jpg, class: 'img-size-50 mr-3 img-circle'
       - @prev_player = player
     .media-body
       h3.dropdown-item-title
@@ -12,6 +11,7 @@
           = player.short_name + ' '
           span.text-sm.text-muted
             i.far.fa-clock.mr-1
-            = message.date.strftime('%e.%m.%Y %H:%M')
+            - if self.respond_to?(:local_time)
+              = local_time(message.date, '%e.%m.%Y %H:%M')
         p
           .text-left.text-sm = message.text

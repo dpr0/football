@@ -24,6 +24,7 @@ gem 'omniauth-yandex'
 gem 'omniauth-telegram'
 gem 'sassc-rails'
 gem 'redis'
+gem 'local_time'
 
 group :development do
   gem 'byebug'

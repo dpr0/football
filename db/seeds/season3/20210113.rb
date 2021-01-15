@@ -23,9 +23,9 @@ s3d04.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега
 s3d04.day_players.create(season_id: 3, team_id: 3, player_id: 48) # макс    |     |     |     |     |     |     |
 s3d04.day_players.create(season_id: 3, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
 
-s3d04.day_players.create(season_id: 3, team_id: 3, player_id:  9) # вова    |     |     |     |     |     |     |
-s3d04.day_players.create(season_id: 3, team_id: 3, player_id: 45) # санин   |     |     |     |     |     |     |
-s3d04.day_players.create(season_id: 3, team_id: 3, player_id: 49) # егор    |     |     |     |     |     |     |
+s3d04.day_players.create(season_id: 3, team_id: 4, player_id:  9) # вова    |     |     |     |     |     |     |
+s3d04.day_players.create(season_id: 3, team_id: 4, player_id: 45) # санин   |     |     |     |     |     |     |
+s3d04.day_players.create(season_id: 3, team_id: 4, player_id: 49) # егор    |     |     |     |     |     |     |
 
 g1660 = Game.create(day_id: s3d04.id, team_left_id: 1, goals_left: 2, goals_right: 1, team_right_id: 2)
 g1660.goals.create(season_id: 3, team_id: 1, player_id: 52, assist_player_id: nil)
@@ -56,7 +56,7 @@ g1669.goals.create(season_id: 3, team_id: 1, player_id: 38, assist_player_id: 18
 g1670 = Game.create(day_id: s3d04.id, team_left_id: 1, goals_left: 0, goals_right: 1, team_right_id: 4)
 g1670.goals.create(season_id: 3, team_id: 4, player_id: nil, assist_player_id: nil)
 g1671 = Game.create(day_id: s3d04.id, team_left_id: 2, goals_left: 0, goals_right: 1, team_right_id: 4)
-g1671.goals.create(season_id: 3, team_id: 2, player_id: nil, assist_player_id: nil)
+g1671.goals.create(season_id: 3, team_id: 4, player_id: nil, assist_player_id: nil)
 
 g1672 = Game.create(day_id: s3d04.id, team_left_id: 3, goals_left: 1, goals_right: 0, team_right_id: 4)
 g1672.goals.create(season_id: 3, team_id: 3, player_id: 21, assist_player_id: 42)

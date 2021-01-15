@@ -10,8 +10,7 @@
             div = player.text_phone
             div = player.birthday&.strftime("%d.%m.%Y")
         .card-body
-          - num = Player.photo_nums.include?(player.code) ? player.code : 'anonim'
-          = image_tag "players/#{num}.jpg", class: 'profile', height: '50%'
+          = image_tag player.jpg, class: 'profile', height: '50%'
           h5.card-title.text-center = player.code
           .card-text.text-center = player.lastname.present? ? player.lastname : '-'
           .card-text.text-center = player.name.present? ? player.name : '-'

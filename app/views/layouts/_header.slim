@@ -30,17 +30,17 @@ nav.main-header.navbar.navbar-expand.navbar-white.navbar-light
         a.dropdown-item href="#"
         /! Message Start
         .media
-          = image_tag "players/1.jpg", class: 'img-size-50 mr-3 img-circle'
-          .media-body
-            h3.dropdown-item-title
-              - player = Player.find(1)
-              = player.short_name
-              span.float-right.text-sm.text-danger
-                i.fas.fa-star
-            p.text-sm Call me whenever you can...
-            p.text-sm.text-muted
-              i.far.fa-clock.mr-1
-              | 4 Hours Ago
+          - if current_player
+            = image_tag current_player.jpg, class: 'img-size-50 mr-3 img-circle'
+            .media-body
+              h3.dropdown-item-title
+                = current_player.short_name
+                span.float-right.text-sm.text-danger
+                  i.fas.fa-star
+              p.text-sm Call me whenever you can...
+              p.text-sm.text-muted
+                i.far.fa-clock.mr-1
+                | 4 Hours Ago
         /! Message End
         .dropdown-divider
 

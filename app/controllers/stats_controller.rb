@@ -29,9 +29,10 @@ class StatsController < ApplicationController
                 .where("day_players.player_id = players.id and day_players.season_id = #{params[:season_id]}")
                 .group(:id, :days, :games, :win, :draw, :lose)
                 .order("#{ordering} DESC")
+    games_10_percent = @season.days.count * Stat::K_ATTENDANCE / 100.0
     @arr_by_days = [
-        players.select { |z| z.days >= 4 },
-        'Меньше 4-х дней', players.select { |z| z.days < 4 }
+        players.select { |z| z.days >= games_10_percent },
+        "Посещаемость менее #{Stat::K_ATTENDANCE}%", players.select { |z| z.days < games_10_percent }
     ]
   end
 
