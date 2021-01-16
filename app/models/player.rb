@@ -97,7 +97,6 @@ class Player < ApplicationRecord
   end
 
   def print_stat
-    '<a href="https://example.com">This is an example</a>' +
     "#{short_name}: https://football.krsz.ru/players/#{id}\n" +
     day_players.group_by { |d| d.season_id }.map do |season_id, season_days|
       goals = Goal.where(season_id: season_id)
