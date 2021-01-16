@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_player!
 
   def load_teams
-    @teams = Team.all.order(:num)
+    @teams = Team.all_cached.sort
   end
 end

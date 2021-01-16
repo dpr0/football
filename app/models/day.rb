@@ -13,7 +13,7 @@ class Day < ApplicationRecord
   end
 
   def day_rates!
-    places = Team.all.map do |team|
+    places = Team.all_cached.map do |team|
       day_games = games.all.select { |x| [x[StatService::TL], x[StatService::TR]].include? team.id }
       next if day_games.blank?
       left_win  = day_games.select { |x| x[StatService::GL] > x[StatService::GR] && x[StatService::TL] == team.id }

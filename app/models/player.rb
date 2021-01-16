@@ -97,16 +97,33 @@ class Player < ApplicationRecord
   end
 
   def print_stat
-    assist_count = Goal.where(season_id: Season::LAST_ID, assist_player_id: id).count
+    '<a href="https://example.com">This is an example</a>' +
+    "#{short_name}: https://football.krsz.ru/players/#{id}\n" +
+    day_players.group_by { |d| d.season_id }.map do |season_id, season_days|
+      goals = Goal.where(season_id: season_id)
+      goals_count  = goals.count { |g| g.player_id == id }
+      assist_count = goals.count { |g| g.assist_player_id == id }
+      stat = stats.where(season_id: season_id).first
+      elo = " Эло: #{season_days.last.elo.to_i}" if season_days.last
+      "\n#{Season.cached_by_id[season_id].name}: ⚽️#{goals_count}(🦶#{assist_count})#{elo}\n" +
+      season_days.group_by { |d| d.team_id }.sort.map do |team_id, team_days|
+        all_games = Day.where(id: team_days.map(&:day_id)).map(&:games).flatten
+        left_games   = all_games.select { |g| g.team_left_id == team_id }
+        right_games  = all_games.select { |g| g.team_right_id == team_id }
+        left_win    = left_games.select { |g| g.goals_left  > g.goals_right }
+        draw         = all_games.select { |g| g.goals_left == g.goals_right }
+        left_lose   = left_games.select { |g| g.goals_left  < g.goals_right }
+        right_win  = right_games.select { |g| g.goals_right > g.goals_left  }
+        right_lose = right_games.select { |g| g.goals_right < g.goals_left  }
 
-    stat = stats.where(season_id: Season::LAST_ID).first
-    rate = day_players.last
-    "#{short_name}: https://football.krsz.ru/players/#{id}
-        рост: #{height} / вес: #{weight}
-        дней: #{stat.days} / игр: #{stat.games}
-        победы: #{stat.win} / ничьи: #{stat.draw} / поражения: #{stat.lose}
-        ЭЛО: #{rate.elo.to_i if rate} / КП: #{rate.kp if rate}
-        голы: #{goals_by_season(Season::LAST_ID).count} / ассисты: #{assist_count}"
+        "за #{Team.color_text(team_id)} (дней: #{team_days.count}):\n" + Team.all_cached.select { |team| team.id != team_id }.map do |team|
+          w = (left_win  +  right_win).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+          d = draw.select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+          l = (left_lose + right_lose).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+          "#{Team.color(team.id)}(+#{w} =#{d} -#{l})\n"
+        end.join(" ")
+      end.join
+    end.join
   end
 
   private
