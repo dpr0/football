@@ -102,18 +102,17 @@ class Player < ApplicationRecord
       goals = Goal.where(season_id: season_id)
       goals_count  = goals.count { |g| g.player_id == id }
       assist_count = goals.count { |g| g.assist_player_id == id }
-      stat = stats.where(season_id: season_id).first
       elo = " Эло: #{season_days.last.elo.to_i}" if season_days.last
       "\n#{Season.cached_by_id[season_id].name}: ⚽️#{goals_count}(🦶#{assist_count})#{elo}\n" +
       season_days.group_by { |d| d.team_id }.sort.map do |team_id, team_days|
         all_games = Day.where(id: team_days.map(&:day_id)).map(&:games).flatten
-        left_games   = all_games.select { |g| g.team_left_id == team_id }
-        right_games  = all_games.select { |g| g.team_right_id == team_id }
-        left_win    = left_games.select { |g| g.goals_left  > g.goals_right }
-        draw         = all_games.select { |g| g.goals_left == g.goals_right }
-        left_lose   = left_games.select { |g| g.goals_left  < g.goals_right }
-        right_win  = right_games.select { |g| g.goals_right > g.goals_left  }
-        right_lose = right_games.select { |g| g.goals_right < g.goals_left  }
+        left_games   =  all_games.select { |g| g.team_left_id  == team_id }
+        right_games  =  all_games.select { |g| g.team_right_id == team_id }
+        draw         =  all_games.select { |g| g.goals_left == g.goals_right }
+        left_win     = left_games.select { |g| g.goals_left  > g.goals_right }
+        left_lose    = left_games.select { |g| g.goals_left  < g.goals_right }
+        right_win   = right_games.select { |g| g.goals_right > g.goals_left  }
+        right_lose  = right_games.select { |g| g.goals_right < g.goals_left  }
 
         "за #{Team.color_text(team_id)} (дней: #{team_days.count}):\n" + Team.all_cached.select { |team| team.id != team_id }.map do |team|
           w = (left_win  +  right_win).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
