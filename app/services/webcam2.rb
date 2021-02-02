@@ -1,4 +1,4 @@
-class Webcam
+class Webcam2
   def call(env)
     height = 37
     style = ".krsz_items {display: block; width: 200px; height: #{height}px; position: fixed; left: 10px; z-index: 99999;}
