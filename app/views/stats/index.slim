@@ -26,7 +26,7 @@ section#section1.about-section.text-center
           / th.text-right = link_to '=',    sport_season_stats_path(sort: :draw)
           / th.text-right = link_to '-',    sport_season_stats_path(sort: :lose)
           th.text-right = link_to 'ELO',  sport_season_stats_path(sort: :elo)
-          th.text-right = link_to 'K',    sport_season_stats_path(sort: :kp)
+          / th.text-right = link_to 'K',    sport_season_stats_path(sort: :kp)
           th.text-right
             = link_to '⚽️', sport_season_stats_path(sort: :goals_count)
           th.text-right
@@ -59,7 +59,7 @@ section#section1.about-section.text-center
                 / td.text-right = player.draw
                 / td.text-right = player.lose
                 td.text-right = player.elo.to_i
-                td.text-right = "#{player.kp / 3}%"
+                / td.text-right = "#{player.kp / 3}%"
                 td.text-right = player.goals_count
                 td.text-right = player.assists_count
                 td.text-right = ((player.goals_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
@@ -115,15 +115,15 @@ section#section1.about-section.text-center
                         li 30 для команд с рейтингом 1300-1399
                         li 40 для команд с рейтингом ниже 1300
 
-    | &nbsp;
-    .row
-      .col-md-12.mb-3.mb-md-0
-        .card.py-4.h-100
-          .card-body.text-center
-            i.fas.fa-map-marked-alt.text-primary.mb-2
-            | Коэффициент полезности - K
-            hr.my-4
-            .small.text-black-50
-              div.text-left
-                .text-center
-                  span количество не проигранных игр команд за которые играл игрок к отношению всех игр (x3 - >2:0, x2.5 - любую не сухую победу, x2 - 1:0, x1 за ничью).
+    / | &nbsp;
+    / .row
+    /   .col-md-12.mb-3.mb-md-0
+    /     .card.py-4.h-100
+    /       .card-body.text-center
+    /         i.fas.fa-map-marked-alt.text-primary.mb-2
+    /         | Коэффициент полезности - K
+    /         hr.my-4
+    /         .small.text-black-50
+    /           div.text-left
+    /             .text-center
+    /               span количество не проигранных игр команд за которые играл игрок к отношению всех игр (x3 - >2:0, x2.5 - любую не сухую победу, x2 - 1:0, x1 за ничью).

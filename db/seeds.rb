@@ -16,7 +16,10 @@ season2 = Season.create(code: 'season2',  name: '2020')
 season3 = Season.create(code: 'season3',  name: '2021')
 
 [season1, season2, season3].each do |season|
-  Player.all.each { |pl| pl.stats.create(sport_id: sport.id, season_id: season.id) }
+  Player.all.each do |pl|
+    pl.stats.create(sport_id: sport.id, season_id: season.id)
+    # pl.update(elo: 1500, kp: 0)
+  end
 
   Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].sort.each { |seed| load seed }
   Player.update_stats!(season.id)
