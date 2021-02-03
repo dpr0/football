@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(version: 2021_01_12_100000) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "token"
-    t.float "season_elo"
     t.index ["role_id"], name: "index_players_on_role_id"
   end
 
