@@ -11,7 +11,7 @@ class DaysController < ApplicationController
   end
 
   def show
-    @breadcrumbs = { '' => root_path, '' => ''}
+    @breadcrumbs = { '' => root_path }
     @main_table = main_table
   end
 
