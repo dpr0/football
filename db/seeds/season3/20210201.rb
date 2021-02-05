@@ -14,6 +14,7 @@ s3d09.day_players.create(season_id: 3, team_id: 2, player_id: 24) # эл      | 
 s3d09.day_players.create(season_id: 3, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
 s3d09.day_players.create(season_id: 3, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
 s3d09.day_players.create(season_id: 3, team_id: 2, player_id: 12) # саня    |     |     |     |     |     |     |
+s3d09.day_players.create(season_id: 3, team_id: 2, player_id:  9) # вова    |     |     |     |     |     |     |
 
 s3d09.day_players.create(season_id: 3, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
 s3d09.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
@@ -24,7 +25,6 @@ s3d09.day_players.create(season_id: 3, team_id: 3, player_id: 14) # саня    
 s3d09.day_players.create(season_id: 3, team_id: 3, player_id: 49) # егор    |     |     |     |     |     |     |
 
 s3d09.day_players.create(season_id: 3, team_id: 4, player_id: 32) # игорь   |     |     |     |     |     |     |
-s3d09.day_players.create(season_id: 3, team_id: 4, player_id:  9) # вова    |     |     |     |     |     |     |
 s3d09.day_players.create(season_id: 3, team_id: 4, player_id: 54) # тарасов |     |     |     |     |     |     |
 s3d09.day_players.create(season_id: 3, team_id: 4, player_id: 53) # аслан   |     |     |     |     |     |     |
 s3d09.day_players.create(season_id: 3, team_id: 4, player_id: 55) # рустам  |     |     |     |     |     |     |
