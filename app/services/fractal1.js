@@ -27,8 +27,8 @@ canvas.addEventListener('mousedown', e => {
 
 function drawFractal() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = '#000000';
-    ctx.fillStyle   = '#000000';
+    ctx.strokeStyle = '#ffffff';
+    ctx.fillStyle   = '#ffffff';
     Object.entries(coords).forEach((value, key) => {
         let x = (value[1].coord[0] + 4) * 12 + 20;
         let y = (value[1].coord[1] + 4) * 12 + 80;

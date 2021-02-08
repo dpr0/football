@@ -25,14 +25,14 @@ s3d10.day_players.create(season_id: 3, team_id: 4, player_id:  9) # вова    
 s3d10.day_players.create(season_id: 3, team_id: 4, player_id: 54) # тарасов |     |     |     |     |     |     |
 s3d10.day_players.create(season_id: 3, team_id: 4, player_id: 55) # рустам  |     |     |     |     |     |     |
 s3d10.day_players.create(season_id: 3, team_id: 4, player_id: 35) # юра     |     |     |     |     |     |     |
-s3d10.day_players.create(season_id: 3, team_id: 4, player_id:  3) # юра     |     |     |     |     |     |     |
+s3d10.day_players.create(season_id: 3, team_id: 4, player_id:  3) # ден     |     |     |     |     |     |     |
 s3d10.day_players.create(season_id: 3, team_id: 4, player_id: 45) # санин   |     |     |     |     |     |     |
 
 g1804 = Game.create(day_id: s3d10.id, team_left_id: 2, goals_left: 0, goals_right: 0, team_right_id: 3)
 g1805 = Game.create(day_id: s3d10.id, team_left_id: 1, goals_left: 0, goals_right: 0, team_right_id: 4)
 g1806 = Game.create(day_id: s3d10.id, team_left_id: 2, goals_left: 1, goals_right: 0, team_right_id: 3)
 g1806.goals.create(season_id: 3, team_id: 2, player_id: 13, assist_player_id: 12)
-g1807 = Game.create(day_id: s3d10.id, team_left_id: 2, goals_left: 1, goals_right: 1, team_right_id: 4)
+g1807 = Game.create(day_id: s3d10.id, team_left_id: 2, goals_left: 1, goals_right: 2, team_right_id: 4)
 g1807.goals.create(season_id: 3, team_id: 2, player_id: 7, assist_player_id: nil)
 g1807.goals.create(season_id: 3, team_id: 4, player_id: 45, assist_player_id: nil)
 g1807.goals.create(season_id: 3, team_id: 4, player_id: 45, assist_player_id: nil)

@@ -11,6 +11,6 @@ class DayPlayer < ApplicationRecord
   private
 
   def rate!
-    update(elo: player.elo, kp: player.kp)
+    update(elo: player.elo)
   end
 end
