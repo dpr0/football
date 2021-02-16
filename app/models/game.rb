@@ -59,13 +59,16 @@ class Game < ApplicationRecord
 
   def calc_K(rate)
     case rate
-      when 1800..9000 then 5
-      when 1700..1799 then 10
-      when 1600..1699 then 15
-      when 1500..1599 then 20
-      when 1400..1499 then 25
-      when 1300..1399 then 30
-      else 40
+      when 2100..9000 then 5
+      when 2000..2099 then 10
+      when 1900..1999 then 15
+      when 1800..1899 then 20
+      when 1700..1799 then 25
+      when 1600..1699 then 30
+      when 1500..1599 then 35
+      when 1400..1499 then 40
+      when 1300..1399 then 45
+      else 50
     end
   end
 

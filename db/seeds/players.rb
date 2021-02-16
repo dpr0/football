@@ -53,7 +53,7 @@ players = [
 {code: 51, provider: 'telegram', uid: '',           lastname: 'Ормоцадзе',   name: 'Гиорги',      middlename: '',              birthday: '',           phone: '+79998072915', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 52, provider: 'telegram', uid: '',           lastname: 'Черных',      name: 'Дмитрий',     middlename: '',              birthday: '',           phone: '+79152496965', height:   0, weight:  0, role_id: 3, lfl: '64022'},
 {code: 53, provider: 'telegram', uid: '1619799992', lastname: 'Хайруллаев',  name: 'Асирбек',     middlename: 'Собир угли',    birthday: '01.01.2001', phone: '+79917277092', height:   0, weight:  0, role_id: 3, lfl: ''},
-{code: 54, provider: 'telegram', uid: '',           lastname: 'Тарасов',     name: 'Александр',   middlename: '',              birthday: '',           phone: '+79026164995', height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 54, provider: 'telegram', uid: '',           lastname: 'Тарасов',     name: 'Александр',   middlename: '',              birthday: '26.04.1976', phone: '+79026164995', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 55, provider: 'telegram', uid: '',           lastname: 'Хушвактов',   name: 'Рустам',      middlename: 'Гайрат угли',   birthday: '18.08.2001', phone: '+79773553088', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 56, provider: 'telegram', uid: '',           lastname: 'Фёдоров',     name: 'Дмитрий',     middlename: '',              birthday: '',           phone: '+79037384943', height:   0, weight:  0, role_id: 3, lfl: ''},
 # {code: 57, provider: 'telegram', uid: '',           lastname: '',  name: '',   middlename: '',      birthday: '04.12.199',      phone: '+79645732923', height:   0, weight:  0, role_id: 3, lfl: ''},
