@@ -12,7 +12,7 @@ s3d13.day_players.create(season_id: 3, team_id: 2, player_id: 24) # эл      | 
 s3d13.day_players.create(season_id: 3, team_id: 2, player_id: 14) # саша    |     |     |     |     |     |     |
 s3d13.day_players.create(season_id: 3, team_id: 2, player_id: 44) # валера  |     |     |     |     |     |     |
 s3d13.day_players.create(season_id: 3, team_id: 2, player_id:  7) # сандро  |     |     |     |     |     |     |
-s3d13.day_players.create(season_id: 3, team_id: 4, player_id:  1) # гарик   |     |     |     |     |     |     |
+s3d13.day_players.create(season_id: 3, team_id: 2, player_id:  1) # гарик   |     |     |     |     |     |     |
 
 s3d13.day_players.create(season_id: 3, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
 s3d13.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
@@ -98,4 +98,4 @@ g1910.goals.create(season_id: 3, team_id: 4, player_id: 3, assist_player_id: 55)
 
 s3d13.day_rates!
 Player.update_stats!(3)
-Day.last.update!(videos: '')
+Day.last.update!(videos: 'EqRaJWYU2HY,nP7QOZkGb54,rNuBogUM5z4,v92FDbakRmU,6U2Ijrnqrxo,_oGqSaZVc-U,Zriz6iKA1_0')
