@@ -14,7 +14,7 @@ class MessageService
     )
     text = @message.text.tr('/', '') if @message.text
     a = text.split if text
-    @num = a.first.to_i if a && a.size == 1 && a.first.to_i != 0
+    @ya = ['Я', 'я'].include? a.first
     @player = Player.all.to_a.find { |z| z.uid == @message.uid.to_s }
   end
 
@@ -26,11 +26,11 @@ class MessageService
       )
     end
 
-    if @num
-      player = Player.find_by(id: @num)
+    if @ya
+      player = Player.find_by_uid(@message.uid)
       if player
         photo = Faraday::UploadIO.new("app/assets/images/#{player.jpg}", 'image/jpeg')
-        { type: :photo, data: { chat_id: @message.chat_id, caption: player.print_stat(Season.last.id), photo: photo } }
+        { type: :photo, data: { chat_id: @message.chat_id, caption: player.print_stat, photo: photo } }
       else
         { type: :message, data: { chat_id: @message.chat_id, text: 'Нет такого игрока' } }
       end
