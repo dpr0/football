@@ -14,22 +14,28 @@ section#pole.about-section.text-center
               = image_tag @player.jpg, class: 'img-thumbnail'
           .col-1
           .col-6
-            br
-            .row
-              .input-group.mb-6
-                .input-group-prepend
-                  span.input-group-text Команды
-                .form-control.text-right
-                  - @player.dp_tally(@player.day_players_by_season(Season.last.id)).each do |team_id, count|
-                    - team = Team.cached_by_id[team_id]
-                    = image_tag "colors/#{team.code}.png", size: "25x30"
-                    = count
+            / br
+            / .row
+            /   .input-group.mb-6
+            /     .input-group-prepend
+            /       span.input-group-text Команды
+            /     .form-control.text-right
+            /       - @player.dp_tally(@player.day_players_by_season(Season.last.id)).each do |team_id, count|
+            /         - team = Team.cached_by_id[team_id]
+            /         = image_tag "colors/#{team.code}.png", size: "25x30"
+            /         = count
             br
             .row
               .input-group.mb-6
                 .input-group-prepend
                   span.input-group-text Номер
                 = text_field_tag '', @player.code, class: 'form-control text-right', disabled: true
+            br
+            .row
+              .input-group.mb-6
+                .input-group-prepend
+                  span.input-group-text Текущий ELO
+                = text_field_tag '', @player.elo.to_i, class: 'form-control text-right text-bold', disabled: true
             br
             .row
               .input-group.mb-6
@@ -54,24 +60,31 @@ section#pole.about-section.text-center
                 .input-group.mb-6
                   .input-group-prepend
                     span.input-group-text ЛФЛ
-                  = text_field_tag '', 'http://lfl.ru/person' + @player.lfl, class: 'form-control text-right', disabled: true
-
-          - @player.day_players.group_by(&:season_id).sort.each do |season_id, rates|
-            = area_chart rates.map { |dp| [dp.day_id, dp.elo] }, width: "93%", min: 800, max: 2500, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
-            .input-group.mb-6
-              .input-group-prepend
-                span.input-group-text = "Рейтинг ELO сезон #{Season.cached_by_id[season_id].name}"
-              = text_field_tag '', rates.last.elo.to_i, class: 'form-control text-right', disabled: true
-
-          / - player_day_rates = @player.day_players.map { |dp| [dp.day_id, dp.kp] }.push [Day.last.id + 1, @player.kp]
-          / = area_chart player_day_rates, width: "93%", min: 0, max: 300, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
-          / .input-group.mb-6
-          /   .input-group-prepend
-          /     span.input-group-text Коэффициент полезности
-          /   = text_field_tag '', @player.kp, class: 'form-control text-right', disabled: true
-          br
+                  - str = "<a href='http://lfl.ru/person#{@player.lfl}'>http://lfl.ru/person#{@player.lfl}</a>".html_safe
+                  = text_field_tag '', "http://lfl.ru/person#{@player.lfl}", class: 'form-control text-right', disabled: true
       .col-1
         br
         br
         = link_to player_path(@player.id == Player.count ? 1 : @player.id + 1) do
           = image_tag "right.png", size: "100x100"
+    br
+    - @player.day_players.group_by(&:season_id).sort.reverse.each do |season_id, rates|
+      - stat = @stat[season_id]
+      - next unless stat
+      .row
+        .input-group.mb-6
+          .input-group-prepend
+            span.input-group-text = "Сезон: #{Season.cached_by_id[season_id].name}"
+          - goals   = stat[:goals_count]  > 0 ? " ⚽#{stat[:goals_count]}"  : ''
+          - assists = stat[:assist_count] > 0 ? " 🦶#{stat[:assist_count]}" : ''
+          = text_field_tag '', "ELO: #{rates.last.elo.to_i}#{goals}#{assists}", class: 'form-control text-right', disabled: true
+
+      .row
+        - stat[:teams].each do |t|
+          .col-3
+            = "за #{Team.color_text(t[:team_id])} (дней: #{t[:team_days]}):"
+            - t[:vs].each do |vs|
+              div= "#{Team.color(vs[:team_id])} +#{vs[:win]} =#{vs[:draw]} -#{vs[:lose]}"
+      .row
+        .col-12
+          = area_chart rates.map { |dp| [dp.day_id, dp.elo] }, width: "93%", min: 800, max: 2500, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}

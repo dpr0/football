@@ -15,6 +15,7 @@ s3d14.day_players.create(season_id: 3, team_id: 2, player_id: 54) # тарасо
 s3d14.day_players.create(season_id: 3, team_id: 2, player_id: 55) # рустам  |     |     |     |     |     |     |
 s3d14.day_players.create(season_id: 3, team_id: 2, player_id: 53) # аслан   |     |     |     |     |     |     |
 s3d14.day_players.create(season_id: 3, team_id: 2, player_id: 35) # юра     |     |     |     |     |     |     |
+s3d14.day_players.create(season_id: 3, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
 
 s3d14.day_players.create(season_id: 3, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
 s3d14.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |

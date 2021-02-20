@@ -47,8 +47,8 @@ class Player < ApplicationRecord
   end
 
   def text_phone
-    # phone ? "8-#{phone[0..2]}-#{phone[3..5]}-#{phone[6..7]}-#{phone[8..9]}" : '-'
-    phone ? "8-#{phone[0..2]}-xxx-xx-#{phone[8..9]}" : '-'
+    # phone ? "#{phone[0..2]}-#{phone[3..5]}-#{phone[6..7]}-#{phone[8..9]}" : '-'
+    phone ? "#{phone[0..2]}-xxx-xx-#{phone[8..9]}" : '-'
   end
 
   def with_initial
@@ -96,13 +96,13 @@ class Player < ApplicationRecord
     "players/#{photo_nums.include?(code) ? code : 'anonim'}.jpg"
   end
 
-  def print_stat
+  def print_stat(season_ids) # TODO get_stats_by_season(season_ids)
     "#{short_name}: https://football.krsz.ru/players/#{id}\n" +
-    day_players.group_by { |d| d.season_id }.map do |season_id, season_days|
+    day_players.where(season_id: season_ids).group_by { |d| d.season_id }.map do |season_id, season_days|
       goals = Goal.where(season_id: season_id)
       goals_count  = goals.count { |g| g.player_id == id }
       assist_count = goals.count { |g| g.assist_player_id == id }
-      elo = " Эло: #{season_days.last.elo.to_i}" if season_days.last
+      elo = " Эло: #{season_days.last.elo.to_i}"
       "\n#{Season.cached_by_id[season_id].name}: ⚽️#{goals_count}(🦶#{assist_count})#{elo}\n" +
       season_days.group_by { |d| d.team_id }.sort.map do |team_id, team_days|
         all_games = Day.where(id: team_days.map(&:day_id)).map(&:games).flatten
@@ -122,6 +122,35 @@ class Player < ApplicationRecord
         end.join(" ")
       end.join
     end.join
+  end
+
+  def get_stats_by_season(season_ids)
+    seasons_hash = {}
+    day_players.where(season_id: season_ids).sort.group_by { |d| d.season_id }.each do |season_id, season_days|
+      goals = Goal.where(season_id: season_id)
+      hash = { goals_count: goals.count { |g| g.player_id == id }, assist_count: goals.count { |g| g.assist_player_id == id } }
+      hash[:teams] = season_days.group_by { |d| d.team_id }.sort.map do |team_id, team_days|
+        all_games = Game.where(day_id: team_days.map(&:day_id)).all
+        left_games  =   all_games.select { |g| g.team_left_id  == team_id }
+        right_games =   all_games.select { |g| g.team_right_id == team_id }
+        draw        =   all_games.select { |g| g.goals_left == g.goals_right }
+        left_win    =  left_games.select { |g| g.goals_left  > g.goals_right }
+        left_lose   =  left_games.select { |g| g.goals_left  < g.goals_right }
+        right_win   = right_games.select { |g| g.goals_right > g.goals_left  }
+        right_lose  = right_games.select { |g| g.goals_right < g.goals_left  }
+
+        { team_id: team_id, team_days: team_days.count, vs: Team.all_cached.select { |team| team.id != team_id }.map do |team|
+            w = (left_win  +  right_win).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+            d = draw.select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+            l = (left_lose + right_lose).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+            { team_id: team.id, win: w, draw: d, lose: l }
+          end
+        }
+      end
+      seasons_hash[season_id] = hash
+    end
+    # puts JSON.pretty_generate(seasons_hash)
+    seasons_hash
   end
 
   private

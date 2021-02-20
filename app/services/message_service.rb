@@ -30,7 +30,7 @@ class MessageService
       player = Player.find_by(id: @num)
       if player
         photo = Faraday::UploadIO.new("app/assets/images/#{player.jpg}", 'image/jpeg')
-        { type: :photo, data: { chat_id: @message.chat_id, caption: player.print_stat, photo: photo } }
+        { type: :photo, data: { chat_id: @message.chat_id, caption: player.print_stat(Season.last.id), photo: photo } }
       else
         { type: :message, data: { chat_id: @message.chat_id, text: 'Нет такого игрока' } }
       end

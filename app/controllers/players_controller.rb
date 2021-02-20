@@ -7,5 +7,6 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @stat = @player.get_stats_by_season(Season.all.ids)
   end
 end

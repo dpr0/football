@@ -18,21 +18,17 @@ section#section1.about-section.text-center
       table.table.table-dark.table-striped.table-bordered
         tr
           th
-          th            Игрок
-          th            = link_to 'Дней', sport_season_stats_path(sort: :days)
-          th            Пн / Ср
-          th.text-right = link_to 'Игр',  sport_season_stats_path(sort: :games)
-          / th.text-right = link_to '+',    sport_season_stats_path(sort: :win)
-          / th.text-right = link_to '=',    sport_season_stats_path(sort: :draw)
-          / th.text-right = link_to '-',    sport_season_stats_path(sort: :lose)
-          th.text-right = link_to 'ELO',  sport_season_stats_path(sort: :elo)
-          / th.text-right = link_to 'K',    sport_season_stats_path(sort: :kp)
-          th.text-right
-            = link_to '⚽️', sport_season_stats_path(sort: :goals_count)
-          th.text-right
-            = link_to '🦶', sport_season_stats_path(sort: :assists_count)
-          th.text-right
-            = link_to '⚽(в день)', sport_season_stats_path(sort: :goals_day_count)
+          th Игрок
+          th = link_to 'Дней', sport_season_stats_path(sort: :days)
+          th Пн / Ср
+          th = link_to 'Игр',  sport_season_stats_path(sort: :games)
+          th = link_to 'ELO',  sport_season_stats_path(sort: :elo)
+          th = link_to '⚽️', sport_season_stats_path(sort: :goals_count)
+          th = link_to '🦶', sport_season_stats_path(sort: :assists_count)
+          th
+            = link_to '⚽', sport_season_stats_path(sort: :goals_day_count)
+            sup = ' в день '
+            = link_to '🦶', sport_season_stats_path(sort: :assists_day_count)
         - @arr_by_days.each do |arr|
           - if arr.is_a? String
             tr
@@ -55,14 +51,15 @@ section#section1.about-section.text-center
                   = ' / '
                   = (dp.map(&:day_id) - @days_by_wday[1].uniq.map(&:id)).size if @days_by_wday[1]
                 td.text-right = player.games
-                / td.text-right = player.win
-                / td.text-right = player.draw
-                / td.text-right = player.lose
                 td.text-right = player.elo.to_i
-                / td.text-right = "#{player.kp / 3}%"
                 td.text-right = player.goals_count
                 td.text-right = player.assists_count
-                td.text-right = ((player.goals_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
+                td.text-right
+                  = ((player.goals_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
+                  span
+                    | (
+                    = ((player.assists_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
+                    | )
     .row
       .col-md-12.mb-3.mb-md-0
         .card.py-4.h-100
@@ -117,16 +114,3 @@ section#section1.about-section.text-center
                         li 40 для команд с рейтингом 1400-1499
                         li 45 для команд с рейтингом 1300-1399
                         li 50 для команд с рейтингом ниже 1300
-
-    / | &nbsp;
-    / .row
-    /   .col-md-12.mb-3.mb-md-0
-    /     .card.py-4.h-100
-    /       .card-body.text-center
-    /         i.fas.fa-map-marked-alt.text-primary.mb-2
-    /         | Коэффициент полезности - K
-    /         hr.my-4
-    /         .small.text-black-50
-    /           div.text-left
-    /             .text-center
-    /               span количество не проигранных игр команд за которые играл игрок к отношению всех игр (x3 - >2:0, x2.5 - любую не сухую победу, x2 - 1:0, x1 за ничью).
