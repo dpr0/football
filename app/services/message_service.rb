@@ -14,7 +14,7 @@ class MessageService
     )
     text = @message.text.tr('/', '') if @message.text
     a = text.split if text
-    @ya = ['Я', 'я'].include? a.first
+    @ya = ['Я', 'я'].include?(a.first) if a
     @player = Player.all.to_a.find { |z| z.uid == @message.uid.to_s }
   end
 
