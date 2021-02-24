@@ -27,8 +27,10 @@ section#section1.about-section.text-center
           th = link_to '🦶', sport_season_stats_path(sort: :assists_count)
           th
             = link_to '⚽', sport_season_stats_path(sort: :goals_day_count)
-            sup = ' в день '
+            | /
             = link_to '🦶', sport_season_stats_path(sort: :assists_day_count)
+            div
+              sup = ' в день '
         - @arr_by_days.each do |arr|
           - if arr.is_a? String
             tr

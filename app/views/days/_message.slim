@@ -1,17 +1,18 @@
 - if player
-  .media
-    - if prev_player != player
-      = image_tag player.jpg, class: 'img-size-50 mr-3 img-circle'
-      - @prev_player = player
-    .media-body
-      h3.dropdown-item-title
-        .text-muted.text-left
+  .row
+    .col-2
+      - if prev_player != player
+        = image_tag player.jpg, class: 'img-size-50'
+        - @prev_player = player
+    .col-10
+
+      .text-muted.text-left
+        - if prev_player != player
           span.text-sm.text-primary
             i.fas.fa-star
           = player.short_name + ' '
-          span.text-sm.text-muted
+          sup.text-muted
             i.far.fa-clock.mr-1
             - if self.respond_to?(:local_time)
               = local_time(message.date, '%e.%m.%Y %H:%M')
-        p
-          .text-left.text-sm = message.text
+      .text-left.text-sm = message.text

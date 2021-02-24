@@ -23,7 +23,7 @@ section#results.about-section.text-center
           th.text-center Ничья
           th.text-center Поражение
           th.text-center Голов
-          th.text-center ppg (points per game)
+          th.text-center points per game
         - @main_table.each do |table|
           tr data-link='' data-toggle='modal' data-target="#gamesModalCenter_#{table[:team_code]}"
             td.text-center = image_tag "colors/#{table[:team_code]}.png", size: "25x30"

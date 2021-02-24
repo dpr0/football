@@ -9,8 +9,8 @@ header.masthead
           h2.mx-auto.mt-2.mb-5
             a href="http://megapolisfit.ru/" megapolisfit.ru
       .row
-        - @messages.each_slice(10) do |messages|
-          .col-6.mx-auto
+        - @messages.each_slice(8) do |messages|
+          .col-6
             #messages
               - messages.each do |message|
                 - player = @players.find { |z| z.uid == message.uid.to_s }
