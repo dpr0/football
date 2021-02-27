@@ -16,8 +16,8 @@
 
 - if devise_mapping.omniauthable?
   .row
-    .col-4
-    .col-4
+    .col-sm-4
+    .col-sm-4
       ul.firebaseui-idp-list
         - resource_class.omniauth_providers.each do |provider|
           - next if provider == :firebase
@@ -27,4 +27,4 @@
                 i.fab.fa-telegram-plane
               span.firebaseui-idp-text= "Войти через #{OmniAuth::Utils.camelize(provider)}"
       #firebaseui-auth-container
-    .col-4
+    .col-sm-4

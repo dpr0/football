@@ -11,7 +11,6 @@ require("firebaseui-ru")
 require("chartkick")
 require("chart.js")
 require('admin-lte')
-import 'bootstrap'
 import './stylesheets/application'
 import firebase from 'firebase/app'
 import "@fortawesome/fontawesome-free/js/all";

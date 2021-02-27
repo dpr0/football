@@ -1,18 +1,10 @@
 - if player
-  .row
-    .col-2
-      - if prev_player != player
-        = image_tag player.jpg, class: 'img-size-50'
-        - @prev_player = player
-    .col-10
-
-      .text-muted.text-left
-        - if prev_player != player
-          span.text-sm.text-primary
-            i.fas.fa-star
-          = player.short_name + ' '
-          sup.text-muted
-            i.far.fa-clock.mr-1
-            - if self.respond_to?(:local_time)
-              = local_time(message.date, '%e.%m.%Y %H:%M')
-      .text-left.text-sm = message.text
+  - pl = current_player && current_player.uid == player.uid
+  .direct-chat-msg class="#{ pl ? 'right' : 'left' }"
+    .direct-chat-infos.clearfix
+      span.direct-chat-name class="#{ pl ? 'float-right' : 'float-left'}" = player.short_name
+      span.direct-chat-timestamp class="#{ pl ? 'float-left' : 'float-right'}"
+        - if self.respond_to?(:local_time)
+          = local_time(message.date, '%e.%m.%Y %H:%M')
+    = image_tag player.jpg, class: 'direct-chat-img'
+    .direct-chat-text = message.text

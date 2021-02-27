@@ -4,6 +4,7 @@ class DaysController < ApplicationController
   before_action :load_players, only: [:teams, :edit, :new, :games, :next]
   before_action :find_day, only: [:show, :edit, :update, :teams, :games, :videos]
   before_action :find_games, only: [:show, :teams, :games]
+  before_action :authenticate_player!, only: :next
 
   def index
     @days = Day.joins(:day_players).eager_load!(:day_players).order(id: :desc)
@@ -52,6 +53,7 @@ class DaysController < ApplicationController
 
   def next
     @messages = Message.where(chat_id: ENV["CHAT_NAME"]).where.not(text: nil).order(created_at: :asc).last(20)
+    @current_player_messages = @messages.select { |msg| msg.uid == current_player.uid.to_i } if current_player
   end
 
   def about

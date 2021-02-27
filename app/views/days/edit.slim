@@ -1,13 +1,13 @@
 section#tournment.about-section.text-center
   .container
     .row
-      .col-12.text-center
+      .col-sm-12.text-center
         = @day.date
 
     = form_with(model: @day) do |f|
       .row
         - Team.all_cached.each do |team|
-          .col-3
+          .col-sm-3
             #day_players
               = f.fields_for :day_players do |day_player|
                 = render 'day_player_fields', f: day_player, team: team
@@ -15,6 +15,6 @@ section#tournment.about-section.text-center
                 = link_to_add_association 'Добавить игрока', f, :day_players, partial: 'day_player_fields', render_options:  {locals: {team: team}}, class: 'btn btn-outline-primary', id: :add_day_player_btn
               .day_players-link
       br
-        .col-12
+        .col-sm-12
           = link_to "Отмена", days_path, class: 'btn btn-danger'
           = f.submit "Сохранить", class: 'btn btn-primary'

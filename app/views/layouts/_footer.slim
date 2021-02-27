@@ -1,7 +1,7 @@
 footer.main-footer.bg-black
   .container
     .row.text-white-50
-      .col-12.text-center
+      .col-sm-12.text-center
         - Common.sites.each do |name, str|
           = link_to "https://#{name}", class: 'mx-2' do
             i class="#{str}"

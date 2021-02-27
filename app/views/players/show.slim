@@ -1,19 +1,19 @@
 section#pole.about-section.text-center
   .container
     .row
-      .col-1
+      .col-sm-1
         br
         br
         = link_to player_path(@player.id == 1 ? Player.count : @player.id - 1) do
           = image_tag "left.png", size: "100x100"
-      .col-9
+      .col-sm-9
         .row
-          .col-1
-          .col-4
+          .col-sm-1
+          .col-sm-4
             br
               = image_tag @player.jpg, class: 'img-thumbnail'
-          .col-1
-          .col-6
+          .col-sm-1
+          .col-sm-6
             / br
             / .row
             /   .input-group.mb-6
@@ -62,7 +62,7 @@ section#pole.about-section.text-center
                     span.input-group-text ЛФЛ
                   - str = "<a href='http://lfl.ru/person#{@player.lfl}'>http://lfl.ru/person#{@player.lfl}</a>".html_safe
                   = text_field_tag '', "http://lfl.ru/person#{@player.lfl}", class: 'form-control text-right', disabled: true
-      .col-1
+      .col-sm-1
         br
         br
         = link_to player_path(@player.id == Player.count ? 1 : @player.id + 1) do
@@ -81,10 +81,10 @@ section#pole.about-section.text-center
 
       .row
         - stat[:teams].each do |t|
-          .col-3
+          .col-sm-3
             = "за #{Team.color_text(t[:team_id])} (дней: #{t[:team_days]}):"
             - t[:vs].each do |vs|
               div= "#{Team.color(vs[:team_id])} +#{vs[:win]} =#{vs[:draw]} -#{vs[:lose]}"
       .row
-        .col-12
+        .col-sm-12
           = area_chart rates.map { |dp| [dp.day_id, dp.elo] }, width: "93%", min: 800, max: 2500, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}

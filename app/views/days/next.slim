@@ -1,17 +1,27 @@
 header.masthead
-  .container.d-flex.h-100.align-items-center
+  .container
     .mx-auto.text-center
       .row
-        .col-lg-12.mx-auto
+        .col-sm-12.mx-auto
           .row.align-items-center
-            .col-12.text-center
+            .col-sm-12.text-center
               h1.mx-auto.my-0 MEGAPOLIS
           h2.mx-auto.mt-2.mb-5
             a href="http://megapolisfit.ru/" megapolisfit.ru
       .row
-        - @messages.each_slice(8) do |messages|
-          .col-6
-            #messages
-              - messages.each do |message|
-                - player = @players.find { |z| z.uid == message.uid.to_s }
-                = render 'message', message: message, player: player, prev_player: @prev_player
+        .col-sm-12
+          .direct-chat-messages style="height: 500px"
+            - @messages.each do |message|
+              - player = @players.find { |z| z.uid == message.uid.to_s }
+              = render 'message', message: message, player: player, prev_player: @prev_player
+
+        .col-sm-12
+          br
+          form action="#" method="post"
+            .input-group
+              input.form-control name="message" placeholder=("Type Message ...") type="text" /
+              span.input-group-append
+                button.btn.btn-primary type="button"  Send
+
+javascript:
+    $('.direct-chat-messages').animate({scrollTop: 2000});

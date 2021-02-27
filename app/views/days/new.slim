@@ -2,21 +2,21 @@ section#tournment.about-section.text-center
   .container
     = form_for(Day.new, url: days_path, method: :post) do |f|
       .row
-        .col-4
-        .col-4.text-center
+        .col-sm-4
+        .col-sm-4.text-center
           .input-group.mb-6
             .input-group-prepend
               span.input-group-text Дата
             = text_field :day, :date, class: 'form-control text-right', value: Date.current&.strftime('%d.%m.%Y')
       .row
         - Team.all_cached.each do |team|
-          .col-3
+          .col-sm-3
             #day_players
               = f.fields_for :day_players do |day_player|
               .links
                 = link_to_add_association 'Добавить игрока', f, :day_players,
                         partial: 'day_player_fields', render_options: {locals: {team: team}}, class: 'btn btn-outline-primary'
       .row
-        .col-12
+        .col-sm-12
           = link_to 'Отмена', days_path, class: 'btn btn-danger'
           = f.submit 'Создать', class: 'btn btn-primary'

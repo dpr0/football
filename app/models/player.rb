@@ -6,6 +6,7 @@ class Player < ApplicationRecord
 
   has_many   :authorizations, dependent: :destroy
   has_many   :goals
+  has_many   :messages, foreign_key: :uid, primary_key: :uid
   has_many   :day_players
   has_many   :stats
   has_one    :role

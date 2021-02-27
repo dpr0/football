@@ -1,15 +1,15 @@
 section#section1.about-section.text-center
   .container
     .row
-      .col-lg-8.mx-auto
+      .col-sm-8.mx-auto
         .row.align-items-center
-          .col-2.text-right
+          .col-sm-2.text-right
             - if @season.id != 1
               = link_to sport_season_stats_path(sport_id: 1, season_id: @season.id - 1) + '#tournment' do
                 = image_tag "left.png", size: "100x100"
-          .col-8.text-center
+          .col-sm-8.text-center
             h2.text-white.mb-4 = @season.name
-          .col-2.text-left
+          .col-sm-2.text-left
             - if @season.id != Season.count
               = link_to sport_season_stats_path(sport_id: 1, season_id: @season.id + 1) + '#tournment' do
                 = image_tag "right.png", size: "100x100"
@@ -63,7 +63,7 @@ section#section1.about-section.text-center
                     = ((player.assists_day_count.to_f * 100).to_i / 100.0).to_s.ljust(4, '0')
                     | )
     .row
-      .col-md-12.mb-3.mb-md-0
+      .col-sm-12.mb-3.mb-md-0
         .card.py-4.h-100
           .card-body.text-center
             i.fas.fa-map-marked-alt.text-primary.mb-2
@@ -74,9 +74,9 @@ section#section1.about-section.text-center
                 div Все игроки начинают с рейтинга 1500
                 div Вычисляется математическое ожидание количества очков рейтинга, которое получит команда A в матче с командой B (оно равно сумме вероятности выигрыша команды A и половины вероятности ничьей):
                 .row
-                  .col-3
+                  .col-sm-3
                     = image_tag "kk2.svg"
-                  .col-9
+                  .col-sm-9
                     div
                       | E
                       sub A
@@ -90,11 +90,11 @@ section#section1.about-section.text-center
                       sub B
                       = " — рейтинг команды B;"
                 .row
-                  .col-8 Новый рейтинг команды A рассчитывается по формуле:
-                  .col-4
+                  .col-sm-8 Новый рейтинг команды A рассчитывается по формуле:
+                  .col-sm-4
                     = image_tag "kk1.svg"
                 .row
-                  .col-12
+                  .col-sm-12
                     div
                       | S
                       sub A

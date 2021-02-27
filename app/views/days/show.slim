@@ -1,15 +1,15 @@
 section#results.about-section.text-center
   .container
     .row
-      .col-lg-8.mx-auto
+      .col-sm-8.mx-auto
         .row.align-items-center
-          .col-2.text-right
+          .col-sm-2.text-right
             - if @day.id != 1
               = link_to day_path(@day.id - 1) do
                 = image_tag "left.png", size: "100x100"
-          .col-8.text-center
+          .col-sm-8.text-center
             h2.text-white.mb-4 = @day.date.strftime("%d.%m.%Y")
-          .col-2.text-left
+          .col-sm-2.text-left
             - if @day.id != Day.count
               = link_to day_path(@day.id + 1) do
                 = image_tag "right.png", size: "100x100"
@@ -68,9 +68,9 @@ section#results.about-section.text-center
                   - {opps_win: 'Победы', opps_draw: 'Ничьи', opps_lose: 'Поражения'}.each do |key, value|
                     - next if table[key].nil? || table[key].count.zero?
                     .row
-                      .col-3
+                      .col-sm-3
                         | #{value}:
                       - table[key].each do |code, count|
-                        .col-3
+                        .col-sm-3
                           = "#{count.count} x "
                           = image_tag "colors/#{code}.png", size: "25x30"

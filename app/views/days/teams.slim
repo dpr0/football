@@ -1,26 +1,26 @@
 section#teams.about-section
   .container
     .row
-      .col-lg-8.mx-auto
+      .col-sm-8.mx-auto
         .row.align-items-center
-          .col-2.text-right
+          .col-sm-2.text-right
             - if @day.id != 1
               = link_to teams_day_path(@day.id - 1) do
                 = image_tag "left.png", size: "100x100"
-          .col-8.text-center
+          .col-sm-8.text-center
             h2.text-white.mb-4 = @day.date.strftime("%d.%m.%Y")
-          .col-2.text-left
+          .col-sm-2.text-left
             - if @day.id != Day.count
               = link_to teams_day_path(@day.id + 1) do
                 = image_tag "right.png", size: "100x100"
 
   - @day.day_players_by_season(@day.season_id).group_by(&:team_id).sort.each do |team_id, day_players|
     .row.justify-content-center.no-gutters.mb-5.mb-0
-      .col-6.text-right
+      .col-sm-6.text-right
         = image_tag "colors/#{Team.cached_by_id[team_id].code}.png", size: "200x275"
         .event-details.text-dark
           h2 = day_players.map(&:elo).sum.to_i / day_players.count
-      .col-6
+      .col-sm-6
         .bg-black.text-center.h-100.project
           .d-flex.h-100
             .project-text.w-100.my-auto.text-left
