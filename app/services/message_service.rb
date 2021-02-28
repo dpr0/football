@@ -22,7 +22,7 @@ class MessageService
     if @message.chat_id.to_s == ENV["CHAT_NAME"]
       ActionCable.server.broadcast(
          'chat_channel',
-         { html: ApplicationController.render(partial: 'days/message', locals: { message: @message, player: @player, prev_player: nil }) }
+         { html: ApplicationController.render(partial: 'days/message', locals: { message: @message, player: @player }) }
       )
     end
 

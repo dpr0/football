@@ -1,5 +1,5 @@
 - if player
-  - pl = current_player && current_player.uid == player.uid
+  - pl = request.env['warden'] && current_player && current_player.uid == player.uid
   .direct-chat-msg class="#{ pl ? 'right' : 'left' }"
     .direct-chat-infos.clearfix
       span.direct-chat-name class="#{ pl ? 'float-right' : 'float-left'}" = player.short_name
