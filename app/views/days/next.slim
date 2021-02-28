@@ -10,7 +10,7 @@ header.masthead
             a href="http://megapolisfit.ru/" megapolisfit.ru
       .row
         .col-sm-12
-          .direct-chat-messages style="height: 500px"
+          #messages.direct-chat-messages style="height: 500px"
             - @messages.each do |message|
               - player = @players.find { |z| z.uid == message.uid.to_s }
               = render 'message', message: message, player: player
