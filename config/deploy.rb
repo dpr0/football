@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-lock '3.15.0'
+lock '3.16.0'
 
 server 'krsz.ru', port: 2222, roles: %w(app db web), primary: true
 
