@@ -20,7 +20,12 @@ class CallbacksController < Devise::OmniauthCallbacksController
   private
 
   def upsert_player(provider)
-    @player = Player.find_for_oauth(auth(request.env['omniauth.auth'] || params))
+    auth_params = auth(request.env['omniauth.auth'] || params)
+    logger.info("============================================================")
+    logger.info(auth_params)
+    @player = Player.find_for_oauth(auth_params)
+    logger.info(@player)
+    logger.info("============================================================")
 
     if @player.persisted?
       sign_in_and_redirect @player, event: :authentication
