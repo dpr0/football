@@ -21,15 +21,15 @@ s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 17) # андр    
 s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 32) # игорь   |     |     |     |     |     |     |
 s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
 s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 55) # рустам  |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 3, player_id:  9) # арг     |     |     |     |     |     |     |
+s3d17.day_players.create(season_id: 3, team_id: 3, player_id:  8) # арг     |     |     |     |     |     |     |
 s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 45) # санин   |     |     |     |     |     |     |
 
 g1964 = Game.create(day_id: s3d17.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 3)
 g1964.goals.create(season_id: 3, team_id: 1, player_id: 5, assist_player_id: 2)
 g1964.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: 6)
 g1965 = Game.create(day_id: s3d17.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 2)
-g1965.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil)
-g1965.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil)
+g1965.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: nil)
+g1965.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil)
 g1966 = Game.create(day_id: s3d17.id, team_left_id: 1, goals_left: 0, goals_right: 2, team_right_id: 3)
 g1966.goals.create(season_id: 3, team_id: 3, player_id: 55, assist_player_id: 8)
 g1966.goals.create(season_id: 3, team_id: 3, player_id: 8, assist_player_id: nil)
