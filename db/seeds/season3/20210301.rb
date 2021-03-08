@@ -98,10 +98,4 @@ g1986.goals.create(season_id: 3, team_id: 3, player_id: 17, assist_player_id: ni
 
 s3d17.day_rates!
 Player.update_stats!(3)
-Day.last.update!(videos: '')
-
-# puts "=========================================================="
-# puts z1.id
-# puts z2.id
-# 3275
-# 3276
+Day.last.update!(videos: 'FCXwmWvyxoQ,UEf5AVCaPyw,0ZD42jSrv08,AlOwY5UWyHc,KST_eVX0RhA,bnoyXDTjPA0,KFs--3CgWCw,CgMFKcGxi8I,uYxa5OeEVO0')
