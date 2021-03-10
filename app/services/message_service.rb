@@ -12,9 +12,7 @@ class MessageService
       date:              Time.at(message['date']),
       reply_message_id: (message['reply_to_message']['message_id'] if message['reply_to_message'])
     )
-    text = @message.text.tr('/', '') if @message.text
-    a = text.split if text
-    @ya = ['Я', 'я'].include?(a.first) if a
+    @ya = ['Я', 'я'].include?(@message.text.tr('/', '')) if @message.text
     @player = Player.all.to_a.find { |z| z.uid == @message.uid.to_s }
   end
 
