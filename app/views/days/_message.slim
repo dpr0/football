@@ -7,4 +7,8 @@
         - if self.respond_to?(:local_time)
           = local_time(message.date, '%e.%m.%Y %H:%M')
     = image_tag player.jpg, class: 'direct-chat-img'
-    .direct-chat-text = message.text
+    .direct-chat-text
+      - if message.reply_message_id
+        span.direct-chat-msg.direct-chat-text.text-secondary
+          = @messages.find { |m| m.message_id == message.reply_message_id }&.text
+      = message.text

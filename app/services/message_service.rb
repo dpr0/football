@@ -3,13 +3,18 @@ class MessageService
   attr_reader :message
 
   def initialize(message)
-    @message = Message.create(
+    msg_file_params = message['video'] || message['document']
+    msg_file_params ||= message['photo'].max_by { |x| x['width'] } if message['photo']
+    msg_file_params.delete('thumb') if msg_file_params['thumb']
+    msg_file = MessageFile.create(msg_file_params) if msg_file_params
+    @message = Message.new(
       uid:               message['from']['id'],
       username:          message['from']['username'],
       text:              message['text'],
       message_id:        message['message_id'],
       chat_id:           message['chat']['id'],
       date:              Time.at(message['date']),
+      message_file_id:  (msg_file.id if msg_file),
       reply_message_id: (message['reply_to_message']['message_id'] if message['reply_to_message'])
     )
     @ya = @message.text.in?(['Я', 'я', 'YA', 'Ya', 'ya', 'ЯЯ', 'яя', 'Я́', 'я́']) if @message.text
@@ -17,6 +22,7 @@ class MessageService
   end
 
   def start
+    @message.save
     if @message.chat_id.to_s == ENV["CHAT_NAME"]
       ActionCable.server.broadcast(
          'chat_channel',
