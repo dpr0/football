@@ -1,9 +1,9 @@
 class About
-  def call(env)
+  def call(_env)
     height = 37
     style = ".krsz_items {display: block; width: 200px; height: #{height}px; position: fixed; left: 10px; z-index: 99999;}"
     demo = "
-      #{ Common.links(height) }
+      #{Common.links(height)}
       <style type='text/css'>#{style}</style>
       <div class='container demo'>
         <div class='content'>
@@ -17,7 +17,7 @@ class About
       <style type='text/css'>#{style1}#{style2}</style>
       <script>#{script1}#{script2}#{script3}</script>
     "
-    [200, {"Content-Type" => "text/html"}, [demo]]
+    [200, { 'Content-Type' => 'text/html' }, [demo]]
   end
 
   private

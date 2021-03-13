@@ -1,5 +1,5 @@
 class Webcam
-  def call(env)
+  def call(_env)
     # height = 37
     # <style type='text/css'>#{style}</style>
     # { Common.links(height) }
@@ -22,6 +22,6 @@ class Webcam
         </div>
       </div>
     "
-    [200, {"Content-Type" => "text/html"}, [video]]
+    [200, { 'Content-Type' => 'text/html' }, [video]]
   end
 end

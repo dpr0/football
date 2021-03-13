@@ -8,10 +8,7 @@ class Season < ApplicationRecord
   has_many :day_players
 
   def self.days_by_season_id(season_id)
-    begin
-      cached_by_id[season_id].days.map(&:id)
-    rescue
-    end
+    cached_by_id[season_id].days.map(&:id)
+  rescue StandardError
   end
-
 end

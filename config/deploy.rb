@@ -42,12 +42,12 @@ namespace :deploy do
   desc 'deploy about:3001 fractal:3002 webcam:3003'
   task :services do
     on roles(:app) do
-        within "#{current_path}" do
-          with rails_env: "#{fetch(:stage)}" do
-            execute :bundle, "exec rackup -D -s puma -p 3001 app/services/about.ru   --pid /home/deploy/football/shared/tmp/pids/about.pid"
-            execute :bundle, "exec rackup -D -s puma -p 3002 app/services/fractal.ru --pid /home/deploy/football/shared/tmp/pids/fractal.pid"
-            execute :bundle, "exec rackup -D -s puma -p 3003 app/services/webcam.ru  --pid /home/deploy/football/shared/tmp/pids/webcam.pid"
-          end
+      within current_path.to_s do
+        with rails_env: fetch(:stage).to_s do
+          execute :bundle, 'exec rackup -D -s puma -p 3001 app/services/about.ru   --pid /home/deploy/football/shared/tmp/pids/about.pid'
+          execute :bundle, 'exec rackup -D -s puma -p 3002 app/services/fractal.ru --pid /home/deploy/football/shared/tmp/pids/fractal.pid'
+          execute :bundle, 'exec rackup -D -s puma -p 3003 app/services/webcam.ru  --pid /home/deploy/football/shared/tmp/pids/webcam.pid'
+        end
       end
     end
   end

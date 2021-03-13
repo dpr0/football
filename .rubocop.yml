@@ -47,7 +47,7 @@ Style/MixinUsage:
     - 'bin/setup'
     - 'bin/update'
 
-Metrics/LineLength:
+Layout/LineLength:
   Exclude:
     - 'db/seeds.rb'
     - 'config/initializers/devise.rb'

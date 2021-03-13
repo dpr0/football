@@ -23,9 +23,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def message(message)
     resp = MessageService.new(message).start
-    if resp[:type]
-      respond_with resp[:type], resp[:data]
-    end
+    respond_with resp[:type], resp[:data] if resp[:type]
   end
 
   # def action_missing(action, *_args)

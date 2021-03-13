@@ -9,7 +9,7 @@ Role.create(code: 'admin',   name: 'Администратор')
 Role.create(code: 'captain', name: 'Капитан команды')
 Role.create(code: 'player',  name: 'Игрок')
 
-Dir[File.join(Rails.root, 'db', 'seeds', 'players.rb')].sort.each { |seed| load seed }
+Dir[File.join(Rails.root, 'db', 'seeds', 'players.rb')].each { |seed| load seed }
 sport = Sport.create(code: 'football',  name: 'Футбол')
 season1 = Season.create(code: 'season1',  name: '2019')
 season2 = Season.create(code: 'season2',  name: '2020')
@@ -21,6 +21,6 @@ season3 = Season.create(code: 'season3',  name: '2021')
     # pl.update(elo: 1500)
   end
 
-  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].sort.each { |seed| load seed }
+  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].each { |seed| load seed }
   Player.update_stats!(season.id)
 end

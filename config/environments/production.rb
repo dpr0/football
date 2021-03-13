@@ -35,7 +35,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :yandex
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -82,7 +82,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
@@ -91,7 +91,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Set application domain, to be able to run `rake telegram:bot:set_webhook`
-  routes.default_url_options = {host: 'football.krsz.ru', protocol: 'https'}
+  routes.default_url_options = { host: 'football.krsz.ru', protocol: 'https' }
 
   # Configure session store for telegram bot.
   config.telegram_updates_controller.session_store = :file_store, Rails.root.join('tmp', 'session_store')

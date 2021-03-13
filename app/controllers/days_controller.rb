@@ -22,21 +22,18 @@ class DaysController < ApplicationController
     @player_assists = sorted_hash(@goals.group_by(&:assist_player_id))
   end
 
-  def videos
-  end
+  def videos; end
 
-  def games
-  end
+  def games; end
 
-  def new
-  end
+  def new; end
 
   def create
     last_season_id = Season.last.id
     @day = Day.create(date: params[:day][:date], sport_id: 1, season_id: last_season_id)
     team_players = params[:day][:day_players_attributes].values
-                       .group_by { |h| h['team_id'] }
-                       .transform_values { |v| v.map { |h| h['player_id'].to_i } }
+                                                        .group_by { |h| h['team_id'] }
+                                                        .transform_values { |v| v.map { |h| h['player_id'].to_i } }
     team_players.each do |team_id, players|
       players.each do |player_id|
         @day.day_players.create(team_id: team_id, player_id: player_id, season_id: last_season_id)
@@ -45,14 +42,12 @@ class DaysController < ApplicationController
     redirect_to edit_day_path(@day.id)
   end
 
-  def edit
-  end
+  def edit; end
 
-  def update
-  end
+  def update; end
 
   def next
-    @messages = Message.where(chat_id: ENV["CHAT_NAME"]).where.not(text: nil).order(created_at: :asc).last(20)
+    @messages = Message.where(chat_id: ENV['CHAT_NAME']).where.not(text: nil).order(created_at: :asc).last(20)
     @current_player_messages = @messages.select { |msg| msg.uid == current_player.uid.to_i } if current_player
   end
 
@@ -64,15 +59,15 @@ class DaysController < ApplicationController
 
   def sorted_hash(group)
     group.map { |k, v| [k, v.length] if k }
-      .compact
-      .sort_by { |player, count| [-count, player] }
-      .to_h
+         .compact
+         .sort_by { |player, count| [-count, player] }
+         .to_h
   end
 
   def load_players
     @players = Player.all.to_a
   end
-  
+
   def find_day
     @day = params[:id] ? Day.find(params[:id]) : Day.last
   end

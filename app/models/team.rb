@@ -10,6 +10,6 @@ class Team < ApplicationRecord
   end
 
   def self.color_text(id)
-    ['фиолетовых', 'зеленых', 'белых', 'цветных'][id - 1]
+    %w[фиолетовых зеленых белых цветных][id - 1]
   end
 end

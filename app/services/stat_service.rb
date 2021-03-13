@@ -1,11 +1,10 @@
 class StatService
-
   attr_reader :day_games, :win3, :win2, :win1, :draw, :lose
 
-  GL = 'goals_left'
-  GR = 'goals_right'
-  TL = 'team_left_id'
-  TR = 'team_right_id'
+  GL = 'goals_left'.freeze
+  GR = 'goals_right'.freeze
+  TL = 'team_left_id'.freeze
+  TR = 'team_right_id'.freeze
 
   def initialize(day_id, team_id)
     @team_id = team_id

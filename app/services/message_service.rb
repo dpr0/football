@@ -1,32 +1,35 @@
 class MessageService
-
   attr_reader :message
 
   def initialize(message)
     msg_file_params = message['video'] || message['document']
     msg_file_params ||= message['photo'].max_by { |x| x['width'] } if message['photo']
     msg_file_params.delete('thumb') if msg_file_params['thumb']
-    msg_file = MessageFile.create(msg_file_params) if msg_file_params
+    if message['video'] || message['document'] || message['photo']
+      resp = RestClient.get("https://api.telegram.org/bot#{ENV['BOT_TOKEN']}/getFile?file_id=#{msg_file_params['file_id']}")
+      msg_file_params.merge!({ url: JSON.parse(resp)['result']['file_path'] }) if resp['ok']
+    end
+
     @message = Message.new(
       uid:               message['from']['id'],
       username:          message['from']['username'],
-      text:              message['text'],
+      text:              message['text'] || message['caption'],
       message_id:        message['message_id'],
       chat_id:           message['chat']['id'],
       date:              Time.at(message['date']),
-      message_file_id:  (msg_file.id if msg_file),
       reply_message_id: (message['reply_to_message']['message_id'] if message['reply_to_message'])
     )
-    @ya = @message.text.in?(['Я', 'я', 'YA', 'Ya', 'ya', 'ЯЯ', 'яя', 'Я́', 'я́']) if @message.text
+    @message.message_file = MessageFile.new(msg_file_params)
+    @message.save
+    @ya = @message.text.in?(%w[Я я YA Ya ya ЯЯ яя Я́ я́]) if @message.text
     @player = Player.all.to_a.find { |z| z.uid == @message.uid.to_s }
   end
 
   def start
-    @message.save
-    if @message.chat_id.to_s == ENV["CHAT_NAME"]
+    if @message.chat_id.to_s == ENV['CHAT_NAME']
       ActionCable.server.broadcast(
-         'chat_channel',
-         { html: ApplicationController.render(partial: 'days/message', locals: { message: @message, player: @player }) }
+        'chat_channel',
+        { html: ApplicationController.render(partial: 'days/message', locals: { message: @message, player: @player }) }
       )
     end
 
@@ -39,7 +42,7 @@ class MessageService
         { type: :message, data: { chat_id: @message.chat_id, text: 'Нет такого игрока' } }
       end
     else
-      { type: nil, data: { } }
+      { type: nil, data: {} }
       # case @text
       # when 'start'
       #   buttons = [[BTN.('break'), BTN.('stop')]]

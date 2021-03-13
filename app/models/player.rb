@@ -22,6 +22,7 @@ class Player < ApplicationRecord
   def self.find_for_oauth(auth)
     authorization = Authorization.where(provider: auth[:provider], uid: auth[:uid]).first
     return authorization.player if authorization
+
     player   = where(uid:   auth[:uid],   provider: auth[:provider]).first
     player ||= where(email: auth[:email], provider: auth[:provider]).first if auth[:email]
     player ||= where(phone: auth[:phone], provider: auth[:provider]).first if auth[:phone]
@@ -52,7 +53,7 @@ class Player < ApplicationRecord
   end
 
   def with_initial
-    "#{name} #{(lastname.first + '.') if lastname.present?}"
+    "#{name} #{"#{lastname.first}." if lastname.present?}"
   end
 
   def short_name
@@ -60,7 +61,7 @@ class Player < ApplicationRecord
   end
 
   def full_name
-    "#{(lastname + ' ') if lastname.present?}#{name} #{middlename if middlename.present?}"
+    "#{"#{lastname} " if lastname.present?}#{name} #{middlename if middlename.present?}"
   end
 
   def self.update_stats!(season_id)
@@ -102,26 +103,25 @@ class Player < ApplicationRecord
 
   def get_stats_by_season(season_ids)
     seasons_hash = {}
-    day_players.where(season_id: season_ids).sort.group_by { |d| d.season_id }.each do |season_id, season_days|
+    day_players.where(season_id: season_ids).sort.group_by(&:season_id).each do |season_id, season_days|
       goals = Goal.where(season_id: season_id)
       hash = { goals_count: goals.count { |g| g.player_id == id }, assist_count: goals.count { |g| g.assist_player_id == id } }
-      hash[:teams] = season_days.group_by { |d| d.team_id }.sort.map do |team_id, team_days|
+      hash[:teams] = season_days.group_by(&:team_id).sort.map do |team_id, team_days|
         all_games = Game.where(day_id: team_days.map(&:day_id)).all
         left_games  =   all_games.select { |g| g.team_left_id  == team_id }
         right_games =   all_games.select { |g| g.team_right_id == team_id }
         draw        =   all_games.select { |g| g.goals_left == g.goals_right }
-        left_win    =  left_games.select { |g| g.goals_left  > g.goals_right }
-        left_lose   =  left_games.select { |g| g.goals_left  < g.goals_right }
+        left_win    =  left_games.select { |g| g.goals_left > g.goals_right }
+        left_lose   =  left_games.select { |g| g.goals_left < g.goals_right }
         right_win   = right_games.select { |g| g.goals_right > g.goals_left  }
         right_lose  = right_games.select { |g| g.goals_right < g.goals_left  }
 
-        { team_id: team_id, team_days: team_days.count, vs: Team.all_cached.select { |team| team.id != team_id }.map do |team|
-            w = (left_win  +  right_win).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
-            d = draw.select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
-            l = (left_lose + right_lose).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
-            { team_id: team.id, win: w, draw: d, lose: l }
-          end
-        }
+        { team_id: team_id, team_days: team_days.count, vs: Team.all_cached.reject { |team| team.id == team_id }.map do |team|
+                                                              w = (left_win + right_win).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+                                                              d = draw.select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+                                                              l = (left_lose + right_lose).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+                                                              { team_id: team.id, win: w, draw: d, lose: l }
+                                                            end }
       end
       seasons_hash[season_id] = hash
     end
@@ -133,10 +133,12 @@ class Player < ApplicationRecord
 
   def photo_nums
     return @photo_nums if @photo_nums
+
     @photo_nums = []
-    Dir.foreach("./app/assets/images/players") do |filename|
+    Dir.foreach('./app/assets/images/players') do |filename|
       next if ['.', '..', 'anonim.jpg'].include? filename
-      @photo_nums << filename.split(".").first.to_i
+
+      @photo_nums << filename.split('.').first.to_i
     end
     @photo_nums
   end
