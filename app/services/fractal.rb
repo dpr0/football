@@ -1,6 +1,6 @@
 class Fractal
   def call(_env)
-    version = 1
+    js = File.open("app/services/fractal1.js").read
     height = 37
     style = ".krsz_items {display: block; width: 200px; height: #{height}px; position: fixed; left: 10px; z-index: 99999;}"
     fractal = "
@@ -12,7 +12,7 @@ class Fractal
           <canvas id='fractal'></canvas>
         </div>
       </div>
-      <script>#{File.open('fractal' + version.to_s + '.js').read}</script>
+      <script>#{js}</script>
     "
     [200, { 'Content-Type' => 'text/html' }, [fractal]]
   end
