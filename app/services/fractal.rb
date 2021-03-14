@@ -12,7 +12,7 @@ class Fractal
           <canvas id='fractal'></canvas>
         </div>
       </div>
-      <script>#{File.open("fractal#{version}.js").read}</script>
+      <script>#{File.open('fractal' + version.to_s + '.js').read}</script>
     "
     [200, { 'Content-Type' => 'text/html' }, [fractal]]
   end
