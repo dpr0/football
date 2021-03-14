@@ -1,6 +1,6 @@
 class Fractal
   def call(_env)
-    js = File.open("app/services/fractal1.js").read
+    js = File.open("/home/deploy/football/current/app/services/fractal1.js").read
     height = 37
     style = ".krsz_items {display: block; width: 200px; height: #{height}px; position: fixed; left: 10px; z-index: 99999;}"
     fractal = "
