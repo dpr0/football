@@ -69,7 +69,7 @@ g1977.goals.create(season_id: 3, team_id: 2, player_id: 1, assist_player_id: nil
 g1977.goals.create(season_id: 3, team_id: 3, player_id: 32, assist_player_id: 55)
 g1978 = Game.create(day_id: s3d17.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 3)
 g1978.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: nil)
-g1978.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: nil)
+g1978.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil)
 g1979 = Game.create(day_id: s3d17.id, team_left_id: 1, goals_left: 1, goals_right: 0, team_right_id: 2)
 g1979.goals.create(season_id: 3, team_id: 1, player_id: 14, assist_player_id: 18)
 g1980 = Game.create(day_id: s3d17.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 3)

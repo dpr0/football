@@ -28,7 +28,7 @@ class Day < ApplicationRecord
     #   kp = stat.day_games > 0 ? ((stat.win3 * 3 + stat.win2 * 2.5 + stat.win1 * 2 + stat.draw) / stat.day_games.to_f * 100).to_i : 0
     #   day_plrs.each { |player| player.update(kp: kp) }
     # end
-    print(id % 10).zero? ? id : '.'
+    print(id % 10)&.zero? ? id : '.'
   end
 
   def next_and_last
