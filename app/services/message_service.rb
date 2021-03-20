@@ -4,7 +4,7 @@ class MessageService
   def initialize(message)
     msg_file_params = message['video'] || message['document']
     msg_file_params ||= message['photo'].max_by { |x| x['width'] } if message['photo']
-    msg_file_params.delete('thumb') if msg_file_params['thumb']
+    msg_file_params.delete('thumb') if msg_file_params&.dig('thumb')
     if message['video'] || message['document'] || message['photo']
       resp = RestClient.get("https://api.telegram.org/bot#{ENV['BOT_TOKEN']}/getFile?file_id=#{msg_file_params['file_id']}")
       msg_file_params.merge!({ url: JSON.parse(resp)['result']['file_path'] }) if resp['ok']
