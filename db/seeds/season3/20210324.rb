@@ -64,7 +64,7 @@ g2114.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: 38)
 g2115 = Game.create(day_id: s3d23.id, team_left_id: 2, goals_left: 0, goals_right: 0, team_right_id: 1)
 
 g2116 = Game.create(day_id: s3d23.id, team_left_id: 4, goals_left: 2, goals_right: 0, team_right_id: 3)
-g2116.goals.create(season_id: 3, team_id: 4, player_id: 55, assist_player_id: nil)
+g2116.goals.create(season_id: 3, team_id: 4, player_id: 55, assist_player_id: 8)
 g2116.goals.create(season_id: 3, team_id: 4, player_id: 8, assist_player_id: nil)
 g2117 = Game.create(day_id: s3d23.id, team_left_id: 4, goals_left: 1, goals_right: 0, team_right_id: 2)
 g2117.goals.create(season_id: 3, team_id: 4, player_id: 55, assist_player_id: 50)
