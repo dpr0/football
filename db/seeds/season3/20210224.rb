@@ -78,5 +78,4 @@ g1963 = Game.create(day_id: s3d16.id, team_left_id: 1, goals_left: 1, goals_righ
 g1963.goals.create(season_id: 3, team_id: 1, player_id: 3, assist_player_id: nil)
 
 s3d16.day_rates!
-Player.update_stats!(3)
 Day.last.update!(videos: 'chGg0VO0bEs,5YMcQZqzEuE,15g3shyeQxw,eT7skZJzw-k,8_6H2D5kJ9Q,5vpNmEF53gg,Ain_fbXumJo')

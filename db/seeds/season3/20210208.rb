@@ -89,5 +89,4 @@ g1850.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil
 g1850.goals.create(season_id: 3, team_id: 1, player_id: 27, assist_player_id: 18)
 
 s3d11.day_rates!
-Player.update_stats!(3)
 Day.last.update!(videos: 'ZT1K79RAz3M,Dlvf8JJ3aw4,u8pCHt9NARc,n5XZHQlGDgc,Bl9riPIi5ro,eTaP4iGY8X4,4AN-F13-oPE')

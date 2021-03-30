@@ -77,5 +77,4 @@ g2077.goals.create(season_id: 3, team_id: 4, player_id: nil, assist_player_id: 5
 g2077.goals.create(season_id: 3, team_id: 4, player_id: nil, assist_player_id: nil)
 
 s3d21.day_rates!
-Player.update_stats!(3)
 Day.last.update!(videos: '6inkctXtV_I,YQoM08RZXss,WJy7V95WaAI,6wDFqgHiHQY,1M7TrgyYWcU,1M0Bfs_4Jf4,3sSsnpW903A,udv0QSdcMoE,R_IPNSOBnuQ')
