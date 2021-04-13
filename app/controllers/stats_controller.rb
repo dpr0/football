@@ -25,15 +25,17 @@ class StatsController < ApplicationController
                   (select (1.0 * count(goals)/ NULLIF(stats.days, 0)) from goals where goals.season_id = #{params[:season_id]} and goals.player_id = players.id) as goals_day_count,
                   (select (1.0 * count(goals)/ NULLIF(stats.days, 0)) from goals where goals.season_id = #{params[:season_id]} and goals.assist_player_id = players.id) as assists_day_count
                 ")
-              .where("stats.sport_id = #{params[:sport_id]}") # .where("stats.days > 0")
+              .where("stats.sport_id = #{params[:sport_id]}")
               .where("stats.season_id = #{params[:season_id]}")
               .where("day_players.player_id = players.id and day_players.season_id = #{params[:season_id]}")
               .group(:id, :days, :games, :win, :draw, :lose)
               .order("#{ordering} DESC")
-    games_10_percent = @season.days.count * Stat::K_ATTENDANCE / 100.0
+    k = params[:k] || Stat::K_ATTENDANCE
+    games_percent = @season.days.count * k.to_i / 100.0
+    players = players.where("day_players.team_id = #{Team[params[:team]].id }") if params[:team]
     @arr_by_days = [
-      players.select { |z| z.days >= games_10_percent },
-      "Посещаемость менее #{Stat::K_ATTENDANCE}%", players.select { |z| z.days < games_10_percent }
+      players.select { |z| z.days >= games_percent },
+      "Посещаемость менее #{Stat::K_ATTENDANCE}%", players.select { |z| z.days < games_percent }
     ]
   end
 

@@ -97,7 +97,7 @@ g2245.goals.create(season_id: 3, team_id: 1, player_id: 2, assist_player_id: 38)
 g2246 = Game.create(day_id: s3d28.id, team_left_id: 4, goals_left: 1, goals_right: 0, team_right_id: 2)
 g2246.goals.create(season_id: 3, team_id: 4, player_id: 13, assist_player_id: nil)
 g2247 = Game.create(day_id: s3d28.id, team_left_id: 4, goals_left: 2, goals_right: 0, team_right_id: 3)
-g2247.goals.create(season_id: 3, team_id: 4, player_id: nil, assist_player_id: nil)
+g2247.goals.create(season_id: 3, team_id: 4, player_id: 14, assist_player_id: nil)
 g2247.goals.create(season_id: 3, team_id: 4, player_id: 3, assist_player_id: nil)
 
 s3d28.day_rates!

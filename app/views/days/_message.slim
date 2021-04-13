@@ -11,8 +11,8 @@
       - if message.reply_message_id
         span.direct-chat-msg.direct-chat-text.text-secondary
           = @messages.find { |m| m.message_id == message.reply_message_id }&.text
-      - if message.message_file
-        = image_tag "https://api.telegram.org/file/bot#{ENV['BOT_TOKEN']}/#{message.message_file.url}", width: 80
+      - if message.message_file.attached?
+        = image_tag message.message_file, width: 80
         br
       div= message.text
       / span.material-icons.md-18 face

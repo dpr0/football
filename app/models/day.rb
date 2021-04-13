@@ -23,11 +23,6 @@ class Day < ApplicationRecord
       [((left_win.count + right_win.count) * 3 + draw.count) / day_games.count.to_f, team.id]
     end.compact.sort.reverse.map(&:last)
     update(first_place: places[0], second_place: places[1], third_place: places[2])
-    # day_players.group_by(&:team_id).each do |team_id, day_plrs|
-    #   stat = StatService.new(id, team_id)
-    #   kp = stat.day_games > 0 ? ((stat.win3 * 3 + stat.win2 * 2.5 + stat.win1 * 2 + stat.draw) / stat.day_games.to_f * 100).to_i : 0
-    #   day_plrs.each { |player| player.update(kp: kp) }
-    # end
     print(id % 10)&.zero? ? id : '.'
   end
 

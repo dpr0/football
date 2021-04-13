@@ -19,7 +19,12 @@ section#section1.about-section.text-center
         tr
           th
           th Игрок
-          th = link_to 'Дней', sport_season_stats_path(sort: :days)
+          th
+            div = link_to 'Дней', sport_season_stats_path(sort: :days)
+            - Team.all_cached.each do |team|
+              = link_to sport_season_stats_path(sport_id: 1, season_id: @season.id, sort: :days, team: team.code) + '#tournment' do
+                = image_tag "colors/#{team.code}.png", size: "15x20"
+                | &nbsp
           th Пн / Ср
           th = link_to 'Игр',  sport_season_stats_path(sort: :games)
           th = link_to 'ELO',  sport_season_stats_path(sort: :elo)

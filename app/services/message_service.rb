@@ -19,7 +19,16 @@ class MessageService
       date:              Time.at(message['date']),
       reply_message_id: (message['reply_to_message']['message_id'] if message['reply_to_message'])
     )
-    @message.message_file = MessageFile.new(msg_file_params)
+    url = "https://api.telegram.org/file/bot#{ENV['BOT_TOKEN']}/#{msg_file_params[:url]}"
+    time=Time.now.to_i.to_s
+    filename = "tmp/"+time+"_img."+url.split(".").last
+    myfile=IO.sysopen(filename,"wb+")
+    tmp_img=IO.new(myfile,"wb")
+    f = URI.parse(url).open { |f| f.read }
+    tmp_img.write f # open(URI.encode(url)).read
+    file = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_img, filename: File.basename(filename))
+
+    @message.message_file.attach(file)
     @message.save
     @ya = @message.text.in?(%w[Я я YA Ya ya ЯЯ яя Я́ я́]) if @message.text
     @player = Player.all.to_a.find { |z| z.uid == @message.uid.to_s }
