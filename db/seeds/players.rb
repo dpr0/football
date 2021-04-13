@@ -56,6 +56,7 @@ players = [
 {code: 54, provider: 'telegram', uid: '',           lastname: 'Тарасов',     name: 'Александр',   middlename: '',              birthday: '26.04.1976', phone: '+79026164995', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 55, provider: 'telegram', uid: '',           lastname: 'Хушвактов',   name: 'Рустам',      middlename: 'Гайрат угли',   birthday: '18.08.2001', phone: '+79773553088', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 56, provider: 'telegram', uid: '',           lastname: 'Фёдоров',     name: 'Дмитрий',     middlename: '',              birthday: '',           phone: '+79037384943', height:   0, weight:  0, role_id: 3, lfl: ''},
-# {code: 57, provider: 'telegram', uid: '',           lastname: '',  name: '',   middlename: '',      birthday: '04.12.199',      phone: '+79645732923', height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 57, provider: 'telegram', uid: '',           lastname: 'Гумённый',    name: 'Денис',       middlename: '',              birthday: '',           phone: '+79670994358', height:   0, weight:  0, role_id: 3, lfl: ''},
+# {code: 58, provider: 'telegram', uid: '',           lastname: '',  name: '',   middlename: '',      birthday: '04.12.199',      phone: '+79645732923', height:   0, weight:  0, role_id: 3, lfl: ''},
 ]
 players.each { |player| print Player.create(player).id.to_s + '.' }; puts "!"
