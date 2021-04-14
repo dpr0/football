@@ -101,5 +101,4 @@ g2247.goals.create(season_id: 3, team_id: 4, player_id: 14, assist_player_id: ni
 g2247.goals.create(season_id: 3, team_id: 4, player_id: 3, assist_player_id: nil)
 
 s3d28.day_rates!
-# Player.update_stats!(3)
 Day.last.update!(videos: 'd5Uh-9afxto,Fk9_4M-nZ4o,AZqUo1XBVPk,p4PmabJR_wc,zQVLXm9DaQE,Mm2FIpoHjGI,qgmfeXhPZYI,QBYsx0BX5Dg,2unYJ8M_eeE')

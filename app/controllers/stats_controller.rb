@@ -34,8 +34,8 @@ class StatsController < ApplicationController
     games_percent = @season.days.count * k.to_i / 100.0
     players = players.where("day_players.team_id = #{Team[params[:team]].id }") if params[:team]
     @arr_by_days = [
-      players.select { |z| z.days >= games_percent },
-      "Посещаемость менее #{Stat::K_ATTENDANCE}%", players.select { |z| z.days < games_percent }
+      players.select { |z| z.days && z.days >= games_percent },
+      "Посещаемость менее #{Stat::K_ATTENDANCE}%", players.select { |z| z.days && z.days < games_percent }
     ]
   end
 
