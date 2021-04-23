@@ -67,21 +67,21 @@ g2263 = Game.create(day_id: s3d29.id, team_left_id: 2, goals_left: 0, goals_righ
 g2263.goals.create(season_id: 3, team_id: 3, player_id: 50, assist_player_id: 57)
 g2263.goals.create(season_id: 3, team_id: 3, player_id: 57, assist_player_id: 21)
 g2264 = Game.create(day_id: s3d29.id, team_left_id: 4, goals_left: 1, goals_right: 1, team_right_id: 3)
-g2264.goals.create(season_id: 3, team_id: 4, player_id: 3, assist_player_id: 32)
+g2264.goals.create(season_id: 3 , team_id: 4, player_id: 3, assist_player_id: 32)
 g2264.goals.create(season_id: 3, team_id: 3, player_id: 17, assist_player_id: 21)
 g2265 = Game.create(day_id: s3d29.id, team_left_id: 2, goals_left: 0, goals_right: 1, team_right_id: 1)
 g2265.goals.create(season_id: 3, team_id: 1, player_id: 2, assist_player_id: nil)
-g226 = Game.create(day_id: s3d29.id, team_left_id: 4, goals_left: 0, goals_right: 1, team_right_id: 1)
-g226.goals.create(season_id: 3, team_id: 1, player_id: 1, assist_player_id: nil)
-g226 = Game.create(day_id: s3d29.id, team_left_id: 3, goals_left: 0, goals_right: 2, team_right_id: 1)
-g226.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil) #
-g226.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil) #
-g226 = Game.create(day_id: s3d29.id, team_left_id: 4, goals_left: 1, goals_right: 1, team_right_id: 1)
-g226.goals.create(season_id: 3, team_id: 4, player_id: 54, assist_player_id: 13)
-g226.goals.create(season_id: 3, team_id: 1, player_id: 1, assist_player_id: nil)
-g226 = Game.create(day_id: s3d29.id, team_left_id: 4, goals_left: 0, goals_right: 1, team_right_id: 3)
-g226.goals.create(season_id: 3, team_id: 3, player_id: 57, assist_player_id: 22)
+g2266 = Game.create(day_id: s3d29.id, team_left_id: 4, goals_left: 0, goals_right: 1, team_right_id: 1)
+g2266.goals.create(season_id: 3, team_id: 1, player_id: 1, assist_player_id: nil)
+g2267 = Game.create(day_id: s3d29.id, team_left_id: 3, goals_left: 0, goals_right: 2, team_right_id: 1)
+g2267.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil) #
+g2267.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil) #
+g2268 = Game.create(day_id: s3d29.id, team_left_id: 4, goals_left: 1, goals_right: 1, team_right_id: 1)
+g2268.goals.create(season_id: 3, team_id: 4, player_id: 54, assist_player_id: 13)
+g2268.goals.create(season_id: 3, team_id: 1, player_id: 1, assist_player_id: nil)
+g2269 = Game.create(day_id: s3d29.id, team_left_id: 4, goals_left: 0, goals_right: 1, team_right_id: 3)
+g2269.goals.create(season_id: 3, team_id: 3, player_id: 57, assist_player_id: 22)
 
 s3d29.day_rates!
 # Player.update_stats!(3)
-# Day.last.update!(videos: '')
+Day.last.update!(videos: 'seUIEIomIiM,PFGqGZx233E,_G71zwLoG4Q,ta-Y-_crlyU,ZwNtLTVqk58,BMEOgqHH87U,G6W5D2qJK8I,hkMuCTsarco,ClnYqf-xL4I')
