@@ -1,4 +1,4 @@
-s3d33 = Day.create(sport_id: 1, season_id: 3, date: '17.05.2021'.to_date)
+s3d33 = Day.create(sport_id: 1, season_id: 3, date: '19.05.2021'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
 s3d33.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
 s3d33.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
