@@ -9,6 +9,7 @@ html
 
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
+    = javascript_include_tag 'https://www.google.com/jsapi'
   body.hold-transition.sidebar-mini.layout-fixed data-scrollbar-auto-hide="n"
     .wrapper
       = render 'layouts/header'
@@ -18,7 +19,7 @@ html
       = render 'layouts/footer'
       = render 'layouts/control_sidebar'
 
-link rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css"
+link rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css"
 link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
 
 javascript:
