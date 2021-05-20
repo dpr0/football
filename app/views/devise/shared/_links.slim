@@ -22,7 +22,7 @@
         - resource_class.omniauth_providers.each do |provider|
           - next if provider == :firebase
           li.firebaseui-list-item
-            = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-primary btn-block" do
+            = link_to omniauth_authorize_path(resource_name, provider), class: 'btn btn-primary btn-block', method: :post do
               span.firebaseui-idp-icon-wrapper
                 i.fab.fa-telegram-plane
               span.firebaseui-idp-text= "Войти через #{OmniAuth::Utils.camelize(provider)}"
