@@ -62,7 +62,9 @@ g2376.goals.create(season_id: 3, team_id: 3, player_id: 22, assist_player_id: ni
 g2377 = Game.create(day_id: s3d33.id, team_left_id: 2, goals_left: 2, goals_right: 0, team_right_id: 4)
 g2377.goals.create(season_id: 3, team_id: 2, player_id: 4, assist_player_id: nil)
 g2377.goals.create(season_id: 3, team_id: 2, player_id: nil, assist_player_id: 7)
-g2378 = Game.create(day_id: s3d33.id, team_left_id: 2, goals_left: 0, goals_right: 0, team_right_id: 3)
+g2378 = Game.create(day_id: s3d33.id, team_left_id: 2, goals_left: 0, goals_right: 2, team_right_id: 3)
+g2378.goals.create(season_id: 3, team_id: 3, player_id: 57, assist_player_id: 21)
+g2378.goals.create(season_id: 3, team_id: 3, player_id: 57, assist_player_id: 21)
 g2379 = Game.create(day_id: s3d33.id, team_left_id: 1, goals_left: 0, goals_right: 1, team_right_id: 3)
 g2379.goals.create(season_id: 3, team_id: 3, player_id: 21, assist_player_id: 50)
 g2380 = Game.create(day_id: s3d33.id, team_left_id: 4, goals_left: 0, goals_right: 0, team_right_id: 3)
@@ -77,7 +79,7 @@ g2383.goals.create(season_id: 3, team_id: 1, player_id: 38, assist_player_id: ni
 g2384 = Game.create(day_id: s3d33.id, team_left_id: 1, goals_left: 0, goals_right: 0, team_right_id: 2)
 g2385 = Game.create(day_id: s3d33.id, team_left_id: 4, goals_left: 1, goals_right: 1, team_right_id: 3)
 g2385.goals.create(season_id: 3, team_id: 4, player_id: 13, assist_player_id: nil)
-g2385.goals.create(season_id: 3, team_id: 3, player_id: 18, assist_player_id: 57)
+g2385.goals.create(season_id: 3, team_id: 3, player_id: 17, assist_player_id: 57)
 g2386 = Game.create(day_id: s3d33.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 2)
 g2386.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: 18)
 g2386.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: nil)
@@ -87,4 +89,4 @@ g2387.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: ni
 
 s3d33.day_rates!
 # Player.update_stats!(3)
-Day.last.update!(videos: '')
+Day.last.update!(videos: 'xhFfMq2kZ1Q,8Yk7B0pvhXU,R6JrFCWKAUQ,HybkOBtJax4,SebUHu6ljTU,eFV_qASulrM,U7VNSLoW2zQ,zjcczvG7JEE,eC0kxTd4c-A')

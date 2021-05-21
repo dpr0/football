@@ -17,7 +17,7 @@ server 'krsz.ru', port: 2222, roles: %w(app db web), primary: true
 # set :puma_worker_timeout, nil
 # set :puma_init_active_record, true
 
-set :rbenv_ruby,      '3.0.0'
+set :rbenv_ruby,      '3.0.1'
 set :application,     'football'
 set :repo_url,        'git@github.com:dpr0/football.git'
 set :deploy_user,     'deploy'

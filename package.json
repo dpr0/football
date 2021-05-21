@@ -11,7 +11,7 @@
     "chart.js": "^3.2.1",
     "chartkick": "^4.0.4",
     "core-js": "^3.12.1",
-    "firebase": "^8.6.1",
+    "firebase": "^8.6.2",
     "firebaseui-ru": "^3.4.2",
     "interact": "^0.0.3",
     "jquery": "^3.6.0",

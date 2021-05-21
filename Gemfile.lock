@@ -64,7 +64,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.2)
     aws-eventstream (1.1.1)
-    aws-partitions (1.459.0)
+    aws-partitions (1.460.0)
     aws-sdk-core (3.114.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -182,7 +182,7 @@ GEM
     net-ssh (6.1.0)
     netrc (0.11.0)
     nio4r (2.5.7)
-    nokogiri (1.11.4)
+    nokogiri (1.11.5)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     oauth2 (1.4.7)
@@ -365,7 +365,7 @@ DEPENDENCIES
   omniauth-telegram
   omniauth-yandex
   pg
-  puma (= 4.3.8)
+  puma
   rails
   redis
   rest-client
@@ -378,7 +378,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.0.1p64
 
 BUNDLED WITH
-   2.2.3
+   2.2.15

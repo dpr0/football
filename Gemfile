@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ruby '3.0.0'
+ruby '3.0.1'
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -16,7 +16,7 @@ gem 'dotenv-rails'
 gem 'chartkick'
 gem 'cocoon'
 gem 'rest-client'
-gem 'puma', '4.3.8'
+gem 'puma'
 gem 'telegram-bot'
 gem 'telegram-bot-types'
 gem 'omniauth'
