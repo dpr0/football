@@ -33,7 +33,7 @@ g2271 = Game.create(day_id: s3d30.id, team_left_id: 1, goals_left: 1, goals_righ
 g2271.goals.create(season_id: 3, team_id: 1, player_id: 8, assist_player_id: nil)
 g2272 = Game.create(day_id: s3d30.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 3)
 g2272.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil)
-g2272.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil) #
+g2272.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil) # -
 g2273 = Game.create(day_id: s3d30.id, team_left_id: 1, goals_left: 2, goals_right: 1, team_right_id: 2)
 g2273.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil)
 g2273.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: 2) #
@@ -85,11 +85,11 @@ g2290 = Game.create(day_id: s3d30.id, team_left_id: 1, goals_left: 1, goals_righ
 g2290.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil)
 g2291 = Game.create(day_id: s3d30.id, team_left_id: 1, goals_left: 2, goals_right: 1, team_right_id: 3)
 g2291.goals.create(season_id: 3, team_id: 1, player_id: 38, assist_player_id: nil)
-g2291.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil) #
+g2291.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil) # -
 g2291.goals.create(season_id: 3, team_id: 3, player_id: nil, assist_player_id: 22) #
 g2292 = Game.create(day_id: s3d30.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 4)
 g2292.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil)
-g2292.goals.create(season_id: 3, team_id: 1, player_id: nil, assist_player_id: nil) #
+g2292.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: nil) # -
 g2293 = Game.create(day_id: s3d30.id, team_left_id: 1, goals_left: 1, goals_right: 1, team_right_id: 2)
 g2293.goals.create(season_id: 3, team_id: 1, player_id: 8, assist_player_id: nil)
 g2293.goals.create(season_id: 3, team_id: 2, player_id: 1, assist_player_id: nil)

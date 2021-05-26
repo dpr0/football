@@ -2,7 +2,7 @@
 
 # ActiveSupport::Reloader.to_prepare do
 #   ApplicationController.renderer.defaults.merge!(
-#     http_host: 'example.org',
+#     http_host: ENV['HOST'] || 'localhost:3000',
 #     https: false
 #   )
 # end

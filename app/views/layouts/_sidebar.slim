@@ -3,16 +3,6 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
     = image_tag "slot1.png", style: "opacity: .8", class: 'brand-image img-circle elevation-3'
     span.brand-text.font-weight-light Megapolis
   .sidebar
-    - if current_player
-      .user-panel.mt-3.pb-3.mb-3.d-flex
-        .image
-          = image_tag current_player.jpg, style: "opacity: .8", class: 'img-circle elevation-2'
-        .info
-          a.d-block href="#" = current_player.short_name
-          = link_to 'Выйти', destroy_player_session_path, class: 'nav-link', method: :delete
-    - else
-      = link_to 'Войти', new_player_session_path, class: 'nav-link'
-
     nav.mt-2
       ul.nav.nav-pills.nav-sidebar.flex-column data-accordion="false" data-widget="treeview" role="menu"
         - next_and_last = Day.last.next_and_last
