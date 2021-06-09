@@ -88,5 +88,4 @@ g2387.goals.create(season_id: 3, team_id: 1, player_id: 6, assist_player_id: 38)
 g2387.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: nil)
 
 s3d33.day_rates!
-# Player.update_stats!(3)
 Day.last.update!(videos: 'xhFfMq2kZ1Q,8Yk7B0pvhXU,R6JrFCWKAUQ,HybkOBtJax4,SebUHu6ljTU,eFV_qASulrM,U7VNSLoW2zQ,zjcczvG7JEE,eC0kxTd4c-A')
