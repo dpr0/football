@@ -7,12 +7,14 @@ class Common
 
   def self.sites
     {
-      'football.krsz.ru' => 'fas fa-futbol',
-      'price.krsz.ru'    => 'fas fa-ruble-sign',
-      'about.krsz.ru'    => 'fas fa-user-cog',
-      'fractal.krsz.ru'  => 'fab fa-js-square',
-      'webcam.krsz.ru'   => 'fas fa-video',
-      'pipiper.ru'       => 'fab fa-pied-piper-pp'
+        'football.krsz.ru' => 'fas fa-futbol',
+        'famitree.ru'      => 'fas fa-users',
+        'zxn.ru'           => 'fas fa-desktop',
+        'podvoh.krsz.ru'   => 'fas fa-swimmer',
+        'pipiper.ru'       => 'fab fa-pied-piper-pp',
+        'fractal.krsz.ru'  => 'fab fa-js-square',
+        'webcam.krsz.ru'   => 'fas fa-video',
+        'about.krsz.ru'    => 'fas fa-user-cog'
     }
   end
 end

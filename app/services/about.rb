@@ -4,12 +4,13 @@ class About
     style = ".krsz_items {display: block; width: 200px; height: #{height}px; position: fixed; left: 10px; z-index: 99999;}"
     demo = "
       #{Common.links(height)}
-      <style type='text/css'>#{style}</style>
+      <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous'>
+      <style type='text/css'>body {background-color: black;} #{style}</style>
       <div class='container demo'>
         <div class='content'>
           <div id='large-header' class='large-header' style='height: 373px;'>
             <canvas id='demo-canvas' width='1600' height='373'></canvas>
-            <h1 class='main-title'><span class='thin'>Innovation</span> Engineering</h1>
+            <h1 class='main-title'><span class='thin'>@dvitvitskiy</span> home page</h1>
             <h1 class='contacts'><span>Telegram: </span><a href='https://t.me/dvitvitskiy'>@dvitvitskiy</a></h1>
           </div>
         </div>
