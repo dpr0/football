@@ -98,5 +98,4 @@ g2459.goals.create(season_id: 3, team_id: 1, player_id: 38, assist_player_id: 6)
 g2459.goals.create(season_id: 3, team_id: 1, player_id: 38, assist_player_id: 18)
 
 s3d37.day_rates!
-# Player.update_stats!(3)
 Day.last.update!(videos: 'G8h1MrPeK-M,e02tJj8hons,oUBGuI-bh2E,kA3EOiaNQYI,O7gwG1fpEmw,pp22WKHW7r4,lTH6LiKhR8w')
