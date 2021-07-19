@@ -1,4 +1,4 @@
-s3d41 = Day.create(sport_id: 1, season_id: 3, date: '07.07.2021'.to_date)
+s3d41 = Day.create(sport_id: 1, season_id: 3, date: '12.07.2021'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
 s3d41.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
 s3d41.day_players.create(season_id: 3, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
@@ -104,4 +104,5 @@ g2554.goals.create(season_id: 3, team_id: 1, player_id: 18, assist_player_id: ni
 g2554.goals.create(season_id: 3, team_id: 1, player_id: 26, assist_player_id: nil)
 
 s3d41.day_rates!
+# Player.update_stats!(3)
 Day.last.update!(videos: '')
