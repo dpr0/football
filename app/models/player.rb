@@ -78,7 +78,6 @@ class Player < ApplicationRecord
         lose += stat.lose
       end
 
-      # player.update(kp: ((win3 * 3 + win2 * 2.5 + win1 * 2 + draw) / day_games.to_f * 100).to_i) if day_games > 0
       player.stats.where(season_id: season_id).update(
         days: day_team.count,
         games: day_games,

@@ -12,7 +12,6 @@ class CreateStats < ActiveRecord::Migration[6.0]
       t.integer :draw
       t.integer :lose
       t.float   :elo
-      t.integer :kp
 
       t.timestamps
     end

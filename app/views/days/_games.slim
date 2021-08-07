@@ -1,0 +1,29 @@
+.container
+  .row
+    table.table.table-dark.table-striped.table-bordered
+      tr
+        th colspan="8" Игры
+      - @games.each_with_index do |game, i|
+        - z = game.goals.map(&:player_id).map do |player_id|
+          - next unless player_id
+          - @players.find { |pl| pl.id == player_id }.name
+        tr
+          td.text-left
+            = i + 1
+          td.text-right
+            sup class="#{game.rated_class('left')}"
+              = game.rated('left')
+            = game.left_team_elo.to_i
+          td.text-left
+            - t = @teams.find { |t| t.id == game['team_left_id'] }
+            = image_tag "colors/#{t.code}.png", size: "25x30"
+          td.text-center.CellWithComment
+            = "#{game.goals_left} : #{game.goals_right}"
+            span.CellComment = z.compact.join(', ')
+          td.text-right
+            - t = @teams.find { |t| t.id == game['team_right_id'] }
+            = image_tag "colors/#{t.code}.png", size: "25x30"
+          td.text-left
+            = game.right_team_elo.to_i
+            sup class="#{game.rated_class('right')}"
+              = game.rated('right')

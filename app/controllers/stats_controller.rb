@@ -14,7 +14,6 @@ class StatsController < ApplicationController
                   players.lastname,
                   players.middlename,
                   players.elo,
-                  players.kp,
                   stats.days as days,
                   stats.games as games,
                   stats.win as win,
@@ -42,6 +41,6 @@ class StatsController < ApplicationController
   private
 
   def ordering
-    params[:sort].in?(%w[elo kp days games win draw lose goals_count assists_count goals_day_count assists_day_count]) ? params[:sort] : 'goals_day_count'
+    params[:sort].in?(%w[elo days games win draw lose goals_count assists_count goals_day_count assists_day_count]) ? params[:sort] : 'goals_day_count'
   end
 end

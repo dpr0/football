@@ -17,8 +17,8 @@ class Day < ApplicationRecord
       day_games = games.all.select { |x| [x[StatService::TL], x[StatService::TR]].include? team.id }
       next if day_games.blank?
 
-      left_win  = day_games.select { |x| x[StatService::GL] > x[StatService::GR] && x[StatService::TL] == team.id }
-      right_win = day_games.select { |x| x[StatService::GL] < x[StatService::GR] && x[StatService::TR] == team.id }
+      left_win  = day_games.select { |x| x[StatService::GL]  > x[StatService::GR] && x[StatService::TL] == team.id }
+      right_win = day_games.select { |x| x[StatService::GL]  < x[StatService::GR] && x[StatService::TR] == team.id }
       draw      = day_games.select { |x| x[StatService::GL] == x[StatService::GR] }
       [((left_win.count + right_win.count) * 3 + draw.count) / day_games.count.to_f, team.id]
     end.compact.sort.reverse.map(&:last)

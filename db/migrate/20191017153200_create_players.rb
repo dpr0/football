@@ -11,7 +11,6 @@ class CreatePlayers < ActiveRecord::Migration[6.0]
       t.string :provider, default: 'telegram'
       t.string :lfl
       t.string :email, null: true, default: ''
-      t.integer :kp, default: 0
       t.float :elo, default: 1500
       t.integer :code
       t.integer :height

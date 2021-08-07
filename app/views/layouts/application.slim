@@ -4,12 +4,24 @@ html
     meta name="yandex-verification" content="b8209de9862994b1"
     = csrf_meta_tags
     = csp_meta_tag
-    link href="favicon.ico" rel=('shortcut icon') type="image/x-icon"
     title Megapolis
 
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
     = javascript_include_tag 'https://www.google.com/jsapi'
+    = favicon_link_tag asset_path('favicon.ico')
+
+    link href="https://football.krsz.ru" rel="canonical"
+    meta name="description" content="football.krsz.ru"
+    meta name="twitter:card" content="summary_large_image"
+    meta property="og:url" content="https://football.krsz.ru/"
+    meta property="og:site_name" content="football.krsz.ru"
+    meta property="og:type" content="website"
+    meta property="og:title" content="football.krsz.ru"
+    meta property="og:locale" content="ru_RU"
+    meta property="og:description" content="football.krsz.ru"
+    meta property="og:image" content="#{asset_path('og-image.png')}"
+
   body.hold-transition.sidebar-mini.layout-fixed data-scrollbar-auto-hide="n"
     .wrapper
       = render 'layouts/header'
