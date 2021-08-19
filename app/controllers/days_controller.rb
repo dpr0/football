@@ -81,7 +81,7 @@ class DaysController < ApplicationController
   end
 
   def find_day
-    @day = params[:id] ? Day.find(params[:id]) : Day.last
+    @day = params[:id] ? Day.find_by(id: params[:id]) : Day.last
   end
 
   def find_games
