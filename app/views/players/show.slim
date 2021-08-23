@@ -53,7 +53,7 @@ section#pole.about-section.text-center
               .input-group.mb-6
                 .input-group-prepend
                   span.input-group-text Телефон
-                = text_field_tag '', @player.text_phone, class: 'form-control text-right', disabled: true
+                = text_field_tag '', current_player ? @player.text_phone : @player.text_xxx_phone, class: 'form-control text-right', disabled: true
             - if @player.lfl.present?
               br
               .row

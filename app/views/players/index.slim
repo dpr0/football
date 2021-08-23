@@ -6,15 +6,14 @@
       .card.profile-card
         .card-img-block
           .info-box
-            = player.birthday.present? ? "Возраст: #{Date.current.year - player.birthday.year}" : '-'
-            div = player.text_phone
-            div = player.birthday&.strftime("%d.%m.%Y")
+            = player.birthday&.strftime("%d.%m.%Y")
         .card-body
           = image_tag player.jpg, class: 'profile', height: '50%'
-          h5.card-title.text-center = player.code
-          .card-text.text-center = player.lastname.present? ? player.lastname : '-'
-          .card-text.text-center = player.name.present? ? player.name : '-'
-          .card-text.text-center = player.middlename.present? ? player.middlename : '-'
+          h5.card-title.text-center        = player.code
+          .card-text.text-center.text-dark = player.lastname.present?   ? player.lastname   : '-'
+          .card-text.text-center.text-dark = player.name.present?       ? player.name       : '-'
+          .card-text.text-center.text-dark = player.middlename.present? ? player.middlename : '-'
+          .card-text.text-center.text-dark = current_player ? player.text_phone : player.text_xxx_phone
           .icon-block.text-center
             a href="#"
               i = player.code

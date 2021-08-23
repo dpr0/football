@@ -48,8 +48,11 @@ class Player < ApplicationRecord
   end
 
   def text_phone
-    # phone ? "#{phone[0..2]}-#{phone[3..5]}-#{phone[6..7]}-#{phone[8..9]}" : '-'
-    phone ? "#{phone[0..2]}-xxx-xx-#{phone[8..9]}" : '-'
+    phone ? "#{phone[0..1]}-#{phone[2..4]}-#{phone[5..7]}-#{phone[8..9]}-#{phone[10..11]}" : '-'
+  end
+
+  def text_xxx_phone
+    phone ? "#{phone[0..1]}-#{phone[2..4]}-xxx-xx-#{phone[10..11]}" : '-'
   end
 
   def with_initial
