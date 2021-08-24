@@ -14,7 +14,7 @@ players = [
 {code: 12, provider: 'telegram', uid: '1020565506', lastname: 'Кулявцев',    name: 'Александр',   middlename: '',              birthday: '',           phone: '+79036784403', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 13, provider: 'telegram', uid: '463123889',  lastname: 'Эйвазов',     name: 'Араз',        middlename: 'Гаджиахмедович',birthday: '13.08.1995', phone: '+79162336042', height: 180, weight: 90, role_id: 3, lfl: ''},
 {code: 14, provider: 'telegram', uid: '150415879',  lastname: 'Порошкин',    name: 'Александр',   middlename: 'Владимирович',  birthday: '10.09.1987', phone: '+79266931387', height: 185, weight: 95, role_id: 3, lfl: ''},
-{code: 15, provider: 'phone',    uid: '',           lastname: '',            name: 'Котэ',        middlename: '',              birthday: '',           phone: nil,            height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 15, provider: 'phone',    uid: '',           lastname: 'Никурадзе',   name: 'Котэ',        middlename: 'Нодарович',     birthday: '',           phone: nil,            height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 16, provider: 'telegram', uid: '',           lastname: 'Салосятов',   name: 'Василий',     middlename: 'Евгеньевич',    birthday: '15.08.1987', phone: '+79254654955', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 17, provider: 'telegram', uid: '42250353',   lastname: 'Трубаров',    name: 'Андрей',      middlename: 'Анатольевич',   birthday: '24.06.1987', phone: '+79299775687', height: 170, weight: 97, role_id: 3, lfl: ''},
 {code: 18, provider: 'telegram', uid: '378646096',  lastname: 'Морозов',     name: 'Дмитрий',     middlename: 'Михайлович',    birthday: '28.04.1996', phone: '+79055561736', height:   0, weight:  0, role_id: 3, lfl: '76952'},
@@ -57,9 +57,11 @@ players = [
 {code: 55, provider: 'telegram', uid: '',           lastname: 'Хушвактов',   name: 'Рустам',      middlename: 'Гайрат угли',   birthday: '18.08.2001', phone: '+79773553088', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 56, provider: 'telegram', uid: '',           lastname: 'Фёдоров',     name: 'Дмитрий',     middlename: '',              birthday: '',           phone: '+79037384943', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 57, provider: 'telegram', uid: '',           lastname: 'Гумённый',    name: 'Денис',       middlename: '',              birthday: '',           phone: '+79670994358', height:   0, weight:  0, role_id: 3, lfl: ''},
-{code: 58, provider: 'telegram', uid: '',           lastname: '',            name: 'Роман',       middlename: '',              birthday: '',           phone: nil,            height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 58, provider: 'telegram', uid: '',           lastname: '',            name: 'Роман',       middlename: '',              birthday: '',           phone: '+79104576689', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 59, provider: 'telegram', uid: '',           lastname: 'Шарапов',     name: 'Санджар',     middlename: '',              birthday: '',           phone: '+79154772891', height:   0, weight:  0, role_id: 3, lfl: ''},
 {code: 60, provider: 'telegram', uid: '',           lastname: 'Ярошевич',    name: 'Алексей',     middlename: '',              birthday: '',           phone: '+79031296150', height:   0, weight:  0, role_id: 3, lfl: ''},
-# {code: 61, provider: 'telegram', uid: '',           lastname: '',  name: '',   middlename: '',      birthday: '04.12.199',      phone: '+79645732923', height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 61, provider: 'telegram', uid: '',           lastname: 'Александр',   name: '',            middlename: '',              birthday: '',           phone: '+79680499047', height:   0, weight:  0, role_id: 3, lfl: ''},
+{code: 62, provider: 'telegram', uid: '',           lastname: 'Николай',     name: '',            middlename: '',              birthday: '',           phone: '+79680499047', height:   0, weight:  0, role_id: 3, lfl: ''},
+# {code: 63, provider: 'telegram', uid: '',           lastname: '',  name: '',   middlename: '',      birthday: '04.12.199',      phone: '+79645732923', height:   0, weight:  0, role_id: 3, lfl: ''},
 ]
 players.each { |player| print Player.create(player).id.to_s + '.' }; puts "!"

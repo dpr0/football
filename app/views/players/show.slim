@@ -87,4 +87,4 @@ section#pole.about-section.text-center
               div= "#{Team.color(vs[:team_id])} +#{vs[:win]} =#{vs[:draw]} -#{vs[:lose]}"
       .row
         .col-sm-12
-          = area_chart rates.map { |dp| [dp.day_id, dp.elo] }, width: "93%", min: 800, max: 2500, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
+          = area_chart rates.map { |dp| [dp.day_id, dp.elo] }, width: "93%", min: 800, max: 2800, xmin: 1, download: {background: "#ffffff"}, dataset: {borderWidth: 3}
