@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2021_03_13_143000) do
     t.bigint "player_id"
     t.bigint "team_id"
     t.float "elo", default: 0.0
-    t.integer "kp", default: 0
     t.integer "season_id"
     t.index ["day_id"], name: "index_day_players_on_day_id"
     t.index ["player_id"], name: "index_day_players_on_player_id"
@@ -140,7 +139,6 @@ ActiveRecord::Schema.define(version: 2021_03_13_143000) do
     t.string "provider", default: "telegram"
     t.string "lfl"
     t.string "email", default: ""
-    t.integer "kp", default: 0
     t.float "elo", default: 1500.0
     t.integer "code"
     t.integer "height"
@@ -194,7 +192,6 @@ ActiveRecord::Schema.define(version: 2021_03_13_143000) do
     t.integer "draw"
     t.integer "lose"
     t.float "elo"
-    t.integer "kp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

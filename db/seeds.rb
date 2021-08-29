@@ -21,6 +21,10 @@ season3 = Season.create(code: 'season3',  name: '2021')
     # pl.update(elo: 1500)
   end
 
-  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].each { |seed| load seed }
+  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].each do |seed|
+    ActiveRecord::Base.transaction do
+      load seed
+    end
+  end
   Player.update_stats!(season.id)
 end
