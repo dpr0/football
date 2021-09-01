@@ -122,12 +122,12 @@ ActiveRecord::Schema.define(version: 2021_03_13_143000) do
     t.integer "uid"
     t.string "username"
     t.text "text"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "message_id"
     t.bigint "chat_id"
     t.datetime "date"
     t.integer "reply_message_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "players", force: :cascade do |t|
@@ -138,8 +138,10 @@ ActiveRecord::Schema.define(version: 2021_03_13_143000) do
     t.string "uid"
     t.string "provider", default: "telegram"
     t.string "lfl"
+    t.string "token"
     t.string "email", default: ""
     t.float "elo", default: 1500.0
+    t.float "season_elo", default: 1500.0
     t.integer "code"
     t.integer "height"
     t.integer "weight"
@@ -156,8 +158,6 @@ ActiveRecord::Schema.define(version: 2021_03_13_143000) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "token"
-    t.float "season_elo"
     t.index ["role_id"], name: "index_players_on_role_id"
   end
 
@@ -182,3 +182,29 @@ ActiveRecord::Schema.define(version: 2021_03_13_143000) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "stats", force: :cascade do |t|
+    t.integer "sport_id"
+    t.integer "season_id"
+    t.integer "player_id"
+    t.integer "days"
+    t.integer "games"
+    t.integer "win"
+    t.integer "draw"
+    t.integer "lose"
+    t.float "elo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.integer "num"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "authorizations", "players"
+end
