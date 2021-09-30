@@ -1,7 +1,6 @@
 ActiveRecord::Base.transaction do
   s3d47 = Day.create(sport_id: 1, season_id: 3, date: '23.08.2021'.to_date)
-                                                                    #         |  гол | асист| удар |  фол | сейв |привоз|
-  s3d47.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
+s3d47.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
   s3d47.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
   s3d47.day_players.create(season_id: 3, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
   s3d47.day_players.create(season_id: 3, team_id: 1, player_id:  1) # гарик   |     |     |     |     |     |     |
@@ -93,6 +92,5 @@ ActiveRecord::Base.transaction do
   g2691.goals.create(season_id: 3, team_id: 2, player_id: nil, assist_player_id: nil)
 
   s3d47.day_rates!
-  # Player.update_stats!(3)
   Day.last.update!(videos: 'bExp0ogC0xQ,488mS1IKlmU,hmwWAz10FfQ,5aELOrY9N4s,BkckX-xJjQE,ccX67Kd9uhY,H7ZPvkSvwBU,a4JXtLqdGLI,qeqyu6-_jn8')
 end
