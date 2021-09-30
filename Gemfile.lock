@@ -337,7 +337,7 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webpacker (5.4.3)
+    webpacker (5.4.2)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -385,7 +385,7 @@ DEPENDENCIES
   telegram-bot
   telegram-bot-types
   uglifier
-  webpacker
+  webpacker (= 5.4.2)
 
 RUBY VERSION
    ruby 3.0.1p64

@@ -21,6 +21,13 @@ ActiveRecord::Base.transaction do
   s4d03.day_players.create(season_id: 4, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
   s4d03.day_players.create(season_id: 4, team_id: 3, player_id: 61) # коля    |     |     |     |     |     |     |
 
+  s4d03.day_players.create(season_id: 4, team_id: 4, player_id:  9) # воав    |     |     |     |     |     |     |
+  s4d03.day_players.create(season_id: 4, team_id: 4, player_id:  3) # ден     |     |     |     |     |     |     |
+  s4d03.day_players.create(season_id: 4, team_id: 4, player_id:  1) # гарик   |     |     |     |     |     |     |
+  s4d03.day_players.create(season_id: 4, team_id: 4, player_id: 35) # юра     |     |     |     |     |     |     |
+  s4d03.day_players.create(season_id: 4, team_id: 4, player_id: 53) # аслан   |     |     |     |     |     |     |
+  s4d03.day_players.create(season_id: 4, team_id: 4, player_id: 55) # рустам  |     |     |     |     |     |     |
+
   g2777 = Game.create(day_id: s4d03.id, team_left_id: 1, goals_left: 0, goals_right: 0, team_right_id: 3)
   g2778 = Game.create(day_id: s4d03.id, team_left_id: 4, goals_left: 0, goals_right: 1, team_right_id: 2)
   g2778.goals.create(season_id: 4, team_id: 2, player_id: 4, assist_player_id: nil)
