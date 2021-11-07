@@ -20,14 +20,16 @@ class Day < ApplicationRecord
       left_win  = day_games.select { |x| x[StatService::GL]  > x[StatService::GR] && x[StatService::TL] == team.id }
       right_win = day_games.select { |x| x[StatService::GL]  < x[StatService::GR] && x[StatService::TR] == team.id }
       draw      = day_games.select { |x| x[StatService::GL] == x[StatService::GR] }
-      [((left_win.count + right_win.count) * 3 + draw.count) / day_games.count.to_f, team.id]
+      [(((left_win + right_win).count * 3) + draw.count) / day_games.count.to_f, team.id]
     end.compact.sort.reverse.map(&:last)
-    update(first_place: places[0], second_place: places[1], third_place: places[2])
-    print(id % 10)&.zero? ? id : '.'
+    update(first_place: places[0], second_place: places[1], third_place: places[2], fourth_place: places[3])
+    print "#{id}."
   end
 
   def next_and_last
     last = Day.last.date
+    return unless last
+
     next_day = (last + 2.days).wday == 3 ? (last + 2.days) : (last + 5.days)
     [week_str(next_day), week_str(last)]
   end

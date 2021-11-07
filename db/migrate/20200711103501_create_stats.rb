@@ -11,7 +11,7 @@ class CreateStats < ActiveRecord::Migration[6.0]
       t.integer :win
       t.integer :draw
       t.integer :lose
-      t.float   :elo
+      t.float   :elo, default: 1500
 
       t.timestamps
     end

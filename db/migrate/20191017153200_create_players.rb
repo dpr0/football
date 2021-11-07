@@ -13,7 +13,6 @@ class CreatePlayers < ActiveRecord::Migration[6.0]
       t.string :token
       t.string :email, null: true, default: ''
       t.float :elo, default: 1500
-      t.float :season_elo, default: 1500
       t.integer :code
       t.integer :height
       t.integer :weight

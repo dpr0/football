@@ -1,6 +1,6 @@
 ActiveRecord::Base.transaction do
   s3d48 = Day.create(sport_id: 1, season_id: 3, date: '30.08.2021'.to_date)
-s3d48.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
+  s3d48.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
   s3d48.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
   s3d48.day_players.create(season_id: 3, team_id: 1, player_id: 14) # саша    |     |     |     |     |     |     |
   s3d48.day_players.create(season_id: 3, team_id: 1, player_id: 29) # макс    |     |     |     |     |     |     |

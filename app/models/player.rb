@@ -70,7 +70,7 @@ class Player < ApplicationRecord
   def self.update_stats!(season_id)
     all.each do |player|
       day_team = player.day_players_by_season(season_id).map { |dp| [dp.day_id, dp.team_id] }
-      win1 = 0; win2 = 0; win3 = 0; draw = 0; lose = 0; day_games = 0
+      win1, win2, win3, draw, lose, day_games = Array.new(6, 0)
       day_team.each do |day_id, team_id|
         stat = StatService.new(day_id, team_id)
         day_games += stat.day_games
@@ -86,7 +86,8 @@ class Player < ApplicationRecord
         games: day_games,
         win: win3 + win2 + win1,
         draw: draw,
-        lose: lose
+        lose: lose,
+        elo: player.elo
       )
     end
   end
@@ -113,17 +114,11 @@ class Player < ApplicationRecord
         left_games  =   all_games.select { |g| g.team_left_id  == team_id }
         right_games =   all_games.select { |g| g.team_right_id == team_id }
         draw        =   all_games.select { |g| g.goals_left == g.goals_right }
-        left_win    =  left_games.select { |g| g.goals_left > g.goals_right }
-        left_lose   =  left_games.select { |g| g.goals_left < g.goals_right }
+        left_win    =  left_games.select { |g| g.goals_left  > g.goals_right }
+        left_lose   =  left_games.select { |g| g.goals_left  < g.goals_right }
         right_win   = right_games.select { |g| g.goals_right > g.goals_left  }
         right_lose  = right_games.select { |g| g.goals_right < g.goals_left  }
-
-        { team_id: team_id, team_days: team_days.count, vs: Team.all_cached.reject { |team| team.id == team_id }.map do |team|
-                                                              w = (left_win + right_win).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
-                                                              d = draw.select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
-                                                              l = (left_lose + right_lose).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
-                                                              { team_id: team.id, win: w, draw: d, lose: l }
-                                                            end }
+        { team_id: team_id, team_days: team_days.count, vs: vs(team_id, draw, left_win, left_lose, right_win, right_lose) }
       end
       seasons_hash[season_id] = hash
     end
@@ -132,6 +127,15 @@ class Player < ApplicationRecord
   end
 
   private
+
+  def vs(team_id, draw, left_win, left_lose, right_win, right_lose)
+    Team.all_cached.reject { |team| team.id == team_id }.map do |team|
+      w = (left_win + right_win).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+      d = draw.select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+      l = (left_lose + right_lose).select { |g| g.team_left_id == team.id || g.team_right_id == team.id }.count
+      { team_id: team.id, win: w, draw: d, lose: l }
+    end
+  end
 
   def photo_nums
     return @photo_nums if @photo_nums

@@ -8,6 +8,7 @@ section#tournment.about-section.text-center
             th.text-center 1-ое место
             th.text-center 2-ое место
             th.text-center 3-е место
+            th.text-center 4-ое место
           - @teams.each do |team|
             - next if places.select { |p| [p[:first_place], p[:second_place], p[:third_place]].include? team.id }.count.zero?
             tr
@@ -15,6 +16,7 @@ section#tournment.about-section.text-center
               td.text-center = places.select { |p| p[:first_place]  == team.id }.count
               td.text-center = places.select { |p| p[:second_place] == team.id }.count
               td.text-center = places.select { |p| p[:third_place]  == team.id }.count
+              td.text-center = places.select { |p| p[:fourth_place] == team.id }.count
     .row
       table.table.table-dark.table-striped.table-bordered
         tr

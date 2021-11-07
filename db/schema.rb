@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_09_30_185426) do
     t.integer "first_place"
     t.integer "second_place"
     t.integer "third_place"
+    t.integer "fourth_place"
     t.integer "sport_id"
     t.integer "season_id"
     t.string "videos"
@@ -141,7 +142,6 @@ ActiveRecord::Schema.define(version: 2021_09_30_185426) do
     t.string "token"
     t.string "email", default: ""
     t.float "elo", default: 1500.0
-    t.float "season_elo", default: 1500.0
     t.integer "code"
     t.integer "height"
     t.integer "weight"
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 2021_09_30_185426) do
     t.integer "win"
     t.integer "draw"
     t.integer "lose"
-    t.float "elo"
+    t.float "elo", default: 1500.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

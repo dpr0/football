@@ -19,13 +19,10 @@ season4 = Season.create(code: 'season4',  name: '2021/2')
 [season1, season2, season3, season4].each do |season|
   Player.all.each do |pl|
     pl.stats.create(sport_id: sport.id, season_id: season.id)
-    # pl.update(elo: 1500)
+    pl.update(elo: 1500)
   end
 
-  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].each do |seed|
-    # ActiveRecord::Base.transaction do
-      load seed
-    # end
-  end
+  puts "\n< #{season.code.capitalize}: #{season.name} > ==================================================="
+  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].each_with_index { |seed, i| i > 2 ? next : load(seed) }
   Player.update_stats!(season.id)
 end

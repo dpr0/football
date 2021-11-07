@@ -4,7 +4,7 @@ ActiveRecord::Base.transaction do
   s4d12.day_players.create(season_id: 4, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
   s4d12.day_players.create(season_id: 4, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
   s4d12.day_players.create(season_id: 4, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-  s4d12.day_players.create(season_id: 4, team_id: 1, player_id: 20) # макс    |     |     |     |     |     |     |
+  s4d12.day_players.create(season_id: 4, team_id: 1, player_id: 29) # макс    |     |     |     |     |     |     |
   s4d12.day_players.create(season_id: 4, team_id: 1, player_id:  8) # пятн    |     |     |     |     |     |     |
   s4d12.day_players.create(season_id: 4, team_id: 1, player_id: 54) # тарасов |     |     |     |     |     |     |
   s4d12.day_players.create(season_id: 4, team_id: 1, player_id: 38) # миша    |     |     |     |     |     |     |

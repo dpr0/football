@@ -9,7 +9,7 @@ class DaysController < ApplicationController
 
   def index
     @days = Day.joins(:day_players).eager_load!(:day_players).order(id: :desc)
-    @places_by_seasons = Day.select(:first_place, :second_place, :third_place, :season_id).group_by(&:season_id)
+    @places_by_seasons = Day.select(:first_place, :second_place, :third_place, :fourth_place, :season_id).group_by(&:season_id)
   end
 
   def show
