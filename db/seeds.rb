@@ -23,6 +23,6 @@ season4 = Season.create(code: 'season4',  name: '2021/2')
   end
 
   puts "\n< #{season.code.capitalize}: #{season.name} > ==================================================="
-  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].each_with_index { |seed, i| i > 2 ? next : load(seed) }
+  Dir[File.join(Rails.root, 'db', 'seeds', season.code, '*.rb')].each { |seed| load(seed) }
   Player.update_stats!(season.id)
 end

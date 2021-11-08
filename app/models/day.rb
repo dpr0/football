@@ -23,7 +23,7 @@ class Day < ApplicationRecord
       [(((left_win + right_win).count * 3) + draw.count) / day_games.count.to_f, team.id]
     end.compact.sort.reverse.map(&:last)
     update(first_place: places[0], second_place: places[1], third_place: places[2], fourth_place: places[3])
-    print "#{id}."
+    print((id % 10).zero? ? id : '.')
   end
 
   def next_and_last

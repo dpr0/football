@@ -58,7 +58,7 @@ section#section1.about-section.text-center
                   = ' / '
                   = (dp.map(&:day_id) - @days_by_wday[1].uniq.map(&:id)).size if @days_by_wday[1]
                 td.text-right = player.games
-                td.text-right = player.elo.to_i
+                td.text-right = player.stats_elo.to_i
                 td.text-right = player.goals_count
                 td.text-right = player.assists_count
                 td.text-right
