@@ -24,7 +24,7 @@ ActiveRecord::Base.transaction do
   s4d17.day_players.create(season_id: 4, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
   s4d17.day_players.create(season_id: 4, team_id: 3, player_id: 62) # вова к  |     |     |     |     |     |     |
 
-  s4d17.day_players.create(season_id: 4, team_id: 4, player_id:  8) # арг    |     |     |     |     |     |     |
+  s4d17.day_players.create(season_id: 4, team_id: 4, player_id:  8) # арг     |     |     |     |     |     |     |
 
   g2304 = Game.create(day_id: s4d17.id, team_left_id: 1, goals_left: 2, goals_right: 1, team_right_id: 2)
   g2304.goals.create(season_id: 4, team_id: 1, player_id: 6, assist_player_id: nil)
@@ -103,4 +103,3 @@ ActiveRecord::Base.transaction do
   s4d17.day_rates!
   Day.last.update!(videos: 'jHODvK_i4wc,Z3yzFwFqsTY,AEdlpk4oT6I,6P2KM1L4cm0,KpPupHLQvN0,gfYJu-4A58Y,nEtWycNbWdY')
 end
-# Player.update_stats!(4)

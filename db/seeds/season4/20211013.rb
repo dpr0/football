@@ -84,6 +84,6 @@ ActiveRecord::Base.transaction do
   g2936 = Game.create(day_id: s4d13.id, team_left_id: 3, goals_left: 0, goals_right: 0, team_right_id: 2)
 
   s4d13.day_rates!
-  Day.last.update(first_place: 1, second_place: 4, third_place: 3, fourth_place: 2)
-  Day.last.update!(videos: 'hbyF3qOWBNU,JJl9o9AVDVU,iyMedFNOxuE,4hUJvFTV0nU,7TA2dvvqvXM,IK0An_Y-cVo,IwpMdByFca0,sB73idOirKM,sBTUqajXt6g')
+  Day.last.update(first_place: 1, second_place: 4, third_place: 3, fourth_place: 2,
+    videos: 'hbyF3qOWBNU,JJl9o9AVDVU,iyMedFNOxuE,4hUJvFTV0nU,7TA2dvvqvXM,IK0An_Y-cVo,IwpMdByFca0,sB73idOirKM,sBTUqajXt6g')
 end
