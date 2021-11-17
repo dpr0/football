@@ -103,4 +103,3 @@ ActiveRecord::Base.transaction do
   s4d19.day_rates!
   Day.last.update!(videos: '52IziUeIL88,TJXAnm7A2hY,9w6UXxsSXsM,Uc9xgs_s6Co,tp4t2CxzWXc,IpEyVQs79-A,XLnExp55x80,aRvOFN_mnUs,mUyvNQTwd_c')
 end
-# Player.update_stats!(4)
