@@ -8,8 +8,9 @@ class DaysController < ApplicationController
   before_action :authenticate_player!, only: :next
 
   def index
-    @days = Day.joins(:day_players).eager_load!(:day_players).order(id: :desc)
-    @places_by_seasons = Day.select(:first_place, :second_place, :third_place, :fourth_place, :season_id).group_by(&:season_id)
+    @season = params[:season_id] ? Season.cached_by_id[params[:season_id].to_i] : Season.all_cached.last
+    @days = Day.where(season_id: @season.id).joins(:day_players).eager_load!(:day_players).order(id: :desc)
+    @places = @days.select(:first_place, :second_place, :third_place, :fourth_place, :season_id)
   end
 
   def show
@@ -47,11 +48,11 @@ class DaysController < ApplicationController
 
   def update
     params[:day][:day_players_attributes].values
-        .select { |x| @day.day_players.find { |xx| xx.id == x["id"].to_i }.player_id != x["player_id"].to_i }
-        .each do |x|
-          player = Player.find_by(id: x['player_id'])
-          DayPlayer.find_by(id: x['id']).update(player_id: player.id, elo: player.elo)
-        end
+      .select { |x| @day.day_players.find { |xx| xx.id == x["id"].to_i }.player_id != x["player_id"].to_i }
+      .each do |x|
+        player = Player.find_by(id: x['player_id'])
+        DayPlayer.find_by(id: x['id']).update(player_id: player.id, elo: player.elo)
+      end
   end
 
   def next
@@ -82,6 +83,7 @@ class DaysController < ApplicationController
 
   def find_day
     @day = params[:id] ? Day.find_by(id: params[:id]) : Day.last
+    @day ||= Day.find_by(id: params[:id].to_i + params[:to].to_i)
   end
 
   def find_games
