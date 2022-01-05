@@ -1,9 +1,8 @@
 module.exports = function(api) {
-  var validEnv = ['development', 'test', 'production']
+  var validEnv = ['development', 'production']
   var currentEnv = api.env()
   var isDevelopmentEnv = api.env('development')
   var isProductionEnv = api.env('production')
-  var isTestEnv = api.env('test')
 
   if (!validEnv.includes(currentEnv)) {
     throw new Error(
@@ -17,16 +16,8 @@ module.exports = function(api) {
 
   return {
     presets: [
-      isTestEnv && [
-        require('@babel/preset-env').default,
-        {
-          targets: {
-            node: 'current'
-          }
-        }
-      ],
       (isProductionEnv || isDevelopmentEnv) && [
-        require('@babel/preset-env').default,
+        '@babel/preset-env',
         {
           forceAllTransforms: true,
           useBuiltIns: 'entry',
@@ -37,36 +28,15 @@ module.exports = function(api) {
       ]
     ].filter(Boolean),
     plugins: [
-      require('babel-plugin-macros'),
-      require('@babel/plugin-syntax-dynamic-import').default,
-      isTestEnv && require('babel-plugin-dynamic-import-node'),
-      require('@babel/plugin-transform-destructuring').default,
-      [
-        require('@babel/plugin-proposal-class-properties').default,
-        {
-          loose: true
-        }
-      ],
-      [
-        require('@babel/plugin-proposal-object-rest-spread').default,
-        {
-          useBuiltIns: true
-        }
-      ],
-      [
-        require('@babel/plugin-transform-runtime').default,
-        {
-          helpers: false,
-          regenerator: true,
-          corejs: false
-        }
-      ],
-      [
-        require('@babel/plugin-transform-regenerator').default,
-        {
-          async: false
-        }
-      ]
+      'babel-plugin-macros',
+      '@babel/plugin-syntax-dynamic-import',
+      '@babel/plugin-transform-destructuring',
+      [ '@babel/plugin-proposal-class-properties',           { loose: true } ],
+      [ '@babel/plugin-proposal-object-rest-spread',         { useBuiltIns: true } ],
+      [ '@babel/plugin-proposal-private-methods',            { loose: true } ],
+      [ '@babel/plugin-proposal-private-property-in-object', { loose: true } ],
+      [ '@babel/plugin-transform-runtime',                   { helpers: false } ],
+      [ '@babel/plugin-transform-regenerator',               { async: false } ]
     ].filter(Boolean)
   }
 }
