@@ -1,31 +1,31 @@
 s2d26 = Day.create(sport_id: 1, season_id: 2, date: '23.11.2020'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
-s2d26.day_players.create(season_id: 2, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 1, player_id: 29) # макс    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
+s2d26.day_players.create(season_id: 2, team_id: 1, player_id:  5) # алихан  
+s2d26.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  
+s2d26.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    
+s2d26.day_players.create(season_id: 2, team_id: 1, player_id: 18) # дима    
+s2d26.day_players.create(season_id: 2, team_id: 1, player_id: 29) # макс    
+s2d26.day_players.create(season_id: 2, team_id: 1, player_id:  2) # коля    
 
-s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 11) # саша    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 24) # эл      |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 12) # саня    |     |     |     |     |     |     |
+s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 10) # виталик 
+s2d26.day_players.create(season_id: 2, team_id: 2, player_id:  4) # шах     
+s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 11) # саша    
+s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    
+s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 24) # эл      
+s2d26.day_players.create(season_id: 2, team_id: 2, player_id: 12) # саня    
 
-s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андр    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 45) # санин   |     |     |     |     |     |     |
+s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 42) # серега  
+s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    
+s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  
+s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андр    
+s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 50) # миша    
+s2d26.day_players.create(season_id: 2, team_id: 3, player_id: 45) # санин   
 
-s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 23) # серега  |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 35) # юра     |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 32) # игорь   |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 48) # макс    |     |     |     |     |     |     |
-s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 51) # георг   |     |     |     |     |     |     |
+s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 23) # серега  
+s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 35) # юра     
+s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 32) # игорь   
+s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 48) # макс    
+s2d26.day_players.create(season_id: 2, team_id: 4, player_id: 51) # георг   
 
 g1359 = Game.create(day_id: s2d26.id, team_left_id: 3, goals_left: 0, goals_right: 1, team_right_id: 1)
 g1359.goals.create(season_id: 2, team_id: 1, player_id: 29, assist_player_id: nil)

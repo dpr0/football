@@ -1,6 +1,6 @@
 section#section1.signup-section.bg-black.text-center
   .container
-    h2.text-white-50 Вход в систему
+    .text-white-50 Войти через
 
     / = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     /   .field.text-white-50
@@ -18,4 +18,4 @@ section#section1.signup-section.bg-black.text-center
     /   .actions
     /     = f.submit 'Войти'
 
-    = render "devise/shared/links"
+    = render 'devise/shared/links'

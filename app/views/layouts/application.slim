@@ -8,31 +8,30 @@ html
 
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
-    = javascript_include_tag 'https://www.google.com/jsapi'
     = favicon_link_tag asset_path('favicon.ico')
 
-    link href="https://football.krsz.ru" rel="canonical"
-    meta name="description"        content="football.krsz.ru"
+    link href="https://megapoli.site" rel="canonical"
+    meta name="description"        content="megapoli.site"
     meta name="twitter:card"       content="summary_large_image"
-    meta property="og:url"         content="https://football.krsz.ru/"
-    meta property="og:site_name"   content="football.krsz.ru"
+    meta property="og:url"         content="https://megapoli.site/"
+    meta property="og:site_name"   content="megapoli.site"
     meta property="og:type"        content="website"
-    meta property="og:title"       content="football.krsz.ru"
+    meta property="og:title"       content="megapoli.site"
     meta property="og:locale"      content="ru_RU"
-    meta property="og:description" content="football.krsz.ru"
+    meta property="og:description" content="megapoli.site"
     meta property="og:image"       content="#{asset_path('og-image.png')}"
 
   body.hold-transition.sidebar-mini.layout-fixed data-scrollbar-auto-hide="n"
     .wrapper
-      = render 'layouts/header'
-      = render 'layouts/sidebar'
+      - if request.user_agent =~ /Mobile|webOS/
+        = render 'layouts/topbar'
+      - else
+        = render 'layouts/header'
+        = render 'layouts/sidebar'
       .content-wrapper.bg-black
         = yield
       = render 'layouts/footer'
       = render 'layouts/control_sidebar'
-
-link rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css"
-link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
 
 javascript:
     if ("#{Rails.env}" == 'production') {

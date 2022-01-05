@@ -1,27 +1,27 @@
 s2d33 = Day.create(sport_id: 1, season_id: 2, date: '16.12.2020'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
-s2d33.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 1, player_id: 52) # черных  |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 1, player_id: 29) # макс к  |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 1, player_id: 33) # макс а  |     |     |     |     |     |     |
+s2d33.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  
+s2d33.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    
+s2d33.day_players.create(season_id: 2, team_id: 1, player_id:  5) # алихан  
+s2d33.day_players.create(season_id: 2, team_id: 1, player_id:  2) # коля    
+s2d33.day_players.create(season_id: 2, team_id: 1, player_id: 52) # черных  
+s2d33.day_players.create(season_id: 2, team_id: 1, player_id: 29) # макс к  
+s2d33.day_players.create(season_id: 2, team_id: 1, player_id: 33) # макс а  
 
-s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 45) # санин   |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 14) # саша    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 24) # эл      |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 18) # дима    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 2, player_id:  3) # ден     |     |     |     |     |     |     |
+s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    
+s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 45) # санин   
+s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 10) # виталик 
+s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 14) # саша    
+s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 24) # эл      
+s2d33.day_players.create(season_id: 2, team_id: 2, player_id: 18) # дима    
+s2d33.day_players.create(season_id: 2, team_id: 2, player_id:  3) # ден     
 
-s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 22) # илья    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андр    |     |     |     |     |     |     |
-s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 32) # игорь   |     |     |     |     |     |     |
+s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    
+s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  
+s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 22) # илья    
+s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 50) # миша    
+s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андр    
+s2d33.day_players.create(season_id: 2, team_id: 3, player_id: 32) # игорь   
 
 g1520 = Game.create(day_id: s2d33.id, team_left_id: 1, goals_left: 1, goals_right: 0, team_right_id: 3)
 g1520.goals.create(season_id: 2, team_id: 1, player_id: 2, assist_player_id: 38)

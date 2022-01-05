@@ -1,28 +1,28 @@
 s3d17 = Day.create(sport_id: 1, season_id: 3, date: '01.03.2021'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
-s3d17.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 1, player_id: 44) # валера  |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 1, player_id: 14) # саша    |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 1, player_id: 23) # врач    |     |     |     |     |     |     |
+s3d17.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    
+s3d17.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  
+s3d17.day_players.create(season_id: 3, team_id: 1, player_id:  6) # тигран  
+s3d17.day_players.create(season_id: 3, team_id: 1, player_id: 18) # дима    
+s3d17.day_players.create(season_id: 3, team_id: 1, player_id: 44) # валера  
+s3d17.day_players.create(season_id: 3, team_id: 1, player_id: 14) # саша    
+s3d17.day_players.create(season_id: 3, team_id: 1, player_id: 23) # врач    
 
-s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  7) # сандро  |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  1) # гарик   |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  9) # вова    |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  3) # ден     |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 2, player_id: 54) # тарасов |     |     |     |     |     |     |
+s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  4) # шах     
+s3d17.day_players.create(season_id: 3, team_id: 2, player_id: 10) # виталик 
+s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  7) # сандро  
+s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  1) # гарик   
+s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  9) # вова    
+s3d17.day_players.create(season_id: 3, team_id: 2, player_id:  3) # ден     
+s3d17.day_players.create(season_id: 3, team_id: 2, player_id: 54) # тарасов 
 
-s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 17) # андр    |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 32) # игорь   |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 55) # рустам  |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 3, player_id:  8) # арг     |     |     |     |     |     |     |
-s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 45) # санин   |     |     |     |     |     |     |
+s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 21) # дима    
+s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 17) # андр    
+s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 32) # игорь   
+s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега  
+s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 55) # рустам  
+s3d17.day_players.create(season_id: 3, team_id: 3, player_id:  8) # арг     
+s3d17.day_players.create(season_id: 3, team_id: 3, player_id: 45) # санин   
 
 g1964 = Game.create(day_id: s3d17.id, team_left_id: 1, goals_left: 2, goals_right: 0, team_right_id: 3)
 g1964.goals.create(season_id: 3, team_id: 1, player_id: 5, assist_player_id: 2)

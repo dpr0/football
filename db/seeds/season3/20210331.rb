@@ -1,31 +1,31 @@
 s3d25 = Day.create(sport_id: 1, season_id: 3, date: '31.03.2021'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
-s3d25.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 1, player_id:  5) # адихан  |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 1, player_id: 23) # врач    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 1, player_id: 52) # черных  |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
+s3d25.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    
+s3d25.day_players.create(season_id: 3, team_id: 1, player_id: 18) # дима    
+s3d25.day_players.create(season_id: 3, team_id: 1, player_id:  5) # адихан  
+s3d25.day_players.create(season_id: 3, team_id: 1, player_id: 23) # врач    
+s3d25.day_players.create(season_id: 3, team_id: 1, player_id: 52) # черных  
+s3d25.day_players.create(season_id: 3, team_id: 1, player_id:  6) # тигран  
 
-s3d25.day_players.create(season_id: 3, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 24) # эл      |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 12) # саня    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 32) # игорь   |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 45) # санин   |     |     |     |     |     |     |
+s3d25.day_players.create(season_id: 3, team_id: 2, player_id:  4) # шах     
+s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 24) # эл      
+s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 12) # саня    
+s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 10) # виталик 
+s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 32) # игорь   
+s3d25.day_players.create(season_id: 3, team_id: 2, player_id: 45) # санин   
 
-s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 22) # илья    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 54) # тарасов |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 17) # андр    |     |     |     |     |     |     |
+s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 21) # дима    
+s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 22) # илья    
+s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 42) # серега  
+s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 54) # тарасов 
+s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 50) # миша    
+s3d25.day_players.create(season_id: 3, team_id: 3, player_id: 17) # андр    
 
-s3d25.day_players.create(season_id: 3, team_id: 4, player_id:  8) # арг     |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 4, player_id: 13) # араз    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 4, player_id: 53) # аслан   |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 4, player_id: 38) # миша    |     |     |     |     |     |     |
-s3d25.day_players.create(season_id: 3, team_id: 4, player_id:  9) # вова    |     |     |     |     |     |     |
+s3d25.day_players.create(season_id: 3, team_id: 4, player_id:  8) # арг     
+s3d25.day_players.create(season_id: 3, team_id: 4, player_id: 13) # араз    
+s3d25.day_players.create(season_id: 3, team_id: 4, player_id: 53) # аслан   
+s3d25.day_players.create(season_id: 3, team_id: 4, player_id: 38) # миша    
+s3d25.day_players.create(season_id: 3, team_id: 4, player_id:  9) # вова    
 
 g2152 = Game.create(day_id: s3d25.id, team_left_id: 3, goals_left: 1, goals_right: 2, team_right_id: 1)
 g2152.goals.create(season_id: 3, team_id: 3, player_id: 42, assist_player_id: 50)

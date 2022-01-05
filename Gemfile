@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ruby '3.0.1'
+ruby '3.0.2'
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -8,7 +8,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'bootsnap'
 gem 'devise'
 gem 'pg'
-gem 'rails'
+gem 'rails', '7.0.0'
 gem 'slim-rails'
 gem 'uglifier'
 gem 'webpacker', '5.4.2'
@@ -17,8 +17,7 @@ gem 'chartkick'
 gem 'cocoon'
 gem 'rest-client'
 gem 'puma'
-gem 'telegram-bot'
-gem 'telegram-bot-types'
+gem 'telegram-bot', git: 'git@github.com:dpr0/telegram-bot.git'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-yandex'

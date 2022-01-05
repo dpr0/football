@@ -1,31 +1,31 @@
 ActiveRecord::Base.transaction do
   s4d13 = Day.create(sport_id: 1, season_id: 4, date: '13.10.2021'.to_date)
                                                                     #         |  гол | асист| удар |  фол | сейв |привоз|
-  s4d13.day_players.create(season_id: 4, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 1, player_id: 52) # дима    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 1, player_id: 23) # врач    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 1, player_id: 54) # тарасов |     |     |     |     |     |     |
+  s4d13.day_players.create(season_id: 4, team_id: 1, player_id:  2) # коля    
+  s4d13.day_players.create(season_id: 4, team_id: 1, player_id:  5) # алихан  
+  s4d13.day_players.create(season_id: 4, team_id: 1, player_id: 18) # дима    
+  s4d13.day_players.create(season_id: 4, team_id: 1, player_id: 52) # дима    
+  s4d13.day_players.create(season_id: 4, team_id: 1, player_id: 23) # врач    
+  s4d13.day_players.create(season_id: 4, team_id: 1, player_id: 54) # тарасов 
 
-  s4d13.day_players.create(season_id: 4, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 2, player_id: 24) # эл      |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 2, player_id:  7) # сандро  |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 2, player_id: 11) # саня    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
+  s4d13.day_players.create(season_id: 4, team_id: 2, player_id:  4) # шах     
+  s4d13.day_players.create(season_id: 4, team_id: 2, player_id: 13) # араз    
+  s4d13.day_players.create(season_id: 4, team_id: 2, player_id: 24) # эл      
+  s4d13.day_players.create(season_id: 4, team_id: 2, player_id:  7) # сандро  
+  s4d13.day_players.create(season_id: 4, team_id: 2, player_id: 11) # саня    
+  s4d13.day_players.create(season_id: 4, team_id: 2, player_id: 10) # виталик 
 
-  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 21) # я       |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 61) # коля    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 22) # илья    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 17) # андр    |     |     |     |     |     |     |
+  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 21) # я       
+  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 50) # миша    
+  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 61) # коля    
+  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 22) # илья    
+  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 42) # серега  
+  s4d13.day_players.create(season_id: 4, team_id: 3, player_id: 17) # андр    
 
-  s4d13.day_players.create(season_id: 4, team_id: 4, player_id:  3) # ден    |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 4, player_id:  9) # вова   |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 4, player_id: 57) # денис  |     |     |     |     |     |     |
-  s4d13.day_players.create(season_id: 4, team_id: 4, player_id: 14) # саша   |     |     |     |     |     |     |
+  s4d13.day_players.create(season_id: 4, team_id: 4, player_id:  3) # ден    
+  s4d13.day_players.create(season_id: 4, team_id: 4, player_id:  9) # вова   
+  s4d13.day_players.create(season_id: 4, team_id: 4, player_id: 57) # денис  
+  s4d13.day_players.create(season_id: 4, team_id: 4, player_id: 14) # саша   
 
   g2914 = Game.create(day_id: s4d13.id, team_left_id: 3, goals_left: 1, goals_right: 1, team_right_id: 1)
   g2914.goals.create(season_id: 4, team_id: 3, player_id: 42, assist_player_id: 22)

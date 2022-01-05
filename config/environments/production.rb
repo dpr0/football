@@ -39,7 +39,7 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'wss://football.krsz.ru/cable'
+  config.action_cable.url = 'wss://megapoli.site/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
   config.action_cable.allowed_request_origins = ['*']
   config.action_cable.disable_request_forgery_protection = true
@@ -91,7 +91,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Set application domain, to be able to run `rake telegram:bot:set_webhook`
-  routes.default_url_options = { host: 'football.krsz.ru', protocol: 'https' }
+  routes.default_url_options = { host: 'megapoli.site', protocol: 'https' }
 
   # Configure session store for telegram bot.
   config.telegram_updates_controller.session_store = :file_store, Rails.root.join('tmp', 'session_store')

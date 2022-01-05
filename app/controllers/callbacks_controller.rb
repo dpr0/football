@@ -13,10 +13,6 @@ class CallbacksController < Devise::OmniauthCallbacksController
     upsert_player('TELEGRAM')
   end
 
-  def firebase
-    upsert_player('FIREBASE')
-  end
-
   private
 
   def upsert_player(provider)

@@ -1,25 +1,25 @@
 ActiveRecord::Base.transaction do
   s4d20 = Day.create(sport_id: 1, season_id: 4, date: '15.11.2021'.to_date)
                                                                     #         |  гол | асист| удар |  фол | сейв |привоз|
-  s4d20.day_players.create(season_id: 4, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 1, player_id: 29) # макс    |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 1, player_id: 38) # миша    |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 1, player_id: 54) # тарасов |     |     |     |     |     |     |
+  s4d20.day_players.create(season_id: 4, team_id: 1, player_id:  2) # коля    
+  s4d20.day_players.create(season_id: 4, team_id: 1, player_id:  5) # алихан  
+  s4d20.day_players.create(season_id: 4, team_id: 1, player_id:  6) # тигран  
+  s4d20.day_players.create(season_id: 4, team_id: 1, player_id: 29) # макс    
+  s4d20.day_players.create(season_id: 4, team_id: 1, player_id: 38) # миша    
+  s4d20.day_players.create(season_id: 4, team_id: 1, player_id: 54) # тарасов 
 
-  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 12) # саша    |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 35) # юра     |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 24) # эл      |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 2, player_id:  1) # гарик   |     |     |     |     |     |     |
+  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 13) # араз    
+  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 12) # саша    
+  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 35) # юра     
+  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 24) # эл      
+  s4d20.day_players.create(season_id: 4, team_id: 2, player_id: 10) # виталик 
+  s4d20.day_players.create(season_id: 4, team_id: 2, player_id:  1) # гарик   
 
-  s4d20.day_players.create(season_id: 4, team_id: 3, player_id: 21) # я       |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 3, player_id: 48) # макс    |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 3, player_id:  9) # вова    |     |     |     |     |     |     |
-  s4d20.day_players.create(season_id: 4, team_id: 3, player_id: 58) # рома    |     |     |     |     |     |     |
+  s4d20.day_players.create(season_id: 4, team_id: 3, player_id: 21) # я       
+  s4d20.day_players.create(season_id: 4, team_id: 3, player_id: 42) # серега  
+  s4d20.day_players.create(season_id: 4, team_id: 3, player_id: 48) # макс    
+  s4d20.day_players.create(season_id: 4, team_id: 3, player_id:  9) # вова    
+  s4d20.day_players.create(season_id: 4, team_id: 3, player_id: 58) # рома    
 
   g2386 = Game.create(day_id: s4d20.id, team_left_id: 2, goals_left: 2, goals_right: 1, team_right_id: 3)
   g2386.goals.create(season_id: 4, team_id: 2, player_id: 1, assist_player_id: 10)
@@ -92,4 +92,3 @@ ActiveRecord::Base.transaction do
   s4d20.day_rates!
   Day.last.update!(videos: 'cwzgapFYaLc,DJGdwxQxuCE,hNPhVq-RbTA,8tMWphX4TBM,ewLQWneUtp4,A8FnT_IkHkE,UUV40GPMKNs,nosJSBHfb2g,WOOvjt2QawA')
 end
-# Player.update_stats!(4)

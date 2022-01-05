@@ -1,25 +1,25 @@
 ActiveRecord::Base.transaction do
   s3d45 = Day.create(sport_id: 1, season_id: 3, date: '04.08.2021'.to_date)
-s3d45.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 1, player_id: 52) # дима    |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 1, player_id:  9) # вова    |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 1, player_id: 14) # саша    |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 1, player_id: 26) # глеб    |     |     |     |     |     |     |
+s3d45.day_players.create(season_id: 3, team_id: 1, player_id:  5) # алихан  
+  s3d45.day_players.create(season_id: 3, team_id: 1, player_id:  2) # коля    
+  s3d45.day_players.create(season_id: 3, team_id: 1, player_id: 52) # дима    
+  s3d45.day_players.create(season_id: 3, team_id: 1, player_id: 18) # дима    
+  s3d45.day_players.create(season_id: 3, team_id: 1, player_id:  9) # вова    
+  s3d45.day_players.create(season_id: 3, team_id: 1, player_id: 14) # саша    
+  s3d45.day_players.create(season_id: 3, team_id: 1, player_id: 26) # глеб    
 
-  s3d45.day_players.create(season_id: 3, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 2, player_id: 53) # аслан   |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 2, player_id: 11) # саша    |     |     |     |     |     |     |
+  s3d45.day_players.create(season_id: 3, team_id: 2, player_id: 13) # араз    
+  s3d45.day_players.create(season_id: 3, team_id: 2, player_id: 53) # аслан   
+  s3d45.day_players.create(season_id: 3, team_id: 2, player_id:  4) # шах     
+  s3d45.day_players.create(season_id: 3, team_id: 2, player_id: 10) # виталик 
+  s3d45.day_players.create(season_id: 3, team_id: 2, player_id: 11) # саша    
 
-  s3d45.day_players.create(season_id: 3, team_id: 3, player_id:  8) # арг     |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 3, player_id: 60) # леха    |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 3, player_id: 54) # тарасов |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 3, player_id:  1) # гарик   |     |     |     |     |     |     |
-  s3d45.day_players.create(season_id: 3, team_id: 3, player_id:  3) # ден     |     |     |     |     |     |     |
+  s3d45.day_players.create(season_id: 3, team_id: 3, player_id:  8) # арг     
+  s3d45.day_players.create(season_id: 3, team_id: 3, player_id: 60) # леха    
+  s3d45.day_players.create(season_id: 3, team_id: 3, player_id: 50) # миша    
+  s3d45.day_players.create(season_id: 3, team_id: 3, player_id: 54) # тарасов 
+  s3d45.day_players.create(season_id: 3, team_id: 3, player_id:  1) # гарик   
+  s3d45.day_players.create(season_id: 3, team_id: 3, player_id:  3) # ден     
 
   g2624 = Game.create(day_id: s3d45.id, team_left_id: 2, goals_left: 2, goals_right: 0, team_right_id: 3)
   g2624.goals.create(season_id: 3, team_id: 2, player_id: 13, assist_player_id: 10)

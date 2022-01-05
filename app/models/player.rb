@@ -2,7 +2,7 @@
 
 class Player < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable, :recoverable, :rememberable,
-         :validatable, :omniauthable, omniauth_providers: [:telegram, :firebase]
+         :validatable, :omniauthable, omniauth_providers: [:telegram]
 
   has_many   :authorizations, dependent: :destroy
   has_many   :goals
@@ -101,7 +101,7 @@ class Player < ApplicationRecord
   end
 
   def print_stat
-    full_name + ' ELO: ' + elo.to_i.to_s + "\nhttps://football.krsz.ru/players/#{id}"
+    full_name + ' ELO: ' + elo.to_i.to_s + "\nhttps://megapoli.site/players/#{id}"
   end
 
   def get_stats_by_season(season_ids)

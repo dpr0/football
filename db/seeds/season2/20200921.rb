@@ -1,25 +1,25 @@
 s2d19 = Day.create(sport_id: 1, season_id: 2, date: '21.09.2020'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
-s2d19.day_players.create(season_id: 2, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 1, player_id: 29) # макс    |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    |     |     |     |     |     |     |
+s2d19.day_players.create(season_id: 2, team_id: 1, player_id:  2) # коля    
+s2d19.day_players.create(season_id: 2, team_id: 1, player_id:  5) # алихан  
+s2d19.day_players.create(season_id: 2, team_id: 1, player_id: 29) # макс    
+s2d19.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  
+s2d19.day_players.create(season_id: 2, team_id: 1, player_id: 18) # дима    
+s2d19.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    
 
-s2d19.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 2, player_id:  1) # гарик   |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 2, player_id:  3) # ден     |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 2, player_id: 23) # серега  |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 2, player_id:  7) # сандро  |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 2, player_id: 12) # саша    |     |     |     |     |     |     |
+s2d19.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    
+s2d19.day_players.create(season_id: 2, team_id: 2, player_id:  1) # гарик   
+s2d19.day_players.create(season_id: 2, team_id: 2, player_id:  3) # ден     
+s2d19.day_players.create(season_id: 2, team_id: 2, player_id: 23) # серега  
+s2d19.day_players.create(season_id: 2, team_id: 2, player_id:  7) # сандро  
+s2d19.day_players.create(season_id: 2, team_id: 2, player_id: 12) # саша    
 
-s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 11) # саша    |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андрей  |     |     |     |     |     |     |
-s2d19.day_players.create(season_id: 2, team_id: 3, player_id:  9) # вова    |     |     |     |     |     |     |
+s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 42) # серега  
+s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 11) # саша    
+s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    
+s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  
+s2d19.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андрей  
+s2d19.day_players.create(season_id: 2, team_id: 3, player_id:  9) # вова    
 
 g1210 = Game.create(day_id: s2d19.id, team_left_id: 3, goals_left: 0, goals_right: 2, team_right_id: 2)
 g1210.goals.create(season_id: 2, team_id: 2, player_id: 13, assist_player_id: 1)

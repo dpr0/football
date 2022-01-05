@@ -1,26 +1,26 @@
 s2d28 = Day.create(sport_id: 1, season_id: 2, date: '30.11.2020'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
-s2d28.day_players.create(season_id: 2, team_id: 1, player_id: 32) # игорь   |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 1, player_id: 39) # гасан   |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 1, player_id:  9) # вова    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 1, player_id:  1) # гарик   |     |     |     |     |     |     |
+s2d28.day_players.create(season_id: 2, team_id: 1, player_id: 32) # игорь   
+s2d28.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  
+s2d28.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    
+s2d28.day_players.create(season_id: 2, team_id: 1, player_id: 18) # дима    
+s2d28.day_players.create(season_id: 2, team_id: 1, player_id: 39) # гасан   
+s2d28.day_players.create(season_id: 2, team_id: 1, player_id:  9) # вова    
+s2d28.day_players.create(season_id: 2, team_id: 1, player_id:  1) # гарик   
 
-s2d28.day_players.create(season_id: 2, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 2, player_id: 11) # саша    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 2, player_id: 24) # эл      |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 2, player_id: 12) # саня    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 2, player_id:  3) # ден     |     |     |     |     |     |     |
+s2d28.day_players.create(season_id: 2, team_id: 2, player_id:  4) # шах     
+s2d28.day_players.create(season_id: 2, team_id: 2, player_id: 11) # саша    
+s2d28.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    
+s2d28.day_players.create(season_id: 2, team_id: 2, player_id: 24) # эл      
+s2d28.day_players.create(season_id: 2, team_id: 2, player_id: 12) # саня    
+s2d28.day_players.create(season_id: 2, team_id: 2, player_id:  3) # ден     
 
-s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андр    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
-s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 35) # юра     |     |     |     |     |     |     |
+s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 42) # серега  
+s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    
+s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  
+s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 17) # андр    
+s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 50) # миша    
+s2d28.day_players.create(season_id: 2, team_id: 3, player_id: 35) # юра     
 
 g1406 = Game.create(day_id: s2d28.id, team_left_id: 3, goals_left: 0, goals_right: 0, team_right_id: 1)
 g1407 = Game.create(day_id: s2d28.id, team_left_id: 2, goals_left: 0, goals_right: 1, team_right_id: 1)

@@ -1,28 +1,28 @@
 ActiveRecord::Base.transaction do
   s4d15 = Day.create(sport_id: 1, season_id: 4, date: '20.10.2021'.to_date)
                                                                     #         |  гол | асист| удар |  фол | сейв |привоз|
-  s4d15.day_players.create(season_id: 4, team_id: 1, player_id:  2) # коля    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 1, player_id: 18) # дима    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 1, player_id: 27) # свят    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 1, player_id: 54) # тарасов |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 1, player_id: 38) # миша    |     |     |     |     |     |     |
+  s4d15.day_players.create(season_id: 4, team_id: 1, player_id:  2) # коля    
+  s4d15.day_players.create(season_id: 4, team_id: 1, player_id:  5) # алихан  
+  s4d15.day_players.create(season_id: 4, team_id: 1, player_id: 18) # дима    
+  s4d15.day_players.create(season_id: 4, team_id: 1, player_id: 27) # свят    
+  s4d15.day_players.create(season_id: 4, team_id: 1, player_id: 54) # тарасов 
+  s4d15.day_players.create(season_id: 4, team_id: 1, player_id:  6) # тигран  
+  s4d15.day_players.create(season_id: 4, team_id: 1, player_id: 38) # миша    
 
-  s4d15.day_players.create(season_id: 4, team_id: 2, player_id:  4) # шах     |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 2, player_id: 58) # рома    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 2, player_id:  9) # вова    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 2, player_id:  7) # сандро  |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 2, player_id: 49) # егор    |     |     |     |     |     |     |
+  s4d15.day_players.create(season_id: 4, team_id: 2, player_id:  4) # шах     
+  s4d15.day_players.create(season_id: 4, team_id: 2, player_id: 13) # араз    
+  s4d15.day_players.create(season_id: 4, team_id: 2, player_id: 58) # рома    
+  s4d15.day_players.create(season_id: 4, team_id: 2, player_id:  9) # вова    
+  s4d15.day_players.create(season_id: 4, team_id: 2, player_id:  7) # сандро  
+  s4d15.day_players.create(season_id: 4, team_id: 2, player_id: 49) # егор    
 
-  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 61) # коля    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 22) # илья    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 21) # я       |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 57) # денис   |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 17) # андр    |     |     |     |     |     |     |
-  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 44) # валера  |     |     |     |     |     |     |
+  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 61) # коля    
+  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 22) # илья    
+  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 21) # я       
+  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 50) # миша    
+  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 57) # денис   
+  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 17) # андр    
+  s4d15.day_players.create(season_id: 4, team_id: 3, player_id: 44) # валера  
 
   g2956 = Game.create(day_id: s4d15.id, team_left_id: 2, goals_left: 2, goals_right: 1, team_right_id: 3)
   g2956.goals.create(season_id: 4, team_id: 2, player_id: nil, assist_player_id: nil)

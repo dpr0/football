@@ -1,27 +1,27 @@
 s2d31 = Day.create(sport_id: 1, season_id: 2, date: '09.12.2020'.to_date)
                                                                   #         |  гол | асист| удар |  фол | сейв |привоз|
-s2d31.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 1, player_id: 52) # дима    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 1, player_id: 29) # макс    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 1, player_id:  5) # алихан  |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 1, player_id: 33) # макс    |     |     |     |     |     |     |
+s2d31.day_players.create(season_id: 2, team_id: 1, player_id:  6) # тигран  
+s2d31.day_players.create(season_id: 2, team_id: 1, player_id: 38) # миша    
+s2d31.day_players.create(season_id: 2, team_id: 1, player_id: 52) # дима    
+s2d31.day_players.create(season_id: 2, team_id: 1, player_id: 29) # макс    
+s2d31.day_players.create(season_id: 2, team_id: 1, player_id:  5) # алихан  
+s2d31.day_players.create(season_id: 2, team_id: 1, player_id: 33) # макс    
 
-s2d31.day_players.create(season_id: 2, team_id: 2, player_id:  3) # ден     |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 12) # саша    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 45) # санин   |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 10) # виталик |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 2, player_id:  9) # вова    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 14) # саша    |     |     |     |     |     |     |
+s2d31.day_players.create(season_id: 2, team_id: 2, player_id:  3) # ден     
+s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 12) # саша    
+s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 13) # араз    
+s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 45) # санин   
+s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 10) # виталик 
+s2d31.day_players.create(season_id: 2, team_id: 2, player_id:  9) # вова    
+s2d31.day_players.create(season_id: 2, team_id: 2, player_id: 14) # саша    
 
-s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 22) # илья    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 50) # миша    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 42) # серега  |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 48) # макс    |     |     |     |     |     |     |
-s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 32) # игорь   |     |     |     |     |     |     |
+s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 21) # дима    
+s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 44) # валера  
+s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 22) # илья    
+s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 50) # миша    
+s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 42) # серега  
+s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 48) # макс    
+s2d31.day_players.create(season_id: 2, team_id: 3, player_id: 32) # игорь   
 
 
 g1477 = Game.create(day_id: s2d31.id, team_left_id: 2, goals_left: 0, goals_right: 0, team_right_id: 3)

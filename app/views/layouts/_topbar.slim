@@ -1,0 +1,12 @@
+nav.navbar.navbar-expand.navbar-white.navbar-light
+  ul.navbar-nav
+    li.nav-item
+      = link_to 'Чат', next_days_path, class: 'nav-link'
+    li.nav-item
+      = link_to 'Статистика', day_path(Day.last.id), class: 'nav-link'
+    li.nav-item
+      = link_to 'Игроки', sport_season_stats_path(sport_id: 1, season_id: Season.last.id), class: 'nav-link'
+    li.nav-item
+      = link_to 'Сезон', days_path, class: 'nav-link'
+    li.nav-item
+      = link_to 'Инфо', about_days_path, class: 'nav-link'

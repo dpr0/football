@@ -21,6 +21,8 @@ module Dictionary
     end
 
     def [](key_s)
+      #   Rails.cache.fetch(['notification', code], expires_in: 1.day) { find_by(code: code) }
+
       key = key_s.to_sym
       raise NoRecord, "No code #{key.inspect} in table #{name}. Update your database." unless cached.key?(key)
 
@@ -61,14 +63,6 @@ module Dictionary
       cached_by_id.values_at(*ids.map(&:to_i))
     end
 
-    # TODO: удалить этот метод, так как он относится к уровню View
-    # Массив массивов [имя, ID] для постронения селектбоксов
-    # @return [Array<Array>]
-    # @deprecated
-    def for_select(title_attr: :name, except: [])
-      cached_by_id.map { |id, d| [d.public_send(title_attr), id] if except.exclude?(id) }.compact
-    end
-
     def cache_expired?
       !(@cached_at && Time.current - @cached_at <= 15.minutes)
     end
@@ -77,13 +71,9 @@ module Dictionary
       cached_by_id.values.select { |row| row.code.present? }.index_by { |row| row.code.to_s.to_sym }.freeze
     end
 
-    # Кешируем только поля id code name и поле name_en если присутсвует
     # @return [Array<Symbol>]
     def cached_attributes
-      attributes = %i[id code name]
-      attributes.push(:name_en) if attribute_names.include?('name_en')
-      attributes.push(:deleted_at) if attribute_names.include?('deleted_at')
-      attributes
+      %i[id code name]
     end
   end
 end

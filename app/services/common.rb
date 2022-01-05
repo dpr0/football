@@ -9,7 +9,7 @@ class Common
     {
         'about.krsz.ru'    => 'fas fa-user-cog',
         'famitree.ru'      => 'fas fa-users',
-        'football.krsz.ru' => 'fas fa-futbol',
+        'megapoli.site' => 'fas fa-futbol',
         'fractal.krsz.ru'  => 'fab fa-js-square',
         'pipiper.ru'       => 'fab fa-pied-piper-pp',
         'podvoh.xyz'       => 'fas fa-swimmer',
