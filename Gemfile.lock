@@ -324,7 +324,7 @@ GEM
     unicode-display_width (2.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webpacker (5.4.3)
+    webpacker (6.0.0.rc.6)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -371,7 +371,7 @@ DEPENDENCIES
   slim-rails
   telegram-bot!
   uglifier
-  webpacker (= 5.4.3)
+  webpacker (= 6.0.0.rc.6)
 
 RUBY VERSION
    ruby 3.0.2p107
